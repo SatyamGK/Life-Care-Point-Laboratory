@@ -956,7 +956,25 @@ export default function Home() {
       </section>
 
 
-     
+      {/* =====================================================
+          FIXED BOTTOM CTA
+          ===================================================== */}
+
+      <button
+        type="button"
+        className="figma-health-partner-button"
+        onClick={
+          connectHealthPartner
+        }
+      >
+
+        <span>
+          ♡
+        </span>
+
+        Connect with your Health Care Partner
+
+      </button>
 
     </div>
   );

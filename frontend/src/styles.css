@@ -5735,3 +5735,536 @@ body {
 .figma-screen-contact {
   justify-content: flex-start !important;
 }
+
+
+/* ============================================================
+   MOBILE-FIRST TYPOGRAPHY
+   Comfortable readable sizes for 390px mobile screens
+   ============================================================ */
+
+/* ---------- General ---------- */
+
+body {
+  font-size: 14px;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header-brand-text strong {
+  font-size: 10px !important;
+}
+
+.header-brand-text span {
+  font-size: 7px !important;
+}
+
+.header-menu-button {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.header-menu-button span {
+  width: 15px !important;
+  height: 1.5px !important;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.figma-hero-content h1 {
+  font-size: 27px !important;
+  line-height: 1.15 !important;
+  margin: 16px 0 12px !important;
+}
+
+.figma-hero-content p {
+  max-width: 320px !important;
+
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+.figma-doctor-badge {
+  min-height: 24px !important;
+  height: 24px !important;
+
+  padding: 0 13px !important;
+
+  font-size: 8px !important;
+  letter-spacing: 0.1px;
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+
+.figma-screen-heading h2 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-screen-heading p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+
+/* ============================================================
+   HOME SAMPLE COLLECTION
+   ============================================================ */
+
+.figma-screen-collection {
+  padding: 28px 18px 24px !important;
+}
+
+.figma-screen-collection .figma-screen-heading h2 {
+  font-size: 25px !important;
+}
+
+.figma-screen-collection .figma-screen-heading p {
+  font-size: 12px !important;
+}
+
+.figma-area-title h3 {
+  font-size: 17px !important;
+}
+
+.figma-area-title span {
+  font-size: 11px !important;
+}
+
+.figma-area-grid {
+  gap: 9px !important;
+}
+
+.figma-area-item {
+  min-height: 36px !important;
+
+  font-size: 11px !important;
+
+  line-height: 1.2 !important;
+}
+
+.figma-location-icon {
+  font-size: 14px !important;
+}
+
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+
+.figma-screen-how {
+  padding: 28px 18px 24px !important;
+}
+
+.figma-how-list {
+  gap: 15px !important;
+}
+
+.figma-how-item {
+  min-height: 65px !important;
+}
+
+.figma-how-icon {
+  font-size: 20px !important;
+}
+
+.figma-how-number {
+  width: 27px !important;
+  height: 27px !important;
+
+  font-size: 12px !important;
+}
+
+.figma-how-text h3 {
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-how-text p {
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+
+.figma-achievements {
+  margin-top: 26px !important;
+}
+
+.figma-achievements h2 {
+  font-size: 22px !important;
+  margin-bottom: 12px !important;
+}
+
+.figma-achievement-grid {
+  gap: 9px !important;
+}
+
+.figma-achievement-card {
+  min-height: 68px !important;
+  padding: 10px !important;
+}
+
+.figma-achievement-card strong {
+  font-size: 18px !important;
+  line-height: 1.1 !important;
+}
+
+.figma-achievement-card span {
+  margin-top: 6px !important;
+
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+
+.figma-screen-packages {
+  padding: 24px 18px !important;
+}
+
+.figma-milestone-card {
+  padding: 16px !important;
+  border-radius: 12px !important;
+}
+
+.figma-milestone-card h2 {
+  font-size: 18px !important;
+  margin-bottom: 12px !important;
+}
+
+.figma-milestone-list {
+  gap: 10px !important;
+}
+
+.figma-milestone-item {
+  gap: 9px !important;
+
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.figma-milestone-check {
+  width: 21px !important;
+  height: 21px !important;
+
+  flex: 0 0 21px !important;
+
+  font-size: 11px !important;
+}
+
+
+/* ============================================================
+   HEALTH PACKAGES
+   ============================================================ */
+
+.figma-packages-title {
+  margin-top: 25px !important;
+  margin-bottom: 13px !important;
+
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-package-scroller {
+  gap: 12px !important;
+}
+
+.figma-package-card {
+  border-radius: 12px !important;
+}
+
+.figma-package-details {
+  padding: 12px !important;
+}
+
+.figma-package-details h3 {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-package-details p {
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.figma-package-price {
+  margin-top: 8px !important;
+}
+
+.figma-package-price del {
+  font-size: 10px !important;
+}
+
+.figma-package-price strong {
+  font-size: 15px !important;
+}
+
+.figma-explore-button {
+  min-height: 38px !important;
+
+  padding: 0 18px !important;
+
+  font-size: 11px !important;
+}
+
+
+/* ============================================================
+   RECOMMENDED TESTS
+   ============================================================ */
+
+.figma-screen-tests {
+  padding: 26px 18px 30px !important;
+}
+
+.figma-recommended-heading {
+  margin: 25px 0 13px !important;
+
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-test-list {
+  gap: 10px !important;
+}
+
+.figma-test-card {
+  min-height: 64px !important;
+
+  border-radius: 11px !important;
+}
+
+.figma-test-main {
+  min-height: 64px !important;
+
+  padding: 9px 10px !important;
+
+  gap: 10px !important;
+}
+
+.figma-test-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  flex: 0 0 32px !important;
+
+  font-size: 18px !important;
+}
+
+.figma-test-information strong {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-test-information small {
+  display: block;
+
+  margin-top: 4px !important;
+
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-book-button {
+  min-width: 70px !important;
+  height: 32px !important;
+
+  margin-right: 8px !important;
+
+  border-radius: 16px !important;
+
+  font-size: 9px !important;
+}
+
+
+/* ============================================================
+   WHY CHOOSE US
+   ============================================================ */
+
+.figma-screen-why {
+  padding: 28px 18px 30px !important;
+}
+
+.figma-why-grid {
+  gap: 10px !important;
+}
+
+.figma-why-card {
+  min-height: 105px !important;
+
+  padding: 13px 10px !important;
+
+  border-radius: 12px !important;
+}
+
+.figma-why-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  font-size: 18px !important;
+}
+
+.figma-why-card h3 {
+  margin-top: 8px !important;
+
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-why-card p {
+  margin-top: 5px !important;
+
+  font-size: 9px !important;
+  line-height: 1.35 !important;
+}
+
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+.figma-screen-contact {
+  padding: 28px 18px 90px !important;
+}
+
+.figma-map {
+  min-height: 155px !important;
+
+  border-radius: 13px !important;
+}
+
+.figma-map-label {
+  font-size: 12px !important;
+}
+
+.figma-map-center {
+  font-size: 27px !important;
+}
+
+.figma-map-location {
+  font-size: 10px !important;
+}
+
+.figma-contact-box {
+  min-height: 70px !important;
+
+  margin-top: 10px !important;
+
+  padding: 12px !important;
+
+  border-radius: 11px !important;
+}
+
+.figma-contact-box-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  flex: 0 0 32px !important;
+
+  font-size: 17px !important;
+}
+
+.figma-contact-box span {
+  font-size: 10px !important;
+}
+
+.figma-contact-box p {
+  margin-top: 4px !important;
+
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.figma-follow-box {
+  margin-top: 18px !important;
+}
+
+.figma-follow-box > span {
+  font-size: 11px !important;
+}
+
+.figma-social-icons {
+  gap: 10px !important;
+  margin-top: 9px !important;
+}
+
+.figma-social-icons a {
+  width: 34px !important;
+  height: 34px !important;
+
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   FIXED CONNECT BUTTON
+   ============================================================ */
+
+.figma-health-partner-button {
+  width: 350px !important;
+  height: 42px !important;
+
+  bottom: 10px !important;
+
+  border-radius: 21px !important;
+
+  font-size: 11px !important;
+
+  gap: 7px !important;
+}
+
+.figma-health-partner-button span {
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   GENERAL LINKS / BUTTONS
+   ============================================================ */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .figma-hero-content h1 {
+    font-size: 24px !important;
+  }
+
+  .figma-screen-heading h2 {
+    font-size: 22px !important;
+  }
+
+  .figma-health-partner-button {
+    width: calc(100% - 30px) !important;
+  }
+
+}
