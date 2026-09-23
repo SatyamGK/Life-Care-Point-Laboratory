@@ -960,8 +960,7 @@ export default function Home() {
           FIXED BOTTOM CTA
           ===================================================== */}
 
-      <button
-        type="button"
+      <button type="button"
         className="figma-health-partner-button"
         onClick={
           connectHealthPartner
