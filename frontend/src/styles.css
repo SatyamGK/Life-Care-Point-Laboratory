@@ -4009,3 +4009,1729 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 
 }
+
+/* ============================================================
+   LIFE CARE POINT LABORATORY
+   FIGMA HOME PAGE
+   MOBILE FIRST
+   ============================================================ */
+
+.figma-home-page {
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  background: #ffffff;
+  color: #122f2a;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   FULL MOBILE SCREEN
+   ============================================================ */
+
+.figma-screen {
+  position: relative;
+
+  width: 100%;
+
+  min-height: calc(100svh - 54px);
+  height: calc(100svh - 54px);
+
+  padding: 12px 10px 58px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   COMMON HEADING
+   ============================================================ */
+
+.figma-screen-heading {
+  width: 100%;
+  margin: 0 0 10px;
+}
+
+.figma-screen-heading h2 {
+  margin: 0;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.figma-screen-heading p {
+  margin: 5px 0 0;
+
+  color: #697975;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   SCREEN 1 — HERO
+   ============================================================ */
+
+.figma-screen-hero {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  overflow: hidden;
+}
+
+.figma-hero-content {
+  width: 100%;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
+.figma-hero-content h1 {
+  margin: 10px 0 8px;
+
+  color: #075c50;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.figma-hero-content p {
+  width: 100%;
+  max-width: 285px;
+
+  margin: 0 auto;
+
+  color: #6d7b78;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  line-height: 1.45;
+}
+
+
+/* ============================================================
+   PREVIOUS HERO VIDEO
+   ============================================================ */
+
+.figma-hero-video {
+  width: calc(100% + 20px);
+  height: 510px;
+
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.figma-hero-video-element {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center center;
+
+  background: #ffffff;
+}
+
+
+/* ============================================================
+   DOCTOR BADGE
+   ============================================================ */
+
+.figma-doctor-badge {
+  min-height: 14px;
+
+  padding: 0 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   SCREEN 2 — HOME COLLECTION
+   ============================================================ */
+
+.figma-screen-collection {
+  padding-top: 12px;
+}
+
+.figma-screen-collection
+.figma-screen-heading h2 {
+  color: #101716;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  line-height: 1.05;
+}
+
+.figma-collection-image {
+  width: 100%;
+  height: 195px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.figma-collection-image img {
+  width: 260px;
+  height: 180px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.figma-area-title {
+  width: 100%;
+
+  margin: 4px 0 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.figma-area-title h3 {
+  margin: 0;
+
+  color: #121e1c;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.figma-area-title span {
+  color: #ff6258;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+}
+
+.figma-area-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+}
+
+.figma-area-item {
+  min-height: 28px;
+
+  padding: 0 7px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e4ebe9;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #253b37;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5.5px;
+}
+
+.figma-location-icon {
+  color: #ff665d;
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   SCREEN 3 — HOW IT WORKS
+   ============================================================ */
+
+.figma-screen-how {
+  padding-top: 12px;
+}
+
+.figma-how-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.figma-how-item {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: grid;
+
+  grid-template-columns:
+    28px
+    18px
+    1fr;
+
+  column-gap: 5px;
+
+  align-items: center;
+}
+
+.figma-how-icon {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 7px;
+
+  display: grid;
+  place-items: center;
+
+  background: #e5f2ef;
+  color: #075c50;
+
+  font-size: 10px;
+}
+
+.figma-how-number {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #ff685f;
+  color: #ffffff;
+
+  font-size: 5px;
+  font-weight: 700;
+}
+
+.figma-how-text h3 {
+  margin: 0 0 2px;
+
+  color: #14352f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.figma-how-text p {
+  margin: 0;
+
+  max-width: 250px;
+
+  color: #77837f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+
+.figma-achievements {
+  margin-top: 22px;
+}
+
+.figma-achievements h2 {
+  margin: 0 0 10px;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+}
+
+.figma-achievement-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 7px;
+}
+
+.figma-achievement-card {
+  height: 52px;
+
+  border-radius: 9px;
+
+  background: #e5efed;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.figma-achievement-card strong {
+  color: #101817;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.figma-achievement-card span {
+  margin-top: 5px;
+
+  color: #50615d;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+}
+
+
+/* ============================================================
+   SCREEN 4 — MILESTONES
+   ============================================================ */
+
+.figma-screen-packages {
+  padding-top: 11px;
+}
+
+.figma-milestone-card {
+  width: 100%;
+
+  padding: 11px 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e5ecea;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px
+    rgba(7, 92, 80, 0.05);
+}
+
+.figma-milestone-card h2 {
+  margin: 0 0 10px;
+
+  color: #185048;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 9px;
+}
+
+.figma-milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.figma-milestone-item {
+  min-height: 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #243d38;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5.5px;
+  font-weight: 600;
+}
+
+.figma-milestone-check {
+  width: 17px;
+  height: 17px;
+
+  flex: 0 0 17px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #e3f2ef;
+
+  color: #075c50;
+
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   HEALTH PACKAGES
+   ============================================================ */
+
+.figma-packages-title {
+  margin: 27px 0 9px;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.figma-package-scroller {
+  width: 100%;
+
+  display: flex;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+}
+
+.figma-package-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.figma-package-card {
+  width: 151px;
+  min-width: 151px;
+  height: 155px;
+
+  flex: 0 0 151px;
+
+  border: 1px solid #e3ebe8;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+}
+
+.figma-package-image {
+  width: 100%;
+  height: 77px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.figma-package-image > * {
+  width: 100%;
+  height: 100%;
+}
+
+.figma-package-details {
+  padding: 5px 7px;
+}
+
+.figma-package-details h3 {
+  margin: 0 0 4px;
+
+  color: #172d29;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.figma-package-details p {
+  height: 22px;
+
+  margin: 0 0 5px;
+
+  color: #77827f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+
+  line-height: 1.35;
+
+  overflow: hidden;
+}
+
+.figma-package-price {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.figma-package-price del {
+  color: #89928f;
+  font-size: 5px;
+}
+
+.figma-package-price strong {
+  color: #075c50;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.figma-explore-button {
+  width: 100%;
+  height: 26px;
+
+  margin-top: 9px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: #075c50;
+  color: #ffffff;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SCREEN 5 — TESTS
+   ============================================================ */
+
+.figma-screen-tests {
+  padding-top: 10px;
+}
+
+.figma-tests-package-preview {
+  width: 100%;
+  height: 155px;
+
+  margin-bottom: 15px;
+
+  overflow: hidden;
+}
+
+.figma-large-package-card {
+  width: 100%;
+  height: 155px;
+}
+
+.figma-recommended-heading {
+  margin-bottom: 9px;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.figma-test-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.figma-test-card {
+  width: 100%;
+
+  min-height: 41px;
+
+  padding: 4px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #e5ebe9;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+.figma-test-main {
+  min-width: 0;
+
+  flex: 1;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.figma-test-icon {
+  width: 25px;
+  height: 25px;
+
+  flex: 0 0 25px;
+
+  border-radius: 7px;
+
+  display: grid;
+  place-items: center;
+
+  background: #fff0ed;
+
+  color: #ff665d;
+
+  font-size: 11px;
+}
+
+.figma-test-information {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.figma-test-information strong {
+  color: #19332e;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.figma-test-information small {
+  color: #798580;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.5px;
+}
+
+.figma-book-button {
+  height: 19px;
+
+  padding: 0 7px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.8px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SCREEN 6 — WHY CHOOSE US
+   ============================================================ */
+
+.figma-screen-why {
+  padding-top: 13px;
+
+  scroll-margin-top: 54px;
+}
+
+.figma-why-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+}
+
+.figma-why-card {
+  height: 76px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e3ebe8;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+.figma-why-icon {
+  width: 22px;
+  height: 22px;
+
+  border-radius: 7px;
+
+  display: grid;
+  place-items: center;
+
+  background: #e4f2ef;
+
+  color: #075c50;
+
+  font-size: 9px;
+}
+
+.figma-why-card h3 {
+  margin: 6px 0 3px;
+
+  color: #19332e;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
+}
+
+.figma-why-card p {
+  margin: 0;
+
+  color: #788480;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.7px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   SCREEN 7 — CONTACT
+   ============================================================ */
+
+.figma-screen-contact {
+  padding-top: 13px;
+}
+
+.figma-map {
+  position: relative;
+
+  width: 100%;
+  height: 82px;
+
+  margin-bottom: 9px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8ece8 0%,
+      #edf6f3 42%,
+      #cfe5e0 100%
+    );
+
+  cursor: pointer;
+}
+
+.figma-map-label {
+  position: absolute;
+
+  left: 8px;
+  top: 8px;
+
+  z-index: 2;
+
+  padding: 4px 7px;
+
+  border-radius: 8px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-size: 5px;
+
+  font-weight: 700;
+}
+
+.figma-map-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  color: #075c50;
+
+  font-size: 25px;
+}
+
+.figma-map-location {
+  position: absolute;
+
+  left: 50%;
+  bottom: 7px;
+
+  transform:
+    translateX(-50%);
+
+  padding: 3px 6px;
+
+  border-radius: 6px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
+
+  color: #075c50;
+
+  font-size: 4.5px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   CONTACT CARDS
+   ============================================================ */
+
+.figma-contact-box {
+  width: 100%;
+
+  min-height: 55px;
+
+  margin-bottom: 7px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  border: 1px solid #e4ebe9;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  text-align: left;
+}
+
+.figma-contact-phone {
+  text-decoration: none;
+}
+
+.figma-contact-box-icon {
+  width: 23px;
+  height: 23px;
+
+  flex: 0 0 23px;
+
+  border-radius: 7px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  font-size: 9px;
+}
+
+.figma-contact-box span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #83908c;
+
+  font-size: 4.8px;
+}
+
+.figma-contact-box p {
+  margin: 0;
+
+  color: #1b332f;
+
+  font-size: 5.5px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   FOLLOW US
+   ============================================================ */
+
+.figma-follow-box {
+  width: 100%;
+
+  min-height: 53px;
+
+  padding: 9px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e4ebe9;
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.figma-follow-box > span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #778681;
+
+  font-size: 5px;
+}
+
+.figma-social-icons {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 14px;
+}
+
+.figma-social-icons a {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  text-decoration: none;
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   FIXED CONNECT BUTTON
+   ============================================================ */
+
+.figma-health-partner-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 10px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 100001;
+
+  width: calc(100% - 22px);
+
+  max-width: 368px;
+
+  height: 29px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 15px
+    rgba(
+      7,
+      92,
+      80,
+      0.18
+    );
+}
+
+.figma-health-partner-button span {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (min-width: 480px) {
+
+  .figma-home-page {
+    width: 390px;
+    max-width: 390px;
+  }
+
+  .figma-health-partner-button {
+    width: 368px;
+  }
+
+}
+
+
+@media (max-width: 360px) {
+
+  .figma-screen {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .figma-area-item {
+    font-size: 5px;
+  }
+
+  .figma-package-card {
+    width: 145px;
+    min-width: 145px;
+    flex-basis: 145px;
+  }
+
+}
+
+
+/* ============================================================
+   FIGMA MOBILE DESIGN DIMENSIONS
+   Design reference: 390 × 844
+   ============================================================ */
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* Main mobile website canvas */
+#root {
+  width: 390px;
+  max-width: 390px;
+  min-height: 844px;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   FIXED HEADER
+   ============================================================ */
+
+.mobile-header {
+  position: fixed !important;
+
+  top: 0;
+  left: 50%;
+  right: auto;
+
+  width: 390px;
+  height: 54px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 10px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e8efed;
+
+  z-index: 100000;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.app-content {
+  width: 390px;
+  max-width: 390px;
+
+  min-height: 100vh;
+
+  padding-top: 54px;
+  padding-bottom: 72px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+}
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+.figma-home-page {
+  width: 390px;
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  overflow-x: hidden;
+}
+
+/* Every Figma screen uses the same 390px width */
+.figma-screen {
+  width: 390px;
+  max-width: 390px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.figma-screen-hero {
+  position: relative;
+
+  width: 390px;
+  height: 790px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 10px 10px 58px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.figma-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  padding: 0 5px;
+
+  box-sizing: border-box;
+}
+
+.figma-hero-content h1 {
+  margin: 10px 0 8px;
+
+  color: #075c50;
+
+  font-family: "Playfair Display", Georgia, serif;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  line-height: 1.15;
+}
+
+.figma-hero-content p {
+  width: 100%;
+  max-width: 285px;
+
+  margin: 0 auto;
+
+  color: #6d7b78;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 6px;
+
+  line-height: 1.45;
+}
+
+/* ============================================================
+   HERO IMAGE / VIDEO
+   ONLY THIS ELEMENT IS ALLOWED TO CHANGE SIZE
+   ============================================================ */
+
+.figma-hero-video {
+  width: 390px;
+
+  height: 570px;
+
+  margin-top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.figma-hero-video-element {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  /*
+    Image/video can be enlarged independently.
+  */
+  object-fit: cover;
+
+  object-position: center center;
+
+  background: #ffffff;
+}
+
+/* ============================================================
+   DOCTOR BADGE
+   ============================================================ */
+
+.figma-doctor-badge {
+  position: relative;
+  z-index: 3;
+
+  height: 14px;
+  min-height: 14px;
+
+  margin-top: -2px;
+
+  padding: 0 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 20px;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 5px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BOTTOM FIXED CTA
+   ============================================================ */
+
+.figma-health-partner-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 10px;
+
+  transform: translateX(-50%);
+
+  width: 350px;
+  height: 35px;
+
+  border: 0;
+  border-radius: 18px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 7px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  z-index: 100001;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   MOBILE SCALING
+   ============================================================ */
+
+/*
+   390px is the Figma design size.
+
+   On phones smaller than 390px, the complete design scales
+   proportionally instead of changing individual dimensions.
+*/
+
+@media (max-width: 389px) {
+
+  #root,
+  .app-content,
+  .figma-home-page,
+  .figma-screen {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobile-header {
+    width: 100%;
+  }
+
+  .figma-screen-hero {
+    width: 100%;
+  }
+
+  .figma-hero-video {
+    width: 100%;
+  }
+
+  .figma-health-partner-button {
+    width: calc(100% - 40px);
+  }
+}
+
+/* ============================================================
+   DESKTOP
+   Keep the website looking like the mobile Figma prototype.
+   ============================================================ */
+
+@media (min-width: 391px) {
+
+  body {
+    background: #000000;
+  }
+
+  #root {
+    width: 390px;
+    max-width: 390px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+  }
+
+  .mobile-header {
+    width: 390px;
+  }
+
+  .app-content {
+    width: 390px;
+  }
+
+  .figma-home-page {
+    width: 390px;
+  }
+}
+
+/* ============================================================
+   REMOVE UNWANTED VERTICAL GAP BETWEEN HOME SECTIONS
+   ============================================================ */
+
+/* Do NOT force every Figma section to full-screen height */
+.figma-screen {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Keep only the hero at its required height */
+.figma-screen-hero {
+  height: 790px !important;
+  min-height: 0 !important;
+}
+
+/* All other sections should take only the space they need */
+.figma-screen-collection,
+.figma-screen-how,
+.figma-screen-packages,
+.figma-screen-tests,
+.figma-screen-why,
+.figma-screen-contact {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Remove artificial vertical spacing */
+.figma-screen-collection,
+.figma-screen-how,
+.figma-screen-packages,
+.figma-screen-tests,
+.figma-screen-why,
+.figma-screen-contact {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Prevent blank flex space from being distributed */
+.figma-screen-how {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-packages {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-tests {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-why {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-contact {
+  justify-content: flex-start !important;
+}
