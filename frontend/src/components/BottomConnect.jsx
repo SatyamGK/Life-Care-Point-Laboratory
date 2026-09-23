@@ -6,10 +6,7 @@ export default function BottomConnect() {
   return (
     <div className="bottom-connect">
 
-      <button type="button" onClick={() => navigate("/book-test")}>
-        <span> ♡ </span>
-          Connect with your Health Care Partner
-      </button>
+     
 
     </div>
   );
