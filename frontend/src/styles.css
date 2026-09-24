@@ -4067,7 +4067,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-media {
   width: 390px;
-  height: 405px;
+  height: 415px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -4762,5 +4762,681 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
   .section-heading h2 {
     font-size: 22px;
+  }
+}
+
+/* ============================================================
+   ACHIEVEMENTS / KEY FEATURES / CONTACT
+   Mobile overflow + left/right border fix
+   ============================================================ */
+
+/* Common mobile page boundary */
+.achievements-section,
+.why-section-home,
+.contact-section-home {
+  width: 100%;
+  max-width: 390px;
+  margin-left: auto;
+  margin-right: auto;
+
+  box-sizing: border-box;
+
+  border-left: 1px solid #e2ebe8;
+  border-right: 1px solid #e2ebe8;
+
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+
+.achievements-section {
+  min-height: auto !important;
+  height: auto !important;
+
+  padding: 18px 14px 24px !important;
+
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+.achievement-stats {
+  width: 100%;
+  box-sizing: border-box;
+
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+}
+
+.achievement-stat {
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  min-height: 58px !important;
+  height: 58px !important;
+
+  padding: 7px !important;
+}
+
+.achievement-stat strong {
+  font-size: 16px !important;
+}
+
+.achievement-stat span {
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+}
+
+.milestone-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 12px !important;
+
+  padding: 12px !important;
+
+  overflow: hidden;
+}
+
+.milestone-list {
+  width: 100%;
+}
+
+.milestone-item {
+  width: 100%;
+  box-sizing: border-box;
+
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   KEY FEATURES / WHY CHOOSE US
+   ============================================================ */
+
+.why-section-home {
+  min-height: auto !important;
+  height: auto !important;
+
+  padding: 20px 14px 90px !important;
+
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+.why-grid-home {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  gap: 8px !important;
+}
+
+.why-card-home {
+  width: 100%;
+  min-width: 0;
+
+  height: 82px !important;
+  min-height: 82px !important;
+
+  box-sizing: border-box;
+
+  padding: 9px !important;
+
+  overflow: hidden;
+}
+
+.why-card-home h3 {
+  max-width: 100%;
+
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+
+  white-space: normal;
+}
+
+.why-card-home p {
+  max-width: 100%;
+
+  font-size: 8px !important;
+  line-height: 1.3 !important;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+.contact-section-home {
+  min-height: auto !important;
+  height: auto !important;
+
+  padding: 20px 14px 90px !important;
+
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+.contact-section-home .section-heading {
+  width: 100%;
+}
+
+.map-card,
+.contact-card-home,
+.follow-box {
+  width: 100%;
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+.map-card {
+  min-height: 145px !important;
+
+  overflow: hidden;
+}
+
+.contact-card-home {
+  min-height: 68px !important;
+
+  overflow: hidden;
+}
+
+.contact-card-home p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.social-icons {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   REMOVE UNWANTED PAGE-LEVEL SCROLLING
+   ============================================================ */
+
+/*
+   The page itself should scroll normally.
+   Individual sections must not create their own scrollbars.
+*/
+
+.achievements-section,
+.why-section-home,
+.contact-section-home {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+
+/* ============================================================
+   PREVENT HORIZONTAL OVERFLOW
+   ============================================================ */
+
+.home-page {
+  width: 390px;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+.home-section {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.achievement-stats,
+.milestone-card,
+.why-grid-home,
+.contact-section-home {
+  max-width: 100%;
+}
+
+
+/* ============================================================
+   SMALL MOBILE DEVICES
+   ============================================================ */
+
+@media (max-width: 389px) {
+
+  .achievements-section,
+  .why-section-home,
+  .contact-section-home {
+    width: 100%;
+    max-width: 100%;
+
+    border-left: 1px solid #e2ebe8;
+    border-right: 1px solid #e2ebe8;
+  }
+
+  .why-grid-home {
+    gap: 7px !important;
+  }
+
+  .why-card-home {
+    height: 80px !important;
+    min-height: 80px !important;
+  }
+}
+
+/* ============================================================
+   ACHIEVEMENTS PAGE — FINAL MOBILE LAYOUT
+   ============================================================ */
+
+.achievements-section {
+  width: 390px !important;
+  max-width: 390px !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0 auto !important;
+
+  padding: 20px 16px 75px !important;
+
+  box-sizing: border-box !important;
+
+  overflow: visible !important;
+
+  background: #ffffff;
+
+  border-left: 1px solid #dfe8e5 !important;
+  border-right: 1px solid #dfe8e5 !important;
+}
+
+
+/* Heading */
+.achievement-heading {
+  margin: 0 0 16px !important;
+}
+
+.achievement-label {
+  display: block;
+
+  margin: 0 0 5px !important;
+
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 1px !important;
+}
+
+.achievement-heading h1 {
+  margin: 0 !important;
+
+  color: #075c50 !important;
+
+  font-family: "Playfair Display", Georgia, serif !important;
+
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENT STAT CARDS
+   ============================================================ */
+
+.achievement-stats {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  gap: 7px !important;
+
+  margin: 0 !important;
+}
+
+.achievement-stat {
+  width: 100% !important;
+
+  height: 52px !important;
+  min-height: 52px !important;
+
+  padding: 6px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 7px !important;
+
+  background: #e8f0ee !important;
+
+  text-align: center !important;
+}
+
+.achievement-stat strong {
+  margin: 0 !important;
+
+  color: #172e2a !important;
+
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+}
+
+.achievement-stat span {
+  margin: 4px 0 0 !important;
+
+  color: #657570 !important;
+
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+
+  text-align: center !important;
+}
+
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+
+.milestone-card {
+  width: 100% !important;
+
+  margin: 14px 0 0 !important;
+
+  padding: 14px !important;
+
+  box-sizing: border-box !important;
+
+  border: 1px solid #dfe8e5 !important;
+  border-radius: 10px !important;
+
+  background: #ffffff !important;
+}
+
+.milestone-card h2 {
+  margin: 0 0 11px !important;
+
+  color: #183b36 !important;
+
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+}
+
+.milestone-list {
+  display: grid !important;
+
+  gap: 8px !important;
+}
+
+.milestone-item {
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  color: #41514e !important;
+
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.milestone-check {
+  width: 19px !important;
+  height: 19px !important;
+
+  flex: 0 0 19px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  border-radius: 50% !important;
+
+  background: #e5f2ef !important;
+  color: #075c50 !important;
+
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+
+/* ============================================================
+   REMOVE THE EMPTY VIEWPORT SPACE
+   ============================================================ */
+
+.achievements-section {
+  min-height: 0 !important;
+  height: fit-content !important;
+}
+
+
+/* ============================================================
+   MOBILE WIDTH
+   ============================================================ */
+
+@media (max-width: 389px) {
+  .achievements-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 390px) {
+  .achievements-section {
+    width: 390px !important;
+    max-width: 390px !important;
+  }
+}
+
+/* ============================================================
+   ACHIEVEMENTS PAGE — FINAL MOBILE LAYOUT
+   ============================================================ */
+
+.achievements-section {
+  width: 390px !important;
+  max-width: 390px !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 0 auto !important;
+
+  padding: 20px 16px 75px !important;
+
+  box-sizing: border-box !important;
+
+  overflow: visible !important;
+
+  background: #ffffff;
+
+  border-left: 1px solid #dfe8e5 !important;
+  border-right: 1px solid #dfe8e5 !important;
+}
+
+
+/* Heading */
+.achievement-heading {
+  margin: 0 0 16px !important;
+}
+
+.achievement-label {
+  display: block;
+
+  margin: 0 0 5px !important;
+
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 1px !important;
+}
+
+.achievement-heading h1 {
+  margin: 0 !important;
+
+  color: #075c50 !important;
+
+  font-family: "Playfair Display", Georgia, serif !important;
+
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENT STAT CARDS
+   ============================================================ */
+
+.achievement-stats {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  gap: 7px !important;
+
+  margin: 0 !important;
+}
+
+.achievement-stat {
+  width: 100% !important;
+
+  height: 52px !important;
+  min-height: 52px !important;
+
+  padding: 6px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 7px !important;
+
+  background: #e8f0ee !important;
+
+  text-align: center !important;
+}
+
+.achievement-stat strong {
+  margin: 0 !important;
+
+  color: #172e2a !important;
+
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+}
+
+.achievement-stat span {
+  margin: 4px 0 0 !important;
+
+  color: #657570 !important;
+
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+
+  text-align: center !important;
+}
+
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+
+.milestone-card {
+  width: 100% !important;
+
+  margin: 14px 0 0 !important;
+
+  padding: 14px !important;
+
+  box-sizing: border-box !important;
+
+  border: 1px solid #dfe8e5 !important;
+  border-radius: 10px !important;
+
+  background: #ffffff !important;
+}
+
+.milestone-card h2 {
+  margin: 0 0 11px !important;
+
+  color: #183b36 !important;
+
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+}
+
+.milestone-list {
+  display: grid !important;
+
+  gap: 8px !important;
+}
+
+.milestone-item {
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  color: #41514e !important;
+
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.milestone-check {
+  width: 19px !important;
+  height: 19px !important;
+
+  flex: 0 0 19px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  border-radius: 50% !important;
+
+  background: #e5f2ef !important;
+  color: #075c50 !important;
+
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+
+/* ============================================================
+   REMOVE THE EMPTY VIEWPORT SPACE
+   ============================================================ */
+
+.achievements-section {
+  min-height: 0 !important;
+  height: fit-content !important;
+}
+
+
+/* ============================================================
+   MOBILE WIDTH
+   ============================================================ */
+
+@media (max-width: 389px) {
+  .achievements-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 390px) {
+  .achievements-section {
+    width: 390px !important;
+    max-width: 390px !important;
   }
 }
