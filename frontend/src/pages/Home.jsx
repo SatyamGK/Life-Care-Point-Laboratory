@@ -242,7 +242,7 @@ const openPackage = (packageData) => {
 
           <p>
             Every Blood Test has a story to tell and with
-            over 20+ years of experience, we know how to
+            over 25+ years of experience, we know how to
             deliver it with high precision.
           </p>
 
@@ -824,7 +824,7 @@ const openPackage = (packageData) => {
           <div className="social-icons">
 
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/lifecarepointlaboratory"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
@@ -833,7 +833,7 @@ const openPackage = (packageData) => {
             </a>
 
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/lifecarepointlaboratory/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -851,7 +851,7 @@ const openPackage = (packageData) => {
             </a>
 
             <a
-              href="https://www.youtube.com/"
+              href="https://www.youtube.com/@lifecarepointlaboratory"
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"

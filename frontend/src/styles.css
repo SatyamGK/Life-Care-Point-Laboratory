@@ -4067,7 +4067,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-media {
   width: 390px;
-  height: 470px;
+  height: 333px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -4077,7 +4077,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .hero-video {
-  width: 200%;
+  width: 150%;
   /* height: 130%; */
   max-width: none;
   display: block;
@@ -4103,7 +4103,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Shared section heading */
 .section-heading h2 {
-  margin: 0;
+  margin: 20px 0px 0px 0px;
   color: #142421;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 25px;
