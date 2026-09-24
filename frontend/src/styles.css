@@ -4067,7 +4067,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-media {
   width: 390px;
-  height: 370px;
+  height: 380px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -4103,7 +4103,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Shared section heading */
 .section-heading h2 {
-  margin: 20px 0px 0px 0px;
+  margin: 30px 0px 0px 0px;
   color: #142421;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 25px;
