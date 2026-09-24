@@ -4029,74 +4029,76 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #ffffff;
 }
 
-/* ============================================================
-   HERO — COMPACT HEIGHT + LARGER TEST TUBE
-   ============================================================ */
-
+/* Hero */
 .hero-section {
-  width: 390px;
-  height: auto !important;
-  min-height: 0 !important;
-
-  padding: 6px 10px 10px !important;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  box-sizing: border-box;
+  width: 390px;
+  min-height: 0;
+  padding: 10px 10px;
+  text-align: center;
   overflow: hidden;
 }
 
-/* Hero heading */
+.hero-content {
+  width: 100%;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
 .hero-content h1 {
-  margin: 8px 0 8px !important;
+  margin: 16px 0 12px;
+  color: #075c50;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .hero-content p {
-  margin-bottom: 0 !important;
+  max-width: 320px;
+  margin: 0 auto;
+  color: #6d7b78;
+  font-size: 12px;
+  line-height: 1.55;
 }
 
-
-/* Video frame */
 .hero-media {
-  width: 390px !important;
-  height: 470px !important;
-
-  margin: 0 auto !important;
-
+  width: 390px;
+  height: 540px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
   background: #ffffff;
 }
 
-
-/* Make test tube larger inside the frame */
 .hero-video {
-  width: 126.5% !important;
-  height: 126.5% !important;
-
-  max-width: none !important;
-
+  width: 200%;
+  /* height: 130%; */
+  max-width: none;
   display: block;
-
   object-fit: contain;
   object-position: center;
 }
 
-
-/* Doctor badge */
 .doctor-badge {
-  height: 24px !important;
-  min-height: 24px !important;
-
-  margin-top: 2px !important;
-  margin-bottom: 0 !important;
-
-  padding: 0 13px !important;
+  height: 24px;
+  min-height: 24px;
+  margin-top: -2px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #e5f2ef;
+  color: #075c50;
+  font-size: 8px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* Shared section heading */
