@@ -4,10 +4,14 @@ export default function BottomConnect() {
   const navigate = useNavigate();
 
   return (
-    <div className="bottom-connect">
+    <button
+      type="button"
+      className="global-health-partner-button"
+      onClick={() => navigate("/book-test")}
+    >
+      <span className="global-health-partner-icon">♡</span>
 
-     
-
-    </div>
+      <span>Connect with your Health Care Partner</span>
+    </button>
   );
 }

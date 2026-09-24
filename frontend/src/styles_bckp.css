@@ -4011,700 +4011,1618 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ============================================================
-   HOME PAGE
+   LIFE CARE POINT LABORATORY
+   FIGMA HOME PAGE
+   MOBILE FIRST
    ============================================================ */
 
-.home-page {
-  width: 390px;
+.figma-home-page {
+  width: 100%;
   max-width: 390px;
   margin: 0 auto;
   background: #ffffff;
   color: #122f2a;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
 
-.home-section {
-  width: 390px;
-  box-sizing: border-box;
-  background: #ffffff;
-}
 
-/* Hero */
-.hero-section {
+/* ============================================================
+   FULL MOBILE SCREEN
+   ============================================================ */
+
+.figma-screen {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 390px;
-  min-height: 0;
-  padding: 10px 10px;
-  text-align: center;
+
+  width: 100%;
+
+  min-height: calc(100svh - 54px);
+  height: calc(100svh - 54px);
+
+  padding: 12px 10px 58px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
   overflow: hidden;
 }
 
-.hero-content {
+
+/* ============================================================
+   COMMON HEADING
+   ============================================================ */
+
+.figma-screen-heading {
+  width: 100%;
+  margin: 0 0 10px;
+}
+
+.figma-screen-heading h2 {
+  margin: 0;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.figma-screen-heading p {
+  margin: 5px 0 0;
+
+  color: #697975;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   SCREEN 1 — HERO
+   ============================================================ */
+
+.figma-screen-hero {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  overflow: hidden;
+}
+
+.figma-hero-content {
   width: 100%;
   padding: 0 5px;
   box-sizing: border-box;
 }
 
-.hero-content h1 {
-  margin: 16px 0 12px;
+.figma-hero-content h1 {
+  margin: 10px 0 8px;
+
   color: #075c50;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 27px;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.15;
 }
 
-.hero-content p {
-  max-width: 320px;
-  margin: 0 auto;
-  color: #6d7b78;
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.hero-media {
-  width: 390px;
-  height: 540px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.hero-video {
-  width: 115% !important;
-  height: 130% !important;
-  max-width: none;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-}
-
-.doctor-badge {
-  height: 24px;
-  min-height: 24px;
-  margin-top: -2px;
-  padding: 0 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  background: #e5f2ef;
-  color: #075c50;
-  font-size: 8px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-/* Shared section heading */
-.section-heading h2 {
-  margin: 0;
-  color: #142421;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 25px;
-  line-height: 1.2;
-}
-
-.section-heading p {
-  margin: 6px 0 0;
-  color: #6d7b78;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* Home collection */
-.collection-section {
-  padding: 28px 18px 24px;
-}
-
-.collection-image {
+.figma-hero-content p {
   width: 100%;
-  height: 130px;
-  margin: 10px 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #ffffff;
-}
+  max-width: 285px;
 
-.collection-image img {
-  width: 240px;
-  height: 130px;
-  display: block;
-  object-fit: contain;
-}
+  margin: 0 auto;
 
-.area-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 0 10px;
-}
+  color: #6d7b78;
 
-.area-heading h3 {
-  margin: 0;
-  color: #111d1a;
-  font-size: 17px;
-  font-weight: 700;
-}
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
 
-.area-heading span {
-  color: #ef6659;
-  font-size: 11px;
-}
-
-.area-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 9px;
-}
-
-.area-item {
-  min-height: 36px;
-  padding: 0 8px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid #e4ece9;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #4f5e5a;
-  font-size: 11px;
-  line-height: 1.2;
-}
-
-.location-icon {
-  color: #075c50;
-  font-size: 15px;
-  line-height: 1;
-}
-
-/* How it works */
-.how-section {
-  padding: 28px 18px 24px;
-}
-
-.how-list {
-  display: grid;
-  gap: 15px;
-  margin-top: 18px;
-}
-
-.how-item {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  min-height: 65px;
-}
-
-.how-icon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #e8f3f0;
-  color: #075c50;
-  font-size: 18px;
-}
-
-.how-number {
-  width: 27px;
-  height: 27px;
-  flex: 0 0 27px;
-  display: grid;
-  place-items: center;
-  margin-top: 3px;
-  border-radius: 50%;
-  background: #ef6259;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.how-text h3 {
-  margin: 0;
-  color: #075c50;
-  font-size: 15px;
-  line-height: 1.25;
-}
-
-.how-text p {
-  margin: 4px 0 0;
-  color: #74827e;
-  font-size: 11px;
+  font-size: 6px;
   line-height: 1.45;
 }
 
-/* Achievements */
-.achievements-block {
-  margin-top: 26px;
-}
 
-.achievements-block h2 {
-  margin: 0 0 12px;
-  color: #142421;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 22px;
-}
+/* ============================================================
+   PREVIOUS HERO VIDEO
+   ============================================================ */
 
-.achievement-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px;
-}
+.figma-hero-video {
+  width: calc(100% + 20px);
+  height: 510px;
 
-.achievement-card {
-  width: 100%;
-  height: 52px;
-  padding: 7px 6px;
-  box-sizing: border-box;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 0;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 7px;
-  background: #e8f0ee;
-  text-align: center;
-}
 
-.achievement-card strong {
-  color: #172e2a;
-  font-size: 16px;
-  line-height: 1.1;
-}
+  overflow: hidden;
 
-.achievement-card span {
-  margin-top: 4px;
-  color: #657570;
-  font-size: 8px;
-  line-height: 1.2;
-}
-
-/* Milestones and packages */
-.packages-section {
-  padding: 24px 18px;
-}
-
-.home-milestone-card {
-  padding: 16px;
-  border: 1px solid #e3ebe8;
-  border-radius: 12px;
   background: #ffffff;
 }
 
-.home-milestone-card h2 {
-  margin: 0 0 12px;
-  color: #075c50;
-  font-size: 18px;
+.figma-hero-video-element {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center center;
+
+  background: #ffffff;
 }
 
-.home-milestone-list {
-  display: grid;
-  gap: 10px;
-}
 
-.home-milestone-item {
+/* ============================================================
+   DOCTOR BADGE
+   ============================================================ */
+
+.figma-doctor-badge {
+  min-height: 14px;
+
+  padding: 0 8px;
+
   display: flex;
   align-items: center;
-  gap: 9px;
-  color: #45534f;
-  font-size: 11px;
-  line-height: 1.35;
-}
+  justify-content: center;
 
-.home-milestone-check {
-  width: 21px;
-  height: 21px;
-  flex: 0 0 21px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #e4f2ee;
+  border-radius: 20px;
+
+  background: #e5f2ef;
+
   color: #075c50;
-  font-size: 11px;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
   font-weight: 700;
 }
 
-.packages-title {
-  margin: 25px 0 13px;
-  color: #142421;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 22px;
-  line-height: 1.2;
+
+/* ============================================================
+   SCREEN 2 — HOME COLLECTION
+   ============================================================ */
+
+.figma-screen-collection {
+  padding-top: 12px;
 }
 
-.package-scroller {
+.figma-screen-collection
+.figma-screen-heading h2 {
+  color: #101716;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  line-height: 1.05;
+}
+
+.figma-collection-image {
+  width: 100%;
+  height: 195px;
+
   display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
-.package-scroller::-webkit-scrollbar {
+.figma-collection-image img {
+  width: 260px;
+  height: 180px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.figma-area-title {
+  width: 100%;
+
+  margin: 4px 0 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.figma-area-title h3 {
+  margin: 0;
+
+  color: #121e1c;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.figma-area-title span {
+  color: #ff6258;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+}
+
+.figma-area-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+}
+
+.figma-area-item {
+  min-height: 28px;
+
+  padding: 0 7px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e4ebe9;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #253b37;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5.5px;
+}
+
+.figma-location-icon {
+  color: #ff665d;
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   SCREEN 3 — HOW IT WORKS
+   ============================================================ */
+
+.figma-screen-how {
+  padding-top: 12px;
+}
+
+.figma-how-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.figma-how-item {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: grid;
+
+  grid-template-columns:
+    28px
+    18px
+    1fr;
+
+  column-gap: 5px;
+
+  align-items: center;
+}
+
+.figma-how-icon {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 7px;
+
+  display: grid;
+  place-items: center;
+
+  background: #e5f2ef;
+  color: #075c50;
+
+  font-size: 10px;
+}
+
+.figma-how-number {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #ff685f;
+  color: #ffffff;
+
+  font-size: 5px;
+  font-weight: 700;
+}
+
+.figma-how-text h3 {
+  margin: 0 0 2px;
+
+  color: #14352f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.figma-how-text p {
+  margin: 0;
+
+  max-width: 250px;
+
+  color: #77837f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+
+.figma-achievements {
+  margin-top: 22px;
+}
+
+.figma-achievements h2 {
+  margin: 0 0 10px;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+}
+
+.figma-achievement-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 7px;
+}
+
+.figma-achievement-card {
+  height: 52px;
+
+  border-radius: 9px;
+
+  background: #e5efed;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.figma-achievement-card strong {
+  color: #101817;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.figma-achievement-card span {
+  margin-top: 5px;
+
+  color: #50615d;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+}
+
+
+/* ============================================================
+   SCREEN 4 — MILESTONES
+   ============================================================ */
+
+.figma-screen-packages {
+  padding-top: 11px;
+}
+
+.figma-milestone-card {
+  width: 100%;
+
+  padding: 11px 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e5ecea;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 3px 12px
+    rgba(7, 92, 80, 0.05);
+}
+
+.figma-milestone-card h2 {
+  margin: 0 0 10px;
+
+  color: #185048;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 9px;
+}
+
+.figma-milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.figma-milestone-item {
+  min-height: 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #243d38;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5.5px;
+  font-weight: 600;
+}
+
+.figma-milestone-check {
+  width: 17px;
+  height: 17px;
+
+  flex: 0 0 17px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #e3f2ef;
+
+  color: #075c50;
+
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   HEALTH PACKAGES
+   ============================================================ */
+
+.figma-packages-title {
+  margin: 27px 0 9px;
+
+  color: #101c1a;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.figma-package-scroller {
+  width: 100%;
+
+  display: flex;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+}
+
+.figma-package-scroller::-webkit-scrollbar {
   display: none;
 }
 
-.home-package-card {
-  width: 210px;
-  min-width: 210px;
-  overflow: hidden;
-  border: 1px solid #e5ecea;
-  border-radius: 12px;
+.figma-package-card {
+  width: 151px;
+  min-width: 151px;
+  height: 166px;
+
+  flex: 0 0 151px;
+
+  border: 1px solid #e3ebe8;
+
+  border-radius: 10px;
+
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  scroll-snap-align: start;
-}
 
-.home-package-image {
-  width: 100%;
-  height: 100px;
   overflow: hidden;
-  background: #f7fbfa;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
 }
 
-.home-package-image > * {
+.figma-package-image {
+  width: 100%;
+  height: 77px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.figma-package-image > * {
   width: 100%;
   height: 100%;
 }
 
-.home-package-details {
-  padding: 12px;
+.figma-package-details {
+  padding: 5px 7px;
 }
 
-.home-package-details h3 {
-  margin: 0;
-  color: #183b36;
-  font-size: 15px;
-  line-height: 1.3;
+.figma-package-details h3 {
+  margin: 0 0 4px;
+
+  color: #172d29;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
 
-.home-package-details p {
-  margin: 5px 0 0;
-  color: #7a8581;
-  font-size: 10px;
-  line-height: 1.45;
+.figma-package-details p {
+  height: 22px;
+
+  margin: 0 0 5px;
+
+  color: #77827f;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 5px;
+
+  line-height: 1.35;
+
+  overflow: hidden;
 }
 
-.home-package-price {
+.figma-package-price {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 8px;
 }
 
-.home-package-price del {
-  color: #999999;
-  font-size: 10px;
+.figma-package-price del {
+  color: #89928f;
+  font-size: 5px;
 }
 
-.home-package-price strong {
+.figma-package-price strong {
   color: #075c50;
-  font-size: 15px;
+  font-size: 7px;
   font-weight: 800;
 }
 
-.explore-button {
+.figma-explore-button {
   width: 100%;
-  min-height: 38px;
-  margin-top: 10px;
-  padding: 0 18px;
+  height: 26px;
+
+  margin-top: 9px;
+
   border: 0;
-  border-radius: 8px;
+  border-radius: 10px;
+
   background: #075c50;
   color: #ffffff;
-  font-size: 11px;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
   font-weight: 700;
+
+  cursor: pointer;
 }
 
-/* Recommended tests */
-.tests-section {
-  padding: 26px 18px 30px;
+
+/* ============================================================
+   SCREEN 5 — TESTS
+   ============================================================ */
+
+.figma-screen-tests {
+  padding-top: 10px;
 }
 
-.recommended-heading {
-  margin: 25px 0 13px;
-  color: #142421;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 22px;
-  line-height: 1.2;
+.figma-tests-package-preview {
+  width: 100%;
+  height: 155px;
+
+  margin-bottom: 15px;
+
+  overflow: hidden;
 }
 
-.test-list {
-  display: grid;
-  gap: 10px;
+.figma-large-package-card {
+  width: 100%;
+  height: 155px;
 }
 
-.home-test-card {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #e6ecea;
-  border-radius: 11px;
-  background: #ffffff;
-}
+.figma-recommended-heading {
+  margin-bottom: 9px;
 
-.test-main {
-  min-height: 64px;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
-  border: 0;
-  background: transparent;
-  text-align: left;
-}
+  color: #101c1a;
 
-.test-icon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 7px;
-  background: #e8f3f0;
-  color: #075c50;
-  font-size: 18px;
-}
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
 
-.test-information {
-  min-width: 0;
-}
-
-.test-information strong {
-  display: block;
-  color: #183b36;
   font-size: 13px;
-  line-height: 1.3;
-}
-
-.test-information small {
-  display: block;
-  margin-top: 4px;
-  color: #7b8682;
-  font-size: 10px;
-  line-height: 1.35;
-}
-
-.book-button {
-  min-width: 70px;
-  height: 32px;
-  margin-right: 8px;
-  border: 0;
-  border-radius: 16px;
-  background: #075c50;
-  color: #ffffff;
-  font-size: 10px;
   font-weight: 700;
 }
 
-/* Why choose us */
-.why-choose-section {
-  padding: 28px 18px 30px;
-}
+.figma-test-list {
+  width: 100%;
 
-.why-choose-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+
   gap: 7px;
 }
 
-.why-choose-card {
+.figma-test-card {
   width: 100%;
-  height: 78px;
-  min-height: 78px;
-  padding: 9px 8px;
+
+  min-height: 41px;
+
+  padding: 4px;
+
   box-sizing: border-box;
+
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border: 1px solid #dce6e3;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #e5ebe9;
+
   border-radius: 9px;
+
   background: #ffffff;
 }
 
-.why-choose-icon {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-  display: grid;
-  place-items: center;
-  border-radius: 5px;
-  background: #e5f2ef;
-  color: #075c50;
-  font-size: 13px;
-}
-
-.why-choose-card h3 {
-  margin: 5px 0 0;
-  color: #183b36;
-  font-size: 10px;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-.why-choose-card p {
-  margin: 3px 0 0;
-  color: #697874;
-  font-size: 8px;
-  line-height: 1.25;
-}
-
-/* Contact */
-.contact-section-home {
-  padding: 28px 18px 90px;
-}
-
-.map-card {
-  width: 100%;
-  min-height: 155px;
-  padding: 0;
-  border: 1px solid #e3ebe8;
-  border-radius: 13px;
-  overflow: hidden;
-  background: #dceae6;
-  color: inherit;
-}
-
-.map-label {
-  padding-top: 12px;
-  color: #075c50;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.map-center {
-  margin-top: 28px;
-  color: #075c50;
-  font-size: 27px;
-}
-
-.map-location {
-  margin-top: 4px;
-  color: #71807b;
-  font-size: 10px;
-}
-
-.home-contact-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  min-height: 70px;
-  margin-top: 10px;
-  padding: 12px;
-  border: 1px solid #e4ece9;
-  border-radius: 11px;
-  background: #ffffff;
-}
-
-.home-contact-card > div:last-child {
+.figma-test-main {
   min-width: 0;
+
+  flex: 1;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  text-align: left;
+
+  cursor: pointer;
 }
 
-.home-contact-icon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
+.figma-test-icon {
+  width: 25px;
+  height: 25px;
+
+  flex: 0 0 25px;
+
+  border-radius: 7px;
+
   display: grid;
   place-items: center;
-  border-radius: 6px;
-  background: #e7f3ef;
-  color: #075c50;
-  font-size: 17px;
+
+  background: #fff0ed;
+
+  color: #ff665d;
+
+  font-size: 11px;
 }
 
-.home-contact-card span {
-  display: block;
-  color: #65736f;
-  font-size: 11px;
+.figma-test-information {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.figma-test-information strong {
+  color: #19332e;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.figma-test-information small {
+  color: #798580;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.5px;
+}
+
+.figma-book-button {
+  height: 19px;
+
+  padding: 0 7px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.8px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SCREEN 6 — WHY CHOOSE US
+   ============================================================ */
+
+.figma-screen-why {
+  padding-top: 13px;
+
+  scroll-margin-top: 54px;
+}
+
+.figma-why-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+}
+
+.figma-why-card {
+  height: 76px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e3ebe8;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+.figma-why-icon {
+  width: 22px;
+  height: 22px;
+
+  border-radius: 7px;
+
+  display: grid;
+  place-items: center;
+
+  background: #e4f2ef;
+
+  color: #075c50;
+
+  font-size: 9px;
+}
+
+.figma-why-card h3 {
+  margin: 6px 0 3px;
+
+  color: #19332e;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
+}
+
+.figma-why-card p {
+  margin: 0;
+
+  color: #788480;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 4.7px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   SCREEN 7 — CONTACT
+   ============================================================ */
+
+.figma-screen-contact {
+  padding-top: 13px;
+}
+
+.figma-map {
+  position: relative;
+
+  width: 100%;
+  height: 82px;
+
+  margin-bottom: 9px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8ece8 0%,
+      #edf6f3 42%,
+      #cfe5e0 100%
+    );
+
+  cursor: pointer;
+}
+
+.figma-map-label {
+  position: absolute;
+
+  left: 8px;
+  top: 8px;
+
+  z-index: 2;
+
+  padding: 4px 7px;
+
+  border-radius: 8px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-size: 5px;
+
   font-weight: 700;
 }
 
-.home-contact-card p {
-  margin: 4px 0 0;
-  color: #3f4d49;
-  font-size: 11px;
-  line-height: 1.5;
+.figma-map-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  color: #075c50;
+
+  font-size: 25px;
 }
 
-.follow-box {
-  margin-top: 18px;
+.figma-map-location {
+  position: absolute;
+
+  left: 50%;
+  bottom: 7px;
+
+  transform:
+    translateX(-50%);
+
+  padding: 3px 6px;
+
+  border-radius: 6px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
+
+  color: #075c50;
+
+  font-size: 4.5px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   CONTACT CARDS
+   ============================================================ */
+
+.figma-contact-box {
+  width: 100%;
+
+  min-height: 55px;
+
+  margin-bottom: 7px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  border: 1px solid #e4ebe9;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  text-align: left;
+}
+
+.figma-contact-phone {
+  text-decoration: none;
+}
+
+.figma-contact-box-icon {
+  width: 23px;
+  height: 23px;
+
+  flex: 0 0 23px;
+
+  border-radius: 7px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  font-size: 9px;
+}
+
+.figma-contact-box span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #83908c;
+
+  font-size: 4.8px;
+}
+
+.figma-contact-box p {
+  margin: 0;
+
+  color: #1b332f;
+
+  font-size: 5.5px;
+
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   FOLLOW US
+   ============================================================ */
+
+.figma-follow-box {
+  width: 100%;
+
+  min-height: 53px;
+
+  padding: 9px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e4ebe9;
+
+  border-radius: 10px;
+
   text-align: center;
 }
 
-.follow-box > span {
-  color: #87938f;
-  font-size: 12px;
+.figma-follow-box > span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #778681;
+
+  font-size: 5px;
 }
 
-.social-icons {
+.figma-social-icons {
   display: flex;
+
+  align-items: center;
+
   justify-content: center;
-  gap: 10px;
-  margin-top: 9px;
+
+  gap: 14px;
 }
 
-.social-icons a {
-  width: 34px;
-  height: 34px;
+.figma-social-icons a {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
   display: grid;
   place-items: center;
-  border: 1px solid #e1ebe8;
-  border-radius: 50%;
-  background: #ffffff;
+
+  background: #e5f2ef;
+
   color: #075c50;
-  font-size: 15px;
+
+  text-decoration: none;
+
+  font-size: 8px;
+
   font-weight: 700;
 }
 
-/* Global bottom CTA */
-.global-health-partner-button {
-  position: fixed !important;
-  left: 50% !important;
-  bottom: 10px !important;
-  transform: translateX(-50%) !important;
-  width: 350px !important;
-  height: 42px !important;
-  padding: 0 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 7px !important;
-  border: 0 !important;
-  border-radius: 21px !important;
-  background: #075c50 !important;
-  color: #ffffff !important;
-  font-family: "DM Sans", Arial, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
+
+/* ============================================================
+   FIXED CONNECT BUTTON
+   ============================================================ */
+
+.figma-health-partner-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 10px;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 100001;
+
+  width: calc(100% - 22px);
+
+  max-width: 368px;
+
+  height: 29px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-size: 6px;
+
+  font-weight: 700;
+
   cursor: pointer;
-  z-index: 1000000 !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+
+  box-shadow:
+    0 5px 15px
+    rgba(
+      7,
+      92,
+      80,
+      0.18
+    );
 }
 
-.global-health-partner-icon {
-  font-size: 16px !important;
-  line-height: 1 !important;
+.figma-health-partner-button span {
+  font-size: 9px;
 }
 
-/* Mobile and desktop width */
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (min-width: 390px) {
+
+  .figma-home-page {
+    width: 390px;
+    max-width: 390px;
+  }
+
+  .figma-health-partner-button {
+    width: 368px;
+  }
+
+}
+
+
+@media (max-width: 360px) {
+
+  .figma-screen {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .figma-area-item {
+    font-size: 5px;
+  }
+
+  .figma-package-card {
+    width: 145px;
+    min-width: 145px;
+    flex-basis: 145px;
+  }
+
+}
+
+
+/* ============================================================
+   FIGMA MOBILE DESIGN DIMENSIONS
+   Design reference: 390 × 844
+   ============================================================ */
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* Main mobile website canvas */
+#root {
+  width: 390px;
+  max-width: 390px;
+  min-height: 844px;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   FIXED HEADER
+   ============================================================ */
+
+.mobile-header {
+  position: fixed !important;
+
+  top: 0;
+  left: 50%;
+  right: auto;
+
+  width: 390px;
+  height: 54px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 10px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e8efed;
+
+  z-index: 100000;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.app-content {
+  width: 390px;
+  max-width: 390px;
+
+  min-height: 100vh;
+
+  padding-top: 54px;
+  padding-bottom: 72px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+}
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+.figma-home-page {
+  width: 390px;
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  overflow-x: hidden;
+}
+
+/* Every Figma screen uses the same 390px width */
+.figma-screen {
+  width: 390px;
+  max-width: 390px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.figma-screen-hero {
+  position: relative;
+
+  width: 390px;
+  height: 790px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 10px 10px 58px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.figma-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  padding: 0 5px;
+
+  box-sizing: border-box;
+}
+
+.figma-hero-content h1 {
+  margin: 10px 0 8px;
+
+  color: #075c50;
+
+  font-family: "Playfair Display", Georgia, serif;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  line-height: 1.15;
+}
+
+.figma-hero-content p {
+  width: 100%;
+  max-width: 285px;
+
+  margin: 0 auto;
+
+  color: #6d7b78;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 6px;
+
+  line-height: 1.45;
+}
+
+/* ============================================================
+   HERO IMAGE / VIDEO
+   ONLY THIS ELEMENT IS ALLOWED TO CHANGE SIZE
+   ============================================================ */
+
+.figma-hero-video {
+  width: 390px;
+
+  height: 420px;
+
+  margin-top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.figma-hero-video-element {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  /*
+    Image/video can be enlarged independently.
+  */
+  object-fit: cover;
+
+  object-position: center center;
+
+  background: #ffffff;
+}
+
+/* ============================================================
+   DOCTOR BADGE
+   ============================================================ */
+
+.figma-doctor-badge {
+  position: relative;
+  z-index: 3;
+
+  height: 14px;
+  min-height: 14px;
+
+  margin-top: -2px;
+
+  padding: 0 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border-radius: 20px;
+
+  background: #e5f2ef;
+
+  color: #075c50;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 5px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BOTTOM FIXED CTA
+   ============================================================ */
+
+.figma-health-partner-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 10px;
+
+  transform: translateX(-50%);
+
+  width: 350px;
+  height: 35px;
+
+  border: 0;
+  border-radius: 18px;
+
+  background: #075c50;
+
+  color: #ffffff;
+
+  font-family: Inter, Arial, sans-serif;
+
+  font-size: 7px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  z-index: 100001;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   MOBILE SCALING
+   ============================================================ */
+
+/*
+   390px is the Figma design size.
+
+   On phones smaller than 390px, the complete design scales
+   proportionally instead of changing individual dimensions.
+*/
+
 @media (max-width: 389px) {
+
   #root,
   .app-content,
-  .home-page,
-  .home-section {
+  .figma-home-page,
+  .figma-screen {
     width: 100%;
     max-width: 100%;
   }
@@ -4713,10 +5631,1566 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     width: 100%;
   }
 
-  .hero-section,
-  .hero-media {
+  .figma-screen-hero {
     width: 100%;
   }
+
+  .figma-hero-video {
+    width: 100%;
+  }
+
+  .figma-health-partner-button {
+    width: calc(100% - 40px);
+  }
+}
+
+/* ============================================================
+   DESKTOP
+   Keep the website looking like the mobile Figma prototype.
+   ============================================================ */
+
+@media (min-width: 391px) {
+
+  body {
+    background: #000000;
+  }
+
+  #root {
+    width: 390px;
+    max-width: 390px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+  }
+
+  .mobile-header {
+    width: 390px;
+  }
+
+  .app-content {
+    width: 390px;
+  }
+
+  .figma-home-page {
+    width: 390px;
+  }
+}
+
+/* ============================================================
+   REMOVE UNWANTED VERTICAL GAP BETWEEN HOME SECTIONS
+   ============================================================ */
+
+/* Do NOT force every Figma section to full-screen height */
+.figma-screen {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Keep only the hero at its required height */
+.figma-screen-hero {
+  height: 790px !important;
+  min-height: 0 !important;
+}
+
+/* All other sections should take only the space they need */
+.figma-screen-collection,
+.figma-screen-how,
+.figma-screen-packages,
+.figma-screen-tests,
+.figma-screen-why,
+.figma-screen-contact {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Remove artificial vertical spacing */
+.figma-screen-collection,
+.figma-screen-how,
+.figma-screen-packages,
+.figma-screen-tests,
+.figma-screen-why,
+.figma-screen-contact {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Prevent blank flex space from being distributed */
+.figma-screen-how {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-packages {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-tests {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-why {
+  justify-content: flex-start !important;
+}
+
+.figma-screen-contact {
+  justify-content: flex-start !important;
+}
+
+
+/* ============================================================
+   MOBILE-FIRST TYPOGRAPHY
+   Comfortable readable sizes for 390px mobile screens
+   ============================================================ */
+
+/* ---------- General ---------- */
+
+body {
+  font-size: 14px;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header-brand-text strong {
+  font-size: 10px !important;
+}
+
+.header-brand-text span {
+  font-size: 7px !important;
+}
+
+.header-menu-button {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.header-menu-button span {
+  width: 15px !important;
+  height: 1.5px !important;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.figma-hero-content h1 {
+  font-size: 27px !important;
+  line-height: 1.15 !important;
+  margin: 16px 0 12px !important;
+}
+
+.figma-hero-content p {
+  max-width: 320px !important;
+
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+.figma-doctor-badge {
+  min-height: 24px !important;
+  height: 24px !important;
+
+  padding: 0 13px !important;
+
+  font-size: 8px !important;
+  letter-spacing: 0.1px;
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+
+.figma-screen-heading h2 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-screen-heading p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+
+/* ============================================================
+   HOME SAMPLE COLLECTION
+   ============================================================ */
+
+.figma-screen-collection {
+  padding: 28px 18px 24px !important;
+}
+
+.figma-screen-collection .figma-screen-heading h2 {
+  font-size: 25px !important;
+}
+
+.figma-screen-collection .figma-screen-heading p {
+  font-size: 12px !important;
+}
+
+.figma-area-title h3 {
+  font-size: 17px !important;
+}
+
+.figma-area-title span {
+  font-size: 11px !important;
+}
+
+.figma-area-grid {
+  gap: 9px !important;
+}
+
+.figma-area-item {
+  min-height: 36px !important;
+
+  font-size: 11px !important;
+
+  line-height: 1.2 !important;
+}
+
+.figma-location-icon {
+  font-size: 14px !important;
+}
+
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+
+.figma-screen-how {
+  padding: 0px 18px !important;
+}
+
+.figma-how-list {
+  gap: 15px !important;
+}
+
+.figma-how-item {
+  min-height: 65px !important;
+}
+
+.figma-how-icon {
+  font-size: 20px !important;
+}
+
+.figma-how-number {
+  width: 27px !important;
+  height: 27px !important;
+
+  font-size: 12px !important;
+}
+
+.figma-how-text h3 {
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-how-text p {
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+
+.figma-achievements {
+  margin-top: 26px !important;
+}
+
+.figma-achievements h2 {
+  font-size: 22px !important;
+  margin-bottom: 12px !important;
+}
+
+.figma-achievement-grid {
+  gap: 9px !important;
+}
+
+.figma-achievement-card {
+  min-height: 68px !important;
+  padding: 10px !important;
+}
+
+.figma-achievement-card strong {
+  font-size: 18px !important;
+  line-height: 1.1 !important;
+}
+
+.figma-achievement-card span {
+  margin-top: 6px !important;
+
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ============================================================
+   MILESTONES
+   ============================================================ */
+
+.figma-screen-packages {
+  padding: 10px 18px !important;
+}
+
+.figma-milestone-card {
+  padding: 16px !important;
+  border-radius: 12px !important;
+}
+
+.figma-milestone-card h2 {
+  font-size: 18px !important;
+  margin-bottom: 12px !important;
+}
+
+.figma-milestone-list {
+  gap: 10px !important;
+}
+
+.figma-milestone-item {
+  gap: 9px !important;
+
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.figma-milestone-check {
+  width: 21px !important;
+  height: 21px !important;
+
+  flex: 0 0 21px !important;
+
+  font-size: 11px !important;
+}
+
+
+/* ============================================================
+   HEALTH PACKAGES
+   ============================================================ */
+
+.figma-packages-title {
+  margin-top: 25px !important;
+  margin-bottom: 13px !important;
+
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-package-scroller {
+  gap: 12px !important;
+}
+
+.figma-package-card {
+  border-radius: 12px !important;
+}
+
+.figma-package-details {
+  padding: 12px !important;
+}
+
+.figma-package-details h3 {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-package-details p {
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.figma-package-price {
+  margin-top: 8px !important;
+}
+
+.figma-package-price del {
+  font-size: 10px !important;
+}
+
+.figma-package-price strong {
+  font-size: 15px !important;
+}
+
+.figma-explore-button {
+  min-height: 38px !important;
+
+  padding: 0 18px !important;
+
+  font-size: 11px !important;
+}
+
+
+/* ============================================================
+   RECOMMENDED TESTS
+   ============================================================ */
+
+.figma-screen-tests {
+  padding: 0px 18px !important;
+}
+
+.figma-recommended-heading {
+  margin: 25px 0 13px !important;
+
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-test-list {
+  gap: 10px !important;
+}
+
+.figma-test-card {
+  min-height: 64px !important;
+
+  border-radius: 11px !important;
+}
+
+.figma-test-main {
+  min-height: 64px !important;
+
+  padding: 9px 10px !important;
+
+  gap: 10px !important;
+}
+
+.figma-test-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  flex: 0 0 32px !important;
+
+  font-size: 18px !important;
+}
+
+.figma-test-information strong {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-test-information small {
+  display: block;
+
+  margin-top: 4px !important;
+
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-book-button {
+  min-width: 70px !important;
+  height: 32px !important;
+
+  margin-right: 8px !important;
+
+  border-radius: 16px !important;
+
+  font-size: 9px !important;
+}
+
+
+/* ============================================================
+   WHY CHOOSE US
+   ============================================================ */
+
+.figma-screen-why {
+  padding: 28px 18px 30px !important;
+}
+
+.figma-why-grid {
+  gap: 10px !important;
+}
+
+.figma-why-card {
+  min-height: 105px !important;
+
+  padding: 13px 10px !important;
+
+  border-radius: 12px !important;
+}
+
+.figma-why-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  font-size: 18px !important;
+}
+
+.figma-why-card h3 {
+  margin-top: 8px !important;
+
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-why-card p {
+  margin-top: 5px !important;
+
+  font-size: 9px !important;
+  line-height: 1.35 !important;
+}
+
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+.figma-screen-contact {
+  padding: 0px 18px !important;
+}
+
+.figma-map {
+  min-height: 155px !important;
+
+  border-radius: 13px !important;
+}
+
+.figma-map-label {
+  font-size: 12px !important;
+}
+
+.figma-map-center {
+  font-size: 27px !important;
+}
+
+.figma-map-location {
+  font-size: 10px !important;
+}
+
+.figma-contact-box {
+  min-height: 70px !important;
+
+  margin-top: 10px !important;
+
+  padding: 12px !important;
+
+  border-radius: 11px !important;
+}
+
+.figma-contact-box-icon {
+  width: 32px !important;
+  height: 32px !important;
+
+  flex: 0 0 32px !important;
+
+  font-size: 17px !important;
+}
+
+.figma-contact-box span {
+  font-size: 10px !important;
+}
+
+.figma-contact-box p {
+  margin-top: 4px !important;
+
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.figma-follow-box {
+  margin-top: 18px !important;
+}
+
+.figma-follow-box > span {
+  font-size: 11px !important;
+}
+
+.figma-social-icons {
+  gap: 10px !important;
+  margin-top: 9px !important;
+}
+
+.figma-social-icons a {
+  width: 34px !important;
+  height: 34px !important;
+
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   FIXED CONNECT BUTTON
+   ============================================================ */
+
+.figma-health-partner-button {
+  width: 350px !important;
+  height: 42px !important;
+
+  bottom: 10px !important;
+
+  border-radius: 21px !important;
+
+  font-size: 11px !important;
+
+  gap: 7px !important;
+}
+
+.figma-health-partner-button span {
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   GENERAL LINKS / BUTTONS
+   ============================================================ */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .figma-hero-content h1 {
+    font-size: 24px !important;
+  }
+
+  .figma-screen-heading h2 {
+    font-size: 22px !important;
+  }
+
+  .figma-health-partner-button {
+    width: calc(100% - 30px) !important;
+  }
+
+}
+
+/* Home Page Hero Video — 390 × 540 */
+.figma-hero-video {
+  width: 390px !important;
+  height: 540px !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.figma-hero-video-element {
+  width: 100% !important;
+  height: 100% !important;
+  /* max-width: none !important;
+
+  object-fit: contain !important;
+  object-position: center !important; */
+  background-color: #ffffff;
+}
+
+
+/* ============================================================
+   LIFE CARE POINT LABORATORY
+   FINAL MOBILE-FIRST TYPOGRAPHY SYSTEM
+   ============================================================ */
+
+:root {
+  --font-heading-main: 27px;
+  --font-heading-section: 23px;
+  --font-heading-card: 15px;
+  --font-body: 14px;
+  --font-secondary: 11px;
+  --font-button: 13px;
+  --font-input: 15px;
+
+  --touch-target: 44px;
+}
+
+
+/* ============================================================
+   1. MAIN PAGE HEADINGS
+   Range: 24–27px
+   ============================================================ */
+
+.figma-hero-content h1,
+.page-title,
+.main-heading,
+.achievements-section h1,
+.package-info-page > h1,
+.test-info-page > h1,
+.booking-page > h1,
+.book-test-page > h1 {
+  font-size: 27px !important;
+  line-height: 1.2 !important;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   2. SECTION HEADINGS
+   Range: 20–25px
+   ============================================================ */
+
+.figma-screen-heading h2,
+.figma-achievements h2,
+.figma-packages-title,
+.figma-recommended-heading,
+.figma-milestone-card h2,
+.section-heading,
+.package-test-heading h2 {
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   3. CARD HEADINGS
+   Range: 14–16px
+   ============================================================ */
+
+.figma-package-details h3,
+.figma-test-information strong,
+.figma-how-text h3,
+.figma-why-card h3,
+.package-card h3,
+.test-card h3,
+.card-title {
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   4. NORMAL TEXT
+   Range: 13–15px
+   ============================================================ */
+
+body,
+.figma-hero-content p,
+.figma-screen-heading p,
+.figma-how-text p,
+.figma-package-details p,
+.test-detail-description,
+.package-info-page p,
+.test-info-page p,
+.booking-page p,
+.book-test-page p,
+.normal-text {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ============================================================
+   5. SECONDARY TEXT
+   Range: 10–12px
+   ============================================================ */
+
+.figma-achievement-card span,
+.figma-milestone-item,
+.figma-test-information small,
+.figma-package-details p,
+.figma-area-title span,
+.figma-area-item,
+.figma-why-card p,
+.figma-contact-box span,
+.figma-contact-box p,
+.secondary-text,
+.helper-text,
+.caption {
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+
+/* ============================================================
+   6. BUTTONS
+   Range: 12–14px
+   ============================================================ */
+
+button,
+.figma-explore-button,
+.figma-book-button,
+.detail-book-button,
+.booking-page button,
+.book-test-page button,
+.booking-form button,
+.primary-button,
+.secondary-button {
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   7. FORM INPUTS
+   Range: 15–16px
+   ============================================================ */
+
+input,
+textarea,
+select,
+.booking-page input,
+.booking-page textarea,
+.booking-page select,
+.book-test-page input,
+.book-test-page textarea,
+.book-test-page select,
+.booking-form input,
+.booking-form textarea,
+.booking-form select {
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   8. TOUCH TARGETS
+   Minimum 44px
+   ============================================================ */
+
+button,
+a,
+input,
+select {
+  min-height: 20px;
+}
+
+
+/* Don't force icons/images to 44px */
+img,
+svg,
+video {
+  min-height: 0;
+}
+
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+.figma-area-item {
+  min-height: 44px !important;
+  font-size: 11px !important;
+}
+
+.figma-how-item {
+  min-height: 44px !important;
+}
+
+.figma-achievement-card {
+  min-height: 70px !important;
+}
+
+.figma-test-card {
+  min-height: 64px !important;
+}
+
+.figma-test-main {
+  min-height: 64px !important;
+}
+
+.figma-why-card {
+  min-height: 105px !important;
+}
+
+
+/* ============================================================
+   PACKAGE / TEST CARDS
+   ============================================================ */
+
+.figma-package-card,
+.package-card,
+.test-card {
+  min-height: 44px;
+}
+
+.figma-package-details h3,
+.package-card h3,
+.test-card h3 {
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   PACKAGE INFORMATION
+   ============================================================ */
+
+.package-detail-heading h1,
+.test-detail-heading h1 {
+  font-size: 13px !important;
+  line-height: 2 !important;
+}
+
+.detail-price strong {
+  font-size: 20px !important;
+}
+
+.detail-price del {
+  font-size: 12px !important;
+}
+
+.package-simple-test-name {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   BOOKING FORM
+   ============================================================ */
+
+.booking-page label,
+.book-test-page label,
+.booking-form label {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+.booking-page input,
+.booking-page textarea,
+.booking-page select,
+.book-test-page input,
+.book-test-page textarea,
+.book-test-page select,
+.booking-form input,
+.booking-form textarea,
+.booking-form select {
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+  font-size: 15px !important;
+}
+
+
+/* ============================================================
+   MENU
+   ============================================================ */
+
+.menu-navigation-item {
+  min-height: 44px !important;
+}
+
+.menu-navigation-label {
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+
+/* ============================================================
+   SUCCESS PAGE
+   ============================================================ */
+
+.success-card h1 {
+  font-size: 24px !important;
+  line-height: 1.3 !important;
+}
+
+.success-card p {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.redirect-message {
+  font-size: 12px !important;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header-brand-text strong {
+  font-size: 11px !important;
+}
+
+.header-brand-text span {
+  font-size: 8px !important;
+}
+
+
+/* ============================================================
+   BOTTOM CONNECT BUTTON
+   ============================================================ */
+
+.figma-health-partner-button {
+  min-height: 44px !important;
+  height: 44px !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   SMALL MOBILE DEVICES
+   Keep readability — only slightly reduce large headings
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .figma-hero-content h1,
+  .page-title,
+  .main-heading {
+    font-size: 24px !important;
+  }
+
+  .figma-screen-heading h2,
+  .section-heading {
+    font-size: 21px !important;
+  }
+
+  .figma-package-details h3,
+  .figma-test-information strong,
+  .card-title {
+    font-size: 14px !important;
+  }
+
+  body {
+    font-size: 14px !important;
+  }
+}
+
+/* ============================================================
+   GLOBAL MOBILE-FIRST READABLE TYPOGRAPHY
+   Life Care Point Laboratory
+   ============================================================ */
+
+/* ---------- Base ---------- */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #263a36;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header-brand-text strong {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+}
+
+.header-brand-text span {
+  font-size: 7px !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.6px;
+}
+
+
+/* ============================================================
+   COMMON PAGE HEADINGS
+   ============================================================ */
+
+.info-page h1,
+.package-info-page h1,
+.test-info-page h1,
+.booking-page h1,
+.book-test-page h1,
+.success-page h1,
+.contact-page h1,
+.menu-page h1 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.info-page h2,
+.package-info-page h2,
+.test-info-page h2,
+.booking-page h2,
+.book-test-page h2 {
+  font-size: 20px !important;
+  line-height: 1.25 !important;
+}
+
+.info-page p,
+.package-info-page p,
+.test-info-page p,
+.booking-page p,
+.book-test-page p,
+.success-page p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+.figma-hero-content h1 {
+  font-size: 27px !important;
+  line-height: 1.15 !important;
+}
+
+.figma-hero-content p {
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+.figma-screen-heading h2 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.figma-screen-heading p {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+
+/* ---------- Areas ---------- */
+
+.figma-area-title h3 {
+  font-size: 17px !important;
+}
+
+.figma-area-title span {
+  font-size: 11px !important;
+}
+
+.figma-area-item {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-location-icon {
+  font-size: 15px !important;
+}
+
+
+/* ---------- How It Works ---------- */
+
+.figma-how-text h3 {
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-how-text p {
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+.figma-how-number {
+  font-size: 12px !important;
+}
+
+
+/* ---------- Achievements ---------- */
+
+.figma-achievements h2 {
+  font-size: 22px !important;
+}
+
+.figma-achievement-card strong {
+  font-size: 18px !important;
+}
+
+.figma-achievement-card span {
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+}
+
+
+/* ---------- Milestones ---------- */
+
+.figma-milestone-card h2 {
+  font-size: 19px !important;
+}
+
+.figma-milestone-item {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ---------- Packages ---------- */
+
+.figma-packages-title {
+  font-size: 22px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-package-details h3 {
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-package-details p {
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+.figma-package-price del {
+  font-size: 11px !important;
+}
+
+.figma-package-price strong {
+  font-size: 16px !important;
+}
+
+.figma-explore-button {
+  font-size: 12px !important;
+}
+
+
+/* ---------- Recommended Tests ---------- */
+
+.figma-recommended-heading {
+  font-size: 22px !important;
+  line-height: 1.25 !important;
+}
+
+.figma-test-information strong {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-test-information small {
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+}
+
+.figma-book-button {
+  font-size: 10px !important;
+}
+
+
+/* ---------- Why Choose Us ---------- */
+
+.figma-why-card h3 {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+.figma-why-card p {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ---------- Contact ---------- */
+
+.figma-contact-box span {
+  font-size: 11px !important;
+}
+
+.figma-contact-box p {
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+.figma-follow-box > span {
+  font-size: 12px !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS PAGE
+   ============================================================ */
+
+.achievement-label {
+  font-size: 9px !important;
+  letter-spacing: 1px !important;
+}
+
+.achievement-heading h1 {
+  font-size: 25px !important;
+}
+
+.achievement-stat strong {
+  font-size: 17px !important;
+}
+
+.achievement-stat span {
+  font-size: 9px !important;
+  line-height: 1.35 !important;
+}
+
+.milestone-card h2 {
+  font-size: 18px !important;
+}
+
+.milestone-item {
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   PACKAGE / TEST INFORMATION PAGES
+   ============================================================ */
+
+.package-detail-heading h1,
+.test-detail-heading h1 {
+  font-size: 13px !important;
+  line-height: 2 !important;
+}
+
+.detail-price strong {
+  font-size: 19px !important;
+}
+
+.detail-price del {
+  font-size: 13px !important;
+}
+
+.test-detail-description {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.test-parameter-line {
+  font-size: 12px !important;
+}
+
+.package-test-heading span {
+  font-size: 10px !important;
+  letter-spacing: 0.6px !important;
+}
+
+.package-test-heading h2 {
+  font-size: 14px !important;
+}
+
+.package-simple-test-name {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   BOOKING PAGES
+   ============================================================ */
+
+.booking-page label,
+.book-test-page label,
+.test-booking-page label,
+.package-booking-page label {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+.booking-page input,
+.booking-page textarea,
+.book-test-page input,
+.book-test-page textarea,
+.test-booking-page input,
+.test-booking-page textarea,
+.package-booking-page input,
+.package-booking-page textarea {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.booking-page input::placeholder,
+.booking-page textarea::placeholder,
+.book-test-page input::placeholder,
+.book-test-page textarea::placeholder,
+.test-booking-page input::placeholder,
+.test-booking-page textarea::placeholder,
+.package-booking-page input::placeholder,
+.package-booking-page textarea::placeholder {
+  font-size: 13px !important;
+}
+
+.booking-page button,
+.book-test-page button,
+.test-booking-page button,
+.package-booking-page button {
+  font-size: 14px !important;
+}
+
+
+/* ============================================================
+   BOOK TEST / CONNECT HEALTH PARTNER
+   ============================================================ */
+
+.book-test-page h1 {
+  font-size: 25px !important;
+}
+
+.book-test-page p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ============================================================
+   MENU PAGE
+   ============================================================ */
+
+.menu-navigation-label {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+.menu-navigation-arrow {
+  font-size: 18px !important;
+}
+
+.menu-topbar {
+  font-size: 14px !important;
+}
+
+
+/* ============================================================
+   SUCCESS PAGE
+   ============================================================ */
+
+.success-page h1 {
+  font-size: 23px !important;
+  line-height: 1.3 !important;
+}
+
+.success-page p {
+  font-size: 14px !important;
+}
+
+.redirect-message {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   COMMON BUTTONS
+   ============================================================ */
+
+.detail-book-button {
+  font-size: 14px !important;
+  min-height: 44px !important;
+}
+
+.figma-health-partner-button {
+  font-size: 12px !important;
+}
+
+.figma-doctor-badge {
+  font-size: 8px !important;
+}
+
+
+/* ============================================================
+   TOUCH TARGETS
+   Minimum comfortable mobile interaction size
+   ============================================================ */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-menu-button {
+  min-width: 40px !important;
+  min-height: 40px !important;
+}
+
+.detail-book-button,
+.figma-explore-button {
+  min-height: 44px !important;
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .figma-hero-content h1 {
+    font-size: 24px !important;
+  }
+
+  .figma-screen-heading h2 {
+    font-size: 22px !important;
+  }
+
+  .package-detail-heading h1,
+  .test-detail-heading h1 {
+    font-size: 12px !important;
+  }
+
+  .menu-navigation-label {
+    font-size: 13px !important;
+  }
+}
+
+/* ============================================================
+   GLOBAL BOTTOM HEALTH PARTNER BUTTON
+   Same size on every page
+   ============================================================ */
+
+.global-health-partner-button {
+  position: fixed !important;
+
+  left: 50% !important;
+  bottom: 10px !important;
+
+  transform: translateX(-50%) !important;
+
+  width: 350px !important;
+  height: 42px !important;
+
+  margin: 0 !important;
+  padding: 0 18px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 7px !important;
+
+  border: none !important;
+  border-radius: 21px !important;
+
+  background: #075c50 !important;
+  color: #ffffff !important;
+
+  font-family: Inter, Arial, sans-serif !important;
+
+  font-size: 12px !important;
+  font-weight: 600 !important;
+
+  line-height: 1 !important;
+
+  cursor: pointer;
+
+  z-index: 1000000 !important;
+
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.15) !important;
+
+  box-sizing: border-box !important;
+}
+
+.global-health-partner-icon {
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 389px) {
 
   .global-health-partner-button {
     width: calc(100% - 30px) !important;
@@ -4724,43 +7198,475 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 }
 
+
+/* ============================================================
+   DESKTOP
+   Keep mobile-first 390px design width
+   ============================================================ */
+
 @media (min-width: 390px) {
-  #root,
-  .app-content,
-  .home-page,
-  .home-section {
-    width: 390px;
-    max-width: 390px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  .mobile-header,
-  .hero-section,
-  .hero-media {
-    width: 390px;
+  .global-health-partner-button {
+    width: 350px !important;
   }
 }
 
-/* Keep mobile sections content-sized to avoid empty gaps. */
-.home-section:not(.hero-section) {
-  min-height: 0;
-  height: auto;
+/* ============================================================
+   CONSISTENT READABLE FONT SIZE — ALL NON-HOME PAGES
+   Match the comfortable typography used on Home
+   ============================================================ */
+
+/* ============================================================
+   COMMON PAGE CONTAINER TEXT
+   ============================================================ */
+
+.info-page,
+.package-info-page,
+.test-info-page,
+.package-booking-page,
+.test-booking-page,
+.book-test-page,
+.success-page,
+.contact-page,
+.menu-page {
+  font-family: Inter, Arial, sans-serif;
 }
 
-/* Readable controls */
-.explore-button,
-.book-button,
+
+/* ============================================================
+   MAIN PAGE HEADINGS
+   ============================================================ */
+
+.info-page h1,
+.package-info-page h1,
+.test-info-page h1,
+.package-booking-page h1,
+.test-booking-page h1,
+.book-test-page h1,
+.success-page h1,
+.contact-page h1 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+
+/* ============================================================
+   SECONDARY HEADINGS
+   ============================================================ */
+
+.info-page h2,
+.package-info-page h2,
+.test-info-page h2,
+.package-booking-page h2,
+.test-booking-page h2,
+.book-test-page h2,
+.contact-page h2 {
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   NORMAL PARAGRAPHS
+   ============================================================ */
+
+.info-page p,
+.package-info-page p,
+.test-info-page p,
+.package-booking-page p,
+.test-booking-page p,
+.book-test-page p,
+.success-page p,
+.contact-page p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ============================================================
+   PACKAGE INFO
+   ============================================================ */
+
+.package-detail-heading h1 {
+  font-size: 13px !important;
+  line-height: 2 !important;
+}
+
+.package-detail-heading .detail-price {
+  font-size: 14px !important;
+}
+
+.package-detail-heading .detail-price del {
+  font-size: 13px !important;
+}
+
+.package-detail-heading .detail-price strong {
+  font-size: 19px !important;
+}
+
+.package-info-page .test-detail-description {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.package-test-heading span {
+  font-size: 10px !important;
+}
+
+.package-test-heading h2 {
+  font-size: 14px !important;
+}
+
+
+/* Package included tests */
+
+.package-included-test,
+.package-simple-test-name {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.package-included-test {
+  min-height: 38px !important;
+}
+
+
+/* ============================================================
+   TEST INFO
+   ============================================================ */
+
+.test-detail-heading h1 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.test-detail-heading .detail-price del {
+  font-size: 13px !important;
+}
+
+.test-detail-heading .detail-price strong {
+  font-size: 19px !important;
+}
+
+.test-parameter-line {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.test-detail-description {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ============================================================
+   BOOKING PAGES
+   ============================================================ */
+
+.package-booking-page label,
+.test-booking-page label,
+.booking-page label,
+.book-test-page label {
+  display: block;
+
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+}
+
+.package-booking-page input,
+.package-booking-page textarea,
+.test-booking-page input,
+.test-booking-page textarea,
+.booking-page input,
+.booking-page textarea,
+.book-test-page input,
+.book-test-page textarea {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.package-booking-page input::placeholder,
+.package-booking-page textarea::placeholder,
+.test-booking-page input::placeholder,
+.test-booking-page textarea::placeholder,
+.booking-page input::placeholder,
+.booking-page textarea::placeholder,
+.book-test-page input::placeholder,
+.book-test-page textarea::placeholder {
+  font-size: 13px !important;
+}
+
+.package-booking-page button,
+.test-booking-page button,
+.booking-page button,
+.book-test-page button {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+
+/* ============================================================
+   BOOK TEST / HEALTH PARTNER PAGE
+   ============================================================ */
+
+.book-test-page h1 {
+  font-size: 25px !important;
+}
+
+.book-test-page h2 {
+  font-size: 20px !important;
+}
+
+.book-test-page p {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.book-test-page label {
+  font-size: 13px !important;
+}
+
+.book-test-page input,
+.book-test-page textarea {
+  font-size: 14px !important;
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS PAGE
+   ============================================================ */
+
+.achievements-section {
+  font-family: Inter, Arial, sans-serif;
+}
+
+.achievement-heading h1 {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+}
+
+.achievement-label {
+  font-size: 9px !important;
+}
+
+.achievement-stat strong {
+  font-size: 17px !important;
+}
+
+.achievement-stat span {
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+}
+
+.milestone-card h2 {
+  font-size: 18px !important;
+}
+
+.milestone-item {
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ============================================================
+   MENU PAGE
+   ============================================================ */
+
+.menu-navigation-label {
+  font-family: "Playfair Display", Georgia, serif !important;
+
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+
+  font-weight: 500 !important;
+}
+
+.menu-navigation-arrow {
+  font-size: 18px !important;
+}
+
+
+/* ============================================================
+   SUCCESS PAGE
+   ============================================================ */
+
+.success-page h1 {
+  font-size: 24px !important;
+  line-height: 1.3 !important;
+}
+
+.success-page p {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.redirect-message {
+  font-size: 12px !important;
+}
+
+
+/* ============================================================
+   COMMON ACTION BUTTONS
+   ============================================================ */
+
 .detail-book-button {
-  min-height: 42px;
+  min-height: 44px !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
 }
+
+.package-booking-page button[type="submit"],
+.test-booking-page button[type="submit"],
+.book-test-page button[type="submit"] {
+  min-height: 44px !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   SMALL MOBILE DEVICES
+   ============================================================ */
 
 @media (max-width: 360px) {
-  .hero-content h1 {
-    font-size: 24px;
+
+  .info-page h1,
+  .package-info-page h1,
+  .test-info-page h1,
+  .package-booking-page h1,
+  .test-booking-page h1,
+  .book-test-page h1,
+  .contact-page h1 {
+    font-size: 23px !important;
   }
 
-  .section-heading h2 {
-    font-size: 22px;
+  .info-page p,
+  .package-info-page p,
+  .test-info-page p,
+  .package-booking-page p,
+  .test-booking-page p,
+  .book-test-page p {
+    font-size: 13px !important;
   }
+}
+
+/* ============================================================
+   ACHIEVEMENTS — REFERENCE CARD SIZE
+   ============================================================ */
+
+.figma-achievement-grid {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  column-gap: 7px !important;
+  row-gap: 7px !important;
+}
+
+.figma-achievement-card {
+  width: 100% !important;
+  height: 52px !important;
+  min-height: 52px !important;
+
+  padding: 7px 6px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 7px !important;
+
+  background: #e8f0ee !important;
+}
+
+.figma-achievement-card strong {
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+}
+
+.figma-achievement-card span {
+  margin-top: 4px !important;
+
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+
+  text-align: center !important;
+}
+
+/* ============================================================
+   WHY CHOOSE US — REFERENCE CARD SIZE
+   ============================================================ */
+
+.figma-why-grid {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  column-gap: 7px !important;
+  row-gap: 7px !important;
+}
+
+.figma-why-card {
+  width: 100% !important;
+  height: 78px !important;
+  min-height: 78px !important;
+
+  padding: 9px 8px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+
+  border: 1px solid #dce6e3 !important;
+  border-radius: 9px !important;
+
+  background: #ffffff !important;
+}
+
+.figma-why-icon {
+  width: 24px !important;
+  height: 24px !important;
+
+  flex: 0 0 24px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 5px !important;
+
+  background: #e5f2ef !important;
+  color: #075c50 !important;
+
+  font-size: 13px !important;
+}
+
+.figma-why-card h3 {
+  margin: 5px 0 0 !important;
+
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+
+  font-weight: 600 !important;
+}
+
+.figma-why-card p {
+  margin: 3px 0 0 !important;
+
+  font-size: 8px !important;
+  line-height: 1.25 !important;
+
+  color: #697874 !important;
 }
