@@ -1276,6 +1276,7 @@ img, svg {
   width: 100%;
   padding: 8px 7px 12px;
   background: #ffffff;
+  position: relative;
 }
 
 /* TABS */
@@ -2151,9 +2152,8 @@ img, svg {
    ACHIEVEMENTS STANDALONE PAGE
 ========================================================= */
 .achievements-page {
-  padding: 0px 12px;
+  padding: 8px 9px 12px;
   background: #ffffff;
-  position: relative;
 }
 .achievement-heading {
   margin-bottom: 8px;
@@ -2181,7 +2181,6 @@ img, svg {
 .contact-page {
   padding: 8px 9px 12px;
   background: #ffffff;
-  position: fixed;
 }
 
 .section-heading-row {
@@ -3852,7 +3851,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   box-sizing: border-box;
   padding: 18px 10px 90px;
   background: #ffffff;
-  position:fixed;
 }
 
 
@@ -4003,7 +4001,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .key-features-page {
     width: 390px;
     margin: 0 auto;
-    padding: 20px 12px 90px;
+    padding: 8px 9px 12px;
   }
 
   .key-features-heading h1 {
