@@ -2151,9 +2151,9 @@ img, svg {
    ACHIEVEMENTS STANDALONE PAGE
 ========================================================= */
 .achievements-page {
-  padding: 8px 9px 12px;
+  padding: 0px 12px;
   background: #ffffff;
-  position: fixed;
+  position: relative;
 }
 .achievement-heading {
   margin-bottom: 8px;
@@ -3852,7 +3852,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   box-sizing: border-box;
   padding: 18px 10px 90px;
   background: #ffffff;
-  position: fixed;
+  position:fixed;
 }
 
 
