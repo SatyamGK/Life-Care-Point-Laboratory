@@ -29,7 +29,7 @@ body {
   margin: 0;
   padding: 0;
   background: #ffffff;
-  color: #172e2a;
+  color: #000000;
   font-family: "DM Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1289,13 +1289,13 @@ img, svg {
 }
 
 .listing-tabs button {
-  height: 21px;
+  height: 24px;
   border: 1px solid #dce7e4;
-  border-radius: 10px;
+  border-radius: 25px;
   background: #ffffff;
   color: #53635e;
-  font-size: 4.7px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .listing-tabs button.active {
@@ -1376,13 +1376,13 @@ img, svg {
 
 .listing-price del {
   color: #999999;
-  font-size: 7.8px;
+  font-size: 8px;
 }
 
 .listing-price strong {
   color: #084F46;
-  font-size: 9px;
-  font-weight: 800;
+  font-size: 9.5px;
+  font-weight: 700;
 }
 
 .listing-parameters {
@@ -1397,7 +1397,7 @@ img, svg {
   overflow: hidden;
   margin: 3px 0 5px;
   color: #71807b;
-  font-size: 8px;
+  font-size: 8.5px;
   line-height: 1.35;
 }
 
@@ -1406,12 +1406,12 @@ img, svg {
 
 .listing-content > button {
   width: 100%;
-  height: 18px;
+  height: 19px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 10px;
   background: #084F46;
   color: #ffffff;
-  font-size: 4.5px;
+  font-size: 8.5px;
   font-weight: 700;
 }
 
@@ -1516,7 +1516,7 @@ img, svg {
 .test-detail-description {
   margin: 7px 0 8px;
   color: #4e5d59;
-  font-size: 4.8px;
+  font-size: 8.5px;
   line-height: 1.45;
 }
 
@@ -1537,7 +1537,7 @@ img, svg {
   border-radius: 6px;
   background: #084F46;
   color: #ffffff;
-  font-size: 5px;
+  font-size: 12px;
   font-weight: 700;
   box-shadow: 0 4px 10px rgba(7,92,80,.12);
 }
@@ -2161,10 +2161,10 @@ img, svg {
 }
 
 .achievements-page > h1 {
-  margin: 0 0 42px;
+  margin: 0 0 15px;
   color: #142421;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.05;
 }
@@ -2187,14 +2187,190 @@ img, svg {
   font-size: 14px;
 }
 
+.milestones-card {
+  padding: 16px;
+  border: 1px solid #e3ebe8;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.milestones-card h2 {
+  margin: 0 0 12px;
+  color: #084F46;
+  font-size: 18px;
+}
+
+.milestones-list {
+  display: grid;
+  gap: 10px;
+}
+
+.milestones-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #45534f;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.milestones-check {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e4f2ee;
+  color: #084F46;
+  font-size: 11px;
+  font-weight: 700;
+}
+
 
 /* =========================================================
    CONTACT STANDALONE PAGE
 ========================================================= */
 
 .contact-page {
-  padding: 8px 9px 12px;
+  width: 100%;
+  min-height: auto;
+  height: auto;
+  box-sizing: border-box;
+  padding: 24px 18px 110px;
   background: #ffffff;
+  overflow: visible;
+}
+
+.contact-page > h1 {
+  margin: 0 0 25px;
+  color: #142421;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.contact-page .contact-map {
+  width: 100%;
+  height: 150px;
+  margin: 0 0 16px;
+  display: block;
+  overflow: hidden;
+  border: 1px solid #e3ebe8;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #e6f0ed,
+    #dce8e4
+  );
+
+  box-sizing: border-box;
+}
+
+.contact-page .map-visual {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-page .map-marker {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #084F46;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+}
+
+.contact-page .map-visual strong {
+  margin-top: 8px;
+  color: #084F46;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.contact-page .map-visual small {
+  margin-top: 4px;
+  color: #71807b;
+  font-size: 12px;
+}
+
+.contact-page .contact-card {
+  width: 100%;
+  min-height: 78px;
+  margin: 0 0 12px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  border: 1px solid #e1ebe8;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(7, 92, 80, 0.045);
+  box-sizing: border-box;
+}
+
+.contact-page .contact-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 11px;
+  background: #e7f3ef;
+  color: #084F46;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+}
+
+.contact-page .contact-card b {
+  display: block;
+  color: #65736f;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.contact-page .contact-card p {
+  margin: 7px 0 0;
+  color: #3f4d49;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contact-page .follow-us {
+  padding: 18px 0 10px;
+  text-align: center;
+}
+
+.contact-page .follow-us > span {
+  color: #87938f;
+  font-size: 13px;
+}
+
+.contact-page .follow-us > div {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contact-page .follow-us a {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #e1ebe8;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #084F46;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .section-heading-row {
@@ -2759,7 +2935,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .booking-or {
   text-align: center;
   margin: 9px 0 10px;
-  font-size: 5px;
+  font-size: 6px;
   color: #a3aaa8;
 }
 
@@ -3469,7 +3645,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .menu-navigation-label {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 8px;
+  font-size: 12px;
   line-height: 1.2;
   font-weight: 500;
   color: #ffffff;
@@ -3544,7 +3720,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .package-test-heading span {
   display: block;
-  font-size: 5px;
+  font-size: 8px;
   color: #78908b;
   letter-spacing: 0.5px;
 }
@@ -3664,12 +3840,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .detail-price del {
-  font-size: 5px;
+  font-size: 7.5px;
   color: #89918f;
 }
 
 .detail-price strong {
-  font-size: 8px;
+  font-size: 9px;
   color: #084F46;
 }
 
@@ -3681,7 +3857,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .test-detail-description {
   margin: 5px 0 8px;
-  font-size: 6px;
+  font-size: 8.5px;
   line-height: 1.45;
   color: #53635f;
 }
@@ -3695,7 +3871,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #084F46;
   color: #ffffff;
   font-family: inherit;
-  font-size: 6px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -3849,7 +4025,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .package-simple-test-name {
   display: block;
   width: 100%;
-  font-size: 6.5px;
+  font-size: 9.8px;
   line-height: 1.3;
   color: #334946;
   font-weight: 400;
@@ -3861,10 +4037,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .key-features-page {
   width: 100%;
-  min-height: calc(100vh - 54px);
+  min-height: auto;
+  height: auto;
   box-sizing: border-box;
-  padding: 18px 10px 90px;
+  padding: 24px 18px 110px;
   background: #ffffff;
+  overflow: visible;
 }
 
 
@@ -3897,7 +4075,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .key-features-heading p {
   margin: 6px 0 0;
   max-width: 360px;
-  font-size: 7px;
+  font-size: 8.7px;
   line-height: 1.5;
   color: #657773;
 }
@@ -3953,7 +4131,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border-radius: 8px;
   background: #e6f2ef;
   color: #084F46;
-  font-size: 12px;
+  font-size: 18px;
   box-sizing: border-box;
 }
 
@@ -3968,7 +4146,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .key-feature-content h2 {
   margin: 1px 0 3px;
-  font-size: 8px;
+  font-size: 13px;
   line-height: 1.2;
   font-weight: 700;
   color: #183b36;
@@ -3976,7 +4154,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .key-feature-content p {
   margin: 0;
-  font-size: 6px;
+  font-size: 8.5px;
   line-height: 1.45;
   color: #657773;
 }
@@ -4121,7 +4299,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Shared section heading */
 .section-heading h2 {
-  margin: 30px 0px 0px 0px;
+  margin: 30px 0px 10px 0px;
   color: #142421;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 25px;
@@ -4137,7 +4315,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Home collection */
 .collection-section {
-  padding: 28px 18px 24px;
+  padding: 28px 18px 5px;
 }
 
 .collection-image {
@@ -4205,7 +4383,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* How it works */
 .how-section {
-  padding: 28px 18px 24px;
+  padding: 1px 18px 24px;
 }
 
 .how-list {
@@ -4447,7 +4625,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Recommended tests */
 .tests-section {
-  padding: 26px 18px 30px;
+  padding: 0px 18px;
 }
 
 .recommended-heading {
@@ -4529,7 +4707,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Why choose us */
 .why-choose-section {
-  padding: 28px 18px 30px;
+  padding: 0px 18px;
 }
 
 .why-choose-grid {
@@ -4581,7 +4759,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Contact */
 .contact-section-home {
-  padding: 28px 18px 90px;
+  padding: 0px 18px;
 }
 
 .map-card {
@@ -4760,17 +4938,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 }
 
-/* Keep mobile sections content-sized to avoid empty gaps. */
 .home-section:not(.hero-section) {
   min-height: 0;
   height: auto;
 }
 
 /* Readable controls */
-.explore-button,
-.book-button,
-.detail-book-button {
-  min-height: 42px;
+.explore-button, .book-button, .detail-book-button {
+  min-height: 34px;
 }
 
 @media (max-width: 360px) {
