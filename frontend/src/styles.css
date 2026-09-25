@@ -125,7 +125,7 @@ img, svg {
   margin: 0 2px 0 0;
   border: 0;
   background: transparent;
-  color: #075c50;
+  color: #084F46;
   font-size: 23px;
   line-height: 1;
   display: flex;
@@ -196,7 +196,7 @@ img, svg {
   display: block;
   font-size: 7px;
   font-weight: 700;
-  color: #075c50;
+  color: #084F46;
   line-height: 1.15;
 }
 
@@ -236,7 +236,7 @@ img, svg {
   width: 10px;
   height: 1px;
   border-radius: 2px;
-  background: #075c50;
+  background: #084F46;
 }
 
 /* =========================================================
@@ -288,7 +288,7 @@ img, svg {
 
 .home-hero-content h1 {
   margin: 0;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 15px;
   font-weight: 700;
@@ -426,7 +426,7 @@ img, svg {
   padding: 4px 8px;
   border-radius: 8px;
   background: #e8f5f1;
-  color: #075c50;
+  color: #084F46;
   font-size: 8px;
   font-weight: 800;
   white-space: nowrap;
@@ -448,7 +448,7 @@ img, svg {
   padding: 0 9px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -613,7 +613,7 @@ img, svg {
   flex: 0 0 20px;
   border-radius: 50%;
   background: #e8f3f0;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 8px;
@@ -626,7 +626,7 @@ img, svg {
 
 .work-step strong {
   display: block;
-  color: #075c50;
+  color: #084F46;
   font-size: 5px;
   font-weight: 800;
 }
@@ -719,7 +719,7 @@ img, svg {
 
 .milestones-card h3 {
   margin: 0 0 7px;
-  color: #075c50;
+  color: #084F46;
   font-size: 6px;
   font-weight: 800;
 }
@@ -737,7 +737,7 @@ img, svg {
   flex: 0 0 14px;
   border-radius: 50%;
   background: #e4f2ee;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 7px;
@@ -873,7 +873,7 @@ img, svg {
 }
 
 .home-price strong {
-  color: #075c50;
+  color: #084F46;
   font-size: 5px;
   font-weight: 800;
 }
@@ -887,7 +887,7 @@ img, svg {
   margin-top: 6px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 5px;
   font-weight: 700;
@@ -996,7 +996,7 @@ img, svg {
   flex: 0 0 40px;
   border: 0;
   border-radius: 5px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 8px;
   font-weight: 700;
@@ -1046,7 +1046,7 @@ img, svg {
   margin-bottom: 4px;
   border-radius: 5px;
   background: #e7f3ef;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 8px;
@@ -1112,7 +1112,7 @@ img, svg {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -1121,7 +1121,7 @@ img, svg {
 
 .map-visual strong {
   margin-top: 3px;
-  color: #075c50;
+  color: #084F46;
   font-size: 12px;
   font-weight: 800;
 }
@@ -1158,7 +1158,7 @@ img, svg {
   flex: 0 0 18px;
   border-radius: 5px;
   background: #e7f3ef;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 7px;
@@ -1204,7 +1204,7 @@ img, svg {
   border: 1px solid #e1ebe8;
   border-radius: 50%;
   background: #ffffff;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 6px;
@@ -1219,7 +1219,7 @@ img, svg {
   height: 25px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1260,7 +1260,7 @@ img, svg {
   height: 100%;
   border: 0;
   border-radius: 8px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 5px;
   font-weight: 700;
@@ -1299,8 +1299,8 @@ img, svg {
 }
 
 .listing-tabs button.active {
-  border-color: #075c50;
-  background: #075c50;
+  border-color: #084F46;
+  background: #084F46;
   color: #ffffff;
 }
 
@@ -1380,7 +1380,7 @@ img, svg {
 }
 
 .listing-price strong {
-  color: #075c50;
+  color: #084F46;
   font-size: 9px;
   font-weight: 800;
 }
@@ -1409,7 +1409,7 @@ img, svg {
   height: 18px;
   border: 0;
   border-radius: 6px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 4.5px;
   font-weight: 700;
@@ -1489,7 +1489,7 @@ img, svg {
 }
 
 .detail-price strong {
-  color: #075c50;
+  color: #084F46;
   font-size: 5.5px;
   font-weight: 800;
 }
@@ -1535,7 +1535,7 @@ img, svg {
   margin-top: 5px;
   border: 0;
   border-radius: 6px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 5px;
   font-weight: 700;
@@ -1556,7 +1556,7 @@ img, svg {
 
 .info-page h1 {
   margin: 20px 0 10px;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 14px;
 }
@@ -1566,7 +1566,7 @@ img, svg {
   height: 30px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 6px;
   font-weight: 700;
@@ -1650,7 +1650,7 @@ img, svg {
 }
 
 .booking-price-row strong {
-  color: #075c50;
+  color: #084F46;
   font-size: 5px;
   font-weight: 800;
 }
@@ -1695,7 +1695,7 @@ img, svg {
   flex: 0 0 22px;
   border-radius: 50%;
   background: #e7f3ef;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 5px;
@@ -1773,7 +1773,7 @@ img, svg {
 }
 
 .form-field input:focus, .form-field select:focus {
-  border-color: #075c50;
+  border-color: #084F46;
   background: #ffffff;
   box-shadow: 0 0 0 2px rgba(7,92,80,.05);
 }
@@ -1801,7 +1801,7 @@ img, svg {
 }
 
 .mobile-input-wrapper:focus-within {
-  border-color: #075c50;
+  border-color: #084F46;
   background: #ffffff;
 }
 
@@ -1864,7 +1864,7 @@ img, svg {
   margin-top: 2px;
   max-width: 110px;
   overflow: hidden;
-  color: #075c50;
+  color: #084F46;
   font-size: 4.5px;
   font-weight: 700;
   text-overflow: ellipsis;
@@ -1880,7 +1880,7 @@ img, svg {
   margin-top: 5px;
   border: 0;
   border-radius: 12px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1945,7 +1945,7 @@ img, svg {
 
 .book-test-heading h1 {
   margin: 0;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 15px;
 }
@@ -1976,7 +1976,7 @@ img, svg {
   flex: 0 0 15px;
   border-radius: 50%;
   background: #d8ece7;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 6px;
@@ -2001,7 +2001,7 @@ img, svg {
   border: 1px solid #d8ebe4;
   border-radius: 7px;
   background: #eaf7f1;
-  color: #075c50;
+  color: #084F46;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -2045,7 +2045,7 @@ img, svg {
   min-height: 128px;
   padding: 10px;
   border-radius: 9px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -2115,7 +2115,7 @@ img, svg {
   margin: 0 auto 8px;
   border-radius: 50%;
   background: #eaf4f1;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 12px;
@@ -2141,7 +2141,7 @@ img, svg {
   height: 25px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 5px;
   font-weight: 700;
@@ -2152,9 +2152,23 @@ img, svg {
    ACHIEVEMENTS STANDALONE PAGE
 ========================================================= */
 .achievements-page {
-  padding: 8px 9px 12px;
+  width: 100%;
+  min-height: auto;
+  height: auto;
+  box-sizing: border-box;
+  padding: 24px 18px 110px;
   background: #ffffff;
 }
+
+.achievements-page > h1 {
+  margin: 0 0 42px;
+  color: #142421;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
 .achievement-heading {
   margin-bottom: 8px;
 }
@@ -2168,7 +2182,7 @@ img, svg {
 
 .achievement-heading h1 {
   margin: 2px 0 0;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 14px;
 }
@@ -2231,7 +2245,7 @@ img, svg {
 
 .fake-map small {
   margin-top: 2px;
-  color: #075c50;
+  color: #084F46;
   font-size: 8px;
 }
 
@@ -2261,7 +2275,7 @@ img, svg {
   flex: 0 0 18px;
   border-radius: 5px;
   background: #e8f3f0;
-  color: #075c50;
+  color: #084F46;
   display: grid;
   place-items: center;
   font-size: 7px;
@@ -2309,7 +2323,7 @@ img, svg {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  color: #075c50;
+  color: #084F46;
   font-size: 6px;
   font-weight: 700;
 }
@@ -2320,7 +2334,7 @@ img, svg {
   margin-top: 7px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -2363,7 +2377,7 @@ img, svg {
   width: 80%;
   min-height: calc(100vh - 54px);
   padding: 8px 10px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
 }
 
@@ -2464,7 +2478,7 @@ img, svg {
 
 .connect-health-content h2 {
   margin: 0;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 16px;
   line-height: 1.25;
@@ -2483,7 +2497,7 @@ img, svg {
   padding: 0 12px;
   border: 0;
   border-radius: 8px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -2560,7 +2574,7 @@ img, svg {
 ========================================================= */
 
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid #075c50;
+  outline: 2px solid #084F46;
   outline-offset: 2px;
 }
 
@@ -2603,7 +2617,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  color: #075c50;
+  color: #084F46;
   font-size: 28px;
 }
 
@@ -2670,10 +2684,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .health-partner-card {
   width: 100%;
-  min-height: 54px;
+  min-height: 65px;
   margin-top: 0;
   border-radius: 9px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -2686,14 +2700,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .health-partner-card h1 {
   margin: 0;
   font-family: "Playfair Display", serif;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.2;
   font-weight: 700;
 }
 
 .health-partner-card span {
   margin-top: 3px;
-  font-size: 5px;
+  font-size: 9.5px;
   opacity: 0.75;
 }
 
@@ -2711,19 +2725,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .quick-contact-button {
-  height: 22px;
+  height: 25px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   text-decoration: none;
-  font-size: 6.5px;
+  font-size: 9.5px;
   font-weight: 700;
 }
 
 .call-button {
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
 }
 
@@ -2779,7 +2793,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .simple-form-field label {
   display: block;
   margin-bottom: 4px;
-  font-size: 6px;
+  font-size: 11px;
   line-height: 1;
   color: #263d39;
   font-weight: 600;
@@ -2799,11 +2813,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border-radius: 6px;
   padding: 0 7px;
   box-sizing: border-box;
-  background: #f3f7f6;
+  background: #f5f5f5;
   color: #203732;
   outline: none;
   font-family: inherit;
-  font-size: 5.5px;
+  font-size: 10px;
 }
 
 .simple-form-field input::placeholder {
@@ -2811,7 +2825,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .simple-form-field input:focus {
-  border-color: #075c50;
+  border-color: #084F46;
   background: #ffffff;
 }
 
@@ -2827,7 +2841,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   border: 1px solid #e1e9e6;
   border-radius: 6px;
-  background: #f3f7f6;
+  background: #f5f5f5;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2837,7 +2851,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5.5px;
+  font-size: 8.5px;
   color: #60736f;
   border-right: 1px solid #dce5e2;
 }
@@ -2858,7 +2872,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .simple-form-note {
   margin: -2px 0 8px;
-  font-size: 4.8px;
+  font-size: 6.8px;
   line-height: 1.35;
   color: #84918e;
 }
@@ -2870,15 +2884,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .simple-submit-button {
   display: block;
-  width: 92px;
-  height: 19px;
+  width: 100px;
+  height: 22px;
   margin: 2px auto 0;
   border: 0;
   border-radius: 12px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-family: inherit;
-  font-size: 6px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -2898,7 +2912,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   justify-content: center;
   gap: 2px;
   margin-top: 6px;
-  font-size: 8px;
+  font-size: 7px;
   color: #626b69;
 }
 
@@ -2993,17 +3007,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .selected-price del {
   color: #89918f;
-  font-size: 7px;
+  font-size: 8px;
 }
 
 .selected-price strong {
-  color: #075c50;
-  font-size: 7px;
+  color: #084F46;
+  font-size: 8.5px;
 }
 
 .selected-price span {
   color: #8a9491;
-  font-size: 6.5px;
+  font-size: 7.5px;
 }
 
 
@@ -3024,9 +3038,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .compact-patient-card h2 {
   margin: 0 0 10px;
   font-family: "Playfair Display", serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
-  color: #075c50;
+  color: #084F46;
 }
 
 
@@ -3041,7 +3055,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .compact-form-field label {
   display: block;
   margin-bottom: 4px;
-  font-size: 5.5px;
+  font-size: 10px;
   color: #6b7774;
 }
 
@@ -3055,7 +3069,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .compact-form-field input {
   width: 100%;
-  height: 22px;
+  height: 25px;
   border: 1px solid #dfe8e5;
   border-radius: 6px;
   padding: 0 7px;
@@ -3064,7 +3078,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   outline: none;
   font-family: inherit;
   color: #263a36;
-  font-size: 5.5px;
+  font-size: 9px;
 }
 
 
@@ -3074,7 +3088,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 .compact-form-field input:focus {
-  border-color: #075c50;
+  border-color: #084F46;
 }
 
 
@@ -3122,14 +3136,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .compact-confirm-button {
   width: 100%;
-  height: 22px;
+  height: 28px;
   margin-top: 5px;
   border: 0;
   border-radius: 12px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-family: inherit;
-  font-size: 6px;
+  font-size: 9px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -3148,7 +3162,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   justify-content: center;
   margin-top: 7px;
-  font-size: 8px;
+  font-size: 7px;
   color: #4d5754;
 }
 
@@ -3173,14 +3187,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   display: grid;
   place-items: center;
   background: #e8f2ef;
-  color: #075c50;
+  color: #084F46;
   font-weight: 700;
 }
 
 .booking-empty-card h1 {
   font-family: "Playfair Display", serif;
   font-size: 15px;
-  color: #075c50;
+  color: #084F46;
   margin: 0 0 6px;
 }
 
@@ -3197,7 +3211,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   padding: 0 15px;
   border: 0;
   border-radius: 15px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 7px;
   font-weight: 700;
@@ -3224,7 +3238,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   max-width: 155px;
   min-height: 129px;
   border-radius: 8px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -3317,7 +3331,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   right: 0;
   bottom: 0;
   width: 79%;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   box-sizing: border-box;
   padding: 0 14px;
@@ -3539,7 +3553,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin: 2px 0 0;
   font-family: "Playfair Display", serif;
   font-size: 10px;
-  color: #075c50;
+  color: #084F46;
 }
 
 .package-included-tests {
@@ -3573,7 +3587,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   justify-content: center;
   background: #e8f3f0;
-  color: #075c50;
+  color: #084F46;
   font-size: 5px;
   font-weight: 700;
 }
@@ -3588,7 +3602,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .package-test-arrow {
   font-size: 11px;
-  color: #075c50;
+  color: #084F46;
   margin-left: 5px;
 }
 
@@ -3656,7 +3670,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .detail-price strong {
   font-size: 8px;
-  color: #075c50;
+  color: #084F46;
 }
 
 .test-parameter-line {
@@ -3678,7 +3692,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin-top: 7px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-family: inherit;
   font-size: 6px;
@@ -3702,7 +3716,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .selected-booking-content h1 {
   color: #263b37 !important;
   font-family: "Playfair Display", serif;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .selected-booking-image {
@@ -3877,7 +3891,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   font-family: "Playfair Display", Georgia, serif;
   font-size: 20px;
   line-height: 1.15;
-  color: #075c50;
+  color: #084F46;
 }
 
 .key-features-heading p {
@@ -3938,7 +3952,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   justify-content: center;
   border-radius: 8px;
   background: #e6f2ef;
-  color: #075c50;
+  color: #084F46;
   font-size: 12px;
   box-sizing: border-box;
 }
@@ -3978,7 +3992,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin-top: 15px;
   border: 0;
   border-radius: 7px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 7px;
   font-weight: 700;
@@ -4054,7 +4068,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-content h1 {
   margin: 16px 0 12px;
-  color: #075c50;
+  color: #084F46;
   font-family: "Playfair Display", Georgia, serif;
   font-size: 27px;
   font-weight: 700;
@@ -4099,7 +4113,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   justify-content: center;
   border-radius: 20px;
   background: #e5f2ef;
-  color: #075c50;
+  color: #084F46;
   font-size: 8px;
   font-weight: 700;
   white-space: nowrap;
@@ -4184,7 +4198,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .location-icon {
-  color: #075c50;
+  color: #084F46;
   font-size: 15px;
   line-height: 1;
 }
@@ -4216,7 +4230,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   border-radius: 50%;
   background: #e8f3f0;
-  color: #075c50;
+  color: #084F46;
   font-size: 18px;
 }
 
@@ -4236,7 +4250,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .how-text h3 {
   margin: 0;
-  color: #075c50;
+  color: #084F46;
   font-size: 15px;
   line-height: 1.25;
 }
@@ -4307,7 +4321,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .home-milestone-card h2 {
   margin: 0 0 12px;
-  color: #075c50;
+  color: #084F46;
   font-size: 18px;
 }
 
@@ -4333,7 +4347,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   border-radius: 50%;
   background: #e4f2ee;
-  color: #075c50;
+  color: #084F46;
   font-size: 11px;
   font-weight: 700;
 }
@@ -4413,7 +4427,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .home-package-price strong {
-  color: #075c50;
+  color: #084F46;
   font-size: 15px;
   font-weight: 800;
 }
@@ -4425,7 +4439,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   padding: 0 18px;
   border: 0;
   border-radius: 8px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
@@ -4478,7 +4492,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   border-radius: 7px;
   background: #e8f3f0;
-  color: #075c50;
+  color: #084F46;
   font-size: 18px;
 }
 
@@ -4507,7 +4521,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin-right: 8px;
   border: 0;
   border-radius: 16px;
-  background: #075c50;
+  background: #084F46;
   color: #ffffff;
   font-size: 10px;
   font-weight: 700;
@@ -4546,7 +4560,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   border-radius: 5px;
   background: #e5f2ef;
-  color: #075c50;
+  color: #084F46;
   font-size: 13px;
 }
 
@@ -4583,14 +4597,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .map-label {
   padding-top: 12px;
-  color: #075c50;
+  color: #084F46;
   font-size: 12px;
   font-weight: 700;
 }
 
 .map-center {
   margin-top: 28px;
-  color: #075c50;
+  color: #084F46;
   font-size: 27px;
 }
 
@@ -4624,7 +4638,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   border-radius: 6px;
   background: #e7f3ef;
-  color: #075c50;
+  color: #084F46;
   font-size: 17px;
 }
 
@@ -4667,7 +4681,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border: 1px solid #e1ebe8;
   border-radius: 50%;
   background: #ffffff;
-  color: #075c50;
+  color: #084F46;
   font-size: 15px;
   font-weight: 700;
 }
@@ -4687,7 +4701,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   gap: 7px !important;
   border: 0 !important;
   border-radius: 21px !important;
-  background: #075c50 !important;
+  background: #084F46 !important;
   color: #ffffff !important;
   font-family: "DM Sans", Arial, sans-serif !important;
   font-size: 12px !important;
