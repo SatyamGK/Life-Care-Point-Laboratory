@@ -85,17 +85,6 @@ export default function TestInfo() {
 
 
       {/* ============================================
-          PARAMETERS
-      ============================================ */}
-
-      {test.parameters && (
-        <p className="test-parameter-line">
-          {test.parameters} parameters
-        </p>
-      )}
-
-
-      {/* ============================================
           DESCRIPTION
       ============================================ */}
 
