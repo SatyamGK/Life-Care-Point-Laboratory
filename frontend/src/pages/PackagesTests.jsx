@@ -170,12 +170,6 @@ export default function PackagesTests() {
 
                 </div>
 
-                {item.parameters && (
-                  <span className="listing-parameters">
-                    {item.parameters} parameters
-                  </span>
-                )}
-
                 <p>
                   {item.description}
                 </p>
