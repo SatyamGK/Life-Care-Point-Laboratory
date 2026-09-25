@@ -4302,7 +4302,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin: 30px 0px 10px 0px;
   color: #142421;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 25px;
+  font-size: 22px;
   line-height: 1.2;
 }
 
@@ -4487,7 +4487,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Milestones and packages */
 .packages-section {
-  padding: 24px 18px;
+  padding: 1px 18px;
 }
 
 .home-milestone-card {

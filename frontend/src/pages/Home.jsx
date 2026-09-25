@@ -187,7 +187,7 @@ export default function Home() {
     navigate,
   ]);
 
-const openPackage = (packageData) => {
+  const openPackage = (packageData) => {
     navigate("/package-info", {
       state: {
         packageData,
@@ -601,18 +601,18 @@ const openPackage = (packageData) => {
                       )
                       ? "⌁"
                       : test.name
-                          ?.toLowerCase()
-                          .includes(
-                            "lipid"
-                          )
-                      ? "ϟ"
-                      : test.name
+                        ?.toLowerCase()
+                        .includes(
+                          "lipid"
+                        )
+                        ? "ϟ"
+                        : test.name
                           ?.toLowerCase()
                           .includes(
                             "vitamin"
                           )
-                      ? "☼"
-                      : "♧"}
+                          ? "☼"
+                          : "♧"}
 
                   </span>
 
@@ -631,13 +631,15 @@ const openPackage = (packageData) => {
                       }{" "}
                       parameters
 
-                      {test.oldPrice
-                        ? ` • ₹${test.oldPrice}`
-                        : ""}
+                      {test.oldPrice && (
+                        <>
+                          • <del>₹{test.oldPrice}</del>
+                        </>
+                      )}
 
-                      {test.price
-                        ? ` • ₹${test.price}`
-                        : ""}
+                      {test.price && (
+                        <> • ₹{test.price}</>
+                      )}
                     </small>
 
                   </span>
@@ -864,6 +866,6 @@ const openPackage = (packageData) => {
         </div>
 
       </section>
-</div>
+    </div>
   );
 }
