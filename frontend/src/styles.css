@@ -161,9 +161,9 @@ img, svg {
 ========================================================= */
 
 .header-logo-image {
-  width: 31px;
-  height: 31px;
-  flex: 0 0 31px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,7 +194,7 @@ img, svg {
 
 .header-brand-text strong {
   display: block;
-  font-size: 7px;
+  font-size: 10px;
   font-weight: 700;
   color: #084F46;
   line-height: 1.15;
@@ -203,7 +203,7 @@ img, svg {
 .header-brand-text span {
   display: block;
   margin-top: 2px;
-  font-size: 4.5px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.8px;
   color: #78908b;
@@ -1673,7 +1673,7 @@ img, svg {
 ========================================================= */
 
 .patient-details-card, .book-test-card {
-  padding: 9px;
+  padding: 16px;
   border: 1px solid #e4ece9;
   border-radius: 10px;
   background: #ffffff;
@@ -1727,16 +1727,16 @@ img, svg {
 }
 
 .form-field {
-  margin-bottom: 7px;
+  margin-bottom: 13px;
 }
 
 .form-field label {
   display: flex;
   align-items: center;
   gap: 2px;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
   color: #4e5e59;
-  font-size: 4.3px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -1758,14 +1758,14 @@ img, svg {
 .form-field input,
 .form-field select {
   width: 100%;
-  height: 24px;
-  padding: 0 7px;
+  height: 42px;
+  padding: 0 12px;
   border: 1px solid #e1eae7;
-  border-radius: 6px;
+  border-radius: 8px;
   outline: none;
   background: #f7faf9;
   color: #31433e;
-  font-size: 4.3px;
+  font-size: 12px;
 }
 
 .form-field input::placeholder {
@@ -1784,7 +1784,7 @@ img, svg {
 .form-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 10px;
 }
 
 
@@ -1793,10 +1793,10 @@ img, svg {
 .mobile-input-wrapper {
   display: flex;
   align-items: center;
-  height: 24px;
+  height: 42px;
   overflow: hidden;
   border: 1px solid #e1eae7;
-  border-radius: 6px;
+  border-radius: 8px;
   background: #f7faf9;
 }
 
@@ -1807,16 +1807,17 @@ img, svg {
 
 .country-code {
   height: 100%;
-  padding: 0 6px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   border-right: 1px solid #e1eae7;
   color: #53625e;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 700;
 }
 
 .mobile-input-wrapper input {
+  font-size: 12px;
   flex: 1;
   height: 100%;
   border: 0 !important;
@@ -1831,9 +1832,9 @@ img, svg {
 
 .form-error {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   color: #e85d52;
-  font-size: 3.7px;
+  font-size: 10px;
   line-height: 1.2;
 }
 
@@ -1843,9 +1844,9 @@ img, svg {
 .booking-summary {
   display: flex;
   justify-content: space-between;
-  margin: 8px 0;
-  padding: 7px;
-  border-radius: 6px;
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 8px;
   background: #f2f7f5;
 }
 
@@ -1856,7 +1857,7 @@ img, svg {
 .booking-summary span {
   display: block;
   color: #8a9691;
-  font-size: 3.7px;
+  font-size: 10px;
 }
 
 .booking-summary strong {
@@ -1865,7 +1866,7 @@ img, svg {
   max-width: 110px;
   overflow: hidden;
   color: #084F46;
-  font-size: 4.5px;
+  font-size: 12px;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1876,17 +1877,17 @@ img, svg {
 
 .confirm-booking-btn {
   width: 100%;
-  height: 25px;
-  margin-top: 5px;
+  height: 46px;
+  margin-top: 8px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #084F46;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 5px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -2896,19 +2897,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .quick-contact-button {
-  height: 25px;
+  height: 42px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   text-decoration: none;
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -2924,7 +2925,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .quick-contact-button span {
-  font-size: 7px;
+  font-size: 14px;
 }
 
 
@@ -2947,8 +2948,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .simple-booking-card {
   width: 100%;
   border: 1px solid #edf1ef;
-  border-radius: 10px;
-  padding: 11px 10px 8px;
+  border-radius: 12px;
+  padding: 18px 16px 14px;
   box-sizing: border-box;
   background: #ffffff;
 }
@@ -2963,13 +2964,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 ========================================================= */
 
 .simple-form-field {
-  margin-bottom: 9px;
+  margin-bottom: 14px;
 }
 
 .simple-form-field label {
   display: block;
-  margin-bottom: 4px;
-  font-size: 11px;
+  margin-bottom: 6px;
+  font-size: 13px;
   line-height: 1;
   color: #263d39;
   font-weight: 600;
@@ -2984,16 +2985,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .simple-form-field input {
   width: 100%;
-  height: 23px;
+  height: 42px;
   border: 1px solid #e1e9e6;
-  border-radius: 6px;
-  padding: 0 7px;
+  border-radius: 12px;
+  padding: 0 12px;
   box-sizing: border-box;
   background: #f5f5f5;
   color: #203732;
   outline: none;
   font-family: inherit;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .simple-form-field input::placeholder {
@@ -3012,22 +3013,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .simple-mobile-input {
   width: 100%;
-  height: 23px;
+  height: 42px;
   display: flex;
   align-items: center;
   border: 1px solid #e1e9e6;
-  border-radius: 6px;
+  border-radius: 8px;
   background: #f5f5f5;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .simple-mobile-input span {
-  width: 28px;
+  width: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 8.5px;
+  font-size: 11px;
   color: #60736f;
   border-right: 1px solid #dce5e2;
 }
@@ -3039,6 +3040,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   height: 100%;
   flex: 1;
   min-width: 0;
+  font-size: 13px;
 }
 
 
@@ -3047,9 +3049,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 ========================================================= */
 
 .simple-form-note {
-  margin: -2px 0 8px;
-  font-size: 6.8px;
-  line-height: 1.35;
+  margin: 2px 0 12px;
+  font-size: 9px;
+  line-height: 1.4;
   color: #84918e;
 }
 
@@ -4956,4 +4958,220 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .section-heading h2 {
     font-size: 22px;
   }
+}
+
+/* =========================================================
+   HEALTH PACKAGE + TEST BOOKING FORM
+   LARGE MOBILE FORM
+========================================================= */
+
+/* Main patient card */
+.compact-patient-card {
+  width: 100%;
+  margin-top: 12px;
+  padding: 18px 14px 14px;
+  border: 1px solid #e6ecea;
+  border-radius: 12px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Form heading */
+.compact-patient-card h2 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #084F46;
+}
+
+/* Each field */
+.compact-form-field {
+  margin-bottom: 13px;
+}
+
+/* Labels */
+.compact-form-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #183b36;
+  font-weight: 600;
+}
+
+/* Text inputs */
+.compact-form-field input,
+.compact-form-field select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dfe7e4;
+  border-radius: 9px;
+  background: #f7f8f8;
+  color: #31433e;
+  font-size: 13px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* Placeholder */
+.compact-form-field input::placeholder {
+  color: #a2aaa7;
+  font-size: 13px;
+}
+
+/* Focus */
+.compact-form-field input:focus,
+.compact-form-field select:focus {
+  border-color: #084F46;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(8, 79, 70, 0.06);
+}
+
+/* Mobile number field */
+.compact-mobile-input {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #dfe7e4;
+  border-radius: 9px;
+  background: #f7f8f8;
+  box-sizing: border-box;
+}
+
+/* +91 section */
+.compact-mobile-input span {
+  width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 45px;
+  border-right: 1px solid #dfe7e4;
+  color: #60736f;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+/* Mobile input */
+.compact-mobile-input input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #31433e;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+/* Mobile input focus */
+.compact-mobile-input:focus-within {
+  border-color: #084F46;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(8, 79, 70, 0.06);
+}
+
+/* Error message */
+.compact-form-error {
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.3;
+  color: #d64b4b;
+}
+
+/* Submit button */
+.compact-submit-button {
+  width: 100px;
+  height: 38px;
+  display: block;
+  margin: 14px auto 0;
+  border: 0;
+  border-radius: 20px;
+  background: #084F46;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Submit hover */
+.compact-submit-button:hover {
+  background: #063f38;
+}
+
+/* Security text */
+.compact-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 7px;
+  font-size: 8px;
+  color: #626b69;
+}
+
+/* =========================================================
+   CALL + WHATSAPP BUTTONS
+   BOTH BUTTONS CLEARLY VISIBLE
+========================================================= */
+
+.contact-choice-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quick-contact-button {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* CALL */
+.call-button {
+  background: #084F46;
+  color: #ffffff;
+  border: 1px solid #084F46;
+}
+
+/* WHATSAPP */
+.whatsapp-button {
+  background: #ffffff;
+  color: #084F46;
+  border: 1.5px solid #084F46;
+}
+
+/* Icons */
+.quick-contact-button span {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Hover */
+.call-button:hover {
+  background: #063f38;
+}
+
+.whatsapp-button:hover {
+  background: #f0f8f6;
+}
+
+/* Press effect */
+.quick-contact-button:active {
+  transform: scale(0.98);
 }
