@@ -139,6 +139,25 @@ export default function PackageBooking() {
           FORM
       ============================================ */}
 
+      <div className="contact-choice-row">
+
+        <a href="tel:+919910108453" className="quick-contact-button call-button" >
+          <span>☎</span>
+          Call
+        </a>
+
+        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
+          <span>◯</span>
+          WhatsApp
+        </a>
+
+      </div>
+
+
+      <div className="booking-or">
+        OR
+      </div>
+
       <div className="compact-patient-card">
 
         <h2>

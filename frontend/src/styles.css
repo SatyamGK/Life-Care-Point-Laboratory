@@ -1485,7 +1485,7 @@ img, svg {
 
 .detail-price del {
   color: #999999;
-  font-size: 3.8px;
+  font-size: 10.5px;
 }
 
 .detail-price strong {
@@ -3062,15 +3062,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .simple-submit-button {
   display: block;
-  width: 100px;
-  height: 22px;
+  width: 150px;
+  height: 25px;
   margin: 2px auto 0;
   border: 0;
-  border-radius: 12px;
+  border-radius: 15px;
   background: #084F46;
   color: #ffffff;
   font-family: inherit;
-  font-size: 10px;
+  font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -3166,7 +3166,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .selected-booking-content h1 {
   margin: 0;
   font-family: "Playfair Display", serif;
-  font-size: 8px;
+  font-size: 13px;
   line-height: 1.2;
   color: #ffffff;
 }
@@ -3185,17 +3185,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .selected-price del {
   color: #89918f;
-  font-size: 8px;
+  font-size: 10.5px;
 }
 
 .selected-price strong {
   color: #084F46;
-  font-size: 8.5px;
+  font-size: 11px;
 }
 
 .selected-price span {
   color: #8a9491;
-  font-size: 7.5px;
+  font-size: 9.5px;
 }
 
 
@@ -3842,12 +3842,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .detail-price del {
-  font-size: 7.5px;
+  font-size: 10.5px;
   color: #89918f;
 }
 
 .detail-price strong {
-  font-size: 9px;
+  font-size: 11px;
   color: #084F46;
 }
 
@@ -3894,7 +3894,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .selected-booking-content h1 {
   color: #263b37 !important;
   font-family: "Playfair Display", serif;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .selected-booking-image {
