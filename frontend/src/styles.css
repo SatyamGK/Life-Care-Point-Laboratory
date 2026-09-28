@@ -5315,9 +5315,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   position:sticky!important;
   top:54px!important;
   width:100%!important;
-  height:calc(100vh - 54px)!important;
+  /* height:calc(100vh - 54px)!important;
   max-height:none!important;
-  min-height:360px!important;
+  min-height:360px!important; */
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
