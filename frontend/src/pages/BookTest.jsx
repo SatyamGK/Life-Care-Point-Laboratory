@@ -1,10 +1,6 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import { submitEnquiry, trackEvent } from "../services/api";
-=======
-import { submitEnquiry } from "../services/api";
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 export default function BookTest() {
   const navigate = useNavigate();
@@ -55,17 +51,11 @@ export default function BookTest() {
         type: "enquiry",
         name: name.trim(),
         mobile,
-<<<<<<< HEAD
         source: "book-test",
         message: "General test booking enquiry",
       });
 
       trackEvent("enquiry_submit", { form: "book-test" });
-=======
-        selectedTest: "General Enquiry",
-      });
-
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
       navigate("/booking-success");
     } catch (error) {
       console.error(
@@ -109,16 +99,11 @@ export default function BookTest() {
 
       <div className="contact-choice-row">
 
-<<<<<<< HEAD
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
-=======
-        <a href="tel:+919910108453" className="quick-contact-button call-button" >
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-          <span>☎</span>
+          <span>â˜Ž</span>
           Call
         </a>
 
-<<<<<<< HEAD
         <a
           href="https://wa.me/919910108453"
           target="_blank"
@@ -126,10 +111,7 @@ export default function BookTest() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
-=======
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-          <span>◯</span>
+          <span>â—¯</span>
           WhatsApp
         </a>
 
@@ -226,7 +208,7 @@ export default function BookTest() {
           {/* SECURITY */}
 
           <div className="simple-security">
-            <span>🔒</span>
+            <span>ðŸ”’</span>
             SECURE
           </div>
 

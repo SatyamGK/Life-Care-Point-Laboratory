@@ -1,15 +1,9 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import Hero3DScrollAnimation from "../components/Hero3DScrollAnimation";
 import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
 import { trackEvent } from "../services/api";
-=======
-
-import MedicalArt from "../components/MedicalArt";
-import { packages } from "../data/packages";
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 import { tests } from "../data/tests";
 
 export default function Home() {
@@ -32,21 +26,21 @@ export default function Home() {
   const howItWorks = [
     {
       number: "1",
-      icon: "▣",
+      icon: "â–£",
       title: "Book Online",
       description:
         "Select your required tests or health packages & fill-up your details.",
     },
     {
       number: "2",
-      icon: "♙",
+      icon: "â™™",
       title: "Sample Collection at Home",
       description:
         "A certified technician visits your address using certified sterile kits.",
     },
     {
       number: "3",
-      icon: "▤",
+      icon: "â–¤",
       title: "Get Reports",
       description:
         "Receive highly accurate digital reports securely via email & SMS within 24 hours.",
@@ -64,42 +58,42 @@ export default function Home() {
 
   const whyChooseUs = [
     {
-      icon: "⌂",
+      icon: "âŒ‚",
       title: "Home collection",
       description: "Sample pickup at your door",
     },
     {
-      icon: "◷",
+      icon: "â—·",
       title: "Priority reports",
       description: "Results shared quickly",
     },
     {
-      icon: "⌖",
+      icon: "âŒ–",
       title: "Multiple locations",
       description: "Visit your nearest lab",
     },
     {
-      icon: "▢",
+      icon: "â–¢",
       title: "Trusted by Doctors",
       description: "Backed by more than 50+",
     },
     {
-      icon: "◯",
+      icon: "â—¯",
       title: "WhatsApp support",
       description: "Chat with our team",
     },
     {
-      icon: "♙",
+      icon: "â™™",
       title: "Trained staff",
       description: "Experienced professionals",
     },
     {
-      icon: "♙",
+      icon: "â™™",
       title: "Affordable pricing",
       description: "Quality diagnostics at fair prices",
     },
     {
-      icon: "◯",
+      icon: "â—¯",
       title: "Patient first",
       description: "Friendly service focused on your comfort",
     },
@@ -195,41 +189,20 @@ export default function Home() {
   ]);
 
   const openPackage = (packageData) => {
-<<<<<<< HEAD
     navigate(`/package-info/${encodeURIComponent(packageData.id)}`, {
       state: { packageData },
-=======
-    navigate("/package-info", {
-      state: {
-        packageData,
-      },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
   const openTest = (test) => {
-<<<<<<< HEAD
     navigate(`/test-info/${encodeURIComponent(test.id)}`, {
       state: { test },
-=======
-    navigate("/test-info", {
-      state: {
-        test,
-      },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
   const bookTest = (test) => {
-<<<<<<< HEAD
     navigate(`/test-booking/${encodeURIComponent(test.id)}`, {
       state: { test },
-=======
-    navigate("/test-booking", {
-      state: {
-        test,
-      },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
@@ -249,7 +222,7 @@ export default function Home() {
     <div className="home-page">
 
       {/* =====================================================
-          SCREEN 1 — HERO + PREVIOUS VIDEO
+          SCREEN 1 â€” HERO + PREVIOUS VIDEO
           ===================================================== */}
 
       <section className="home-section hero-section">
@@ -269,31 +242,7 @@ export default function Home() {
           </p>
 
         </div>
-<<<<<<< HEAD
         <Hero3DScrollAnimation />
-=======
-
-        {/* PREVIOUS HOME PAGE VIDEO */}
-
-        <div className="hero-media">
-
-          <video
-            className="hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/images/test-tube.png"
-          >
-            <source
-              src="/videos/hero-animation.mp4"
-              type="video/mp4"
-            />
-          </video>
-
-        </div>
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
         <div className="doctor-badge">
           TRUSTED AND RECOMMENDED BY DOCTORS
@@ -302,7 +251,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 2 — HOME SAMPLE COLLECTION
+          SCREEN 2 â€” HOME SAMPLE COLLECTION
           ===================================================== */}
 
       <section className="home-section collection-section">
@@ -352,7 +301,7 @@ export default function Home() {
               key={area}
             >
 
-              <span className="location-icon" aria-hidden="true">📍</span>
+              <span className="location-icon" aria-hidden="true">ðŸ“</span>
 
               <span>
                 {area}
@@ -366,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 3 — HOW IT WORKS + ACHIEVEMENTS
+          SCREEN 3 â€” HOW IT WORKS + ACHIEVEMENTS
           ===================================================== */}
 
       <section className="home-section how-section">
@@ -467,7 +416,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 4 — MILESTONES + SAME HEALTH PACKAGES
+          SCREEN 4 â€” MILESTONES + SAME HEALTH PACKAGES
           ===================================================== */}
 
       <section className="home-section packages-section">
@@ -487,7 +436,7 @@ export default function Home() {
               >
 
                 <span className="home-milestone-check">
-                  ✓
+                  âœ“
                 </span>
 
                 <span>
@@ -552,7 +501,7 @@ export default function Home() {
 
                     {packageData.oldPrice && (
                       <del>
-                        ₹
+                        â‚¹
                         {
                           packageData.oldPrice
                         }
@@ -560,7 +509,7 @@ export default function Home() {
                     )}
 
                     <strong>
-                      ₹
+                      â‚¹
                       {
                         packageData.price
                       }
@@ -589,7 +538,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 5 — SAME TEST DATA
+          SCREEN 5 â€” SAME TEST DATA
           ===================================================== */}
 
       <section className="home-section tests-section">
@@ -625,20 +574,20 @@ export default function Home() {
                       .includes(
                         "thyroid"
                       )
-                      ? "⌁"
+                      ? "âŒ"
                       : test.name
                         ?.toLowerCase()
                         .includes(
                           "lipid"
                         )
-                        ? "ϟ"
+                        ? "ÏŸ"
                         : test.name
                           ?.toLowerCase()
                           .includes(
                             "vitamin"
                           )
-                          ? "☼"
-                          : "♧"}
+                          ? "â˜¼"
+                          : "â™§"}
 
                   </span>
 
@@ -659,12 +608,12 @@ export default function Home() {
 
                       {test.oldPrice && (
                         <>
-                          • <del>₹{test.oldPrice}</del>
+                          â€¢ <del>â‚¹{test.oldPrice}</del>
                         </>
                       )}
 
                       {test.price && (
-                        <> • ₹{test.price}</>
+                        <> â€¢ â‚¹{test.price}</>
                       )}
                     </small>
 
@@ -691,7 +640,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 6 — WHY CHOOSE US
+          SCREEN 6 â€” WHY CHOOSE US
           ===================================================== */}
 
       <section
@@ -739,7 +688,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 7 — CONTACT
+          SCREEN 7 â€” CONTACT
           ===================================================== */}
 
       <section className="home-section contact-section-home">
@@ -761,7 +710,7 @@ export default function Home() {
         >
 
           <div className="map-center">
-            ⌖
+            âŒ–
           </div>
 
           <div className="map-location">
@@ -773,7 +722,7 @@ export default function Home() {
         <div className="home-contact-card">
 
           <div className="home-contact-icon">
-            ⌖
+            âŒ–
           </div>
 
           <div>
@@ -800,15 +749,12 @@ export default function Home() {
 
         <a
           href="tel:+919910108453"
-<<<<<<< HEAD
           onClick={() => trackEvent("call_click")}
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
           className="home-contact-card"
         >
 
           <div className="home-contact-icon">
-            ♧
+            â™§
           </div>
 
           <div>
@@ -828,7 +774,7 @@ export default function Home() {
         <div className="home-contact-card">
 
           <div className="home-contact-icon">
-            ◷
+            â—·
           </div>
 
           <div>
@@ -870,7 +816,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="Instagram"
             >
-              ◎
+              â—Ž
             </a>
 
             <a
@@ -879,7 +825,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="X"
             >
-              𝕏
+              ð•
             </a>
 
             <a
@@ -888,7 +834,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="YouTube"
             >
-              ▶
+              â–¶
             </a>
 
           </div>

@@ -1,24 +1,14 @@
-<<<<<<< HEAD
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+﻿import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { tests } from "../data/tests";
-=======
-import { useLocation, useNavigate } from "react-router-dom";
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 import MedicalArt from "../components/MedicalArt";
 
 export default function TestInfo() {
   const location = useLocation();
   const navigate = useNavigate();
-<<<<<<< HEAD
   const { id } = useParams();
 
   const test = location.state?.test || tests.find((item) => item.id === decodeURIComponent(id || ""));
-=======
-
-  const test =
-    location.state?.test;
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 
   if (!test) {
@@ -46,15 +36,8 @@ export default function TestInfo() {
 
 
   const bookTest = () => {
-<<<<<<< HEAD
     navigate(`/test-booking/${encodeURIComponent(test.id)}`, {
       state: { test },
-=======
-    navigate("/test-booking", {
-      state: {
-        test,
-      },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
@@ -87,12 +70,12 @@ export default function TestInfo() {
 
           {test.oldPrice && (
             <del>
-              ₹{test.oldPrice}
+              â‚¹{test.oldPrice}
             </del>
           )}
 
           <strong>
-            ₹{test.price}
+            â‚¹{test.price}
           </strong>
 
         </div>

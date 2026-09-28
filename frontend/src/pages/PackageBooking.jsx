@@ -1,26 +1,15 @@
-import { useState } from "react";
-<<<<<<< HEAD
+﻿import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
-=======
-import { useLocation, useNavigate } from "react-router-dom";
-
-import { submitBooking } from "../services/api";
-import MedicalArt from "../components/MedicalArt";
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 export default function PackageBooking() {
   const location = useLocation();
   const navigate = useNavigate();
-<<<<<<< HEAD
   const { id } = useParams();
   const packageData = location.state?.packageData || packages.find((item) => item.id === decodeURIComponent(id || ""));
-=======
-  const packageData = location.state?.packageData;
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [errors, setErrors] = useState({});
@@ -86,18 +75,12 @@ export default function PackageBooking() {
         type: "package",
         name: name.trim(),
         mobile,
-<<<<<<< HEAD
         itemId: packageData.id,
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
         itemName: packageData.name,
         price: packageData.price,
       });
 
-<<<<<<< HEAD
       trackEvent("booking_submit", { type: "booking" });
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
       navigate("/booking-success");
 
     } catch (error) {
@@ -137,12 +120,12 @@ export default function PackageBooking() {
 
             {packageData.oldPrice && (
               <del>
-                ₹{packageData.oldPrice}
+                â‚¹{packageData.oldPrice}
               </del>
             )}
 
             <strong>
-              ₹{packageData.price}
+              â‚¹{packageData.price}
             </strong>
 
             <span>
@@ -162,16 +145,11 @@ export default function PackageBooking() {
 
       <div className="contact-choice-row">
 
-<<<<<<< HEAD
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
-=======
-        <a href="tel:+919910108453" className="quick-contact-button call-button" >
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-          <span>☎</span>
+          <span>â˜Ž</span>
           Call
         </a>
 
-<<<<<<< HEAD
         <a
           href="https://wa.me/919910108453"
           target="_blank"
@@ -179,10 +157,7 @@ export default function PackageBooking() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
-=======
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-          <span>◯</span>
+          <span>â—¯</span>
           WhatsApp
         </a>
 
@@ -264,7 +239,7 @@ export default function PackageBooking() {
           </button>
 
           <div className="compact-security">
-            🔒 SECURE
+            ðŸ”’ SECURE
           </div>
 
         </form>

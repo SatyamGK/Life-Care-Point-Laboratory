@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import { trackEvent } from "../services/api";
+﻿import { trackEvent } from "../services/api";
 
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 export default function Contact() {
   return (
     <section className="contact-page">
@@ -15,7 +12,7 @@ export default function Contact() {
         <div className="map-visual">
 
           <span className="map-marker">
-            ♥
+            â™¥
           </span>
 
           <strong>
@@ -33,7 +30,7 @@ export default function Contact() {
       <div className="contact-card">
 
         <div className="contact-icon">
-          ⌖
+          âŒ–
         </div>
 
         <div>
@@ -55,14 +52,10 @@ export default function Contact() {
       </div>
 
 
-<<<<<<< HEAD
       <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="contact-card" >
-=======
-      <a href="tel:+919910108453" className="contact-card" >
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
         <div className="contact-icon">
-          ☎
+          â˜Ž
         </div>
 
         <div>
@@ -79,7 +72,7 @@ export default function Contact() {
       <div className="contact-card">
 
         <div className="contact-icon">
-          ◷
+          â—·
         </div>
 
         <div>
@@ -108,15 +101,15 @@ export default function Contact() {
           </a>
 
           <a href="https://www.instagram.com/lifecarepointlaboratory/">
-            ◎
+            â—Ž
           </a>
 
           <a href="https://x.com/">
-            𝕏
+            ð•
           </a>
 
           <a href="https://www.youtube.com/@lifecarepointlaboratory">
-            ▶
+            â–¶
           </a>
 
         </div>

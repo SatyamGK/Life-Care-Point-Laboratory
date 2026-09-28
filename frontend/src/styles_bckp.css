@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    LIFE CARE POINT LABORATORY COMPLETE MOBILE-FIRST STYLES
 ========================================================= */
 
@@ -4089,7 +4089,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 1 — HERO
+   SCREEN 1 â€” HERO
    ============================================================ */
 
 .figma-screen-hero {
@@ -4212,7 +4212,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 2 — HOME COLLECTION
+   SCREEN 2 â€” HOME COLLECTION
    ============================================================ */
 
 .figma-screen-collection {
@@ -4333,7 +4333,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 3 — HOW IT WORKS
+   SCREEN 3 â€” HOW IT WORKS
    ============================================================ */
 
 .figma-screen-how {
@@ -4501,7 +4501,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 4 — MILESTONES
+   SCREEN 4 â€” MILESTONES
    ============================================================ */
 
 .figma-screen-packages {
@@ -4740,7 +4740,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 5 — TESTS
+   SCREEN 5 â€” TESTS
    ============================================================ */
 
 .figma-screen-tests {
@@ -4906,7 +4906,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 6 — WHY CHOOSE US
+   SCREEN 6 â€” WHY CHOOSE US
    ============================================================ */
 
 .figma-screen-why {
@@ -4987,7 +4987,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 
 /* ============================================================
-   SCREEN 7 — CONTACT
+   SCREEN 7 â€” CONTACT
    ============================================================ */
 
 .figma-screen-contact {
@@ -5329,7 +5329,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* ============================================================
    FIGMA MOBILE DESIGN DIMENSIONS
-   Design reference: 390 × 844
+   Design reference: 390 Ã— 844
    ============================================================ */
 
 html,
@@ -6269,7 +6269,7 @@ a {
 
 }
 
-/* Home Page Hero Video — 390 × 540 */
+/* Home Page Hero Video â€” 390 Ã— 540 */
 .figma-hero-video {
   width: 390px !important;
   height: 540px !important;
@@ -6315,7 +6315,7 @@ a {
 
 /* ============================================================
    1. MAIN PAGE HEADINGS
-   Range: 24–27px
+   Range: 24â€“27px
    ============================================================ */
 
 .figma-hero-content h1,
@@ -6334,7 +6334,7 @@ a {
 
 /* ============================================================
    2. SECTION HEADINGS
-   Range: 20–25px
+   Range: 20â€“25px
    ============================================================ */
 
 .figma-screen-heading h2,
@@ -6352,7 +6352,7 @@ a {
 
 /* ============================================================
    3. CARD HEADINGS
-   Range: 14–16px
+   Range: 14â€“16px
    ============================================================ */
 
 .figma-package-details h3,
@@ -6370,7 +6370,7 @@ a {
 
 /* ============================================================
    4. NORMAL TEXT
-   Range: 13–15px
+   Range: 13â€“15px
    ============================================================ */
 
 body,
@@ -6391,7 +6391,7 @@ body,
 
 /* ============================================================
    5. SECONDARY TEXT
-   Range: 10–12px
+   Range: 10â€“12px
    ============================================================ */
 
 .figma-achievement-card span,
@@ -6413,7 +6413,7 @@ body,
 
 /* ============================================================
    6. BUTTONS
-   Range: 12–14px
+   Range: 12â€“14px
    ============================================================ */
 
 button,
@@ -6433,7 +6433,7 @@ button,
 
 /* ============================================================
    7. FORM INPUTS
-   Range: 15–16px
+   Range: 15â€“16px
    ============================================================ */
 
 input,
@@ -6632,7 +6632,7 @@ video {
 
 /* ============================================================
    SMALL MOBILE DEVICES
-   Keep readability — only slightly reduce large headings
+   Keep readability â€” only slightly reduce large headings
    ============================================================ */
 
 @media (max-width: 360px) {
@@ -7212,7 +7212,7 @@ a {
 }
 
 /* ============================================================
-   CONSISTENT READABLE FONT SIZE — ALL NON-HOME PAGES
+   CONSISTENT READABLE FONT SIZE â€” ALL NON-HOME PAGES
    Match the comfortable typography used on Home
    ============================================================ */
 
@@ -7556,7 +7556,7 @@ a {
 }
 
 /* ============================================================
-   ACHIEVEMENTS — REFERENCE CARD SIZE
+   ACHIEVEMENTS â€” REFERENCE CARD SIZE
    ============================================================ */
 
 .figma-achievement-grid {
@@ -7603,7 +7603,7 @@ a {
 }
 
 /* ============================================================
-   WHY CHOOSE US — REFERENCE CARD SIZE
+   WHY CHOOSE US â€” REFERENCE CARD SIZE
    ============================================================ */
 
 .figma-why-grid {
