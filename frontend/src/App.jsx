@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import BottomConnect from "./components/BottomConnect";
+import ScrollRestoration from "./components/ScrollRestoration";
+
 import Home from "./pages/Home";
 import Achievements from "./pages/Achievements";
 import PackagesTests from "./pages/PackagesTests";
@@ -13,25 +16,17 @@ import BookingSuccess from "./pages/BookingSuccess";
 import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import KeyFeatures from "./pages/KeyFeatures";
-<<<<<<< HEAD
-import ScrollRestoration from "./components/ScrollRestoration";
 import NotFound from "./pages/NotFound";
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 export default function App() {
   return (
     <>
       <Header />
-<<<<<<< HEAD
+
       <ScrollRestoration />
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
       <main className="app-content">
-
         <Routes>
-
           {/* Home */}
           <Route path="/" element={<Home />} />
 
@@ -45,7 +40,6 @@ export default function App() {
           <Route path="/tests" element={<PackagesTests />} />
 
           {/* Package Information */}
-<<<<<<< HEAD
           <Route path="/package-info/:id" element={<PackageInfo />} />
           <Route path="/package-info" element={<PackageInfo />} />
 
@@ -54,22 +48,17 @@ export default function App() {
           <Route path="/test-info" element={<TestInfo />} />
 
           {/* Package Booking */}
-          <Route path="/package-booking/:id" element={<PackageBooking />} />
-          <Route path="/package-booking" element={<PackageBooking />} />
+          <Route
+            path="/package-booking/:id"
+            element={<PackageBooking />}
+          />
+          <Route
+            path="/package-booking"
+            element={<PackageBooking />}
+          />
 
           {/* Test Booking */}
           <Route path="/test-booking/:id" element={<TestBooking />} />
-=======
-          <Route path="/package-info" element={<PackageInfo />} />
-
-          {/* Test Information */}
-          <Route path="/test-info" element={<TestInfo />} />
-
-          {/* Package Booking */}
-          <Route path="/package-booking" element={<PackageBooking />} />
-
-          {/* Test Booking */}
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
           <Route path="/test-booking" element={<TestBooking />} />
 
           {/* Generic Book Test */}
@@ -84,18 +73,12 @@ export default function App() {
           {/* Menu */}
           <Route path="/menu" element={<Menu />} />
 
-          {/* KEY FEATURES */}
+          {/* Key Features */}
           <Route path="/key-features" element={<KeyFeatures />} />
 
-          {/* Fallback */}
-<<<<<<< HEAD
+          {/* 404 */}
           <Route path="*" element={<NotFound />} />
-=======
-          <Route path="*" element={<Home />} />
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-
         </Routes>
-
       </main>
 
       <BottomConnect />
