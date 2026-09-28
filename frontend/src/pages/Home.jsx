@@ -5,6 +5,7 @@ import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
 import { trackEvent } from "../services/api";
 import { tests } from "../data/tests";
+import Icon from "../components/Icon";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -26,21 +27,21 @@ export default function Home() {
   const howItWorks = [
     {
       number: "1",
-      icon: "â–£",
+      icon: "lab",
       title: "Book Online",
       description:
         "Select your required tests or health packages & fill-up your details.",
     },
     {
       number: "2",
-      icon: "â™™",
+      icon: "home",
       title: "Sample Collection at Home",
       description:
         "A certified technician visits your address using certified sterile kits.",
     },
     {
       number: "3",
-      icon: "â–¤",
+      icon: "report",
       title: "Get Reports",
       description:
         "Receive highly accurate digital reports securely via email & SMS within 24 hours.",
@@ -58,42 +59,42 @@ export default function Home() {
 
   const whyChooseUs = [
     {
-      icon: "âŒ‚",
+      icon: "home",
       title: "Home collection",
       description: "Sample pickup at your door",
     },
     {
-      icon: "â—·",
+      icon: "clock",
       title: "Priority reports",
       description: "Results shared quickly",
     },
     {
-      icon: "âŒ–",
+      icon: "pin",
       title: "Multiple locations",
       description: "Visit your nearest lab",
     },
     {
-      icon: "â–¢",
+      icon: "doctor",
       title: "Trusted by Doctors",
       description: "Backed by more than 50+",
     },
     {
-      icon: "â—¯",
+      icon: "whatsapp",
       title: "WhatsApp support",
       description: "Chat with our team",
     },
     {
-      icon: "â™™",
+      icon: "home",
       title: "Trained staff",
       description: "Experienced professionals",
     },
     {
-      icon: "â™™",
+      icon: "home",
       title: "Affordable pricing",
       description: "Quality diagnostics at fair prices",
     },
     {
-      icon: "â—¯",
+      icon: "whatsapp",
       title: "Patient first",
       description: "Friendly service focused on your comfort",
     },
@@ -222,7 +223,7 @@ export default function Home() {
     <div className="home-page">
 
       {/* =====================================================
-          SCREEN 1 â€” HERO + PREVIOUS VIDEO
+          SCREEN 1 — HERO + PREVIOUS VIDEO
           ===================================================== */}
 
       <section className="home-section hero-section">
@@ -251,7 +252,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 2 â€” HOME SAMPLE COLLECTION
+          SCREEN 2 — HOME SAMPLE COLLECTION
           ===================================================== */}
 
       <section className="home-section collection-section">
@@ -301,7 +302,7 @@ export default function Home() {
               key={area}
             >
 
-              <span className="location-icon" aria-hidden="true">ðŸ“</span>
+              <span className="location-icon" aria-hidden="true"><Icon name="pin" size={15} /></span>
 
               <span>
                 {area}
@@ -315,7 +316,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 3 â€” HOW IT WORKS + ACHIEVEMENTS
+          SCREEN 3 — HOW IT WORKS + ACHIEVEMENTS
           ===================================================== */}
 
       <section className="home-section how-section">
@@ -336,9 +337,7 @@ export default function Home() {
               key={item.number}
             >
 
-              <div className="how-icon">
-                {item.icon}
-              </div>
+              <div className="how-icon"><Icon name={item.icon} size={22} /></div>
 
               <div className="how-number">
                 {item.number}
@@ -416,7 +415,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 4 â€” MILESTONES + SAME HEALTH PACKAGES
+          SCREEN 4 — MILESTONES + SAME HEALTH PACKAGES
           ===================================================== */}
 
       <section className="home-section packages-section">
@@ -436,7 +435,7 @@ export default function Home() {
               >
 
                 <span className="home-milestone-check">
-                  âœ“
+                  ✓
                 </span>
 
                 <span>
@@ -501,7 +500,7 @@ export default function Home() {
 
                     {packageData.oldPrice && (
                       <del>
-                        â‚¹
+                        ₹
                         {
                           packageData.oldPrice
                         }
@@ -509,7 +508,7 @@ export default function Home() {
                     )}
 
                     <strong>
-                      â‚¹
+                      ₹
                       {
                         packageData.price
                       }
@@ -538,7 +537,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 5 â€” SAME TEST DATA
+          SCREEN 5 — SAME TEST DATA
           ===================================================== */}
 
       <section className="home-section tests-section">
@@ -568,27 +567,10 @@ export default function Home() {
                 >
 
                   <span className="test-icon">
-
-                    {test.name
-                      ?.toLowerCase()
-                      .includes(
-                        "thyroid"
-                      )
-                      ? "âŒ"
-                      : test.name
-                        ?.toLowerCase()
-                        .includes(
-                          "lipid"
-                        )
-                        ? "ÏŸ"
-                        : test.name
-                          ?.toLowerCase()
-                          .includes(
-                            "vitamin"
-                          )
-                          ? "â˜¼"
-                          : "â™§"}
-
+                    <Icon
+                      name={test.name?.toLowerCase().includes("thyroid") ? "lab" : test.name?.toLowerCase().includes("lipid") ? "report" : test.name?.toLowerCase().includes("vitamin") ? "shield" : "lab"}
+                      size={22}
+                    />
                   </span>
 
                   <span className="test-information">
@@ -608,12 +590,12 @@ export default function Home() {
 
                       {test.oldPrice && (
                         <>
-                          â€¢ <del>â‚¹{test.oldPrice}</del>
+                          • <del>₹{test.oldPrice}</del>
                         </>
                       )}
 
                       {test.price && (
-                        <> â€¢ â‚¹{test.price}</>
+                        <> • ₹{test.price}</>
                       )}
                     </small>
 
@@ -640,7 +622,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 6 â€” WHY CHOOSE US
+          SCREEN 6 — WHY CHOOSE US
           ===================================================== */}
 
       <section
@@ -667,9 +649,7 @@ export default function Home() {
                 }
               >
 
-                <div className="why-choose-icon">
-                  {item.icon}
-                </div>
+                <div className="why-choose-icon"><Icon name={item.icon} size={22} /></div>
 
                 <h3>
                   {item.title}
@@ -688,7 +668,7 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          SCREEN 7 â€” CONTACT
+          SCREEN 7 — CONTACT
           ===================================================== */}
 
       <section className="home-section contact-section-home">
@@ -709,9 +689,7 @@ export default function Home() {
           }
         >
 
-          <div className="map-center">
-            âŒ–
-          </div>
+          <div className="map-center"><Icon name="pin" size={26} /></div>
 
           <div className="map-location">
             Life Care Point Laboratory
@@ -721,9 +699,7 @@ export default function Home() {
 
         <div className="home-contact-card">
 
-          <div className="home-contact-icon">
-            âŒ–
-          </div>
+          <div className="home-contact-icon"><Icon name="pin" size={18} /></div>
 
           <div>
 
@@ -753,9 +729,7 @@ export default function Home() {
           className="home-contact-card"
         >
 
-          <div className="home-contact-icon">
-            â™§
-          </div>
+          <div className="home-contact-icon"><Icon name="phone" size={18} /></div>
 
           <div>
 
@@ -773,9 +747,7 @@ export default function Home() {
 
         <div className="home-contact-card">
 
-          <div className="home-contact-icon">
-            â—·
-          </div>
+          <div className="home-contact-icon"><Icon name="clock" size={18} /></div>
 
           <div>
 
@@ -807,7 +779,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="Facebook"
             >
-              f
+              <Icon name="facebook" size={17} />
             </a>
 
             <a
@@ -816,7 +788,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="Instagram"
             >
-              â—Ž
+              <Icon name="instagram" size={17} />
             </a>
 
             <a
@@ -825,7 +797,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="X"
             >
-              ð•
+              <Icon name="x" size={17} />
             </a>
 
             <a
@@ -834,7 +806,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="YouTube"
             >
-              â–¶
+              <Icon name="youtube" size={17} />
             </a>
 
           </div>

@@ -1,5 +1,6 @@
 ﻿import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Icon from "../components/Icon";
 
 import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
@@ -120,12 +121,12 @@ export default function PackageBooking() {
 
             {packageData.oldPrice && (
               <del>
-                â‚¹{packageData.oldPrice}
+                ₹{packageData.oldPrice}
               </del>
             )}
 
             <strong>
-              â‚¹{packageData.price}
+              ₹{packageData.price}
             </strong>
 
             <span>
@@ -146,7 +147,7 @@ export default function PackageBooking() {
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
-          <span>â˜Ž</span>
+          <span className="contact-button-icon"><Icon name="phone" size={17} /></span>
           Call
         </a>
 
@@ -157,7 +158,7 @@ export default function PackageBooking() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
-          <span>â—¯</span>
+          <span className="contact-button-icon whatsapp-image-icon"><Icon name="whatsapp" size={19} /></span>
           WhatsApp
         </a>
 
@@ -239,7 +240,7 @@ export default function PackageBooking() {
           </button>
 
           <div className="compact-security">
-            ðŸ”’ SECURE
+            🔒 SECURE
           </div>
 
         </form>

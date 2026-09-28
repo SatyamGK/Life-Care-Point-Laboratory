@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
 import { tests } from "../data/tests";
+import Icon from "../components/Icon";
 
 export default function TestBooking() {
   const location = useLocation();
@@ -121,12 +122,12 @@ export default function TestBooking() {
 
             {test.oldPrice && (
               <del>
-                â‚¹{test.oldPrice}
+                ₹{test.oldPrice}
               </del>
             )}
 
             <strong>
-              â‚¹{test.price}
+              ₹{test.price}
             </strong>
 
             <span>
@@ -147,7 +148,7 @@ export default function TestBooking() {
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
-          <span>â˜Ž</span>
+          <span className="contact-button-icon"><Icon name="phone" size={17} /></span>
           Call
         </a>
 
@@ -158,7 +159,7 @@ export default function TestBooking() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
-          <span>â—¯</span>
+          <span className="contact-button-icon whatsapp-image-icon"><Icon name="whatsapp" size={19} /></span>
           WhatsApp
         </a>
 
@@ -242,7 +243,7 @@ export default function TestBooking() {
 
 
           <div className="compact-security">
-            ðŸ”’ SECURE
+            🔒 SECURE
           </div>
 
         </form>

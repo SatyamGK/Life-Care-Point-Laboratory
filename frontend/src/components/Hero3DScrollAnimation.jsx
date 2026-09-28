@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import "../styles.css";
 
 const TOTAL_FRAMES = 50;
-const PRELOAD_RADIUS = 3;
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const frameModules = import.meta.glob(
@@ -19,180 +17,119 @@ export default function Hero3DScrollAnimation() {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
   const progressRef = useRef(null);
+  const imagesRef = useRef([]);
   const frameRef = useRef(0);
   const rafRef = useRef(0);
-  const imagesRef = useRef(new Map());
-  const loadingRef = useRef(new Set());
+  const reducedMotionRef = useRef(false);
   const [loaded, setLoaded] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d", { alpha: true });
+    if (!section || !canvas) return undefined;
 
-    if (!section || !canvas || !ctx) return undefined;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return undefined;
 
     let disposed = false;
+    reducedMotionRef.current = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
-    const draw = (index = frameRef.current) => {
-      const image = imagesRef.current.get(index);
-      if (!image) return;
+    const resizeCanvas = () => {
+      const cssWidth = canvas.clientWidth || 1;
+      const cssHeight = canvas.clientHeight || 1;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(cssWidth * ratio);
+      canvas.height = Math.round(cssHeight * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      draw(frameRef.current);
+    };
 
+    const draw = (index) => {
+      const image = imagesRef.current[index];
+      if (!image?.complete || !image.naturalWidth) return;
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       if (!width || !height) return;
 
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      const scale = Math.min(width / image.naturalWidth, height / image.naturalHeight);
+      const drawWidth = image.naturalWidth * scale;
+      const drawHeight = image.naturalHeight * scale;
+      ctx.setTransform(
+        Math.min(window.devicePixelRatio || 1, 2), 0, 0,
+        Math.min(window.devicePixelRatio || 1, 2), 0, 0
+      );
       ctx.clearRect(0, 0, width, height);
-
-      const scale = Math.min(
-        width / image.naturalWidth,
-        height / image.naturalHeight
-      );
-
-      const imageWidth = image.naturalWidth * scale;
-      const imageHeight = image.naturalHeight * scale;
-
-      ctx.drawImage(
-        image,
-        (width - imageWidth) / 2,
-        (height - imageHeight) / 2,
-        imageWidth,
-        imageHeight
-      );
+      ctx.drawImage(image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
     };
 
-    const loadFrame = (index) => {
-      if (
-        disposed ||
-        index < 0 ||
-        index >= TOTAL_FRAMES ||
-        imagesRef.current.has(index) ||
-        loadingRef.current.has(index) ||
-        !frameUrls[index]
-      ) {
-        return;
-      }
-
-      loadingRef.current.add(index);
-      const image = new Image();
-      image.decoding = "async";
-      image.onload = () => {
-        loadingRef.current.delete(index);
-        if (disposed) return;
-
-        imagesRef.current.set(index, image);
-        setLoaded(imagesRef.current.size);
-
-        if (index === frameRef.current) draw(index);
-      };
-      image.onerror = () => {
-        loadingRef.current.delete(index);
-      };
-      image.src = frameUrls[index];
-    };
-
-    const trimCache = (center) => {
-      for (const index of imagesRef.current.keys()) {
-        if (Math.abs(index - center) > PRELOAD_RADIUS + 2) {
-          imagesRef.current.delete(index);
-        }
-      }
-      setLoaded(imagesRef.current.size);
-    };
-
-    const preloadAround = (center) => {
-      for (
-        let index = Math.max(0, center - PRELOAD_RADIUS);
-        index <= Math.min(TOTAL_FRAMES - 1, center + PRELOAD_RADIUS);
-        index += 1
-      ) {
-        loadFrame(index);
-      }
-    };
-
-    const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, Math.round(canvas.clientWidth * ratio));
-      canvas.height = Math.max(1, Math.round(canvas.clientHeight * ratio));
-      draw();
-    };
-
-    const updateFromScroll = () => {
+    const update = () => {
       rafRef.current = 0;
+      const rect = section.getBoundingClientRect();
+      const scrollableDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+      const progress = reducedMotionRef.current ? 0 : clamp(-rect.top / scrollableDistance, 0, 1);
+      const nextFrame = Math.min(TOTAL_FRAMES - 1, Math.floor(progress * (TOTAL_FRAMES - 1) + 0.5));
 
-      const bounds = section.getBoundingClientRect();
-      const travel = Math.max(
-        1,
-        section.offsetHeight - window.innerHeight
-      );
-      const fraction = clamp(-bounds.top / travel, 0, 1);
-      const index = Math.round(fraction * (TOTAL_FRAMES - 1));
-
-      if (index !== frameRef.current) {
-        frameRef.current = index;
-        trimCache(index);
-        preloadAround(index);
-        draw(index);
+      if (nextFrame !== frameRef.current) {
+        frameRef.current = nextFrame;
+        draw(nextFrame);
+      } else {
+        draw(frameRef.current);
       }
 
-      if (progressRef.current) {
-        progressRef.current.textContent = `${Math.round(fraction * 100)}%`;
-      }
+      if (progressRef.current) progressRef.current.textContent = `${Math.round(progress * 100)}%`;
     };
 
-    const onScroll = () => {
-      if (!rafRef.current) {
-        rafRef.current = requestAnimationFrame(updateFromScroll);
-      }
+    const requestUpdate = () => {
+      if (!rafRef.current) rafRef.current = requestAnimationFrame(update);
     };
 
-    const observer = new ResizeObserver(resize);
+    const loadAllFrames = async () => {
+      const images = await Promise.all(frameUrls.map((src, index) => new Promise((resolve) => {
+        if (!src) { resolve(null); return; }
+        const image = new Image();
+        image.decoding = "async";
+        image.onload = () => resolve({ index, image });
+        image.onerror = () => resolve(null);
+        image.src = src;
+      })));
+
+      if (disposed) return;
+      images.forEach((entry) => {
+        if (entry) imagesRef.current[entry.index] = entry.image;
+      });
+      setLoaded(images.filter(Boolean).length);
+      draw(frameRef.current);
+      requestUpdate();
+    };
+
+    const observer = new ResizeObserver(resizeCanvas);
     observer.observe(canvas);
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
+    window.addEventListener("resize", resizeCanvas);
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-
-    // Only the initial neighborhood is loaded. The rest is loaded as the
-    // user scrolls, avoiding decoding all 50 large source images at once.
-    preloadAround(0);
-    resize();
-    updateFromScroll();
+    resizeCanvas();
+    requestUpdate();
+    loadAllFrames();
 
     return () => {
       disposed = true;
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("resize", resizeCanvas);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      imagesRef.current.clear();
-      loadingRef.current.clear();
+      imagesRef.current = [];
     };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="hero-3d-scroll"
-      aria-label="Scroll-controlled laboratory animation"
-    >
+    <section ref={sectionRef} className="hero-3d-scroll" aria-label="Scroll-controlled laboratory animation">
       <div className="hero-3d-sticky">
         <div className="hero-3d-glow" aria-hidden="true" />
-        <canvas
-          ref={canvasRef}
-          className="hero-3d-canvas"
-          aria-hidden="true"
-        />
-        <div className="hero-3d-caption">
-          <span>SCROLL TO EXPLORE</span>
-          <span ref={progressRef}>0%</span>
-        </div>
-        {loaded === 0 && (
-          <div className="hero-3d-loading" role="status" aria-live="polite">
-            Loading animation…
-          </div>
-        )}
+        <canvas ref={canvasRef} className="hero-3d-canvas" aria-hidden="true" />
+        <div className="hero-3d-caption"><span>SCROLL TO EXPLORE</span><span ref={progressRef}>0%</span></div>
+        {loaded < TOTAL_FRAMES && <div className="hero-3d-loading" role="status" aria-live="polite">Loading {loaded}/{TOTAL_FRAMES}…</div>}
       </div>
     </section>
   );

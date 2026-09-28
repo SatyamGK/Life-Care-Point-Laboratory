@@ -1,4 +1,6 @@
-﻿export default function Achievements() {
+﻿import Icon from "../components/Icon";
+
+export default function Achievements() {
   const milestones = [
     "ISO certified",
     "50+ Doctors & 5+ Hospitals network",
@@ -48,7 +50,7 @@
 
         {milestones.map((item) => (
           <div className="milestone-row" key={item} >
-            <span>âœ“</span>
+            <span><Icon name="check" size={16} /></span>
             <strong>{item}</strong>
           </div>
         ))}

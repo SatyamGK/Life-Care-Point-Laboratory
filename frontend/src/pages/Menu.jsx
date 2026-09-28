@@ -1,4 +1,5 @@
 ﻿import { useNavigate } from "react-router-dom";
+import Icon from "../components/Icon";
 
 export default function Menu() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function Menu() {
           </span>
 
           <button type="button" className="menu-close-button" onClick={() => navigate(-1)} aria-label="Close menu" >
-            Ã—
+            <Icon name="close" size={18} />
           </button>
 
         </div>
@@ -36,7 +37,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
@@ -48,7 +49,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
@@ -60,7 +61,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
@@ -71,7 +72,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
@@ -83,7 +84,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
@@ -95,7 +96,7 @@ export default function Menu() {
             </span>
 
             <span className="menu-navigation-arrow">
-              â€º
+              <Icon name="arrow" size={17} />
             </span>
           </button>
 
