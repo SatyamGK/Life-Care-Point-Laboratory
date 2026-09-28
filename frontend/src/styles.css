@@ -22,7 +22,7 @@ html {
   margin: 0;
   padding: 0;
   background: #ffffff;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -2895,10 +2895,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .contact-choice-row {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
   margin-top: 12px;
+  box-sizing: border-box;
 }
 
 .quick-contact-button {
@@ -4237,7 +4238,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   min-height: 0;
   padding: 10px 10px;
   text-align: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-content {
@@ -5117,16 +5118,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* =========================================================
    CALL + WHATSAPP BUTTONS
-   BOTH BUTTONS CLEARLY VISIBLE
 ========================================================= */
-
-.contact-choice-row {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 12px;
-}
 
 .quick-contact-button {
   width: 100%;
@@ -5175,3 +5167,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .quick-contact-button:active {
   transform: scale(0.98);
 }
+
+/* Scroll hero: keep OUTSIDE .home-hero if that parent has overflow:hidden. */
+.hero-3d-scroll { position:relative; width:100%; height:155vh; min-height:850px; background:#fff; }
+.hero-3d-sticky { position:sticky; top:54px; width:100%; height:calc(100vh - 54px); max-height:620px; min-height:360px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:radial-gradient(circle at 50% 50%, #eaf8f3 0%, #fff 65%); }
+.hero-3d-canvas { width:min(94%,370px); height:min(82%,490px); object-fit:contain; transform-origin:center; filter:drop-shadow(0 14px 22px rgba(8,79,70,.10)); }
+.hero-3d-glow { position:absolute; width:70%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(37,211,102,.1),transparent 70%); pointer-events:none; }
+.hero-3d-caption { position:absolute; bottom:18px; left:16px; right:16px; display:flex; justify-content:space-between; align-items:center; padding:9px 12px; border:1px solid #dcebe6; border-radius:999px; background:rgba(255,255,255,.93); color:#084f46; font-size:11px; font-weight:700; letter-spacing:.4px; }
+.hero-3d-loading { position:absolute; top:12px; left:50%; transform:translateX(-50%); padding:6px 10px; border-radius:999px; background:#fff; color:#526e67; font-size:10px; white-space:nowrap; }
+@media(min-width:390px) { .hero-3d-scroll,.hero-3d-sticky { width:100%; } }
+@media(prefers-reduced-motion:reduce) { .hero-3d-canvas { transform:none!important; } }

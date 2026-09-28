@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import { submitBooking } from "../services/api";
+import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
+import { packages } from "../data/packages";
 
 export default function PackageBooking() {
   const location = useLocation();
   const navigate = useNavigate();
-  const packageData = location.state?.packageData;
+  const { id } = useParams();
+  const packageData = location.state?.packageData || packages.find((item) => item.id === decodeURIComponent(id || ""));
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [errors, setErrors] = useState({});
@@ -73,10 +75,12 @@ export default function PackageBooking() {
         type: "package",
         name: name.trim(),
         mobile,
+        itemId: packageData.id,
         itemName: packageData.name,
         price: packageData.price,
       });
 
+      trackEvent("booking_submit", { type: "booking" });
       navigate("/booking-success");
 
     } catch (error) {
@@ -141,12 +145,18 @@ export default function PackageBooking() {
 
       <div className="contact-choice-row">
 
-        <a href="tel:+919910108453" className="quick-contact-button call-button" >
+        <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
           <span>☎</span>
           Call
         </a>
 
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
+        <a
+          href="https://wa.me/919910108453"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click")}
+          className="quick-contact-button whatsapp-button"
+        >
           <span>◯</span>
           WhatsApp
         </a>

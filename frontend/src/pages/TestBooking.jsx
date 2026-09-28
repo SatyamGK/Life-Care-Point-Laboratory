@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { submitBooking } from "../services/api";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
+import { tests } from "../data/tests";
 
 export default function TestBooking() {
   const location = useLocation();
   const navigate = useNavigate();
-  const test = location.state?.test;
+  const { id } = useParams();
+  const test = location.state?.test || tests.find((item) => item.id === decodeURIComponent(id || ""));
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [errors, setErrors] = useState({});
@@ -75,10 +77,12 @@ export default function TestBooking() {
         type: "test",
         name: name.trim(),
         mobile,
+        itemId: test.id,
         itemName: test.name,
         price: test.price,
       });
 
+      trackEvent("booking_submit", { type: "booking" });
       navigate("/booking-success");
 
     } catch (error) {
@@ -142,12 +146,18 @@ export default function TestBooking() {
 
       <div className="contact-choice-row">
 
-        <a href="tel:+919910108453" className="quick-contact-button call-button" >
+        <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
           <span>☎</span>
           Call
         </a>
 
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
+        <a
+          href="https://wa.me/919910108453"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click")}
+          className="quick-contact-button whatsapp-button"
+        >
           <span>◯</span>
           WhatsApp
         </a>

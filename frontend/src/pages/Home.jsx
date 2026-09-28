@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import Hero3DScrollAnimation from "../components/Hero3DScrollAnimation";
 import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
+import { trackEvent } from "../services/api";
 import { tests } from "../data/tests";
 
 export default function Home() {
@@ -188,26 +189,20 @@ export default function Home() {
   ]);
 
   const openPackage = (packageData) => {
-    navigate("/package-info", {
-      state: {
-        packageData,
-      },
+    navigate(`/package-info/${encodeURIComponent(packageData.id)}`, {
+      state: { packageData },
     });
   };
 
   const openTest = (test) => {
-    navigate("/test-info", {
-      state: {
-        test,
-      },
+    navigate(`/test-info/${encodeURIComponent(test.id)}`, {
+      state: { test },
     });
   };
 
   const bookTest = (test) => {
-    navigate("/test-booking", {
-      state: {
-        test,
-      },
+    navigate(`/test-booking/${encodeURIComponent(test.id)}`, {
+      state: { test },
     });
   };
 
@@ -247,27 +242,7 @@ export default function Home() {
           </p>
 
         </div>
-
-        {/* PREVIOUS HOME PAGE VIDEO */}
-
-        <div className="hero-media">
-
-          <video
-            className="hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/images/test-tube.png"
-          >
-            <source
-              src="/videos/hero-animation.mp4"
-              type="video/mp4"
-            />
-          </video>
-
-        </div>
+        <Hero3DScrollAnimation />
 
         <div className="doctor-badge">
           TRUSTED AND RECOMMENDED BY DOCTORS
@@ -774,6 +749,7 @@ export default function Home() {
 
         <a
           href="tel:+919910108453"
+          onClick={() => trackEvent("call_click")}
           className="home-contact-card"
         >
 

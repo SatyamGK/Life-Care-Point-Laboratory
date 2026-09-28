@@ -13,11 +13,14 @@ import BookingSuccess from "./pages/BookingSuccess";
 import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import KeyFeatures from "./pages/KeyFeatures";
+import ScrollRestoration from "./components/ScrollRestoration";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <>
       <Header />
+      <ScrollRestoration />
 
       <main className="app-content">
 
@@ -36,15 +39,19 @@ export default function App() {
           <Route path="/tests" element={<PackagesTests />} />
 
           {/* Package Information */}
+          <Route path="/package-info/:id" element={<PackageInfo />} />
           <Route path="/package-info" element={<PackageInfo />} />
 
           {/* Test Information */}
+          <Route path="/test-info/:id" element={<TestInfo />} />
           <Route path="/test-info" element={<TestInfo />} />
 
           {/* Package Booking */}
+          <Route path="/package-booking/:id" element={<PackageBooking />} />
           <Route path="/package-booking" element={<PackageBooking />} />
 
           {/* Test Booking */}
+          <Route path="/test-booking/:id" element={<TestBooking />} />
           <Route path="/test-booking" element={<TestBooking />} />
 
           {/* Generic Book Test */}
@@ -63,7 +70,7 @@ export default function App() {
           <Route path="/key-features" element={<KeyFeatures />} />
 
           {/* Fallback */}
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
 
         </Routes>
 
