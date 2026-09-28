@@ -3,15 +3,35 @@ const API_BASE_URL = (
 ).replace(/\/$/, "");
 
 async function parseResponse(response) {
-  const result = await response.json().catch(() => ({}));
+  const contentType = response.headers.get("content-type") || "";
+  const result = contentType.includes("application/json")
+    ? await response.json().catch(() => ({}))
+    : {};
 
   if (!response.ok) {
-    const error = new Error(
-      result.message || "Unable to process your request."
-    );
+    let message = result.message;
+
+    if (!message && response.status === 404) {
+      message =
+        "The API endpoint was not found. For local testing, start the project with `npx vercel dev` instead of `npm run dev`.";
+    } else if (!message && response.status >= 500) {
+      message =
+        "The server could not process the request. Check the server environment variables and terminal logs.";
+    } else if (!message) {
+      message = "Unable to process your request.";
+    }
+
+    const error = new Error(message);
     error.status = response.status;
     error.stored = Boolean(result.stored);
+    error.code = result.code || null;
     throw error;
+  }
+
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      "The API returned a non-JSON response. For local testing, start the project with `npx vercel dev`."
+    );
   }
 
   return result;

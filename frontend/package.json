@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:vercel": "npx vercel dev --listen 3000 --local-config vercel.local.json",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
