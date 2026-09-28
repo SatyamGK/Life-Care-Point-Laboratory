@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MedicalArt from "../components/MedicalArt";
 import { tests } from "../data/tests";
 import { packages } from "../data/packages";
+=======
+import { useLocation, useNavigate } from "react-router-dom";
+import MedicalArt from "../components/MedicalArt";
+import { tests } from "../data/tests";
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 export default function PackageInfo() {
   const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { id } = useParams();
 
   const packageData = location.state?.packageData || packages.find((item) => item.id === decodeURIComponent(id || ""));
+=======
+
+  const packageData = location.state?.packageData;
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
   if (!packageData) {
     return (
@@ -47,8 +58,15 @@ export default function PackageInfo() {
     }) || [];
 
   const bookPackage = () => {
+<<<<<<< HEAD
     navigate(`/package-booking/${encodeURIComponent(packageData.id)}`, {
       state: { packageData },
+=======
+    navigate("/package-booking", {
+      state: {
+        packageData,
+      },
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 

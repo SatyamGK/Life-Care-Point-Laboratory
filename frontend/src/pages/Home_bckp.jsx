@@ -1,20 +1,17 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import Hero3DScrollAnimation from "../components/Hero3DScrollAnimation";
-import MedicalArt from "../components/MedicalArt";
-import { packages } from "../data/packages";
-import { trackEvent } from "../services/api";
-=======
 
 import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 import { tests } from "../data/tests";
 
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  /* =========================================================
+     AREAS
+     ========================================================= */
 
   const collectionAreas = [
     "Indirapuram",
@@ -28,6 +25,10 @@ export default function Home() {
     "Noida Sec-62",
     "Noida Sec-63",
   ];
+
+  /* =========================================================
+     HOW IT WORKS
+     ========================================================= */
 
   const howItWorks = [
     {
@@ -53,6 +54,10 @@ export default function Home() {
     },
   ];
 
+  /* =========================================================
+     MILESTONES
+     ========================================================= */
+
   const milestones = [
     "ISO certified",
     "50+ Doctors & 5+ Hospitals network",
@@ -61,6 +66,10 @@ export default function Home() {
     "Community health initiatives",
     "Third location opened",
   ];
+
+  /* =========================================================
+     WHY CHOOSE US
+     ========================================================= */
 
   const whyChooseUs = [
     {
@@ -105,13 +114,34 @@ export default function Home() {
     },
   ];
 
+  /* =========================================================
+     EXISTING HEALTH PACKAGES
+     
+     IMPORTANT:
+     These come directly from your existing packages data.
+     Nothing is hard-coded here.
+     ========================================================= */
+
   const existingPackages = Array.isArray(packages)
     ? packages
     : [];
 
+  /* =========================================================
+     EXISTING TESTS
+     
+     IMPORTANT:
+     These come directly from your existing tests data.
+     ========================================================= */
+
   const existingTests = Array.isArray(tests)
     ? tests
     : [];
+
+  /* =========================================================
+     RECOMMENDED TESTS
+     
+     First try to use the same tests from your existing data.
+     ========================================================= */
 
   const recommendedNames = [
     "CBC with ESR",
@@ -160,6 +190,10 @@ export default function Home() {
   const finalRecommendedTests =
     recommendedTests.slice(0, 4);
 
+  /* =========================================================
+     MENU → WHY CHOOSE US
+     ========================================================= */
+
   useEffect(() => {
     if (
       location.state?.scrollTo !==
@@ -194,42 +228,35 @@ export default function Home() {
     navigate,
   ]);
 
+  /* =========================================================
+     NAVIGATION
+     ========================================================= */
+
+  // const connectHealthPartner = () => {
+  //   navigate("/book-test");
+  // };
+
   const openPackage = (packageData) => {
-<<<<<<< HEAD
-    navigate(`/package-info/${encodeURIComponent(packageData.id)}`, {
-      state: { packageData },
-=======
     navigate("/package-info", {
       state: {
         packageData,
       },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
   const openTest = (test) => {
-<<<<<<< HEAD
-    navigate(`/test-info/${encodeURIComponent(test.id)}`, {
-      state: { test },
-=======
     navigate("/test-info", {
       state: {
         test,
       },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
   const bookTest = (test) => {
-<<<<<<< HEAD
-    navigate(`/test-booking/${encodeURIComponent(test.id)}`, {
-      state: { test },
-=======
     navigate("/test-booking", {
       state: {
         test,
       },
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
     });
   };
 
@@ -245,16 +272,20 @@ export default function Home() {
     );
   };
 
+  /* =========================================================
+     HOME
+     ========================================================= */
+
   return (
-    <div className="home-page">
+    <div className="figma-home-page">
 
       {/* =====================================================
           SCREEN 1 — HERO + PREVIOUS VIDEO
           ===================================================== */}
 
-      <section className="home-section hero-section">
+      <section className="figma-screen figma-screen-hero">
 
-        <div className="hero-content">
+        <div className="figma-hero-content">
 
           <h1>
             We Are Your Health
@@ -264,21 +295,19 @@ export default function Home() {
 
           <p>
             Every Blood Test has a story to tell and with
-            over 25+ years of experience, we know how to
+            over 20+ years of experience, we know how to
             deliver it with high precision.
           </p>
 
         </div>
-<<<<<<< HEAD
-        <Hero3DScrollAnimation />
-=======
+
 
         {/* PREVIOUS HOME PAGE VIDEO */}
 
-        <div className="hero-media">
+        <div className="figma-hero-video">
 
           <video
-            className="hero-video"
+            className="figma-hero-video-element"
             autoPlay
             muted
             loop
@@ -293,21 +322,22 @@ export default function Home() {
           </video>
 
         </div>
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
-        <div className="doctor-badge">
+
+        <div className="figma-doctor-badge">
           TRUSTED AND RECOMMENDED BY DOCTORS
         </div>
 
       </section>
 
+
       {/* =====================================================
           SCREEN 2 — HOME SAMPLE COLLECTION
           ===================================================== */}
 
-      <section className="home-section collection-section">
+      <section className="figma-screen figma-screen-collection">
 
-        <div className="section-heading">
+        <div className="figma-screen-heading">
 
           <h2>
             Free Home Sample
@@ -323,7 +353,8 @@ export default function Home() {
 
         </div>
 
-        <div className="collection-image">
+
+        <div className="figma-collection-image">
 
           <img
             src="/images/home-collection.png"
@@ -332,7 +363,8 @@ export default function Home() {
 
         </div>
 
-        <div className="area-heading">
+
+        <div className="figma-area-title">
 
           <h3>
             Areas We Serve
@@ -344,15 +376,18 @@ export default function Home() {
 
         </div>
 
-        <div className="area-grid">
+
+        <div className="figma-area-grid">
 
           {collectionAreas.map((area) => (
             <div
-              className="area-item"
+              className="figma-area-item"
               key={area}
             >
 
-              <span className="location-icon" aria-hidden="true">📍</span>
+              <span className="figma-location-icon">
+                ⌖
+              </span>
 
               <span>
                 {area}
@@ -365,13 +400,14 @@ export default function Home() {
 
       </section>
 
+
       {/* =====================================================
           SCREEN 3 — HOW IT WORKS + ACHIEVEMENTS
           ===================================================== */}
 
-      <section className="home-section how-section">
+      <section className="figma-screen figma-screen-how">
 
-        <div className="section-heading">
+        <div className="figma-screen-heading">
 
           <h2>
             How It Works
@@ -379,23 +415,24 @@ export default function Home() {
 
         </div>
 
-        <div className="how-list">
+
+        <div className="figma-how-list">
 
           {howItWorks.map((item) => (
             <div
-              className="how-item"
+              className="figma-how-item"
               key={item.number}
             >
 
-              <div className="how-icon">
+              <div className="figma-how-icon">
                 {item.icon}
               </div>
 
-              <div className="how-number">
+              <div className="figma-how-number">
                 {item.number}
               </div>
 
-              <div className="how-text">
+              <div className="figma-how-text">
 
                 <h3>
                   {item.title}
@@ -412,15 +449,16 @@ export default function Home() {
 
         </div>
 
-        <div className="achievements-block">
+
+        <div className="figma-achievements">
 
           <h2>
             Achievements
           </h2>
 
-          <div className="achievement-grid">
+          <div className="figma-achievement-grid">
 
-            <div className="achievement-card">
+            <div className="figma-achievement-card">
               <strong>
                 5 Lakh+
               </strong>
@@ -430,7 +468,8 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="achievement-card">
+
+            <div className="figma-achievement-card">
               <strong>
                 1 Lakh+
               </strong>
@@ -440,7 +479,8 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="achievement-card">
+
+            <div className="figma-achievement-card">
               <strong>
                 25+
               </strong>
@@ -450,7 +490,8 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="achievement-card">
+
+            <div className="figma-achievement-card">
               <strong>
                 10+
               </strong>
@@ -466,27 +507,28 @@ export default function Home() {
 
       </section>
 
+
       {/* =====================================================
           SCREEN 4 — MILESTONES + SAME HEALTH PACKAGES
           ===================================================== */}
 
-      <section className="home-section packages-section">
+      <section className="figma-screen figma-screen-packages">
 
-        <div className="home-milestone-card">
+        <div className="figma-milestone-card">
 
           <h2>
             Milestones
           </h2>
 
-          <div className="home-milestone-list">
+          <div className="figma-milestone-list">
 
             {milestones.map((milestone) => (
               <div
-                className="home-milestone-item"
+                className="figma-milestone-item"
                 key={milestone}
               >
 
-                <span className="home-milestone-check">
+                <span className="figma-milestone-check">
                   ✓
                 </span>
 
@@ -501,18 +543,20 @@ export default function Home() {
 
         </div>
 
+
         {/* SAME EXISTING PACKAGE DATA */}
 
-        <div className="packages-title">
+        <div className="figma-packages-title">
           Health Packages &amp; Tests
         </div>
 
-        <div className="package-scroller">
+
+        <div className="figma-package-scroller">
 
           {existingPackages.map(
             (packageData) => (
               <article
-                className="home-package-card"
+                className="figma-package-card"
                 key={
                   packageData.id ||
                   packageData.name
@@ -524,7 +568,7 @@ export default function Home() {
                 }
               >
 
-                <div className="home-package-image">
+                <div className="figma-package-image">
 
                   <MedicalArt
                     id={
@@ -537,7 +581,8 @@ export default function Home() {
 
                 </div>
 
-                <div className="home-package-details">
+
+                <div className="figma-package-details">
 
                   <h3>
                     {packageData.name}
@@ -548,7 +593,8 @@ export default function Home() {
                       "Comprehensive diagnostic health package."}
                   </p>
 
-                  <div className="home-package-price">
+
+                  <div className="figma-package-price">
 
                     {packageData.oldPrice && (
                       <del>
@@ -576,9 +622,10 @@ export default function Home() {
 
         </div>
 
+
         <button
           type="button"
-          className="explore-button"
+          className="figma-explore-button"
           onClick={
             openPackages
           }
@@ -588,22 +635,25 @@ export default function Home() {
 
       </section>
 
+
       {/* =====================================================
           SCREEN 5 — SAME TEST DATA
           ===================================================== */}
 
-      <section className="home-section tests-section">
+      <section className="figma-screen figma-screen-tests">
 
-        <div className="recommended-heading">
+
+        <div className="figma-recommended-heading">
           Most Recommended Tests
         </div>
 
-        <div className="test-list">
+
+        <div className="figma-test-list">
 
           {finalRecommendedTests.map(
             (test) => (
               <div
-                className="home-test-card"
+                className="figma-test-card"
                 key={
                   test.id ||
                   test.name
@@ -612,13 +662,13 @@ export default function Home() {
 
                 <button
                   type="button"
-                  className="test-main"
+                  className="figma-test-main"
                   onClick={() =>
                     openTest(test)
                   }
                 >
 
-                  <span className="test-icon">
+                  <span className="figma-test-icon">
 
                     {test.name
                       ?.toLowerCase()
@@ -627,22 +677,23 @@ export default function Home() {
                       )
                       ? "⌁"
                       : test.name
-                        ?.toLowerCase()
-                        .includes(
-                          "lipid"
-                        )
-                        ? "ϟ"
-                        : test.name
+                          ?.toLowerCase()
+                          .includes(
+                            "lipid"
+                          )
+                      ? "ϟ"
+                      : test.name
                           ?.toLowerCase()
                           .includes(
                             "vitamin"
                           )
-                          ? "☼"
-                          : "♧"}
+                      ? "☼"
+                      : "♧"}
 
                   </span>
 
-                  <span className="test-information">
+
+                  <span className="figma-test-information">
 
                     <strong>
                       {
@@ -657,24 +708,23 @@ export default function Home() {
                       }{" "}
                       parameters
 
-                      {test.oldPrice && (
-                        <>
-                          • <del>₹{test.oldPrice}</del>
-                        </>
-                      )}
+                      {test.oldPrice
+                        ? ` • ₹${test.oldPrice}`
+                        : ""}
 
-                      {test.price && (
-                        <> • ₹{test.price}</>
-                      )}
+                      {test.price
+                        ? ` • ₹${test.price}`
+                        : ""}
                     </small>
 
                   </span>
 
                 </button>
 
+
                 <button
                   type="button"
-                  className="book-button"
+                  className="figma-book-button"
                   onClick={() =>
                     bookTest(test)
                   }
@@ -690,16 +740,17 @@ export default function Home() {
 
       </section>
 
+
       {/* =====================================================
           SCREEN 6 — WHY CHOOSE US
           ===================================================== */}
 
       <section
         id="why-choose-us"
-        className="home-section why-choose-section"
+        className="figma-screen figma-screen-why"
       >
 
-        <div className="section-heading">
+        <div className="figma-screen-heading">
 
           <h2>
             Why Choose Us
@@ -707,18 +758,19 @@ export default function Home() {
 
         </div>
 
-        <div className="why-choose-grid">
+
+        <div className="figma-why-grid">
 
           {whyChooseUs.map(
             (item) => (
               <div
-                className="why-choose-card"
+                className="figma-why-card"
                 key={
                   item.title
                 }
               >
 
-                <div className="why-choose-icon">
+                <div className="figma-why-icon">
                   {item.icon}
                 </div>
 
@@ -738,13 +790,14 @@ export default function Home() {
 
       </section>
 
+
       {/* =====================================================
           SCREEN 7 — CONTACT
           ===================================================== */}
 
-      <section className="home-section contact-section-home">
+      <section className="figma-screen figma-screen-contact">
 
-        <div className="section-heading">
+        <div className="figma-screen-heading">
 
           <h2>
             Contact Us
@@ -752,27 +805,29 @@ export default function Home() {
 
         </div>
 
+
         <button
           type="button"
-          className="map-card"
+          className="figma-map"
           onClick={
             openMaps
           }
         >
 
-          <div className="map-center">
+          <div className="figma-map-center">
             ⌖
           </div>
 
-          <div className="map-location">
+          <div className="figma-map-location">
             Life Care Point Laboratory
           </div>
 
         </button>
 
-        <div className="home-contact-card">
 
-          <div className="home-contact-icon">
+        <div className="figma-contact-box">
+
+          <div className="figma-contact-box-icon">
             ⌖
           </div>
 
@@ -798,16 +853,13 @@ export default function Home() {
 
         </div>
 
+
         <a
           href="tel:+919910108453"
-<<<<<<< HEAD
-          onClick={() => trackEvent("call_click")}
-=======
->>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
-          className="home-contact-card"
+          className="figma-contact-box figma-contact-phone"
         >
 
-          <div className="home-contact-icon">
+          <div className="figma-contact-box-icon">
             ♧
           </div>
 
@@ -825,9 +877,10 @@ export default function Home() {
 
         </a>
 
-        <div className="home-contact-card">
 
-          <div className="home-contact-icon">
+        <div className="figma-contact-box">
+
+          <div className="figma-contact-box-icon">
             ◷
           </div>
 
@@ -847,16 +900,17 @@ export default function Home() {
 
         </div>
 
-        <div className="follow-box">
+
+        <div className="figma-follow-box">
 
           <span>
             Follow Us
           </span>
 
-          <div className="social-icons">
+          <div className="figma-social-icons">
 
             <a
-              href="https://www.facebook.com/lifecarepointlaboratory"
+              href="https://www.facebook.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
@@ -865,7 +919,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://www.instagram.com/lifecarepointlaboratory/"
+              href="https://www.instagram.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -883,7 +937,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://www.youtube.com/@lifecarepointlaboratory"
+              href="https://www.youtube.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
@@ -896,6 +950,27 @@ export default function Home() {
         </div>
 
       </section>
+
+
+      {/* =====================================================
+          FIXED BOTTOM CTA
+          ===================================================== */}
+
+      {/* <button type="button"
+        className="figma-health-partner-button"
+        onClick={
+          connectHealthPartner
+        }
+      >
+
+        <span>
+          ♡
+        </span>
+
+        Connect with your Health Care Partner
+
+      </button> */}
+
     </div>
   );
 }

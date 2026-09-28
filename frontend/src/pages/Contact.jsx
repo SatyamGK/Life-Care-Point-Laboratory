@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { trackEvent } from "../services/api";
 
+=======
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 export default function Contact() {
   return (
     <section className="contact-page">
@@ -52,7 +55,11 @@ export default function Contact() {
       </div>
 
 
+<<<<<<< HEAD
       <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="contact-card" >
+=======
+      <a href="tel:+919910108453" className="contact-card" >
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
         <div className="contact-icon">
           ☎

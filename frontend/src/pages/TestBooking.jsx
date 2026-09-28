@@ -1,14 +1,24 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
 import { tests } from "../data/tests";
+=======
+import { useLocation, useNavigate } from "react-router-dom";
+import { submitBooking } from "../services/api";
+import MedicalArt from "../components/MedicalArt";
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 
 export default function TestBooking() {
   const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { id } = useParams();
   const test = location.state?.test || tests.find((item) => item.id === decodeURIComponent(id || ""));
+=======
+  const test = location.state?.test;
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [errors, setErrors] = useState({});
@@ -77,12 +87,18 @@ export default function TestBooking() {
         type: "test",
         name: name.trim(),
         mobile,
+<<<<<<< HEAD
         itemId: test.id,
+=======
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
         itemName: test.name,
         price: test.price,
       });
 
+<<<<<<< HEAD
       trackEvent("booking_submit", { type: "booking" });
+=======
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
       navigate("/booking-success");
 
     } catch (error) {
@@ -146,11 +162,16 @@ export default function TestBooking() {
 
       <div className="contact-choice-row">
 
+<<<<<<< HEAD
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
+=======
+        <a href="tel:+919910108453" className="quick-contact-button call-button" >
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
           <span>☎</span>
           Call
         </a>
 
+<<<<<<< HEAD
         <a
           href="https://wa.me/919910108453"
           target="_blank"
@@ -158,6 +179,9 @@ export default function TestBooking() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
+=======
+        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" className="quick-contact-button whatsapp-button" >
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
           <span>◯</span>
           WhatsApp
         </a>

@@ -25,6 +25,10 @@ dist-ssr
 
 .env
 .env.local
+<<<<<<< HEAD
 .env.*.local
 .vercel
 .env*
+=======
+.env.*.local
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2

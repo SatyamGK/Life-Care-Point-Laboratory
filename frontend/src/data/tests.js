@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export const recommendedTests = [
   {
     id: "cbc-with-esr",
@@ -613,4 +614,621 @@ export const tests = [
   },
 ];
 
+=======
+export const recommendedTests = [
+  {
+    id: "cbc-with-esr",
+    name: "Complete Blood Count",
+    shortName: "CBC",
+    type: "cbc-with-esr",
+    image: "/images/tests/cbc-with-esr.png",
+    oldPrice: 350,
+    price: 200,
+    parameters: 28,
+    description: "Complete Blood Count (CBC) is a blood test that measures red blood cells, white blood cells, hemoglobin, and platelets to assess overall health and detect various disorders.",
+  },
+
+  {
+    id: "thyroid-profile",
+    name: "Thyroid Profile",
+    shortName: "Thyroid Profile",
+    type: "thyroid-profile",
+    image: "/images/tests/thyroid-profile.png",
+    oldPrice: 800,
+    price: 600,
+    parameters: 6,
+    description: "Thyroid Profile is a blood test that measures thyroid hormones to assess thyroid function and detect disorders such as hypothyroidism or hyperthyroidism.",
+  },
+
+  {
+    id: "lipid-profile",
+    name: "Lipid Profile",
+    shortName: "Lipid Profile",
+    type: "lipid-profile",
+    image: "/images/tests/lipid-profile.png",
+    oldPrice: 600,
+    price: 500,
+    parameters: 8,
+    description: "A Lipid Profile is a blood test that measures cholesterol and triglyceride levels to assess your risk of heart disease.",
+  },
+
+  {
+    id: "vitamin-d3",
+    name: "Vitamin D3 Test",
+    shortName: "Vitamin D3",
+    type: "vitamin-d3",
+    image: "/images/tests/vitamin-d3.png",
+    oldPrice: 1400,
+    price: 1000,
+    parameters: 1,
+    description: "Vitamin D3 is a fat-soluble vitamin that helps the body absorb calcium and supports strong bones, muscles, and immune function.",
+  },
+];
+
+
+export const tests = [
+
+  {
+    id: "cbc-with-esr",
+    name: "CBC Test",
+    type: "cbc-with-esr",
+    image: "/images/tests/cbc-with-esr.png",
+    oldPrice: 350,
+    price: 200,
+    parameters: 28,
+    description: "CBC (Complete Blood Count) is a common blood test that checks your overall blood health. It measures red blood cells, white blood cells, hemoglobin, platelets and other important components.",
+  },
+
+  {
+    id: "platelet-count",
+    name: "Platelet Count",
+    type: "platelet-count",
+    image: "/images/tests/platelet-count.png",
+    oldPrice: 50,
+    price: 50,
+    parameters: 1,
+    description: "Platelet Count measures the number of platelets in your blood, which help your body form clots and stop bleeding.",
+  },
+
+  {
+    id: "bleeding-time",
+    name: "Bleeding Time (BT)",
+    type: "bleeding-time",
+    image: "/images/tests/bleeding-time.png",
+    oldPrice: 250,
+    price: 200,
+    parameters: 1,
+    description: "Bleeding Time is a test that measures how long it takes for bleeding to stop after a small skin puncture.",
+  },
+
+  {
+    id: "clotting-time",
+    name: "Clotting Time (CT)",
+    type: "clotting-time",
+    image: "/images/tests/clotting-time.png",
+    oldPrice: 250,
+    price: 200,
+    parameters: 1,
+    description: "Clotting Time is the time taken for blood to form a clot after bleeding begins.",
+  },
+
+  {
+    id: "hba1c",
+    name: "HbA1c",
+    type: "hba1c",
+    image: "/images/tests/hba1c.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "HbA1c is a blood test that shows your average blood sugar level over the past 2-3 months.",
+  },
+
+  {
+    id: "abo-rh",
+    name: "Blood Group (ABO & Rh)",
+    type: "abo-rh",
+    image: "/images/tests/abo-rh.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 2,
+    description: "Blood Group (ABO & Rh) test determines your blood type based on the ABO system (A, B, AB, or O) and Rh factor (positive or negative).",
+  },
+
+  {
+    id: "blood-glucose",
+    name: "Blood Sugar Test",
+    type: "blood-glucose",
+    image: "/images/tests/blood-glucose.png",
+    oldPrice: 80,
+    price: 50,
+    parameters: 1,
+    description: "A Blood Sugar Test measures the amount of glucose in your blood to help detect and monitor diabetes.",
+  },
+
+  {
+    id: "lft",
+    name: "Liver Function Test",
+    type: "lft",
+    image: "/images/tests/lft.png",
+    oldPrice: 600,
+    price: 500,
+    parameters: 12,
+    description: "A Liver Function Test (LFT) is a blood test that checks how well your liver is functioning and detects possible liver damage or disease.",
+  },
+
+  {
+    id: "kft",
+    name: "Kidney Function Test",
+    type: "kft",
+    image: "/images/tests/kft.png",
+    oldPrice: 600,
+    price: 500,
+    parameters: 10,
+    description: "A Kidney Function Test checks how well your kidneys are filtering waste and maintaining the body's fluid and electrolyte balance.",
+  },
+
+  {
+    id: "lipid-profile",
+    name: "Lipid Profile",
+    type: "lipid-profile",
+    image: "/images/tests/lipid-profile.png",
+    oldPrice: 600,
+    price: 500,
+    parameters: 8,
+    description: "A Lipid Profile is a blood test that measures cholesterol and triglyceride levels to assess your risk of heart disease.",
+  },
+
+  {
+    id: "ft3",
+    name: "FT3",
+    type: "ft3",
+    image: "/images/tests/ft3.png",
+    oldPrice: 300,
+    price: 200,
+    parameters: 1,
+    description: "FT3 (Free Triiodothyronine) is a blood test that measures the level of the active thyroid hormone T3 circulating freely in the blood.",
+  },
+
+  {
+    id: "ft4",
+    name: "FT4",
+    type: "ft4",
+    image: "/images/tests/ft4.png",
+    oldPrice: 300,
+    price: 200,
+    parameters: 1,
+    description: "FT4 (Free T4) is the unbound form of thyroxine hormone in the blood that helps assess thyroid function.",
+  },
+
+  {
+    id: "tsh",
+    name: "TSH",
+    type: "tsh",
+    image: "/images/tests/tsh.png",
+    oldPrice: 300,
+    price: 200,
+    parameters: 1,
+    description: "TSH (Thyroid-Stimulating Hormone) is a hormone that controls the production of thyroid hormones and helps regulate metabolism.",
+  },
+
+  {
+    id: "thyroid-profile",
+    name: "Thyroid Profile",
+    type: "thyroid-profile",
+    image: "/images/tests/thyroid-profile.png",
+    oldPrice: 800,
+    price: 600,
+    parameters: 6,
+    description: "Thyroid Profile is a blood test that measures thyroid hormones to assess thyroid function and detect disorders such as hypothyroidism or hyperthyroidism.",
+  },
+
+  {
+    id: "lh",
+    name: "LH",
+    type: "lh",
+    image: "/images/tests/lh.png",
+    oldPrice: 600,
+    price: 400,
+    parameters: 1,
+    description: "LH (Luteinizing Hormone) is a hormone that regulates ovulation, reproductive functions, and the production of sex hormones.",
+  },
+
+  {
+    id: "fsh",
+    name: "FSH",
+    type: "fsh",
+    image: "/images/tests/fsh.png",
+    oldPrice: 600,
+    price: 400,
+    parameters: 1,
+    description: "FSH (Follicle-Stimulating Hormone) is a hormone that regulates reproductive functions, including egg development in women and sperm production in men.",
+  },
+
+  {
+    id: "prolactin",
+    name: "Prolactin",
+    type: "prolactin",
+    image: "/images/tests/prolactin.png",
+    oldPrice: 600,
+    price: 400,
+    parameters: 1,
+    description: "Prolactin is a hormone produced by the pituitary gland that primarily stimulates breast milk production and helps regulate reproductive functions.",
+  },
+
+  {
+    id: "vitamin-b12",
+    name: "Vitamin B12",
+    type: "vitamin-b12",
+    image: "/images/tests/vitamin-b12.png",
+    oldPrice: 1200,
+    price: 800,
+    parameters: 1,
+    description: "Vitamin B12 is an essential vitamin that helps keep your blood cells and nerve cells healthy and supports DNA production.",
+  },
+
+  {
+    id: "vitamin-d3",
+    name: "Vitamin D3",
+    type: "vitamin-d3",
+    image: "/images/tests/vitamin-d3.png",
+    oldPrice: 1400,
+    price: 1000,
+    parameters: 1,
+    description: "Vitamin D3 is a fat-soluble vitamin that helps the body absorb calcium and supports strong bones, muscles, and immune function.",
+  },
+
+  {
+    id: "ferritin",
+    name: "Ferritin",
+    type: "ferritin",
+    image: "/images/tests/ferritin.png",
+    oldPrice: 900,
+    price: 700,
+    parameters: 1,
+    description: "Ferritin is a blood protein that stores iron and reflects the amount of iron stored in your body.",
+  },
+
+  {
+    id: "iron-profile",
+    name: "Iron Profile",
+    type: "iron-profile",
+    image: "/images/tests/iron-profile.png",
+    oldPrice: 800,
+    price: 600,
+    parameters: 4,
+    description: "Iron Profile is a blood test panel that measures iron levels and related markers to assess iron status and detect conditions such as iron deficiency or anemia.",
+  },
+
+  {
+    id: "ige",
+    name: "IgE",
+    type: "ige",
+    image: "/images/tests/ige.png",
+    oldPrice: 600,
+    price: 500,
+    parameters: 1,
+    description: "IgE (Immunoglobulin E) is an antibody mainly associated with allergic reactions and responses to certain parasites.",
+  },
+
+  {
+    id: "rheumatoid-factor",
+    name: "Rheumatoid Factor (RF)",
+    type: "rheumatoid-factor",
+    image: "/images/tests/rheumatoid-factor.png",
+    oldPrice: 600,
+    price: 400,
+    parameters: 1,
+    description: "Rheumatoid Factor (RF) is an antibody found in the blood that may indicate rheumatoid arthritis or other autoimmune conditions.",
+  },
+
+  {
+    id: "crp",
+    name: "CRP",
+    type: "crp",
+    image: "/images/tests/crp.png",
+    oldPrice: 600,
+    price: 400,
+    parameters: 1,
+    description: "CRP (C-reactive protein) is a blood test that measures inflammation in the body.",
+  },
+
+  {
+    id: "widal",
+    name: "Widal Test",
+    type: "widal",
+    image: "/images/tests/widal.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 4,
+    description: "Widal Test is a blood test used to help detect infection with *Salmonella* bacteria that cause typhoid fever.",
+  },
+
+  {
+    id: "typhoid",
+    name: "Typhoid Test",
+    type: "typhoid",
+    image: "/images/tests/typhoid.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Typhoid test detects antibodies or bacteria in the blood to help diagnose a typhoid fever infection.",
+  },
+
+  {
+    id: "malaria",
+    name: "Malaria Test",
+    type: "malaria",
+    image: "/images/tests/malaria.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Malaria Test detects malaria parasites in the blood to confirm whether a person has a malaria infection.",
+  },
+
+  {
+    id: "dengue-profile",
+    name: "Dengue Profile",
+    type: "dengue-profile",
+    image: "/images/tests/dengue-profile.png",
+    oldPrice: 600,
+    price: 600,
+    parameters: 3,
+    description: "Dengue Profile is a blood test panel used to detect dengue infection and assess its severity.",
+  },
+
+  {
+    id: "dengue",
+    name: "Dengue Test",
+    type: "dengue",
+    image: "/images/tests/dengue.png",
+    oldPrice: 600,
+    price: 600,
+    parameters: 1,
+    description: "Dengue Test detects dengue virus infection by identifying dengue-specific antibodies or viral antigens in the blood.",
+  },
+
+  {
+    id: "hiv",
+    name: "HIV Test",
+    type: "hiv",
+    image: "/images/tests/hiv.png",
+    oldPrice: 500,
+    price: 300,
+    parameters: 1,
+    description: "An HIV test detects antibodies or antigens in the blood to determine whether a person is infected with the Human Immunodeficiency Virus (HIV).",
+  },
+
+  {
+    id: "hbsag",
+    name: "HBsAg",
+    type: "hbsag",
+    image: "/images/tests/hbsag.png",
+    oldPrice: 500,
+    price: 300,
+    parameters: 1,
+    description: "HBsAg (Hepatitis B surface antigen) is a blood test used to detect an active Hepatitis B virus infection.",
+  },
+
+  {
+    id: "hcv",
+    name: "HCV Test",
+    type: "hcv",
+    image: "/images/tests/hcv.png",
+    oldPrice: 1100,
+    price: 900,
+    parameters: 1,
+    description: "HCV Test detects antibodies or viral genetic material to determine whether a person has a Hepatitis C virus (HCV) infection.",
+  },
+
+  {
+    id: "vdrl",
+    name: "VDRL Test",
+    type: "vdrl",
+    image: "/images/tests/vdrl.png",
+    oldPrice: 500,
+    price: 300,
+    parameters: 1,
+    description: "VDRL (Venereal Disease Research Laboratory) is a blood test used to screen for **syphilis**, a sexually transmitted infection.",
+  },
+
+  {
+    id: "urine-rm",
+    name: "Urine R/M",
+    type: "urine-rm",
+    image: "/images/tests/urine-rm.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 15,
+    description: "Urine R/M (Routine & Microscopy) is a basic urine test used to detect infections, kidney problems, and other abnormalities.",
+  },
+
+  {
+    id: "urine-culture",
+    name: "Urine Culture",
+    type: "urine-culture",
+    image: "/images/tests/urine-culture.png",
+    oldPrice: 550,
+    price: 300,
+    parameters: 1,
+    description: "Urine Culture is a laboratory test that detects bacteria or other microorganisms in urine to diagnose a urinary tract infection (UTI).",
+  },
+
+  {
+    id: "stool-rm",
+    name: "Stool R/M",
+    type: "stool-rm",
+    image: "/images/tests/stool-rm.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 10,
+    description: "Stool R/M (Routine & Microscopy) is a laboratory test used to check stool for parasites, infections, blood, mucus, and other abnormalities.",
+  },
+
+  {
+    id: "stool-culture",
+    name: "Stool Culture",
+    type: "stool-culture",
+    image: "/images/tests/stool-culture.png",
+    oldPrice: 550,
+    price: 300,
+    parameters: 1,
+    description: "Stool Culture is a laboratory test used to detect harmful bacteria or other microorganisms causing intestinal infections.",
+  },
+
+  {
+    id: "stool-occult",
+    name: "Stool Occult Blood",
+    type: "stool-occult",
+    image: "/images/tests/stool-occult.png",
+    oldPrice: 450,
+    price: 300,
+    parameters: 1,
+    description: "Stool Occult Blood test detects hidden (invisible) blood in the stool, which may indicate bleeding in the digestive tract.",
+  },
+
+  {
+    id: "gram-stain",
+    name: "Gram Stain",
+    type: "gram-stain",
+    image: "/images/tests/gram-stain.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 1,
+    description: "Gram staining is a laboratory technique used to classify bacteria as **Gram-positive or Gram-negative** based on the structure of their cell walls.",
+  },
+
+  {
+    id: "afb-stain",
+    name: "AFB Stain",
+    type: "afb-stain",
+    image: "/images/tests/afb-stain.png",
+    oldPrice: 150,
+    price: 100,
+    parameters: 1,
+    description: "AFB (Acid-Fast Bacilli) stain is a laboratory test used to detect acid-fast bacteria, especially *Mycobacterium tuberculosis*, in clinical samples.",
+  },
+
+  {
+    id: "fungal-stain",
+    name: "Fungal Stain",
+    type: "fungal-stain",
+    image: "/images/tests/fungal-stain.png",
+    oldPrice: 450,
+    price: 300,
+    parameters: 1,
+    description: "Fungal Stain is a laboratory test used to detect and identify fungal infections in clinical samples such as skin, hair, nails, or body fluids.",
+  },
+
+  {
+    id: "routine-afb-culture",
+    name: "Routine AFB Culture",
+    type: "routine-afb-culture",
+    image: "/images/tests/routine-afb-culture.png",
+    oldPrice: 500,
+    price: 400,
+    parameters: 1,
+    description: "Routine AFB Culture is a laboratory test used to detect and identify acid-fast bacteria, particularly **Mycobacterium tuberculosis**, in clinical samples.",
+  },
+
+  {
+    id: "rapid-afb-culture",
+    name: "Rapid AFB Culture",
+    type: "rapid-afb-culture",
+    image: "/images/tests/rapid-afb-culture.png",
+    oldPrice: 650,
+    price: 500,
+    parameters: 1,
+    description: "Rapid AFB Culture is a laboratory test used to quickly detect and identify acid-fast bacteria, including tuberculosis-causing Mycobacterium species, from clinical samples.",
+  },
+
+  {
+    id: "blood-culture",
+    name: "Blood Culture",
+    type: "blood-culture",
+    image: "/images/tests/blood-culture.png",
+    oldPrice: 650,
+    price: 500,
+    parameters: 1,
+    description: "Blood Culture is a laboratory test used to detect bacteria or fungi causing infections in the bloodstream.",
+  },
+
+  {
+    id: "conjunctival-culture",
+    name: "Conjunctival C/S",
+    type: "conjunctival-culture",
+    image: "/images/tests/conjunctival-culture.png",
+    oldPrice: 450,
+    price: 300,
+    parameters: 1,
+    description: "Conjunctival C/S is a laboratory test that detects bacterial or fungal infections in the eye by culturing a sample from the conjunctiva.",
+  },
+
+  {
+    id: "urine-cs",
+    name: "Urine C/S",
+    type: "urine-cs",
+    image: "/images/tests/urine-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Urine C/S (Culture & Sensitivity) is a test that detects bacteria causing a urinary infection and identifies which antibiotics are effective against them.",
+  },
+
+  {
+    id: "stool-cs",
+    name: "Stool C/S",
+    type: "stool-cs",
+    image: "/images/tests/stool-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Stool C/S (Culture & Sensitivity) is a laboratory test used to detect harmful bacteria in stool and determine which antibiotics are effective against them.",
+  },
+
+  {
+    id: "sputum-cs",
+    name: "Sputum C/S",
+    type: "sputum-cs",
+    image: "/images/tests/sputum-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Sputum C/S (Culture & Sensitivity) is a laboratory test that detects bacteria causing respiratory infections and identifies which antibiotics are effective against them.",
+  },
+
+  {
+    id: "throat-cs",
+    name: "Throat C/S",
+    type: "throat-cs",
+    image: "/images/tests/throat-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Throat C/S (Culture & Sensitivity) is a laboratory test that detects bacterial infections in the throat and identifies which antibiotics are effective against them.",
+  },
+
+  {
+    id: "pus-cs",
+    name: "Pus C/S",
+    type: "pus-cs",
+    image: "/images/tests/pus-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Pus C/S (Pus Culture & Sensitivity) is a laboratory test that identifies the bacteria causing an infection and determines which antibiotics are effective against it.",
+  },
+
+  {
+    id: "vaginal-cs",
+    name: "Vaginal C/S",
+    type: "vaginal-cs",
+    image: "/images/tests/vaginal-cs.png",
+    oldPrice: 550,
+    price: 400,
+    parameters: 1,
+    description: "Vaginal C/S (Culture & Sensitivity) is a laboratory test that detects infections in vaginal samples and identifies which antibiotics are most effective against the causative bacteria.",
+  },
+];
+
+>>>>>>> dc3f419736288355f428efbde9f237afa060c2c2
 export default tests;
