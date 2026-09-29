@@ -101,7 +101,7 @@ export default function BookTest() {
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
-          <span className="contact-button-icon"><Icon name="phone" size={17} /></span>
+          <Icon name="phone" size={17} />
           Call
         </a>
 
@@ -112,7 +112,7 @@ export default function BookTest() {
           onClick={() => trackEvent("whatsapp_click")}
           className="quick-contact-button whatsapp-button"
         >
-          <span className="contact-button-icon whatsapp-image-icon"><Icon name="whatsapp" size={19} /></span>
+          <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>
 

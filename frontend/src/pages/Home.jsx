@@ -34,7 +34,7 @@ export default function Home() {
     },
     {
       number: "2",
-      icon: "home",
+      icon: "doctor",
       title: "Sample Collection at Home",
       description:
         "A certified technician visits your address using certified sterile kits.",
@@ -84,17 +84,17 @@ export default function Home() {
       description: "Chat with our team",
     },
     {
-      icon: "home",
+      icon: "doctor",
       title: "Trained staff",
       description: "Experienced professionals",
     },
     {
-      icon: "home",
+      icon: "doctor",
       title: "Affordable pricing",
       description: "Quality diagnostics at fair prices",
     },
     {
-      icon: "whatsapp",
+      icon: "heart",
       title: "Patient first",
       description: "Friendly service focused on your comfort",
     },
@@ -302,7 +302,7 @@ export default function Home() {
               key={area}
             >
 
-              <span className="location-icon" aria-hidden="true"><Icon name="pin" size={15} /></span>
+              <Icon name="pin" size={14} />
 
               <span>
                 {area}
@@ -337,7 +337,9 @@ export default function Home() {
               key={item.number}
             >
 
-              <div className="how-icon"><Icon name={item.icon} size={22} /></div>
+              <div className="how-icon">
+                <Icon name={item.icon} size={18} />
+              </div>
 
               <div className="how-number">
                 {item.number}
@@ -499,19 +501,15 @@ export default function Home() {
                   <div className="home-package-price">
 
                     {packageData.oldPrice && (
-                      <del>
-                        ₹
-                        {
-                          packageData.oldPrice
-                        }
+                      <del className="rupee-price">
+                        <span className="rupee-symbol">₹</span>
+                        {packageData.oldPrice}
                       </del>
                     )}
 
-                    <strong>
-                      ₹
-                      {
-                        packageData.price
-                      }
+                    <strong className="rupee-price">
+                      <span className="rupee-symbol">₹</span>
+                      {packageData.price}
                     </strong>
 
                   </div>
@@ -569,7 +567,7 @@ export default function Home() {
                   <span className="test-icon">
                     <Icon
                       name={test.name?.toLowerCase().includes("thyroid") ? "lab" : test.name?.toLowerCase().includes("lipid") ? "report" : test.name?.toLowerCase().includes("vitamin") ? "shield" : "lab"}
-                      size={22}
+                      size={18}
                     />
                   </span>
 
@@ -590,12 +588,12 @@ export default function Home() {
 
                       {test.oldPrice && (
                         <>
-                          • <del>₹{test.oldPrice}</del>
+                          • <del className="rupee-price"><span className="rupee-symbol">₹</span>{test.oldPrice}</del>
                         </>
                       )}
 
                       {test.price && (
-                        <> • ₹{test.price}</>
+                        <> • <span className="rupee-price"><span className="rupee-symbol">₹</span>{test.price}</span></>
                       )}
                     </small>
 
@@ -649,7 +647,9 @@ export default function Home() {
                 }
               >
 
-                <div className="why-choose-icon"><Icon name={item.icon} size={22} /></div>
+                <div className="why-choose-icon">
+                  <Icon name={item.icon} size={18} />
+                </div>
 
                 <h3>
                   {item.title}
@@ -681,25 +681,17 @@ export default function Home() {
 
         </div>
 
-        <button
-          type="button"
-          className="map-card"
-          onClick={
-            openMaps
-          }
-        >
-
-          <div className="map-center"><Icon name="pin" size={26} /></div>
-
-          <div className="map-location">
-            Life Care Point Laboratory
+        <a className="contact-map" href="https://www.google.com/maps/search/?api=1&query=Life+Care+Point+Laboratory+Indirapuram+Ghaziabad" target="_blank" rel="noopener noreferrer">
+          <div className="map-visual">
+            <span className="map-marker"><Icon name="pin" size={26} /></span>
+            <strong>Life Care Point Laboratory</strong>
+            <small>Tap to open Google Maps</small>
           </div>
-
-        </button>
+        </a>
 
         <div className="home-contact-card">
 
-          <div className="home-contact-icon"><Icon name="pin" size={18} /></div>
+          <div className="home-contact-icon"><Icon name="pin" size={17} /></div>
 
           <div>
 
@@ -729,7 +721,7 @@ export default function Home() {
           className="home-contact-card"
         >
 
-          <div className="home-contact-icon"><Icon name="phone" size={18} /></div>
+          <div className="home-contact-icon"><Icon name="phone" size={17} /></div>
 
           <div>
 
@@ -747,7 +739,7 @@ export default function Home() {
 
         <div className="home-contact-card">
 
-          <div className="home-contact-icon"><Icon name="clock" size={18} /></div>
+          <div className="home-contact-icon"><Icon name="clock" size={17} /></div>
 
           <div>
 
@@ -779,7 +771,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="Facebook"
             >
-              <Icon name="facebook" size={17} />
+              f
             </a>
 
             <a
@@ -788,7 +780,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="Instagram"
             >
-              <Icon name="instagram" size={17} />
+              ◎
             </a>
 
             <a
@@ -797,7 +789,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="X"
             >
-              <Icon name="x" size={17} />
+              𝕏
             </a>
 
             <a
@@ -806,7 +798,7 @@ export default function Home() {
               rel="noreferrer"
               aria-label="YouTube"
             >
-              <Icon name="youtube" size={17} />
+              ▶
             </a>
 
           </div>

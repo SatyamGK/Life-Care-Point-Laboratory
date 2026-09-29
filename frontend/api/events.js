@@ -12,7 +12,7 @@ import {
   requestUserAgent,
   safeSource,
   sendJson,
-  supabaseAdmin,
+  getSupabaseAdmin,
 } from "./_lib/server.js";
 
 const ALLOWED_EVENTS = new Set([
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const { error } = await supabaseAdmin
+    const { error } = await getSupabaseAdmin()
       .from("interaction_events")
       .insert({
         event_type: eventType,

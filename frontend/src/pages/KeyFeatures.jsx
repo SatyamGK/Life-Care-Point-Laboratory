@@ -1,46 +1,47 @@
 ﻿import { useNavigate } from "react-router-dom";
+import Icon from "../components/Icon";
 
 export default function KeyFeatures() {
   const navigate = useNavigate();
 
   const features = [
     {
-      icon: "âŒ‚",
+      icon: "home",
       title: "Home Collection",
       description: "Sample pickup at your doorstep by trained professionals.",
     },
     {
-      icon: "â—·",
+      icon: "clock",
       title: "Priority Reports",
       description: "Get your diagnostic reports quickly and conveniently.",
     },
     {
-      icon: "ðŸ“",
+      icon: "pin",
       title: "Multiple Locations",
       description: "Visit our laboratory or choose a location near you.",
     },
     {
-      icon: "â–¢",
+      icon: "doctor",
       title: "Trusted by Doctors",
       description: "Diagnostics trusted by doctors and healthcare partners.",
     },
     {
-      icon: "â—¯",
+      icon: "whatsapp",
       title: "WhatsApp Support",
       description: "Connect with our team easily through WhatsApp.",
     },
     {
-      icon: "â™™",
+      icon: "doctor",
       title: "Trained Staff",
       description: "Experienced professionals focused on patient care.",
     },
     {
-      icon: "â‚¹",
+      icon: "rupee",
       title: "Affordable Pricing",
       description: "Quality diagnostic services at fair and transparent prices.",
     },
     {
-      icon: "â™¡",
+      icon: "heart",
       title: "Patient First",
       description: "Friendly service designed around your comfort and needs.",
     },
@@ -70,7 +71,7 @@ export default function KeyFeatures() {
           <div className="key-feature-card" key={`${feature.title}-${index}`} >
 
             <div className="key-feature-icon">
-              {feature.icon}
+              <Icon name={feature.icon} size={20} />
             </div>
 
             <div className="key-feature-content">

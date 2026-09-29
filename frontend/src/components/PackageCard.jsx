@@ -45,13 +45,9 @@ export default function PackageCard({
 
         <div className="price-line">
 
-          <del>
-            â‚¹{packageData.oldPrice}
-          </del>
+          <del className="rupee-price"><span className="rupee-symbol">₹</span>{packageData.oldPrice}</del>
 
-          <strong>
-            â‚¹{packageData.price}
-          </strong>
+          <strong className="rupee-price"><span className="rupee-symbol">₹</span>{packageData.price}</strong>
 
         </div>
 

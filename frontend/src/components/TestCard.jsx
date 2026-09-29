@@ -45,13 +45,9 @@ export default function TestCard({
 
         <div className="price-line">
 
-          <del>
-            â‚¹{test.oldPrice}
-          </del>
+          <del className="rupee-price"><span className="rupee-symbol">₹</span>{test.oldPrice}</del>
 
-          <strong>
-            â‚¹{test.price}
-          </strong>
+          <strong className="rupee-price"><span className="rupee-symbol">₹</span>{test.price}</strong>
 
         </div>
 

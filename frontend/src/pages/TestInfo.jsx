@@ -70,12 +70,12 @@ export default function TestInfo() {
 
           {test.oldPrice && (
             <del>
-              â‚¹{test.oldPrice}
+              <span className="rupee-symbol">₹</span>{test.oldPrice}
             </del>
           )}
 
           <strong>
-            â‚¹{test.price}
+            <span className="rupee-symbol">₹</span>{test.price}
           </strong>
 
         </div>

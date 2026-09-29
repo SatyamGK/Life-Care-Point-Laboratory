@@ -72,10 +72,14 @@ export default function PackageInfo() {
 
         <div className="detail-price">
           {packageData.oldPrice && (
-            <del>â‚¹{packageData.oldPrice}</del>
+            <del>
+              <span className="rupee-symbol">₹</span>{packageData.oldPrice}
+            </del>
           )}
 
-          <strong>â‚¹{packageData.price}</strong>
+          <strong>
+            <span className="rupee-symbol">₹</span>{packageData.price}
+          </strong>
         </div>
       </div>
 

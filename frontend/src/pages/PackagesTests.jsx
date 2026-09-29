@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { packages } from "../data/packages";
 import { tests } from "../data/tests";
 import MedicalArt from "../components/MedicalArt";
+import Icon from "../components/Icon";
 
 export default function PackagesTests() {
   const navigate = useNavigate();
@@ -100,14 +101,10 @@ export default function PackagesTests() {
                 <div className="listing-price">
 
                   {item.oldPrice && (
-                    <del>
-                      â‚¹{item.oldPrice}
-                    </del>
+                    <del className="rupee-price"><span className="rupee-symbol">₹</span>{item.oldPrice}</del>
                   )}
 
-                  <strong>
-                    â‚¹{item.price}
-                  </strong>
+                  <strong className="rupee-price"><span className="rupee-symbol">₹</span>{item.price}</strong>
 
                 </div>
 
@@ -159,14 +156,10 @@ export default function PackagesTests() {
                 <div className="listing-price">
 
                   {item.oldPrice && (
-                    <del>
-                      â‚¹{item.oldPrice}
-                    </del>
+                    <del className="rupee-price"><span className="rupee-symbol">₹</span>{item.oldPrice}</del>
                   )}
 
-                  <strong>
-                    â‚¹{item.price}
-                  </strong>
+                  <strong className="rupee-price"><span className="rupee-symbol">₹</span>{item.price}</strong>
 
                 </div>
 
