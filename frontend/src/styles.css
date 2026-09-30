@@ -4948,7 +4948,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-scroll-track {
   width: 100%;
-  height: calc(30px + clamp(320px, 55svh, 520px));
+  height: calc(45px + clamp(320px, 55svh, 520px));
 }
 
 .hero-media {
