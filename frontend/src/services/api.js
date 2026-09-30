@@ -12,13 +12,12 @@ async function readResponse(response) {
   }
 
   if (!response.ok) {
-    const error = new Error(
-      data?.message ||
-      data?.error ||
-      `Request failed (${response.status})`
-    );
+    const error = new Error( data?.message || data?.error || `Request failed (${response.status})` );
+
     error.status = response.status;
+    error.code = data?.code;
     error.payload = data;
+
     throw error;
   }
 
@@ -50,9 +49,7 @@ async function post(path, payload) {
       );
     }
 
-    throw error instanceof Error && error.message
-      ? error
-      : new Error("Unable to connect to the server. Please try again.");
+    throw error instanceof Error && error.message ? error : new Error("Unable to connect to the server. Please try again.");
   } finally {
     window.clearTimeout(timer);
   }
@@ -66,44 +63,71 @@ export function submitBooking(data) {
   return post("/bookings", data);
 }
 
-export async function trackEvent(eventType, data = {}) {
+export function trackEvent(eventType, data = {}) {
+  const allowedEvents = new Set([
+    "whatsapp_click",
+    "call_click",
+    "booking_submit",
+    "enquiry_submit",
+    "test_view",
+    "package_view",
+  ]);
+
+  if (!allowedEvents.has(eventType)) {
+    return Promise.resolve({
+      success: false,
+      message: "Unsupported analytics event.",
+    });
+  }
+
   const payload = {
     event_type: eventType,
-    page: window.location.pathname,
-    source: data.source || "website",
-    session_id: data.session_id || undefined,
-    metadata: data.metadata || {},
+    page: typeof window !== "undefined" ? window.location.pathname.slice(0, 300) : "/",
+    source: String(data.source || "website").slice(0, 100),
+    session_id: data.session_id ? String(data.session_id).slice(0, 128) : undefined,
+    metadata: data.metadata && typeof data.metadata === "object" ? data.metadata : {},
   };
 
-  try {
-    const body = JSON.stringify(payload);
+  const body = JSON.stringify(payload);
 
-    if (navigator.sendBeacon && body.length < 60000) {
+  try {
+    if ( typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function" && body.length < 60000 ) {
       const blob = new Blob([body], {
         type: "application/json",
       });
 
-      if (navigator.sendBeacon(`${API_BASE}/events`, blob)) {
-        return { success: true };
+      const accepted = navigator.sendBeacon(
+        `${API_BASE}/events`,
+        blob
+      );
+
+      if (accepted) {
+        return Promise.resolve({
+          success: true,
+          queued: true,
+        });
       }
     }
-
-    const response = await fetch(`${API_BASE}/events`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      credentials: "same-origin",
-      cache: "no-store",
-      keepalive: true,
-      body,
-    });
-
-    return readResponse(response);
   } catch {
-    return { success: false };
+    // Fall through to fetch.
   }
+
+  // Fallback for browsers that reject the beacon.
+  return fetch(`${API_BASE}/events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    credentials: "same-origin",
+    cache: "no-store",
+    keepalive: true,
+    body,
+  })
+    .then(readResponse)
+    .catch(() => ({
+      success: false,
+    }));
 }
 
 export function getApiBase() {
