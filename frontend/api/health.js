@@ -17,7 +17,9 @@ export default async function handler(req, res) {
   try {
     const supabase = getSupabaseAdmin();
 
-    const { data, error } = await supabase.rpc("verify_server_role");
+    const { data, error } = await supabase.rpc(
+      "verify_server_role"
+    );
 
     supabaseRoleOk =
       !error &&
