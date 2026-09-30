@@ -9,10 +9,6 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  /* =========================================================
-     AREAS
-     ========================================================= */
-
   const collectionAreas = [
     "Indirapuram",
     "Vaishali",
@@ -25,10 +21,6 @@ export default function Home() {
     "Noida Sec-62",
     "Noida Sec-63",
   ];
-
-  /* =========================================================
-     HOW IT WORKS
-     ========================================================= */
 
   const howItWorks = [
     {
@@ -54,10 +46,6 @@ export default function Home() {
     },
   ];
 
-  /* =========================================================
-     MILESTONES
-     ========================================================= */
-
   const milestones = [
     "ISO certified",
     "50+ Doctors & 5+ Hospitals network",
@@ -66,10 +54,6 @@ export default function Home() {
     "Community health initiatives",
     "Third location opened",
   ];
-
-  /* =========================================================
-     WHY CHOOSE US
-     ========================================================= */
 
   const whyChooseUs = [
     {
@@ -114,34 +98,13 @@ export default function Home() {
     },
   ];
 
-  /* =========================================================
-     EXISTING HEALTH PACKAGES
-     
-     IMPORTANT:
-     These come directly from your existing packages data.
-     Nothing is hard-coded here.
-     ========================================================= */
-
   const existingPackages = Array.isArray(packages)
     ? packages
     : [];
 
-  /* =========================================================
-     EXISTING TESTS
-     
-     IMPORTANT:
-     These come directly from your existing tests data.
-     ========================================================= */
-
   const existingTests = Array.isArray(tests)
     ? tests
     : [];
-
-  /* =========================================================
-     RECOMMENDED TESTS
-     
-     First try to use the same tests from your existing data.
-     ========================================================= */
 
   const recommendedNames = [
     "CBC with ESR",
@@ -161,50 +124,26 @@ export default function Home() {
         name.toLowerCase().trim()
     );
 
-    if (
-      found &&
-      !recommendedTests.some(
-        (item) => item.id === found.id
-      )
-    ) {
+    if ( found && !recommendedTests.some( (item) => item.id === found.id )) {
       recommendedTests.push(found);
     }
   });
 
-  /*
-   * If your current data file does not contain all the
-   * recommended names above, fill the remaining cards
-   * from the same existing tests array.
-   */
   existingTests.forEach((test) => {
-    if (
-      recommendedTests.length < 4 &&
-      !recommendedTests.some(
-        (item) => item.id === test.id
-      )
-    ) {
+    if ( recommendedTests.length < 4 && !recommendedTests.some((item) => item.id === test.id )) {
       recommendedTests.push(test);
     }
   });
 
-  const finalRecommendedTests =
-    recommendedTests.slice(0, 4);
-
-  /* =========================================================
-     MENU → WHY CHOOSE US
-     ========================================================= */
+  const finalRecommendedTests = recommendedTests.slice(0, 4);
 
   useEffect(() => {
-    if (
-      location.state?.scrollTo !==
-      "why-choose-us"
-    ) {
+    if (location.state?.scrollTo !== "why-choose-us") {
       return;
     }
 
     const timer = setTimeout(() => {
-      const element =
-        document.getElementById(
+      const element = document.getElementById(
           "why-choose-us"
         );
 
@@ -227,14 +166,6 @@ export default function Home() {
     location.state,
     navigate,
   ]);
-
-  /* =========================================================
-     NAVIGATION
-     ========================================================= */
-
-  // const connectHealthPartner = () => {
-  //   navigate("/book-test");
-  // };
 
   const openPackage = (packageData) => {
     navigate("/package-info", {
@@ -272,16 +203,8 @@ export default function Home() {
     );
   };
 
-  /* =========================================================
-     HOME
-     ========================================================= */
-
   return (
     <div className="figma-home-page">
-
-      {/* =====================================================
-          SCREEN 1 — HERO + PREVIOUS VIDEO
-          ===================================================== */}
 
       <section className="figma-screen figma-screen-hero">
 
@@ -300,9 +223,6 @@ export default function Home() {
           </p>
 
         </div>
-
-
-        {/* PREVIOUS HOME PAGE VIDEO */}
 
         <div className="figma-hero-video">
 

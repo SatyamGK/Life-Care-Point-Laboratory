@@ -144,7 +144,7 @@ export default async function handler(req, res) {
     }
 
     const message =
-      "🔔 New Booking - Life Care Point Laboratory\n\n" +
+      "New Booking - Life Care Point Laboratory\n\n" +
       `Patient Name: ${name}\n` +
       `Mobile: ${mobile}\n` +
       `Type: ${type}\n` +
@@ -193,7 +193,7 @@ export default async function handler(req, res) {
           success: false,
           stored: true,
           message:
-            "Your booking was saved, but WhatsApp notification could not be delivered. Please call the laboratory.",
+            "Your booking was saved, but WhatsApp notification could not be delivered. Please call the Life Care Point Laboratory.",
         },
         commonRateHeaders(rateLimit)
       );

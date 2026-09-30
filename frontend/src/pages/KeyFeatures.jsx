@@ -63,8 +63,6 @@ export default function KeyFeatures() {
 
       </div>
 
-
-      {/* Feature Cards */}
       <div className="key-features-grid">
 
         {features.map((feature, index) => (

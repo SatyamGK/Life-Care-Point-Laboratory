@@ -121,7 +121,7 @@ export default async function handler(req, res) {
     }
 
     let whatsappMessage =
-      "📩 New Website Enquiry - Life Care Point Laboratory\n\n" +
+      "New Website Enquiry - Life Care Point Laboratory\n\n" +
       `Name: ${name}\n` +
       `Mobile: ${mobile}\n` +
       `Source: ${source}\n`;

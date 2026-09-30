@@ -1,15 +1,5 @@
-﻿/* LIFE CARE POINT LABORATORY COMPLETE MOBILE-FIRST STYLES
-========================================================= */
+﻿@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
 
-/* =========================================================
- GOOGLE FONTS
-========================================================= */
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
-
-/* =========================================================
- RESET
-========================================================= */
 
 * {
   box-sizing: border-box;
@@ -33,15 +23,11 @@ body {
   overflow-x: hidden;
 }
 
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   font: inherit;
 }
 
-button,
-a {
+button, a {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -54,14 +40,9 @@ a {
   text-decoration: none;
 }
 
-img,
-svg {
+img, svg {
   max-width: 100%;
 }
-
-/* =========================================================
- ROOT / APP
-========================================================= */
 
 #root {
   width: 100%;
@@ -76,10 +57,6 @@ svg {
   padding-bottom: 72px;
   box-sizing: border-box;
 }
-
-/* =========================================================
- HEADER
-========================================================= */
 
 .mobile-header {
   position: fixed !important;
@@ -100,20 +77,12 @@ svg {
   isolation: isolate;
 }
 
-/* =========================================================
- HEADER LEFT
-========================================================= */
-
 .header-left {
   min-width: 0;
   display: flex;
   align-items: center;
   height: 100%;
 }
-
-/* =========================================================
- BACK BUTTON
-========================================================= */
 
 .header-back {
   width: 20px;
@@ -138,10 +107,6 @@ svg {
   flex: 0 0 20px;
 }
 
-/* =========================================================
- HEADER BRAND
-========================================================= */
-
 .header-brand {
   display: flex;
   align-items: center;
@@ -150,10 +115,6 @@ svg {
   color: inherit;
   min-width: 0;
 }
-
-/* =========================================================
- LOGO IMAGE
-========================================================= */
 
 .header-logo-image {
   width: 40px;
@@ -173,10 +134,6 @@ svg {
   display: block;
   object-fit: contain;
 }
-
-/* =========================================================
- BRAND TEXT
-========================================================= */
 
 .header-brand-text {
   display: flex;
@@ -204,10 +161,6 @@ svg {
   line-height: 1;
 }
 
-/* =========================================================
- HAMBURGER
-========================================================= */
-
 .header-menu-button {
   width: 27px;
   height: 27px;
@@ -232,10 +185,6 @@ svg {
   background: #084f46;
 }
 
-/* =========================================================
- GLOBAL SMALL LABELS
-========================================================= */
-
 .section-eyebrow {
   display: block;
   margin-bottom: 3px;
@@ -246,18 +195,10 @@ svg {
   text-transform: uppercase;
 }
 
-/* =========================================================
- HOME PAGE
-========================================================= */
-
 .home-page {
   width: 100%;
   background: #ffffff;
 }
-
-/* =========================================================
- HOME HERO
-========================================================= */
 
 .home-hero {
   position: relative;
@@ -266,8 +207,6 @@ svg {
   background: #ffffff;
   overflow: hidden;
 }
-
-/* HERO TEXT */
 
 .home-hero-content {
   position: relative;
@@ -293,10 +232,6 @@ svg {
   line-height: 1.5;
 }
 
-/* =========================================================
- BLOOD TUBE
-========================================================= */
-
 .blood-tube-area {
   height: 175px;
   margin-top: 5px;
@@ -305,15 +240,11 @@ svg {
   justify-content: center;
 }
 
-/* TUBE */
-
 .blood-tube {
   position: relative;
   width: 32px;
   height: 135px;
 }
-
-/* TUBE TOP */
 
 .tube-top {
   position: absolute;
@@ -347,8 +278,6 @@ svg {
   right: 4px;
 }
 
-/* GLASS */
-
 .tube-glass {
   position: absolute;
   top: 7px;
@@ -367,8 +296,6 @@ svg {
   );
   overflow: hidden;
 }
-
-/* BLOOD */
 
 .tube-blood {
   position: absolute;
@@ -392,8 +319,6 @@ svg {
   }
 }
 
-/* GLASS SHINE */
-
 .tube-shine {
   position: absolute;
   top: 10px;
@@ -403,8 +328,6 @@ svg {
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.45);
 }
-
-/* DOCTOR BADGE */
 
 .doctor-badge {
   position: absolute;
@@ -419,10 +342,6 @@ svg {
   font-weight: 800;
   white-space: nowrap;
 }
-
-/* =========================================================
- CONNECT HEALTH PARTNER
-========================================================= */
 
 .home-connect-section {
   padding: 0 7px 7px;
@@ -459,10 +378,6 @@ svg {
   transform: scale(0.985);
 }
 
-/* =========================================================
- HOME SAMPLE COLLECTION
-========================================================= */
-
 .home-collection-section {
   padding: 5px 10px 10px;
   background: #ffffff;
@@ -484,10 +399,6 @@ svg {
   font-size: 5px;
   line-height: 1.4;
 }
-
-/* =========================================================
- COLLECTION CARTOON
-========================================================= */
 
 .collection-art {
   position: relative;
@@ -516,10 +427,6 @@ svg {
   z-index: 1;
 }
 
-/* =========================================================
- AREAS
-========================================================= */
-
 .areas-heading {
   display: flex;
   align-items: center;
@@ -537,8 +444,6 @@ svg {
   color: #ef6659;
   font-size: 4.5px;
 }
-
-/* AREA GRID */
 
 .areas-grid {
   display: grid;
@@ -564,10 +469,6 @@ svg {
   color: #ef6259;
   font-size: 6px;
 }
-
-/* =========================================================
- HOW IT WORKS
-========================================================= */
 
 .how-it-works {
   margin-top: 11px;
@@ -634,10 +535,6 @@ svg {
   font-weight: 800;
 }
 
-/* =========================================================
- ACHIEVEMENTS
-========================================================= */
-
 .achievements-section {
   padding: 10px 10px 9px;
   background: #ffffff;
@@ -650,8 +547,6 @@ svg {
   font-size: 11px;
   font-weight: 700;
 }
-
-/* STATS */
 
 .achievement-stats {
   display: grid;
@@ -684,8 +579,6 @@ svg {
   font-size: 9px;
   line-height: 1.1;
 }
-
-/* MILESTONES */
 
 .milestones-card {
   margin-top: 8px;
@@ -728,10 +621,6 @@ svg {
   font-weight: 600;
 }
 
-/* =========================================================
- HEALTH PACKAGES
-========================================================= */
-
 .home-packages-section {
   padding: 8px 8px 9px;
   background: #ffffff;
@@ -761,8 +650,6 @@ svg {
   font-weight: 700;
 }
 
-/* HORIZONTAL LIST */
-
 .package-horizontal-list {
   display: flex;
   gap: 6px;
@@ -775,8 +662,6 @@ svg {
 .package-horizontal-list::-webkit-scrollbar {
   display: none;
 }
-
-/* PACKAGE CARD */
 
 .home-package-card {
   position: relative;
@@ -795,8 +680,6 @@ svg {
   transform: scale(0.985);
 }
 
-/* IMAGE */
-
 .home-package-image {
   width: 100%;
   height: 59px;
@@ -810,8 +693,6 @@ svg {
   display: block;
   object-fit: contain;
 }
-
-/* BODY */
 
 .home-package-body {
   padding: 5px 6px 6px;
@@ -851,8 +732,6 @@ svg {
   font-weight: 800;
 }
 
-/* EXPLORE */
-
 .explore-more-button {
   width: 100%;
   height: 24px;
@@ -869,10 +748,6 @@ svg {
   transform: scale(0.985);
 }
 
-/* =========================================================
- RECOMMENDED TESTS
-========================================================= */
-
 .recommended-section {
   padding: 5px 8px 9px;
   background: #ffffff;
@@ -886,14 +761,10 @@ svg {
   font-weight: 700;
 }
 
-/* LIST */
-
 .recommended-list {
   display: grid;
   gap: 5px;
 }
-
-/* ROW */
 
 .recommended-row {
   min-height: 35px;
@@ -910,8 +781,6 @@ svg {
   transform: scale(0.985);
 }
 
-/* ICON */
-
 .recommended-icon {
   width: 27px;
   height: 27px;
@@ -927,8 +796,6 @@ svg {
   display: block;
   object-fit: contain;
 }
-
-/* INFO */
 
 .recommended-info {
   min-width: 0;
@@ -959,8 +826,6 @@ svg {
   color: #999999;
 }
 
-/* BOOK */
-
 .recommended-row > button {
   width: 40px;
   height: 17px;
@@ -972,10 +837,6 @@ svg {
   font-size: 8px;
   font-weight: 700;
 }
-
-/* =========================================================
- WHY CHOOSE US
-========================================================= */
 
 .why-section {
   padding: 8px 8px 10px;
@@ -990,15 +851,11 @@ svg {
   font-weight: 700;
 }
 
-/* GRID */
-
 .why-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
 }
-
-/* CARD */
 
 .why-card {
   min-height: 57px;
@@ -1035,10 +892,6 @@ svg {
   line-height: 1.25;
 }
 
-/* =========================================================
- CONTACT
-========================================================= */
-
 .contact-section {
   padding: 9px 8px 12px;
   background: #ffffff;
@@ -1051,8 +904,6 @@ svg {
   font-size: 9px;
   font-weight: 700;
 }
-
-/* MAP */
 
 .contact-map {
   display: block;
@@ -1114,8 +965,6 @@ svg {
   font-size: 10px;
 }
 
-/* CONTACT CARD */
-
 .contact-card {
   display: flex;
   align-items: flex-start;
@@ -1159,8 +1008,6 @@ svg {
   line-height: 1.35;
 }
 
-/* FOLLOW */
-
 .follow-us {
   padding: 6px 0 7px;
   text-align: center;
@@ -1191,8 +1038,6 @@ svg {
   font-weight: 700;
 }
 
-/* WHATSAPP */
-
 .contact-whatsapp {
   width: 100%;
   height: 25px;
@@ -1218,13 +1063,7 @@ svg {
   font-size: 7px;
 }
 
-/* =========================================================
- BOTTOM CONNECT BUTTON
-========================================================= */
-
-.bottom-connect,
-.bottom-connect-bar,
-.fixed-connect-button {
+.bottom-connect, .bottom-connect-bar, .fixed-connect-button {
   position: fixed;
   left: 50%;
   bottom: 7px;
@@ -1235,9 +1074,7 @@ svg {
   z-index: 90000;
 }
 
-.bottom-connect button,
-.bottom-connect-bar button,
-.fixed-connect-button button {
+.bottom-connect button, .bottom-connect-bar button, .fixed-connect-button button {
   width: 100%;
   height: 100%;
   border: 0;
@@ -1249,18 +1086,12 @@ svg {
   box-shadow: 0 4px 12px rgba(7, 92, 80, 0.2);
 }
 
-/* =========================================================
- LISTING PAGE
-========================================================= */
-
 .listing-page {
   width: 100%;
   padding: 8px 7px 12px;
   background: #ffffff;
   position: relative;
 }
-
-/* TABS */
 
 .listing-tabs {
   display: grid;
@@ -1285,14 +1116,10 @@ svg {
   color: #ffffff;
 }
 
-/* ITEMS */
-
 .listing-items {
   display: grid;
   gap: 6px;
 }
-
-/* CARD */
 
 .listing-card {
   min-height: 84px;
@@ -1309,8 +1136,6 @@ svg {
   transform: scale(0.985);
 }
 
-/* IMAGE */
-
 .listing-image {
   width: 91px;
   min-width: 91px;
@@ -1325,8 +1150,6 @@ svg {
   display: block;
   object-fit: contain;
 }
-
-/* CONTENT */
 
 .listing-content {
   position: relative;
@@ -1378,8 +1201,6 @@ svg {
   line-height: 1.35;
 }
 
-/* BOOK NOW */
-
 .listing-content > button {
   width: 100%;
   height: 19px;
@@ -1395,22 +1216,14 @@ svg {
   transform: scale(0.98);
 }
 
-/* =========================================================
- DETAIL PAGES
-========================================================= */
-
-.package-info-page,
-.test-info-page {
+.package-info-page, .test-info-page {
   width: 100%;
   min-height: calc(100vh - 54px);
   padding: 5px 10px 15px;
   background: #ffffff;
 }
 
-/* DETAIL IMAGE */
-
-.package-detail-image,
-.test-detail-image {
+.package-detail-image, .test-detail-image {
   width: 100%;
   height: 144px;
   display: flex;
@@ -1420,18 +1233,14 @@ svg {
   background: #ffffff;
 }
 
-.package-detail-image svg,
-.test-detail-image svg {
+.package-detail-image svg, .test-detail-image svg {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
 }
 
-/* HEADING */
-
-.package-detail-heading,
-.test-detail-heading {
+.package-detail-heading, .test-detail-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1439,8 +1248,7 @@ svg {
   margin-top: 4px;
 }
 
-.package-detail-heading h1,
-.test-detail-heading h1 {
+.package-detail-heading h1, .test-detail-heading h1 {
   max-width: 70%;
   margin: 0;
   color: #183b36;
@@ -1467,8 +1275,6 @@ svg {
   font-weight: 800;
 }
 
-/* PACKAGE TEST LIST */
-
 .package-test-list {
   margin: 6px 0 9px;
   padding: 0;
@@ -1482,8 +1288,6 @@ svg {
   line-height: 1.35;
 }
 
-/* TEST DESCRIPTION */
-
 .test-detail-description {
   margin: 7px 0 8px;
   color: #4e5d59;
@@ -1496,8 +1300,6 @@ svg {
   color: #71807b;
   font-size: 4.5px;
 }
-
-/* BOOK BUTTON */
 
 .detail-book-button {
   width: 100%;
@@ -1515,8 +1317,6 @@ svg {
 .detail-book-button:active {
   transform: scale(0.985);
 }
-
-/* EMPTY INFO */
 
 .info-page {
   padding: 15px 10px;
@@ -1541,17 +1341,10 @@ svg {
   font-weight: 700;
 }
 
-/* =========================================================
- BOOKING PAGE
-========================================================= */
-
-.booking-page,
-.book-test-page {
+.booking-page, .book-test-page {
   padding: 8px 10px 14px;
   background: #ffffff;
 }
-
-/* SELECTED CARD */
 
 .booking-selected-card {
   display: flex;
@@ -1635,19 +1428,12 @@ svg {
   font-size: 3.8px;
 }
 
-/* =========================================================
- PATIENT CARD
-========================================================= */
-
-.patient-details-card,
-.book-test-card {
+.patient-details-card, .book-test-card {
   padding: 16px;
   border: 1px solid #e4ece9;
   border-radius: 10px;
   background: #ffffff;
 }
-
-/* BOOKING HEADING */
 
 .booking-section-heading {
   display: flex;
@@ -1684,10 +1470,6 @@ svg {
   font-weight: 800;
 }
 
-/* =========================================================
- BOOKING FORM
-========================================================= */
-
 .booking-form {
   width: 100%;
 }
@@ -1718,10 +1500,7 @@ svg {
   font-weight: 500;
 }
 
-/* INPUT */
-
-.form-field input,
-.form-field select {
+.form-field input, .form-field select {
   width: 100%;
   height: 42px;
   padding: 0 12px;
@@ -1737,22 +1516,17 @@ svg {
   color: #a2ada9;
 }
 
-.form-field input:focus,
-.form-field select:focus {
+.form-field input:focus, .form-field select:focus {
   border-color: #084f46;
   background: #ffffff;
   box-shadow: 0 0 0 2px rgba(7, 92, 80, 0.05);
 }
-
-/* TWO COLUMNS */
 
 .form-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-
-/* MOBILE NUMBER */
 
 .mobile-input-wrapper {
   display: flex;
@@ -1791,8 +1565,6 @@ svg {
   box-shadow: none !important;
 }
 
-/* ERRORS */
-
 .form-error {
   display: block;
   margin-top: 4px;
@@ -1800,8 +1572,6 @@ svg {
   font-size: 10px;
   line-height: 1.2;
 }
-
-/* SUMMARY */
 
 .booking-summary {
   display: flex;
@@ -1834,8 +1604,6 @@ svg {
   white-space: nowrap;
 }
 
-/* CONFIRM */
-
 .confirm-booking-btn {
   width: 100%;
   height: 46px;
@@ -1861,8 +1629,6 @@ svg {
   font-size: 8px;
 }
 
-/* SPINNER */
-
 .button-spinner {
   width: 9px;
   height: 9px;
@@ -1878,8 +1644,6 @@ svg {
   }
 }
 
-/* SECURE */
-
 .secure-booking {
   display: flex;
   align-items: center;
@@ -1893,10 +1657,6 @@ svg {
 .secure-icon {
   font-size: 5px;
 }
-
-/* =========================================================
- BOOK TEST PAGE
-========================================================= */
 
 .book-test-heading {
   padding: 5px 1px 8px;
@@ -1915,8 +1675,6 @@ svg {
   font-size: 5px;
   line-height: 1.4;
 }
-
-/* ENQUIRY BOX */
 
 .enquiry-info-box {
   display: flex;
@@ -1947,8 +1705,6 @@ svg {
   font-size: 8px;
   line-height: 1.4;
 }
-
-/* DIRECT WHATSAPP */
 
 .direct-whatsapp {
   width: 100%;
@@ -1982,10 +1738,6 @@ svg {
   font-size: 8px;
 }
 
-/* =========================================================
- SUCCESS PAGE
-========================================================= */
-
 .success-page {
   min-height: calc(100vh - 54px);
   padding: 43px 15px;
@@ -2010,8 +1762,6 @@ svg {
   text-align: center;
   box-shadow: 0 5px 15px rgba(7, 92, 80, 0.13);
 }
-
-/* SUCCESS CHECK */
 
 .success-check {
   width: 48px;
@@ -2050,10 +1800,6 @@ svg {
   color: rgba(255, 255, 255, 0.75);
   font-size: 3.8px;
 }
-
-/* =========================================================
- BOOKING EMPTY
-========================================================= */
 
 .booking-empty-card {
   margin-top: 25px;
@@ -2101,9 +1847,6 @@ svg {
   font-weight: 700;
 }
 
-/* =========================================================
- ACHIEVEMENTS STANDALONE PAGE
-========================================================= */
 .achievements-page {
   width: 100%;
   min-height: auto;
@@ -2180,10 +1923,6 @@ svg {
   font-weight: 700;
 }
 
-/* =========================================================
- CONTACT STANDALONE PAGE
-========================================================= */
-
 .contact-page {
   width: 100%;
   min-height: auto;
@@ -2212,7 +1951,6 @@ svg {
   border: 1px solid #e3ebe8;
   border-radius: 18px;
   background: linear-gradient(135deg, #e6f0ed, #dce8e4);
-
   box-sizing: border-box;
 }
 
@@ -2345,8 +2083,6 @@ svg {
   font-weight: 700;
 }
 
-/* MAP CARD */
-
 .map-card {
   display: block;
   margin-bottom: 6px;
@@ -2387,8 +2123,6 @@ svg {
   font-size: 3.7px;
 }
 
-/* CONTACT INFO */
-
 .contact-info-card {
   display: flex;
   align-items: flex-start;
@@ -2424,8 +2158,6 @@ svg {
   font-size: 4.2px;
   line-height: 1.35;
 }
-
-/* FOLLOW CARD */
 
 .follow-card {
   padding: 7px;
@@ -2490,10 +2222,6 @@ svg {
   margin-right: 7px;
   font-size: 8px;
 }
-
-/* =========================================================
- MENU PAGE
-========================================================= */
 
 .menu-page {
   min-height: calc(100vh - 54px);
@@ -2561,8 +2289,6 @@ svg {
   font-size: 10px;
 }
 
-/* MENU ITEMS */
-
 .menu-list {
   margin-top: 6px;
 }
@@ -2587,10 +2313,6 @@ svg {
   font-family: "DM Sans", Arial, sans-serif;
   font-size: 8px;
 }
-
-/* =========================================================
- CONNECT HEALTH CARD - LEGACY SUPPORT
-========================================================= */
 
 .connect-health-section {
   padding: 10px 10px 4px;
@@ -2633,19 +2355,9 @@ svg {
   font-weight: 700;
 }
 
-/* =========================================================
- HOME WHATSAPP LEGACY
-========================================================= */
-
-.home-whatsapp-button:active,
-.contact-whatsapp:active,
-.direct-whatsapp:active {
+.home-whatsapp-button:active, .contact-whatsapp:active, .direct-whatsapp:active {
   transform: scale(0.985);
 }
-
-/* =========================================================
- RESPONSIVE WIDTH
-========================================================= */
 
 @media (min-width: 390px) {
   .mobile-header {
@@ -2660,25 +2372,10 @@ svg {
     margin: 0 auto;
   }
 
-  .home-connect-section,
-  .home-collection-section,
-  .achievements-section,
-  .home-packages-section,
-  .recommended-section,
-  .why-section,
-  .contact-section,
-  .listing-page,
-  .package-info-page,
-  .test-info-page,
-  .booking-page,
-  .book-test-page {
+  .home-connect-section, .home-collection-section, .achievements-section, .home-packages-section, .recommended-section, .why-section, .contact-section, .listing-page, .package-info-page, .test-info-page, .booking-page, .book-test-page {
     width: 390px;
   }
 }
-
-/* =========================================================
- DESKTOP
-========================================================= */
 
 @media (min-width: 768px) {
   body {
@@ -2701,36 +2398,19 @@ svg {
   }
 }
 
-/* =========================================================
- ACCESSIBILITY
-========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible {
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
   outline: 2px solid #084f46;
   outline-offset: 2px;
 }
 
-/* =========================================================
- REDUCE MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-
-/* =========================================================
- CARTOON MEDICAL IMAGES
-========================================================= */
 
 .medical-art-image {
   width: 100%;
@@ -2753,10 +2433,6 @@ select:focus-visible {
   font-size: 28px;
 }
 
-/* =========================================================
- PACKAGE / TEST IMAGE CONTAINERS
-========================================================= */
-
 .listing-image {
   background: #ffffff;
 }
@@ -2775,8 +2451,6 @@ select:focus-visible {
   object-fit: contain;
 }
 
-/* HOME PACKAGE CARTOON */
-
 .home-package-image {
   background: #ffffff;
 }
@@ -2784,8 +2458,6 @@ select:focus-visible {
 .home-package-image .medical-art-image {
   object-fit: contain;
 }
-
-/* RECOMMENDED TEST CARTOON */
 
 .recommended-icon {
   background: #ffffff;
@@ -2795,11 +2467,6 @@ select:focus-visible {
   object-fit: contain;
 }
 
-/* =========================================================
- SIMPLE HEALTH PARTNER BOOKING
- Screenshot-style mobile UI
-========================================================= */
-
 .simple-booking-page {
   width: 100%;
   min-height: calc(100vh - 54px);
@@ -2807,10 +2474,6 @@ select:focus-visible {
   box-sizing: border-box;
   background: #ffffff;
 }
-
-/* =========================================================
- HEALTH PARTNER CARD
-========================================================= */
 
 .health-partner-card {
   width: 100%;
@@ -2840,10 +2503,6 @@ select:focus-visible {
   font-size: 9.5px;
   opacity: 0.75;
 }
-
-/* =========================================================
- CALL / WHATSAPP
-========================================================= */
 
 .contact-choice-row {
   width: 100%;
@@ -2881,20 +2540,12 @@ select:focus-visible {
   font-size: 14px;
 }
 
-/* =========================================================
- OR
-========================================================= */
-
 .booking-or {
   text-align: center;
   margin: 9px 0 10px;
   font-size: 6px;
   color: #a3aaa8;
 }
-
-/* =========================================================
- SIMPLE FORM CARD
-========================================================= */
 
 .simple-booking-card {
   width: 100%;
@@ -2908,10 +2559,6 @@ select:focus-visible {
 .simple-booking-card form {
   width: 100%;
 }
-
-/* =========================================================
- FORM FIELD
-========================================================= */
 
 .simple-form-field {
   margin-bottom: 14px;
@@ -2955,10 +2602,6 @@ select:focus-visible {
   background: #ffffff;
 }
 
-/* =========================================================
- MOBILE INPUT
-========================================================= */
-
 .simple-mobile-input {
   width: 100%;
   height: 42px;
@@ -2991,20 +2634,12 @@ select:focus-visible {
   font-size: 13px;
 }
 
-/* =========================================================
- FORM NOTE
-========================================================= */
-
 .simple-form-note {
   margin: 2px 0 12px;
   font-size: 9px;
   line-height: 1.4;
   color: #84918e;
 }
-
-/* =========================================================
- SIMPLE SUBMIT
-========================================================= */
 
 .simple-submit-button {
   display: block;
@@ -3025,10 +2660,6 @@ select:focus-visible {
   opacity: 0.65;
 }
 
-/* =========================================================
- SECURITY
-========================================================= */
-
 .simple-security {
   display: flex;
   align-items: center;
@@ -3039,21 +2670,12 @@ select:focus-visible {
   color: #626b69;
 }
 
-/* =========================================================
- ERRORS
-========================================================= */
-
-.simple-form-error,
-.compact-form-error {
+.simple-form-error, .compact-form-error {
   display: block;
   margin-top: 3px;
   font-size: 8px;
   color: #d64b4b;
 }
-
-/* =========================================================
- PACKAGE / TEST BOOKING PAGE
-========================================================= */
 
 .package-booking-page,
 .test-booking-page {
@@ -3063,10 +2685,6 @@ select:focus-visible {
   box-sizing: border-box;
   background: #ffffff;
 }
-
-/* =========================================================
- SELECTED PACKAGE / TEST CARD
-========================================================= */
 
 .selected-booking-card {
   width: 100%;
@@ -3137,10 +2755,6 @@ select:focus-visible {
   font-size: 9.5px;
 }
 
-/* =========================================================
- PATIENT DETAILS CARD
-========================================================= */
-
 .compact-patient-card {
   width: 100%;
   margin-top: 10px;
@@ -3158,10 +2772,6 @@ select:focus-visible {
   font-weight: 700;
   color: #084f46;
 }
-
-/* =========================================================
- COMPACT FORM
-========================================================= */
 
 .compact-form-field {
   margin-bottom: 9px;
@@ -3202,10 +2812,6 @@ select:focus-visible {
   border-color: #084f46;
 }
 
-/* =========================================================
- COMPACT MOBILE
-========================================================= */
-
 .compact-mobile-input {
   width: 100%;
   height: 22px;
@@ -3239,10 +2845,6 @@ select:focus-visible {
   background: transparent;
 }
 
-/* =========================================================
- CONFIRM BOOKING
-========================================================= */
-
 .compact-confirm-button {
   width: 100%;
   height: 28px;
@@ -3261,10 +2863,6 @@ select:focus-visible {
   opacity: 0.65;
 }
 
-/* =========================================================
- SECURITY
-========================================================= */
-
 .compact-security {
   display: flex;
   align-items: center;
@@ -3273,10 +2871,6 @@ select:focus-visible {
   font-size: 7px;
   color: #4d5754;
 }
-
-/* =========================================================
- EMPTY BOOKING
-========================================================= */
 
 .booking-empty-card {
   margin: 20px 0;
@@ -3322,10 +2916,6 @@ select:focus-visible {
   font-size: 7px;
   font-weight: 700;
 }
-
-/* =========================================================
- SUCCESS PAGE
-========================================================= */
 
 .booking-success-page {
   width: 100%;
@@ -3390,10 +2980,6 @@ select:focus-visible {
   display: none;
 }
 
-/* =========================================================
- MOBILE WIDTH
-========================================================= */
-
 @media (min-width: 390px) {
   .simple-booking-page,
   .package-booking-page,
@@ -3404,11 +2990,6 @@ select:focus-visible {
     margin-right: auto;
   }
 }
-
-/* =========================================================
- MOBILE HAMBURGER MENU
- Matches supplied menu screenshot
-========================================================= */
 
 .menu-page {
   position: fixed;
@@ -3424,10 +3005,6 @@ select:focus-visible {
   box-sizing: border-box;
 }
 
-/* =========================================================
- GREEN MENU PANEL
-========================================================= */
-
 .menu-panel {
   position: absolute;
   top: 0;
@@ -3440,10 +3017,6 @@ select:focus-visible {
   padding: 0 14px;
 }
 
-/* =========================================================
- MENU TOP BAR
-========================================================= */
-
 .menu-topbar {
   width: 100%;
   height: 49px;
@@ -3453,10 +3026,6 @@ select:focus-visible {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   box-sizing: border-box;
 }
-
-/* =========================================================
- BRAND
-========================================================= */
 
 .menu-brand {
   display: flex;
@@ -3504,10 +3073,6 @@ select:focus-visible {
   color: #ffffff;
 }
 
-/* =========================================================
- CLOSE / MENU BUTTON
-========================================================= */
-
 .menu-close {
   width: 17px;
   height: 17px;
@@ -3537,10 +3102,6 @@ select:focus-visible {
 .menu-close span:last-child {
   transform: rotate(-45deg);
 }
-
-/* =========================================================
- NAVIGATION
-========================================================= */
 
 .menu-navigation {
   width: 100%;
@@ -3578,17 +3139,9 @@ select:focus-visible {
   padding-right: 1px;
 }
 
-/* =========================================================
- HEALTH PACKAGES / TESTS - TWO LINES
-========================================================= */
-
 .menu-navigation-item:nth-child(3) {
   min-height: 49px;
 }
-
-/* =========================================================
- TAP EFFECT
-========================================================= */
 
 .menu-navigation-item:active {
   background: rgba(255, 255, 255, 0.05);
@@ -3602,10 +3155,6 @@ select:focus-visible {
   background: rgba(255, 255, 255, 0.16);
 }
 
-/* =========================================================
- DESKTOP / TABLET
-========================================================= */
-
 @media (min-width: 390px) {
   .menu-page {
     width: 390px;
@@ -3618,10 +3167,6 @@ select:focus-visible {
     width: 79%;
   }
 }
-
-/* =========================================================
- PACKAGE INCLUDED TESTS
-========================================================= */
 
 .package-test-heading {
   display: flex;
@@ -3700,12 +3245,7 @@ select:focus-visible {
   background: #f5faf8;
 }
 
-/* =========================================================
- DETAIL PAGE
-========================================================= */
-
-.package-info-page,
-.test-info-page {
+.package-info-page, .test-info-page {
   width: 100%;
   min-height: calc(100vh - 54px);
   padding: 9px 10px 20px;
@@ -3713,8 +3253,7 @@ select:focus-visible {
   background: #ffffff;
 }
 
-.package-detail-image,
-.test-detail-image {
+.package-detail-image, .test-detail-image {
   width: 100%;
   height: 105px;
   display: flex;
@@ -3724,15 +3263,13 @@ select:focus-visible {
   overflow: hidden;
 }
 
-.package-detail-image .medical-art-image,
-.test-detail-image .medical-art-image {
+.package-detail-image .medical-art-image, .test-detail-image .medical-art-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.package-detail-heading,
-.test-detail-heading {
+.package-detail-heading, .test-detail-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3740,8 +3277,7 @@ select:focus-visible {
   margin-top: 5px;
 }
 
-.package-detail-heading h1,
-.test-detail-heading h1 {
+.package-detail-heading h1, .test-detail-heading h1 {
   margin: 0;
   color: #163934;
   font-family: "Playfair Display", serif;
@@ -3797,10 +3333,6 @@ select:focus-visible {
   transform: scale(0.99);
 }
 
-/* =========================================================
- SELECTED BOOKING CARD
-========================================================= */
-
 .selected-booking-card {
   background: #f3f4f4;
 }
@@ -3814,10 +3346,6 @@ select:focus-visible {
 .selected-booking-image {
   background: #ffffff;
 }
-
-/* =========================================================
- KEY FEATURES SCROLL OFFSET
-========================================================= */
 
 #why-choose-us {
   scroll-margin-top: 60px;
@@ -3841,10 +3369,6 @@ select:focus-visible {
   display: block;
 }
 
-/* =========================================================
- HOME HERO ANIMATION
-========================================================= */
-
 .hero-animation-container {
   width: 100%;
   height: 210px;
@@ -3866,7 +3390,6 @@ select:focus-visible {
   background: #ffffff;
 }
 
-/* Mobile */
 @media (max-width: 479px) {
   .hero-animation-container {
     height: 205px;
@@ -3877,7 +3400,6 @@ select:focus-visible {
   }
 }
 
-/* Larger screens */
 @media (min-width: 390px) {
   .hero-animation-container {
     width: 390px;
@@ -3939,10 +3461,6 @@ select:focus-visible {
   font-weight: 400;
 }
 
-/* =========================================================
- KEY FEATURES PAGE
-========================================================= */
-
 .key-features-page {
   width: 100%;
   min-height: auto;
@@ -3952,10 +3470,6 @@ select:focus-visible {
   background: #ffffff;
   overflow: visible;
 }
-
-/* =========================================================
- KEY FEATURES HEADING
-========================================================= */
 
 .key-features-heading {
   width: 100%;
@@ -3987,20 +3501,12 @@ select:focus-visible {
   color: #657773;
 }
 
-/* =========================================================
- KEY FEATURES GRID
-========================================================= */
-
 .key-features-grid {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
-
-/* =========================================================
- FEATURE CARD
-========================================================= */
 
 .key-feature-card {
   min-height: 78px;
@@ -4023,10 +3529,6 @@ select:focus-visible {
   box-shadow: 0 5px 14px rgba(7, 92, 80, 0.09);
 }
 
-/* =========================================================
- FEATURE ICON
-========================================================= */
-
 .key-feature-icon {
   width: 27px;
   height: 27px;
@@ -4040,10 +3542,6 @@ select:focus-visible {
   font-size: 18px;
   box-sizing: border-box;
 }
-
-/* =========================================================
- FEATURE CONTENT
-========================================================= */
 
 .key-feature-content {
   min-width: 0;
@@ -4063,10 +3561,6 @@ select:focus-visible {
   line-height: 1.45;
   color: #657773;
 }
-
-/* =========================================================
- BACK TO HOME
-========================================================= */
 
 .key-features-home-button {
   width: 100%;
@@ -4089,10 +3583,6 @@ select:focus-visible {
   transform: translateY(-1px);
 }
 
-/* =========================================================
- DESKTOP / TABLET
-========================================================= */
-
 @media (min-width: 390px) {
   .key-features-page {
     width: 390px;
@@ -4109,10 +3599,6 @@ select:focus-visible {
   }
 }
 
-/* ============================================================
- HOME PAGE
- ============================================================ */
-
 .home-page {
   width: 390px;
   max-width: 390px;
@@ -4128,7 +3614,6 @@ select:focus-visible {
   background: #ffffff;
 }
 
-/* Hero */
 .hero-section {
   position: relative;
   display: flex;
@@ -4177,7 +3662,6 @@ select:focus-visible {
 
 .hero-video {
   width: 150%;
-  /* height: 130%; */
   max-width: none;
   display: block;
   object-fit: contain;
@@ -4200,7 +3684,6 @@ select:focus-visible {
   white-space: nowrap;
 }
 
-/* Shared section heading */
 .section-heading h2 {
   margin: 30px 0px 10px 0px;
   color: #142421;
@@ -4216,7 +3699,6 @@ select:focus-visible {
   line-height: 1.5;
 }
 
-/* Home collection */
 .collection-section {
   padding: 28px 18px 5px;
 }
@@ -4284,7 +3766,6 @@ select:focus-visible {
   line-height: 1;
 }
 
-/* How it works */
 .how-section {
   padding: 1px 18px 24px;
 }
@@ -4343,7 +3824,6 @@ select:focus-visible {
   line-height: 1.45;
 }
 
-/* Achievements */
 .achievements-block {
   margin-top: 26px;
 }
@@ -4388,7 +3868,6 @@ select:focus-visible {
   line-height: 1.2;
 }
 
-/* Milestones and packages */
 .packages-section {
   padding: 1px 18px;
 }
@@ -4526,7 +4005,6 @@ select:focus-visible {
   font-weight: 700;
 }
 
-/* Recommended tests */
 .tests-section {
   padding: 0px 18px;
 }
@@ -4660,7 +4138,6 @@ select:focus-visible {
   line-height: 1.25;
 }
 
-/* Contact */
 .contact-section-home {
   padding: 0px 18px;
 }
@@ -4767,7 +4244,6 @@ select:focus-visible {
   font-weight: 700;
 }
 
-/* Global bottom CTA */
 .global-health-partner-button {
   position: fixed !important;
   left: 50% !important;
@@ -4798,12 +4274,8 @@ select:focus-visible {
   line-height: 1 !important;
 }
 
-/* Mobile and desktop width */
 @media (max-width: 389px) {
-  #root,
-  .app-content,
-  .home-page,
-  .home-section {
+  #root, .app-content, .home-page, .home-section {
     width: 100%;
     max-width: 100%;
   }
@@ -4812,8 +4284,7 @@ select:focus-visible {
     width: 100%;
   }
 
-  .hero-section,
-  .hero-media {
+  .hero-section, .hero-media {
     width: 100%;
   }
 
@@ -4824,19 +4295,14 @@ select:focus-visible {
 }
 
 @media (min-width: 390px) {
-  #root,
-  .app-content,
-  .home-page,
-  .home-section {
+  #root, .app-content, .home-page, .home-section {
     width: 390px;
     max-width: 390px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .mobile-header,
-  .hero-section,
-  .hero-media {
+  .mobile-header, .hero-section, .hero-media {
     width: 390px;
   }
 }
@@ -4846,10 +4312,7 @@ select:focus-visible {
   height: auto;
 }
 
-/* Readable controls */
-.explore-button,
-.book-button,
-.detail-book-button {
+.explore-button, .book-button, .detail-book-button {
   min-height: 34px;
 }
 
@@ -4863,12 +4326,6 @@ select:focus-visible {
   }
 }
 
-/* =========================================================
- HEALTH PACKAGE + TEST BOOKING FORM
- LARGE MOBILE FORM
-========================================================= */
-
-/* Main patient card */
 .compact-patient-card {
   width: 100%;
   margin-top: 12px;
@@ -4879,7 +4336,6 @@ select:focus-visible {
   box-sizing: border-box;
 }
 
-/* Form heading */
 .compact-patient-card h2 {
   margin: 0 0 14px;
   font-size: 16px;
@@ -4887,12 +4343,10 @@ select:focus-visible {
   color: #084f46;
 }
 
-/* Each field */
 .compact-form-field {
   margin-bottom: 13px;
 }
 
-/* Labels */
 .compact-form-field label {
   display: block;
   margin-bottom: 6px;
@@ -4902,9 +4356,7 @@ select:focus-visible {
   font-weight: 600;
 }
 
-/* Text inputs */
-.compact-form-field input,
-.compact-form-field select {
+.compact-form-field input, .compact-form-field select {
   width: 100%;
   height: 42px;
   padding: 0 12px;
@@ -4917,21 +4369,17 @@ select:focus-visible {
   outline: none;
 }
 
-/* Placeholder */
 .compact-form-field input::placeholder {
   color: #a2aaa7;
   font-size: 13px;
 }
 
-/* Focus */
-.compact-form-field input:focus,
-.compact-form-field select:focus {
+.compact-form-field input:focus, .compact-form-field select:focus {
   border-color: #084f46;
   background: #ffffff;
   box-shadow: 0 0 0 2px rgba(8, 79, 70, 0.06);
 }
 
-/* Mobile number field */
 .compact-mobile-input {
   width: 100%;
   height: 42px;
@@ -4944,7 +4392,6 @@ select:focus-visible {
   box-sizing: border-box;
 }
 
-/* +91 section */
 .compact-mobile-input span {
   width: 45px;
   height: 100%;
@@ -4958,7 +4405,6 @@ select:focus-visible {
   box-sizing: border-box;
 }
 
-/* Mobile input */
 .compact-mobile-input input {
   flex: 1;
   width: 100%;
@@ -4972,14 +4418,12 @@ select:focus-visible {
   box-sizing: border-box;
 }
 
-/* Mobile input focus */
 .compact-mobile-input:focus-within {
   border-color: #084f46;
   background: #ffffff;
   box-shadow: 0 0 0 2px rgba(8, 79, 70, 0.06);
 }
 
-/* Error message */
 .compact-form-error {
   margin-top: 4px;
   font-size: 10px;
@@ -4987,7 +4431,6 @@ select:focus-visible {
   color: #d64b4b;
 }
 
-/* Submit button */
 .compact-submit-button {
   width: 100px;
   height: 38px;
@@ -5002,12 +4445,10 @@ select:focus-visible {
   cursor: pointer;
 }
 
-/* Submit hover */
 .compact-submit-button:hover {
   background: #063f38;
 }
 
-/* Security text */
 .compact-security {
   display: flex;
   align-items: center;
@@ -5017,10 +4458,6 @@ select:focus-visible {
   font-size: 8px;
   color: #626b69;
 }
-
-/* =========================================================
- CALL + WHATSAPP BUTTONS
-========================================================= */
 
 .quick-contact-button {
   width: 100%;
@@ -5036,27 +4473,23 @@ select:focus-visible {
   font-weight: 700;
 }
 
-/* CALL */
 .call-button {
   background: #084f46;
   color: #ffffff;
   border: 1px solid #084f46;
 }
 
-/* WHATSAPP */
 .whatsapp-button {
   background: #ffffff;
   color: #084f46;
   border: 1.5px solid #084f46;
 }
 
-/* Icons */
 .quick-contact-button span {
   font-size: 14px;
   line-height: 1;
 }
 
-/* Hover */
 .call-button:hover {
   background: #063f38;
 }
@@ -5065,12 +4498,10 @@ select:focus-visible {
   background: #f0f8f6;
 }
 
-/* Press effect */
 .quick-contact-button:active {
   transform: scale(0.98);
 }
 
-/* Scroll hero: keep OUTSIDE .home-hero if that parent has overflow:hidden. */
 .hero-3d-scroll {
   position: relative;
   width: 100%;
@@ -5078,6 +4509,7 @@ select:focus-visible {
   min-height: 850px;
   background: #fff;
 }
+
 .hero-3d-sticky {
   position: sticky;
   top: 54px;
@@ -5091,6 +4523,7 @@ select:focus-visible {
   overflow: hidden;
   background: radial-gradient(circle at 50% 50%, #eaf8f3 0%, #fff 65%);
 }
+
 .hero-3d-canvas {
   width: min(94%, 370px);
   height: min(82%, 490px);
@@ -5098,6 +4531,7 @@ select:focus-visible {
   transform-origin: center;
   filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1));
 }
+
 .hero-3d-glow {
   position: absolute;
   width: 70%;
@@ -5110,6 +4544,7 @@ select:focus-visible {
   );
   pointer-events: none;
 }
+
 .hero-3d-caption {
   position: absolute;
   bottom: 18px;
@@ -5127,6 +4562,7 @@ select:focus-visible {
   font-weight: 700;
   letter-spacing: 0.4px;
 }
+
 .hero-3d-loading {
   position: absolute;
   top: 12px;
@@ -5139,21 +4575,19 @@ select:focus-visible {
   font-size: 10px;
   white-space: nowrap;
 }
+
 @media (min-width: 390px) {
   .hero-3d-scroll,
   .hero-3d-sticky {
     width: 100%;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-3d-canvas {
     transform: none !important;
   }
 }
-
-/* =========================================================
- FINAL FIXES — ICONS / MAP / SCROLL ANIMATION / PRICES
-========================================================= */
 
 .lcp-icon {
   display: inline-block;
@@ -5178,8 +4612,6 @@ select:focus-visible {
   line-height: 1;
 }
 
-/* Give the scroll sequence enough physical page distance.
- The image changes ONLY from the user's scroll position. */
 .hero-3d-scroll {
   position: relative;
   width: 100%;
@@ -5245,7 +4677,6 @@ select:focus-visible {
   z-index: 2;
 }
 
-/* Real map preview with the laboratory location centered in the map. */
 .map-preview-wrap {
   position: relative;
   width: 100%;
@@ -5279,19 +4710,13 @@ select:focus-visible {
   pointer-events: none;
 }
 
-.home-whatsapp-button .lcp-icon-image,
-.quick-contact-button .lcp-icon-image,
-.contact-whatsapp .lcp-icon-image,
-.direct-whatsapp .lcp-icon-image {
+.home-whatsapp-button .lcp-icon-image, .quick-contact-button .lcp-icon-image, .contact-whatsapp .lcp-icon-image, .direct-whatsapp .lcp-icon-image {
   width: 19px;
   height: 19px;
   filter: none;
 }
 
-.quick-contact-button,
-.home-whatsapp-button,
-.contact-whatsapp,
-.direct-whatsapp {
+.quick-contact-button, .home-whatsapp-button, .contact-whatsapp, .direct-whatsapp {
   gap: 7px;
 }
 
@@ -5322,7 +4747,6 @@ select:focus-visible {
   }
 }
 
-/* FINAL MAP + HERO STATIC-ASSET FIX */
 .map-preview-wrap {
   position: relative;
   isolation: isolate;
@@ -5349,7 +4773,6 @@ select:focus-visible {
   transform: translateY(-1px);
 }
 
-/* The animation is intentionally tall: one page of scrolling = the full 50-frame sequence. */
 .hero-3d-scroll {
   height: 260vh;
   min-height: 1700px;
@@ -5371,55 +4794,48 @@ select:focus-visible {
   }
 }
 
-
-/* Real map preview with the laboratory location centered in the map. */
 .map-preview-wrap {
-position: relative;
-width: 100%;
-height: 180px;
-overflow: hidden;
-border: 1px solid #dfe9e6;
-border-radius: 12px;
-background: #e9efed;
-box-shadow: 0 8px 24px rgba(8, 79, 70, 0.08);
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border: 1px solid #dfe9e6;
+  border-radius: 12px;
+  background: #e9efed;
+  box-shadow: 0 8px 24px rgba(8, 79, 70, 0.08);
 }
 
 .map-preview-iframe {
-width: 100%;
-height: 100%;
-display: block;
-border: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
 }
 
 .map-preview-label {
-position: absolute;
-left: 10px;
-right: 10px;
-bottom: 10px;
-padding: 8px 10px;
-border-radius: 9px;
-background: rgba(255, 255, 255, 0.94);
-color: #084f46;
-font-size: 9px;
-font-weight: 800;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-pointer-events: none;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #084f46;
+  font-size: 9px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
 }
 
-.home-whatsapp-button .lcp-icon-image,
-.quick-contact-button .lcp-icon-image,
-.contact-whatsapp .lcp-icon-image,
-.direct-whatsapp .lcp-icon-image {
-width: 19px;
-height: 19px;
-filter: none;
+.home-whatsapp-button .lcp-icon-image, .quick-contact-button .lcp-icon-image, .contact-whatsapp .lcp-icon-image, .direct-whatsapp .lcp-icon-image {
+  width: 19px;
+  height: 19px;
+  filter: none;
 }
 
-.quick-contact-button,
-.home-whatsapp-button,
-.contact-whatsapp,
-.direct-whatsapp {
-gap: 7px;
+.quick-contact-button, .home-whatsapp-button,
+.contact-whatsapp, .direct-whatsapp {
+  gap: 7px;
 }
 
 @media (max-width: 600px) {
@@ -5449,74 +4865,47 @@ gap: 7px;
 }
 }
 
-/* =========================================================
- SIMPLE TEST-TUBE SCROLL ANIMATION
- Add this at the END of styles.css.
- ========================================================= */
-
 .simple-test-tube-scroll {
-position: relative !important;
-width: 100% !important;
-
-/*
-  This creates real page scroll space.
-  The image moves while this section passes through
-  the viewport.
-*/
-height: 220vh !important;
-min-height: 1400px !important;
-
-margin: 0 !important;
-padding: 0 !important;
-
-overflow: visible !important;
-
-background: linear-gradient(180deg, #ffffff 0%, #f3fffa 50%, #ffffff 100%);
+  position: relative !important;
+  width: 100% !important;
+  height: 220vh !important;
+  min-height: 1400px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f3fffa 50%, #ffffff 100%);
 }
 
 .simple-test-tube-area {
-position: absolute !important;
-
-top: 0 !important;
-left: 0 !important;
-
-width: 100% !important;
-height: 100vh !important;
-min-height: 600px !important;
-
-display: flex !important;
-align-items: center !important;
-justify-content: center !important;
-
-overflow: visible !important;
-
-pointer-events: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  min-height: 600px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  pointer-events: none !important;
 }
 
 .simple-test-tube-image {
-display: block !important;
-
-width: min(58vw, 430px) !important;
-height: min(70vh, 600px) !important;
-
-min-width: 220px !important;
-min-height: 320px !important;
-
-object-fit: contain !important;
-object-position: center !important;
-
-margin: 0 !important;
-padding: 0 !important;
-
-transform: translate3d(0, 0, 0) rotate(0deg) scale(1) !important;
-
-transform-origin: center center !important;
-
-will-change: transform !important;
-
-user-select: none !important;
--webkit-user-drag: none !important;
-pointer-events: none !important;
+  display: block !important;
+  width: min(58vw, 430px) !important;
+  height: min(70vh, 600px) !important;
+  min-width: 220px !important;
+  min-height: 320px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1) !important;
+  transform-origin: center center !important;
+  will-change: transform !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  pointer-events: none !important;
 }
 
 @media (max-width: 600px) {

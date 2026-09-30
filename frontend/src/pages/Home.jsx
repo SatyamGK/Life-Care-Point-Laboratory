@@ -136,11 +136,6 @@ export default function Home() {
     }
   });
 
-  /*
-   * If your current data file does not contain all the
-   * recommended names above, fill the remaining cards
-   * from the same existing tests array.
-   */
   existingTests.forEach((test) => {
     if (
       recommendedTests.length < 4 &&
@@ -222,10 +217,6 @@ export default function Home() {
   return (
     <div className="home-page">
 
-      {/* =====================================================
-          SCREEN 1 — HERO + PREVIOUS VIDEO
-          ===================================================== */}
-
       <section className="home-section hero-section">
 
         <div className="hero-content">
@@ -237,9 +228,7 @@ export default function Home() {
           </h1>
 
           <p>
-            Every Blood Test has a story to tell and with
-            over 25+ years of experience, we know how to
-            deliver it with high precision.
+            Every Blood Test has a story to tell and with over 25+ years of experience, we know how to deliver it with high precision.
           </p>
 
         </div>
@@ -250,10 +239,6 @@ export default function Home() {
         </div>
 
       </section>
-
-      {/* =====================================================
-          SCREEN 2 — HOME SAMPLE COLLECTION
-          ===================================================== */}
 
       <section className="home-section collection-section">
 
@@ -275,10 +260,7 @@ export default function Home() {
 
         <div className="collection-image">
 
-          <img
-            src="/images/home-collection.png"
-            alt="Free home sample collection"
-          />
+          <img src="/images/home-collection.png" alt="Free home sample collection" />
 
         </div>
 
@@ -297,10 +279,7 @@ export default function Home() {
         <div className="area-grid">
 
           {collectionAreas.map((area) => (
-            <div
-              className="area-item"
-              key={area}
-            >
+            <div className="area-item" key={area} >
 
               <Icon name="pin" size={14} />
 
@@ -315,10 +294,6 @@ export default function Home() {
 
       </section>
 
-      {/* =====================================================
-          SCREEN 3 — HOW IT WORKS + ACHIEVEMENTS
-          ===================================================== */}
-
       <section className="home-section how-section">
 
         <div className="section-heading">
@@ -332,10 +307,7 @@ export default function Home() {
         <div className="how-list">
 
           {howItWorks.map((item) => (
-            <div
-              className="how-item"
-              key={item.number}
-            >
+            <div className="how-item" key={item.number} >
 
               <div className="how-icon">
                 <Icon name={item.icon} size={18} />
@@ -416,10 +388,6 @@ export default function Home() {
 
       </section>
 
-      {/* =====================================================
-          SCREEN 4 — MILESTONES + SAME HEALTH PACKAGES
-          ===================================================== */}
-
       <section className="home-section packages-section">
 
         <div className="home-milestone-card">
@@ -451,8 +419,6 @@ export default function Home() {
 
         </div>
 
-        {/* SAME EXISTING PACKAGE DATA */}
-
         <div className="packages-title">
           Health Packages &amp; Tests
         </div>
@@ -461,12 +427,7 @@ export default function Home() {
 
           {existingPackages.map(
             (packageData) => (
-              <article
-                className="home-package-card"
-                key={
-                  packageData.id ||
-                  packageData.name
-                }
+              <article className="home-package-card" key={ packageData.id || packageData.name }
                 onClick={() =>
                   openPackage(
                     packageData
@@ -476,14 +437,7 @@ export default function Home() {
 
                 <div className="home-package-image">
 
-                  <MedicalArt
-                    id={
-                      packageData.id
-                    }
-                    type={
-                      packageData.type
-                    }
-                  />
+                  <MedicalArt id={ packageData.id } type={ packageData.type } />
 
                 </div>
 
@@ -494,8 +448,7 @@ export default function Home() {
                   </h3>
 
                   <p>
-                    {packageData.description ||
-                      "Comprehensive diagnostic health package."}
+                    {packageData.description || "Comprehensive diagnostic health package."}
                   </p>
 
                   <div className="home-package-price">
@@ -522,21 +475,11 @@ export default function Home() {
 
         </div>
 
-        <button
-          type="button"
-          className="explore-button"
-          onClick={
-            openPackages
-          }
-        >
+        <button type="button" className="explore-button" onClick={ openPackages } >
           Explore More
         </button>
 
       </section>
-
-      {/* =====================================================
-          SCREEN 5 — SAME TEST DATA
-          ===================================================== */}
 
       <section className="home-section tests-section">
 
@@ -548,27 +491,12 @@ export default function Home() {
 
           {finalRecommendedTests.map(
             (test) => (
-              <div
-                className="home-test-card"
-                key={
-                  test.id ||
-                  test.name
-                }
-              >
+              <div className="home-test-card" key={ test.id || test.name } >
 
-                <button
-                  type="button"
-                  className="test-main"
-                  onClick={() =>
-                    openTest(test)
-                  }
-                >
+                <button type="button" className="test-main" onClick={() => openTest(test) } >
 
                   <span className="test-icon">
-                    <Icon
-                      name={test.name?.toLowerCase().includes("thyroid") ? "lab" : test.name?.toLowerCase().includes("lipid") ? "report" : test.name?.toLowerCase().includes("vitamin") ? "shield" : "lab"}
-                      size={18}
-                    />
+                    <Icon name={test.name?.toLowerCase().includes("thyroid") ? "lab" : test.name?.toLowerCase().includes("lipid") ? "report" : test.name?.toLowerCase().includes("vitamin") ? "shield" : "lab"} size={18} />
                   </span>
 
                   <span className="test-information">
@@ -601,13 +529,7 @@ export default function Home() {
 
                 </button>
 
-                <button
-                  type="button"
-                  className="book-button"
-                  onClick={() =>
-                    bookTest(test)
-                  }
-                >
+                <button type="button" className="book-button" onClick={() => bookTest(test) } >
                   Book Now
                 </button>
 
@@ -619,14 +541,7 @@ export default function Home() {
 
       </section>
 
-      {/* =====================================================
-          SCREEN 6 — WHY CHOOSE US
-          ===================================================== */}
-
-      <section
-        id="why-choose-us"
-        className="home-section why-choose-section"
-      >
+      <section id="why-choose-us" className="home-section why-choose-section" >
 
         <div className="section-heading">
 
@@ -640,12 +555,7 @@ export default function Home() {
 
           {whyChooseUs.map(
             (item) => (
-              <div
-                className="why-choose-card"
-                key={
-                  item.title
-                }
-              >
+              <div className="why-choose-card" key={ item.title } >
 
                 <div className="why-choose-icon">
                   <Icon name={item.icon} size={18} />
@@ -666,10 +576,6 @@ export default function Home() {
         </div>
 
       </section>
-
-      {/* =====================================================
-          SCREEN 7 — CONTACT
-          ===================================================== */}
 
       <section className="home-section contact-section-home">
 
@@ -715,11 +621,7 @@ export default function Home() {
 
         </div>
 
-        <a
-          href="tel:+919910108453"
-          onClick={() => trackEvent("call_click")}
-          className="home-contact-card"
-        >
+        <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="home-contact-card" >
 
           <div className="home-contact-icon"><Icon name="phone" size={17} /></div>
 
@@ -765,41 +667,13 @@ export default function Home() {
 
           <div className="social-icons">
 
-            <a
-              href="https://www.facebook.com/lifecarepointlaboratory"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-            >
-              f
-            </a>
+            <a href="https://www.facebook.com/lifecarepointlaboratory" target="_blank" rel="noreferrer" aria-label="Facebook" >  f </a>
 
-            <a
-              href="https://www.instagram.com/lifecarepointlaboratory/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              ◎
-            </a>
+            <a href="https://www.instagram.com/lifecarepointlaboratory/" target="_blank" rel="noreferrer" aria-label="Instagram" >  ◎ </a>
 
-            <a
-              href="https://x.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="X"
-            >
-              𝕏
-            </a>
+            <a href="https://x.com/" target="_blank" rel="noreferrer" aria-label="X" > 𝕏 </a>
 
-            <a
-              href="https://www.youtube.com/@lifecarepointlaboratory"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube"
-            >
-              ▶
-            </a>
+            <a href="https://www.youtube.com/@lifecarepointlaboratory" target="_blank" rel="noreferrer" aria-label="YouTube" > ▶ </a>
 
           </div>
 

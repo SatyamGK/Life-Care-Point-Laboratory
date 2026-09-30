@@ -98,10 +98,6 @@ export default function PackageBooking() {
   return (
     <section className="package-booking-page">
 
-      {/* ============================================
-          SELECTED PACKAGE
-      ============================================ */}
-
       <div className="selected-booking-card">
 
         <div className="selected-booking-image">
@@ -139,11 +135,6 @@ export default function PackageBooking() {
 
       </div>
 
-
-      {/* ============================================
-          FORM
-      ============================================ */}
-
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
@@ -151,13 +142,7 @@ export default function PackageBooking() {
           Call
         </a>
 
-        <a
-          href="https://wa.me/919910108453"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackEvent("whatsapp_click")}
-          className="quick-contact-button whatsapp-button"
-        >
+        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
           <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>

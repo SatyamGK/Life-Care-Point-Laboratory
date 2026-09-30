@@ -1,104 +1,111 @@
-﻿const API_BASE_URL = (
-  import.meta.env.VITE_API_URL || "/api"
-).replace(/\/$/, "");
+﻿const API_BASE = "/api";
 
-async function parseResponse(response) {
-  const contentType = response.headers.get("content-type") || "";
-  const result = contentType.includes("application/json")
-    ? await response.json().catch(() => ({}))
-    : {};
+async function readResponse(response) {
+  const type = response.headers.get("content-type") || "";
+  let data = null;
+
+  if (type.includes("application/json")) {
+    data = await response.json().catch(() => null);
+  } else {
+    const text = await response.text().catch(() => "");
+    data = text ? { message: text } : null;
+  }
 
   if (!response.ok) {
-    let message = result.message;
-
-    if (!message && response.status === 404) {
-      message =
-        "The API endpoint was not found. For local testing, start the project with `npx vercel dev` instead of `npm run dev`.";
-    } else if (!message && response.status >= 500) {
-      message =
-        "The server could not process the request. Check the server environment variables and terminal logs.";
-    } else if (!message) {
-      message = "Unable to process your request.";
-    }
-
-    const error = new Error(message);
+    const error = new Error(
+      data?.message ||
+      data?.error ||
+      `Request failed (${response.status})`
+    );
     error.status = response.status;
-    error.stored = Boolean(result.stored);
-    error.code = result.code || null;
+    error.payload = data;
     throw error;
   }
 
-  if (!contentType.includes("application/json")) {
-    throw new Error(
-      "The API returned a non-JSON response. For local testing, start the project with `npx vercel dev`."
-    );
+  return data || { success: true };
+}
+
+async function post(path, payload) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const response = await fetch(`${API_BASE}${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+      cache: "no-store",
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+
+    return await readResponse(response);
+  } catch (error) {
+    if (error?.name === "AbortError") {
+      throw new Error(
+        "The request timed out. Please check your connection and try again."
+      );
+    }
+
+    throw error instanceof Error && error.message
+      ? error
+      : new Error("Unable to connect to the server. Please try again.");
+  } finally {
+    window.clearTimeout(timer);
   }
-
-  return result;
-}
-
-async function post(path, data) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "same-origin",
-    body: JSON.stringify(data),
-  });
-
-  return parseResponse(response);
-}
-
-export function submitBooking(data) {
-  return post("/bookings", data);
 }
 
 export function submitEnquiry(data) {
   return post("/enquiries", data);
 }
 
-let sessionId = sessionStorage.getItem("lcp_session_id");
-
-if (!sessionId) {
-  sessionId = crypto.randomUUID();
-  sessionStorage.setItem("lcp_session_id", sessionId);
+export function submitBooking(data) {
+  return post("/bookings", data);
 }
 
-export function trackEvent(eventType, metadata = {}) {
+export async function trackEvent(eventType, data = {}) {
   const payload = {
-    eventType,
-    page: `${window.location.pathname}${window.location.search}`,
-    source: "website",
-    sessionId,
-    metadata,
+    event_type: eventType,
+    page: window.location.pathname,
+    source: data.source || "website",
+    session_id: data.session_id || undefined,
+    metadata: data.metadata || {},
   };
 
-  const body = JSON.stringify(payload);
-  const url = `${API_BASE_URL}/events`;
+  try {
+    const body = JSON.stringify(payload);
 
-  // keepalive allows a click event to reach the API even when the browser
-  // immediately follows a tel:/navigation link.
-  if (navigator.sendBeacon) {
-    try {
+    if (navigator.sendBeacon && body.length < 60000) {
       const blob = new Blob([body], {
         type: "application/json",
       });
-      if (navigator.sendBeacon(url, blob)) return;
-    } catch {
-      // Fall back to fetch below.
-    }
-  }
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "same-origin",
-    body,
-    keepalive: true,
-  }).catch(() => {
-    // Analytics must never block the user's primary action.
-  });
+      if (navigator.sendBeacon(`${API_BASE}/events`, blob)) {
+        return { success: true };
+      }
+    }
+
+    const response = await fetch(`${API_BASE}/events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+      cache: "no-store",
+      keepalive: true,
+      body,
+    });
+
+    return readResponse(response);
+  } catch {
+    return { success: false };
+  }
+}
+
+export function getApiBase() {
+  return API_BASE;
 }

@@ -55,12 +55,10 @@ export default function PackageInfo() {
   return (
     <section className="package-info-page">
 
-      {/* Package Image */}
       <div className="package-detail-image">
         <MedicalArt id={packageData.id} type={packageData.type} />
       </div>
 
-      {/* Package Title + Price */}
       <div className="package-detail-heading">
         <div>
           <span className="package-detail-label">
@@ -83,14 +81,12 @@ export default function PackageInfo() {
         </div>
       </div>
 
-      {/* Description */}
       {packageData.description && (
         <p className="test-detail-description">
           {packageData.description}
         </p>
       )}
 
-      {/* Included Tests */}
       <div className="package-test-heading">
         <span>PACKAGE INCLUDES</span>
 
@@ -99,7 +95,6 @@ export default function PackageInfo() {
         </h2>
       </div>
 
-      {/* Simple Test List */}
       <div className="package-simple-test-list">
         {packageTests.map((test, index) => (
           <div className="package-simple-test" key={`${test.id}-${index}`} >
@@ -110,7 +105,6 @@ export default function PackageInfo() {
         ))}
       </div>
 
-      {/* Book Package */}
       <button type="button" className="detail-book-button" onClick={bookPackage} >
         Book Now
       </button>

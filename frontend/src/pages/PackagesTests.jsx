@@ -19,7 +19,6 @@ export default function PackagesTests() {
     });
   };
 
-
   const openTest = (item) => {
     navigate("/test-info", {
       state: {
@@ -28,7 +27,6 @@ export default function PackagesTests() {
     });
   };
 
-
   const bookPackage = (item) => {
     navigate("/package-booking", {
       state: {
@@ -36,7 +34,6 @@ export default function PackagesTests() {
       },
     });
   };
-
 
   const bookTest = (item) => {
     navigate("/test-booking", {
@@ -48,10 +45,6 @@ export default function PackagesTests() {
 
   return (
     <section className="listing-page">
-
-      {/* =================================================
-          TABS
-      ================================================= */}
 
       <div className="listing-tabs">
 
@@ -73,10 +66,6 @@ export default function PackagesTests() {
         </button>
 
       </div>
-
-      {/* =================================================
-          PACKAGES
-      ================================================= */}
 
       {activeTab === "packages" && (
         <div className="listing-items">
@@ -127,11 +116,6 @@ export default function PackagesTests() {
 
         </div>
       )}
-
-
-      {/* =================================================
-          TESTS
-      ================================================= */}
 
       {activeTab === "tests" && (
         <div className="listing-items">

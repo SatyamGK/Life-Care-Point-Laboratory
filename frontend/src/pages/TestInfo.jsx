@@ -45,20 +45,11 @@ export default function TestInfo() {
   return (
     <section className="test-info-page">
 
-      {/* ============================================
-          TEST IMAGE
-      ============================================ */}
-
       <div className="test-detail-image">
 
         <MedicalArt id={test.id} type={test.type} />
 
       </div>
-
-
-      {/* ============================================
-          TITLE
-      ============================================ */}
 
       <div className="test-detail-heading">
 
@@ -82,19 +73,9 @@ export default function TestInfo() {
 
       </div>
 
-
-      {/* ============================================
-          DESCRIPTION
-      ============================================ */}
-
       <p className="test-detail-description">
         {test.description}
       </p>
-
-
-      {/* ============================================
-          BOOK
-      ============================================ */}
 
       <button type="button" className="detail-book-button" onClick={bookTest} >
         Book Now

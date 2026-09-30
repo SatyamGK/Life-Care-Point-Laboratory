@@ -1,7 +1,3 @@
--- LifeCare Point Laboratory production schema.
--- Server/API uses the Supabase service role; browser users do not receive
--- direct read/write access to these sensitive tables.
-
 create table if not exists public.bookings (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
@@ -68,8 +64,6 @@ alter table public.bookings enable row level security;
 alter table public.enquiries enable row level security;
 alter table public.interaction_events enable row level security;
 
--- No public/anon policies are created intentionally. Server API operations
--- use the service-role key and therefore bypass RLS.
 revoke all on public.bookings from anon, authenticated;
 revoke all on public.enquiries from anon, authenticated;
 revoke all on public.interaction_events from anon, authenticated;
@@ -110,9 +104,6 @@ begin
     raise exception 'Invalid rate limit maximum';
   end if;
 
-  -- Serialize concurrent requests for the same logical bucket. This avoids
-  -- the race where two first-time requests both observe "no row" and then
-  -- attempt to insert the same key simultaneously.
   perform pg_advisory_xact_lock(hashtextextended(p_key, 0));
 
   select * into v_row
@@ -155,9 +146,5 @@ $$;
 revoke all on function public.consume_rate_limit(text, integer, integer) from public, anon, authenticated;
 grant execute on function public.consume_rate_limit(text, integer, integer) to service_role;
 
--- Abuse-control hardening:
--- Counters are keyed by a server-derived Vercel client IP hash, endpoint,
--- mobile identity hash, or duplicate fingerprint. No client can choose the
--- rate-limit key.
 create index if not exists api_rate_limits_window_idx
   on public.api_rate_limits(window_started_at);

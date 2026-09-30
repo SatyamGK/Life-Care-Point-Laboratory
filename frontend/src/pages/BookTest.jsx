@@ -75,10 +75,6 @@ export default function BookTest() {
   return (
     <section className="simple-booking-page">
 
-      {/* ============================================
-          TOP HEALTH PARTNER CARD
-      ============================================ */}
-
       <div className="health-partner-card">
 
         <h1>
@@ -93,11 +89,6 @@ export default function BookTest() {
 
       </div>
 
-
-      {/* ============================================
-          CALL / WHATSAPP
-      ============================================ */}
-
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
@@ -105,34 +96,20 @@ export default function BookTest() {
           Call
         </a>
 
-        <a
-          href="https://wa.me/919910108453"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackEvent("whatsapp_click")}
-          className="quick-contact-button whatsapp-button"
-        >
+        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
           <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>
 
       </div>
 
-
       <div className="booking-or">
         OR
       </div>
 
-
-      {/* ============================================
-          FORM
-      ============================================ */}
-
       <div className="simple-booking-card">
 
         <form onSubmit={handleSubmit} noValidate >
-
-          {/* FULL NAME */}
 
           <div className="simple-form-field">
 
@@ -153,9 +130,6 @@ export default function BookTest() {
             )}
 
           </div>
-
-
-          {/* MOBILE */}
 
           <div className="simple-form-field">
 
@@ -191,22 +165,13 @@ export default function BookTest() {
 
           </div>
 
-
-          {/* PRIVACY TEXT */}
-
           <p className="simple-form-note">
             We'll only use these details to get in touch about your test.
           </p>
 
-
-          {/* SUBMIT */}
-
           <button type="submit" className="simple-submit-button" disabled={loading} >
             {loading ? "Submitting..." : "Submit"}
           </button>
-
-
-          {/* SECURITY */}
 
           <div className="simple-security">
             <span>🔒</span>

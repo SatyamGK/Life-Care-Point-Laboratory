@@ -99,10 +99,6 @@ export default function TestBooking() {
   return (
     <section className="test-booking-page">
 
-      {/* ============================================
-          SELECTED TEST
-      ============================================ */}
-
       <div className="selected-booking-card">
 
         <div className="selected-booking-image">
@@ -140,11 +136,6 @@ export default function TestBooking() {
 
       </div>
 
-
-      {/* ============================================
-          PATIENT DETAILS
-      ============================================ */}
-
       <div className="contact-choice-row">
 
         <a href="tel:+919910108453" onClick={() => trackEvent("call_click")} className="quick-contact-button call-button" >
@@ -152,25 +143,17 @@ export default function TestBooking() {
           Call
         </a>
 
-        <a
-          href="https://wa.me/919910108453"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackEvent("whatsapp_click")}
-          className="quick-contact-button whatsapp-button"
-        >
+        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
           <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>
 
       </div>
 
-
       <div className="booking-or">
         OR
       </div>
       
-
       <div className="compact-patient-card">
 
         <h2>

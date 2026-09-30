@@ -71,7 +71,6 @@ export function assertServerConfig() {
   assertWhatsAppConfig();
 }
 
-/** Vercel supplies/overwrites these headers with the requester's public IP. */
 export function clientIp(req) {
   const candidates = [
     req.headers["x-vercel-forwarded-for"],

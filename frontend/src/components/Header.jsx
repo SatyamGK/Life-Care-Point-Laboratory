@@ -25,8 +25,6 @@ export default function Header() {
           <span className="header-back-placeholder"></span>
         )}
 
-
-        {/* Logo + Brand */}
         <Link to="/" className="header-brand" aria-label="Life Care Point Laboratory Home">
 
           <div className="header-logo-image">
@@ -42,8 +40,6 @@ export default function Header() {
 
       </div>
 
-
-      {/* Hamburger */}
       <button type="button" className="header-menu-button" onClick={() => navigate("/menu")} aria-label="Open menu">
         <Icon name="menu" size={16} />
       </button>
