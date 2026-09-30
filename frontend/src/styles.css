@@ -104,7 +104,7 @@ img, svg {
   display: block;
   width: 20px;
   height: 32px;
-  flex: 0 0 20px;
+  flex: 0;
 }
 
 .header-brand {
@@ -157,7 +157,7 @@ img, svg {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.8px;
-  color: #78908b;
+  color: #084f46;
   line-height: 1;
 }
 
@@ -3281,7 +3281,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin: 0;
   color: #163934;
   font-family: "Playfair Display", serif;
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 2;
 }
 
@@ -4529,7 +4529,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   height: min(82%, 490px);
   object-fit: contain;
   transform-origin: center;
-  filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1));
+  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -4642,7 +4642,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   object-fit: contain;
   transform: translateZ(0);
   will-change: contents;
-  filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1));
+  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -4933,3 +4933,68 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   transform: translate3d(0, 0, 0) rotate(0deg) scale(1) !important;
 }
 }
+
+.hero-3d-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-size: 11px;
+  color: #9b1c1c;
+}
+
+.hero-scroll-track {
+  width: 100%;
+  height: calc(100px + clamp(320px, 55svh, 520px));
+}
+
+.hero-media {
+  position: sticky;
+  top: 54px;
+  width: 390px;
+  max-width: 100%;
+  height: 380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hero-3d-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero-3d-canvas.is-ready {
+  opacity: 1;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #e5f2ef;
+  color: #084f46;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+  .hero-scroll-track { height: 435px; }
+  .hero-media { position: relative; top: 0; }
+  .hero-scroll-hint { display: none; }
+} */

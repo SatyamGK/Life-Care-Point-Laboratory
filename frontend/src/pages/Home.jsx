@@ -509,8 +509,7 @@ export default function Home() {
 
                     <small>
                       {
-                        test.parameters ||
-                        1
+                        test.parameters || 1
                       }{" "}
                       parameters
 

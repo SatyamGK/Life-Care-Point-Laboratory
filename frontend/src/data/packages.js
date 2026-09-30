@@ -108,7 +108,7 @@
     name: "VIT-D3 VIT-B12",
     shortName: "VIT-D3 VIT-B12",
     type: "vit-d3-vit-b12",
-    image: "/images/packages/vit-d-vit-b12.png",
+    image: "/images/packages/vit-d3-vit-b12.png",
     oldPrice: 1799,
     price: 1399,
     description: "Vitamin D3 and Vitamin B12 deficiency screening.",

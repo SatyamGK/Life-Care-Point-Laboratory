@@ -7,7 +7,7 @@ const imageMap = {
   "body-profile-3": "/images/packages/body-profile-3.png",
   "diabetes-profile": "/images/packages/diabetes-profile.png",
   "arthritis-profile": "/images/packages/arthritis-profile.png",
-  "vit-d-vit-b12": "/images/packages/vit-d-vit-b12.png",
+  "vit-d3-vit-b12": "/images/packages/vit-d3-vit-b12.png",
   "anaemia-profile": "/images/packages/anaemia-profile.png",
 
   "cbc-with-esr": "/images/tests/cbc-with-esr.png",
@@ -73,7 +73,7 @@ export default function MedicalArt({
   if (!image) {
     return (
       <div className={`medical-art-fallback ${className}`} >
-        ðŸ§ª
+        Image
       </div>
     );
   }

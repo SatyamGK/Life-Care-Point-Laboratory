@@ -1,13 +1,7 @@
 export default function Icon({ name, size = 20, className = "", title }) {
   if (name === "whatsapp") {
     return (
-      <img
-        src="/images/whatsapp-black-white.svg"
-        alt={title || "WhatsApp"}
-        className={`lcp-icon lcp-icon-image ${className}`}
-        width={size}
-        height={size}
-      />
+      <img src="/images/whatsapp-black-white.svg" alt={title || "WhatsApp"} className={`lcp-icon lcp-icon-image ${className}`} width={size} height={size} />
     );
   }
 
@@ -35,19 +29,7 @@ export default function Icon({ name, size = 20, className = "", title }) {
   };
 
   return (
-    <svg
-      className={`lcp-icon ${className}`}
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden={title ? undefined : true}
-      role={title ? "img" : undefined}
-    >
+    <svg className={`lcp-icon ${className}`} width={size} height={size} viewBox="0 0 24 24" fill="none"  stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden={title ? undefined : true} role={title ? "img" : undefined} >
       {title ? <title>{title}</title> : null}
       {paths[name] || paths.lab}
     </svg>

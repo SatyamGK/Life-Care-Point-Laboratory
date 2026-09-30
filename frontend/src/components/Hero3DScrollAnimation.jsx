@@ -1,120 +1,145 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const frameModules = import.meta.glob(
-  "../hero-3d/Test-tube_image_*.webp",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-function getFrameNumber(path) {
-  const match = path.match(/Test-tube_image_(\d+)\.webp$/i);
-  return match ? Number(match[1]) : 0;
-}
-
-const FRAME_URLS = Object.entries(frameModules)
-  .sort(
-    ([a], [b]) =>
-      getFrameNumber(a) - getFrameNumber(b)
-  )
-  .map(([, url]) => url)
-  .filter(Boolean);
+const TOTAL_FRAMES = 50;
+const HEADER_OFFSET = 54;
+const frameUrl = (n) => `/hero-3d/Test-tube_image_${String(n).padStart(2, "0")}.jpg`;
+const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
 export default function Hero3DScrollAnimation() {
-  const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const rafRef = useRef(0);
-  const lastFrameRef = useRef(-1);
-  const imagesRef = useRef([]);
-
-  const frames = useMemo(
-    () => FRAME_URLS,
-    []
-  );
+  const trackRef = useRef(null);
+  const stageRef = useRef(null);
+  const canvasRef = useRef(null);
+  const hintRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const image = imageRef.current;
+    const track = trackRef.current;
+    const stage = stageRef.current;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!track || !stage || !canvas || !ctx) return undefined;
 
-    if (!section || !image || !frames.length) {
-      return undefined;
-    }
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const frames = new Array(TOTAL_FRAMES).fill(null);
+    let disposed = false;
+    let raf = 0;
+    let current = -1;
+    let lastDrawn = -1;
+    let loadErrors = 0;
 
-    const preload = () => {
-      imagesRef.current = frames.map((src) => {
-        const img = new Image();
-        img.src = src;
-        return img;
-      });
+    const nearestLoaded = (index) => {
+      for (let d = 0; d < TOTAL_FRAMES; d += 1) {
+        if (frames[index - d]) return frames[index - d];
+        if (frames[index + d]) return frames[index + d];
+      }
+      return null;
     };
 
-    preload();
+    const draw = (index) => {
+      const image = nearestLoaded(index);
+      if (!image) return;
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (!w || !h) return;
+      ctx.clearRect(0, 0, w, h);
+      const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
+      const dw = image.naturalWidth * scale;
+      const dh = image.naturalHeight * scale;
+      ctx.drawImage(image, (w - dw) / 2, (h - dh) / 2, dw, dh);
+      lastDrawn = index;
+    };
+
+    const indexFromScroll = () => {
+      if (reduceMotion.matches) return Math.round((TOTAL_FRAMES - 1) / 2);
+      const rect = track.getBoundingClientRect();
+      const travel = Math.max(1, track.offsetHeight - stage.offsetHeight);
+      const fraction = clamp((HEADER_OFFSET - rect.top) / travel, 0, 1);
+      if (hintRef.current) hintRef.current.style.opacity = fraction > 0.02 ? "0" : "1";
+      return Math.round(fraction * (TOTAL_FRAMES - 1));
+    };
 
     const update = () => {
-      rafRef.current = 0;
-
-      const rect = section.getBoundingClientRect();
-
-      const scrollDistance = Math.max( section.offsetHeight - window.innerHeight, 1 );
-
-      let progress = -rect.top / scrollDistance;
-
-      progress = Math.max( 0, Math.min(1, progress));
-
-      const frameIndex = Math.min( frames.length - 1, Math.floor(progress * (frames.length - 1)));
-
-      if (
-        frameIndex !== lastFrameRef.current
-      ) {
-        image.src = frames[frameIndex];
-        lastFrameRef.current = frameIndex;
-      }
-
-      const active = rect.top <= 0 && rect.bottom >= window.innerHeight * 0.25;
-
-      image.style.opacity = active || progress === 0 ? "1" : "0";
-
-      image.dataset.frame = String(frameIndex + 1);
+      raf = 0;
+      current = indexFromScroll();
+      if (current !== lastDrawn) draw(current);
     };
 
-    const requestUpdate = () => {
-      if (!rafRef.current) {
-        rafRef.current = window.requestAnimationFrame(update);
-      }
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(update);
     };
 
-    window.addEventListener("scroll",requestUpdate, { passive: true } );
+    const resize = () => {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(canvas.clientWidth * ratio);
+      canvas.height = Math.round(canvas.clientHeight * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      lastDrawn = -1;
+      schedule();
+    };
 
-    window.addEventListener( "resize", requestUpdate );
-    image.src = frames[0];
-    lastFrameRef.current = 0;
+    const load = (i) =>
+      new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => {
+          if (!disposed) {
+            frames[i] = img;
+            if (i === 0) setReady(true);
+            if (i === current || lastDrawn === -1) schedule();
+          }
+          resolve();
+        };
+        img.onerror = () => {
+          loadErrors += 1;
+          if (!disposed && loadErrors === 1) {
+            console.error(
+              `[Hero3DScrollAnimation] Could not load ${frameUrl(i + 1)}. ` +
+                `Check that the file exists in /public/hero-3d/.`
+            );
+            setFailed(true);
+          }
+          resolve();
+        };
+        img.src = frameUrl(i + 1);
+      });
 
-    requestUpdate();
+    (async () => {
+      await load(0);
+      const queue = Array.from({ length: TOTAL_FRAMES - 1 }, (_, k) => k + 1);
+      const worker = async () => {
+        while (queue.length && !disposed) await load(queue.shift());
+      };
+      await Promise.all([worker(), worker(), worker()]);
+    })();
+
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    reduceMotion.addEventListener?.("change", schedule);
+    resize();
 
     return () => {
-      window.removeEventListener( "scroll", requestUpdate );
-
-      window.removeEventListener( "resize", requestUpdate );
-
-      if (rafRef.current) { 
-        window.cancelAnimationFrame( rafRef.current );
-      }
-
-      imagesRef.current = [];
+      disposed = true;
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      reduceMotion.removeEventListener?.("change", schedule);
+      if (raf) cancelAnimationFrame(raf);
     };
-  }, [frames]);
-
-  if (!frames.length) {
-    return null;
-  }
+  }, []);
 
   return (
-    <section ref={sectionRef} className="test-tube-scroll-section" aria-label="Test tube animation" >
-      <div className="test-tube-scroll-stage">
-        <img ref={imageRef} src={frames[0]} alt="Laboratory test tube" className="test-tube-scroll-image" draggable="false" />
+    <div ref={trackRef} className="hero-scroll-track">
+      <div ref={stageRef} className="hero-media">
+        <canvas ref={canvasRef} className={`hero-3d-canvas${ready ? " is-ready" : ""}`} role="img" aria-label="Laboratory test tube rotating as you scroll" />
+        {failed && !ready && (
+          <div className="hero-3d-error" role="status">
+            Animation frames not found in /public/hero-3d/
+          </div>
+        )}
       </div>
-    </section>
+    </div>
   );
 }
