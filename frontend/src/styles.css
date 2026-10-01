@@ -4991,8 +4991,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .test-tube-scroll-section {
   position: relative;
-  width: 50%;
-  min-height: 62vh;
+  width: 68%;
+  min-height: 85vh;
   margin: 0;
   padding: 0;
   overflow: visible;
@@ -5002,7 +5002,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   position: sticky;
   top: 0;
   width: 100%;
-  height: 55vh;
+  height: 75vh;
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -5035,12 +5035,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 @media (max-width: 767px) {
   .test-tube-scroll-section {
-    min-height: 45vh;
+    min-height: 85vh;
     margin: 0;
     padding: 0;
   }
   .test-tube-scroll-stage {
-    height: 42svh;
+    height: 52svh;
     min-height: 0;
     margin: 0;
     padding: 0;
@@ -5059,7 +5059,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
 
   .test-tube-scroll-section {
-    min-height: 50vh;
+    min-height: 85vh;
   }
 
 }
