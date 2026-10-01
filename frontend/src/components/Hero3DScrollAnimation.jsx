@@ -34,8 +34,8 @@ export default function Hero3DScrollAnimation() {
   const isVisibleRef = useRef(false);
   const preloadedImagesRef = useRef([]);
   const frames = useMemo( () => FRAME_URLS, [] );
-  const DESKTOP_SCROLL_DISTANCE = 1.6;
-  const MOBILE_SCROLL_DISTANCE = 1.35;
+  const DESKTOP_SCROLL_DISTANCE = 0.75;
+  const MOBILE_SCROLL_DISTANCE = 0.5;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -70,9 +70,9 @@ export default function Hero3DScrollAnimation() {
     const updateFrame = () => {
         rafRef.current = 0;
 
-        if (!isVisibleRef.current) {
-          return;
-        }
+        // if (!isVisibleRef.current) {
+        //   return;
+        // }
 
         if (reducedMotionQuery.matches) {
           resetAnimation();
@@ -152,7 +152,7 @@ export default function Hero3DScrollAnimation() {
         {
           root: null,
           rootMargin: "0px 0px 0px 0px",
-          threshold: 0.05,
+          threshold: 0.10,
         }
       );
 
