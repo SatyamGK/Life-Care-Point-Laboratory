@@ -1,145 +1,224 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
-const TOTAL_FRAMES = 50;
-const HEADER_OFFSET = 54;
-const frameUrl = (n) => `/hero-3d/Test-tube_image_${String(n).padStart(2, "0")}.jpg`;
-const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+const frameModules = import.meta.glob(
+  "../hero-3d/Test-tube_image_*.webp",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+function getFrameNumber(path) {
+  const match = path.match(/Test-tube_image_(\d+)\.webp$/i);
+  return match ? Number(match[1]) : 0;
+}
+
+const FRAME_URLS = Object.entries(frameModules)
+  .sort(([pathA], [pathB]) => getFrameNumber(pathA) - getFrameNumber(pathB))
+  .map(([, url]) => url)
+  .filter(Boolean);
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
 
 export default function Hero3DScrollAnimation() {
-  const trackRef = useRef(null);
-  const stageRef = useRef(null);
-  const canvasRef = useRef(null);
-  const hintRef = useRef(null);
-  const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const currentFrameRef = useRef(0);
+  const animationStartedRef = useRef(false);
+  const animationStartScrollRef = useRef(null);
+  const lastScrollYRef = useRef(0);
+  const rafRef = useRef(0);
+  const isVisibleRef = useRef(false);
+  const preloadedImagesRef = useRef([]);
+  const frames = useMemo( () => FRAME_URLS, [] );
+  const DESKTOP_SCROLL_DISTANCE = 1.6;
+  const MOBILE_SCROLL_DISTANCE = 1.35;
 
   useEffect(() => {
-    const track = trackRef.current;
-    const stage = stageRef.current;
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!track || !stage || !canvas || !ctx) return undefined;
+    const section = sectionRef.current;
+    const image = imageRef.current;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const frames = new Array(TOTAL_FRAMES).fill(null);
-    let disposed = false;
-    let raf = 0;
-    let current = -1;
-    let lastDrawn = -1;
-    let loadErrors = 0;
+    if ( !section || !image || !frames.length) {
+      return undefined;
+    }
 
-    const nearestLoaded = (index) => {
-      for (let d = 0; d < TOTAL_FRAMES; d += 1) {
-        if (frames[index - d]) return frames[index - d];
-        if (frames[index + d]) return frames[index + d];
-      }
-      return null;
-    };
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const draw = (index) => {
-      const image = nearestLoaded(index);
-      if (!image) return;
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      if (!w || !h) return;
-      ctx.clearRect(0, 0, w, h);
-      const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
-      const dw = image.naturalWidth * scale;
-      const dh = image.naturalHeight * scale;
-      ctx.drawImage(image, (w - dw) / 2, (h - dh) / 2, dw, dh);
-      lastDrawn = index;
-    };
-
-    const indexFromScroll = () => {
-      if (reduceMotion.matches) return Math.round((TOTAL_FRAMES - 1) / 2);
-      const rect = track.getBoundingClientRect();
-      const travel = Math.max(1, track.offsetHeight - stage.offsetHeight);
-      const fraction = clamp((HEADER_OFFSET - rect.top) / travel, 0, 1);
-      if (hintRef.current) hintRef.current.style.opacity = fraction > 0.02 ? "0" : "1";
-      return Math.round(fraction * (TOTAL_FRAMES - 1));
-    };
-
-    const update = () => {
-      raf = 0;
-      current = indexFromScroll();
-      if (current !== lastDrawn) draw(current);
-    };
-
-    const schedule = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-
-    const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(canvas.clientWidth * ratio);
-      canvas.height = Math.round(canvas.clientHeight * ratio);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      lastDrawn = -1;
-      schedule();
-    };
-
-    const load = (i) =>
-      new Promise((resolve) => {
+    preloadedImagesRef.current = frames.map((src) => {
         const img = new Image();
         img.decoding = "async";
-        img.onload = () => {
-          if (!disposed) {
-            frames[i] = img;
-            if (i === 0) setReady(true);
-            if (i === current || lastDrawn === -1) schedule();
-          }
-          resolve();
-        };
-        img.onerror = () => {
-          loadErrors += 1;
-          if (!disposed && loadErrors === 1) {
-            console.error(
-              `[Hero3DScrollAnimation] Could not load ${frameUrl(i + 1)}. ` +
-                `Check that the file exists in /public/hero-3d/.`
-            );
-            setFailed(true);
-          }
-          resolve();
-        };
-        img.src = frameUrl(i + 1);
+        img.src = src;
+        return img;
       });
 
-    (async () => {
-      await load(0);
-      const queue = Array.from({ length: TOTAL_FRAMES - 1 }, (_, k) => k + 1);
-      const worker = async () => {
-        while (queue.length && !disposed) await load(queue.shift());
+    lastScrollYRef.current = window.scrollY;
+    image.src = frames[0];
+    image.dataset.frame = "1";
+    currentFrameRef.current = 0;
+
+    const resetAnimation = () => {
+        animationStartedRef.current = false;
+        animationStartScrollRef.current = null;
+        image.src = frames[0];
+        image.dataset.frame = "1";
+        currentFrameRef.current = 0;
       };
-      await Promise.all([worker(), worker(), worker()]);
-    })();
 
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule, { passive: true });
-    reduceMotion.addEventListener?.("change", schedule);
-    resize();
+    const updateFrame = () => {
+        rafRef.current = 0;
 
+        if (!isVisibleRef.current) {
+          return;
+        }
+
+        if (reducedMotionQuery.matches) {
+          resetAnimation();
+          return;
+        }
+
+        const currentScrollY = window.scrollY;
+
+        if (!animationStartedRef.current) {
+          if (currentScrollY !== lastScrollYRef.current) {
+            animationStartedRef.current = true;
+            animationStartScrollRef.current = lastScrollYRef.current;
+          }
+        }
+
+        if (!animationStartedRef.current) {
+          lastScrollYRef.current = currentScrollY;
+          return;
+        }
+
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+        const scrollDistance = window.innerHeight * (isMobile ? MOBILE_SCROLL_DISTANCE : DESKTOP_SCROLL_DISTANCE);
+        const startScroll = animationStartScrollRef.current;
+        const travelled = currentScrollY - startScroll;
+
+        let progress = travelled / scrollDistance;
+        progress = clamp(progress, 0, 1);
+
+        const frameIndex = Math.round(progress * (frames.length - 1));
+        const safeFrameIndex = clamp(frameIndex, 0, frames.length - 1);
+
+        if (safeFrameIndex !== currentFrameRef.current) {
+
+          const preloadedImage = preloadedImagesRef.current[safeFrameIndex];
+
+          if (preloadedImage && preloadedImage.complete && preloadedImage.naturalWidth > 0) {
+            image.src = preloadedImage.src;
+          } else {
+            image.src = frames[safeFrameIndex];
+          }
+
+          currentFrameRef.current = safeFrameIndex;
+          image.dataset.frame = String(safeFrameIndex + 1);
+
+        }
+
+        lastScrollYRef.current = currentScrollY;
+      };
+
+    const requestUpdate = () => {
+        if (rafRef.current) {
+          return;
+        }
+        rafRef.current = window.requestAnimationFrame(updateFrame);
+      };
+
+    const handleScroll = () => {
+        requestUpdate();
+      };
+
+    const handleResize = () => {
+        requestUpdate();
+      };
+
+    const handleReducedMotionChange = () => {
+        resetAnimation();
+        requestUpdate();
+      };
+
+    const observer = new IntersectionObserver((entries) => {
+          const entry = entries[0];
+          isVisibleRef.current = Boolean(entry?.isIntersecting);
+          if (isVisibleRef.current) {
+            lastScrollYRef.current = window.scrollY;
+          }
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.05,
+        }
+      );
+
+    observer.observe(section);
+
+    window.addEventListener(
+      "scroll",
+      handleScroll,
+      {
+        passive: true,
+      }
+    );
+
+    window.addEventListener(
+      "resize",
+      handleResize,
+      {
+        passive: true,
+      }
+    );
+
+    if (reducedMotionQuery.addEventListener) {
+      reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+    }
+    requestUpdate();
     return () => {
-      disposed = true;
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+
+      if (reducedMotionQuery.removeEventListener) {
+        reducedMotionQuery.removeEventListener(
+          "change",
+          handleReducedMotionChange
+        );
+      }
+
       observer.disconnect();
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      reduceMotion.removeEventListener?.("change", schedule);
-      if (raf) cancelAnimationFrame(raf);
+
+      if (rafRef.current) {
+        window.cancelAnimationFrame(
+          rafRef.current
+        );
+      }
+
+      rafRef.current = 0;
+      preloadedImagesRef.current = [];
     };
-  }, []);
+  }, [frames]);
+
+  if (!frames.length) {
+    return null;
+  }
 
   return (
-    <div ref={trackRef} className="hero-scroll-track">
-      <div ref={stageRef} className="hero-media">
-        <canvas ref={canvasRef} className={`hero-3d-canvas${ready ? " is-ready" : ""}`} role="img" aria-label="Laboratory test tube rotating as you scroll" />
-        {failed && !ready && (
-          <div className="hero-3d-error" role="status">
-            Animation frames not found in /public/hero-3d/
-          </div>
-        )}
+    <section ref={sectionRef} className="test-tube-scroll-section" aria-label="Laboratory test tube animation" >
+      <div className="test-tube-scroll-stage" >
+        <img ref={imageRef} src={frames[0]} alt="Laboratory test tube" className="test-tube-scroll-image" draggable="false" />
       </div>
-    </div>
+    </section>
   );
+
 }

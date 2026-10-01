@@ -4725,16 +4725,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     height: 250vh;
     min-height: 1700px;
   }
-
   .hero-3d-sticky {
     min-height: 390px;
   }
-
   .hero-3d-caption {
     bottom: 12px;
     font-size: 9px;
   }
-
   .map-preview-wrap {
     height: 190px;
   }
@@ -4833,8 +4830,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   filter: none;
 }
 
-.quick-contact-button, .home-whatsapp-button,
-.contact-whatsapp, .direct-whatsapp {
+.quick-contact-button, .home-whatsapp-button, .contact-whatsapp, .direct-whatsapp {
   gap: 7px;
 }
 
@@ -4993,8 +4989,77 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   pointer-events: none;
 }
 
-/* @media (prefers-reduced-motion: reduce) {
-  .hero-scroll-track { height: 435px; }
-  .hero-media { position: relative; top: 0; }
-  .hero-scroll-hint { display: none; }
-} */
+.test-tube-scroll-section {
+  position: relative;
+  width: 50%;
+  min-height: 80vh;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.test-tube-scroll-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 80vh;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.test-tube-scroll-image {
+  display: block;
+  width: min(
+    82vw,
+    600px
+  );
+  height: auto;
+  max-height: 94vh;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  image-rendering: auto;
+}
+
+@media (max-width: 767px) {
+  .test-tube-scroll-section {
+    min-height: 85vh;
+    margin: 0;
+    padding: 0;
+  }
+  .test-tube-scroll-stage {
+    height: 100svh;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .test-tube-scroll-image {
+    width: min(
+      92vw,
+      430px
+    );
+    max-height: 88svh;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .test-tube-scroll-section {
+    min-height: 80vh;
+  }
+
+}
