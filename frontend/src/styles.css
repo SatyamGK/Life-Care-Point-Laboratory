@@ -5035,12 +5035,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 @media (max-width: 767px) {
   .test-tube-scroll-section {
-    min-height: 55vh;
+    min-height: 57vh;
     margin: 0;
     padding: 0;
   }
   .test-tube-scroll-stage {
-    height: 52svh;
+    height: 55svh;
     min-height: 0;
     margin: 0;
     padding: 0;
