@@ -5035,7 +5035,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 @media (max-width: 767px) {
   .test-tube-scroll-section {
-    min-height: 58vh;
+    min-height: 55vh;
     margin: 0;
     padding: 0;
   }
