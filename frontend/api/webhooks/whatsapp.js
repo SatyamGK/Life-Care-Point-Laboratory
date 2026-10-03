@@ -172,47 +172,71 @@ export default async function handler(
    *     &hub.challenge=...
    */
 
+//   if (req.method === "GET") {
+//     const mode =
+//       getQueryValue(
+//         req,
+//         "hub.mode"
+//       );
+
+//     const token =
+//       getQueryValue(
+//         req,
+//         "hub.verify_token"
+//       );
+
+//     const challenge =
+//       getQueryValue(
+//         req,
+//         "hub.challenge"
+//       );
+
+//     if (
+//       mode === "subscribe" &&
+//       token &&
+//       process.env
+//         .WHATSAPP_WEBHOOK_VERIFY_TOKEN &&
+//       token ===
+//         process.env
+//           .WHATSAPP_WEBHOOK_VERIFY_TOKEN
+//     ) {
+//       return res
+//         .status(200)
+//         .send(challenge);
+//     }
+
+//     return res
+//       .status(403)
+//       .json({
+//         success: false,
+//         message:
+//           "Webhook verification failed.",
+//       });
+//   }
+
+export default async function handler(req, res) {
   if (req.method === "GET") {
-    const mode =
-      getQueryValue(
-        req,
-        "hub.mode"
-      );
+    const mode = req.query["hub.mode"];
+    const token = req.query["hub.verify_token"];
+    const challenge = req.query["hub.challenge"];
 
-    const token =
-      getQueryValue(
-        req,
-        "hub.verify_token"
-      );
-
-    const challenge =
-      getQueryValue(
-        req,
-        "hub.challenge"
-      );
+    const verifyToken = process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN;
 
     if (
       mode === "subscribe" &&
-      token &&
-      process.env
-        .WHATSAPP_WEBHOOK_VERIFY_TOKEN &&
-      token ===
-        process.env
-          .WHATSAPP_WEBHOOK_VERIFY_TOKEN
+      token === verifyToken
     ) {
-      return res
-        .status(200)
-        .send(challenge);
+      return res.status(200).send(challenge);
     }
 
-    return res
-      .status(403)
-      .json({
-        success: false,
-        message:
-          "Webhook verification failed.",
-      });
+    return res.status(403).json({
+      success: false,
+      message: "Webhook verification failed.",
+    });
   }
+
+  // POST webhook handling...
+}
 
   if (req.method !== "POST") {
     res.setHeader(
