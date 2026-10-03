@@ -3,8 +3,9 @@ import {
   sendJson,
 } from "../_lib/server.js";
 
-function getQueryValue(req, name) {
-  const value = req.query?.[name];
+function queryValue(req, name) {
+  const value =
+    req.query?.[name];
 
   if (Array.isArray(value)) {
     return value[0];
@@ -15,8 +16,10 @@ function getQueryValue(req, name) {
     : String(value);
 }
 
-function getBody(req) {
-  if (!req.body) return {};
+function bodyObject(req) {
+  if (!req.body) {
+    return {};
+  }
 
   if (typeof req.body === "object") {
     return req.body;
@@ -139,6 +142,7 @@ async function updateMessageStatus(
     {
       messageId,
       status,
+
       recipientId:
         statusRecord?.recipient_id ||
         null,
@@ -154,6 +158,10 @@ async function updateMessageStatus(
   );
 }
 
+/* =========================================================
+   WEBHOOK HANDLER
+========================================================= */
+
 export default async function handler(
   req,
   res
@@ -163,80 +171,63 @@ export default async function handler(
     "no-store, max-age=0"
   );
 
-  /*
-   * META WEBHOOK VERIFICATION
-   *
-   * Meta sends:
-   * GET ?hub.mode=subscribe
-   *     &hub.verify_token=...
-   *     &hub.challenge=...
-   */
+  /* -----------------------------------------
+     META VERIFICATION
+  ----------------------------------------- */
 
-//   if (req.method === "GET") {
-//     const mode =
-//       getQueryValue(
-//         req,
-//         "hub.mode"
-//       );
-
-//     const token =
-//       getQueryValue(
-//         req,
-//         "hub.verify_token"
-//       );
-
-//     const challenge =
-//       getQueryValue(
-//         req,
-//         "hub.challenge"
-//       );
-
-//     if (
-//       mode === "subscribe" &&
-//       token &&
-//       process.env
-//         .WHATSAPP_WEBHOOK_VERIFY_TOKEN &&
-//       token ===
-//         process.env
-//           .WHATSAPP_WEBHOOK_VERIFY_TOKEN
-//     ) {
-//       return res
-//         .status(200)
-//         .send(challenge);
-//     }
-
-//     return res
-//       .status(403)
-//       .json({
-//         success: false,
-//         message:
-//           "Webhook verification failed.",
-//       });
-//   }
-
-// export default async function handler(req, res) {
   if (req.method === "GET") {
-    const mode = req.query["hub.mode"];
-    const token = req.query["hub.verify_token"];
-    const challenge = req.query["hub.challenge"];
+    const mode =
+      queryValue(
+        req,
+        "hub.mode"
+      );
 
-    const verifyToken = process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN;
+    const token =
+      queryValue(
+        req,
+        "hub.verify_token"
+      );
+
+    const challenge =
+      queryValue(
+        req,
+        "hub.challenge"
+      );
+
+    const verifyToken =
+      String(
+        process.env
+          .WHATSAPP_WEBHOOK_VERIFY_TOKEN ||
+          ""
+      ).trim();
 
     if (
       mode === "subscribe" &&
+      token &&
+      verifyToken &&
       token === verifyToken
     ) {
-      return res.status(200).send(challenge);
+      /*
+       * Meta requires the challenge
+       * as plain text with HTTP 200.
+       */
+      return res
+        .status(200)
+        .send(challenge);
     }
 
-    return res.status(403).json({
-      success: false,
-      message: "Webhook verification failed.",
-    });
+    return res
+      .status(403)
+      .json({
+        success: false,
+        message:
+          "Webhook verification failed.",
+      });
   }
 
-  // POST webhook handling...
-// }
+  /* -----------------------------------------
+     ONLY POST AFTER VERIFICATION
+  ----------------------------------------- */
 
   if (req.method !== "POST") {
     res.setHeader(
@@ -257,8 +248,11 @@ export default async function handler(
 
   try {
     const payload =
-      getBody(req);
+      bodyObject(req);
 
+    /*
+     * Ignore non-WhatsApp webhook payloads.
+     */
     if (
       payload.object !==
       "whatsapp_business_account"
@@ -273,15 +267,15 @@ export default async function handler(
       );
     }
 
-    let processed = 0;
+    const statusRecords = [];
 
     for (
       const entry of
-        payload.entry || []
+      payload.entry || []
     ) {
       for (
         const change of
-          entry.changes || []
+        entry.changes || []
       ) {
         const statuses =
           change?.value
@@ -289,15 +283,22 @@ export default async function handler(
 
         for (
           const status of
-            statuses
+          statuses
         ) {
-          await updateMessageStatus(
+          statusRecords.push(
             status
           );
-
-          processed += 1;
         }
       }
+    }
+
+    for (
+      const status of
+      statusRecords
+    ) {
+      await updateMessageStatus(
+        status
+      );
     }
 
     return sendJson(
@@ -305,14 +306,15 @@ export default async function handler(
       200,
       {
         success: true,
-        processed,
+
+        processed:
+          statusRecords.length,
       }
     );
   } catch (error) {
     console.error(
-      "WhatsApp webhook error:",
-      error?.message ||
-        error
+      "WhatsApp webhook processing error:",
+      error?.message || error
     );
 
     return sendJson(

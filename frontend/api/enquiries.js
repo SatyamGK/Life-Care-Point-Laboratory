@@ -14,7 +14,7 @@ import {
   requestUserAgent,
   safeSource,
   sendJson,
-  sendWhatsAppTemplate,
+  sendWhatsAppText,
   getSupabaseAdmin,
   validIndianMobile,
   validName,
@@ -24,7 +24,9 @@ export default async function handler(
   req,
   res
 ) {
-  if (!methodOnly(req, res, "POST")) return;
+  if (!methodOnly(req, res, "POST")) {
+    return;
+  }
 
   let rateLimit;
 
@@ -34,6 +36,10 @@ export default async function handler(
     enforceBodyLimit(req);
 
     assertAllowedOrigin(req);
+
+    /* -----------------------------------------
+       IP RATE LIMIT
+    ----------------------------------------- */
 
     rateLimit =
       await enforceIpRateLimit(
@@ -63,16 +69,18 @@ export default async function handler(
         429,
         {
           success: false,
-
           message:
             "Too many enquiry attempts. Please try again later.",
         },
-
         commonRateHeaders(
           rateLimit
         )
       );
     }
+
+    /* -----------------------------------------
+       DATA
+    ----------------------------------------- */
 
     const data =
       parseJsonBody(req);
@@ -89,10 +97,13 @@ export default async function handler(
     const source =
       safeSource(data.source);
 
+    /* -----------------------------------------
+       VALIDATION
+    ----------------------------------------- */
+
     if (!validName(name)) {
       return sendJson(res, 400, {
         success: false,
-
         message:
           "Please enter a valid full name.",
       });
@@ -101,11 +112,14 @@ export default async function handler(
     if (!validIndianMobile(mobile)) {
       return sendJson(res, 400, {
         success: false,
-
         message:
           "Please enter a valid 10-digit Indian mobile number.",
       });
     }
+
+    /* -----------------------------------------
+       PHONE RATE LIMIT
+    ----------------------------------------- */
 
     const identityLimit =
       await enforceIdentityRateLimit(
@@ -132,16 +146,18 @@ export default async function handler(
         429,
         {
           success: false,
-
           message:
             "Too many requests for this mobile number. Please try again later.",
         },
-
         commonRateHeaders(
           identityLimit
         )
       );
     }
+
+    /* -----------------------------------------
+       DUPLICATE PROTECTION
+    ----------------------------------------- */
 
     const duplicateLimit =
       await enforceDuplicateRateLimit(
@@ -154,9 +170,7 @@ export default async function handler(
           message:
             message.toLowerCase(),
         }),
-
         "enquiry",
-
         {
           windowSeconds: Number(
             process.env
@@ -174,22 +188,28 @@ export default async function handler(
         409,
         {
           success: false,
-
           message:
             "A matching enquiry was already submitted recently.",
         },
-
         commonRateHeaders(
           duplicateLimit
         )
       );
     }
 
+    /* -----------------------------------------
+       CLIENT INFO
+    ----------------------------------------- */
+
     const ipHash =
       hashIp(clientIp(req));
 
     const userAgent =
       requestUserAgent(req);
+
+    /* -----------------------------------------
+       SAVE ENQUIRY
+    ----------------------------------------- */
 
     const {
       data: enquiry,
@@ -209,7 +229,8 @@ export default async function handler(
         whatsapp_status:
           "pending",
 
-        ip_hash: ipHash,
+        ip_hash:
+          ipHash,
 
         user_agent:
           userAgent,
@@ -230,30 +251,38 @@ export default async function handler(
         500,
         {
           success: false,
-
           message:
             "We could not save your request. Please try again.",
         }
       );
     }
 
+    /* -----------------------------------------
+       BUILD PLAIN TEXT MESSAGE
+    ----------------------------------------- */
+
+    const whatsappMessage = [
+      "New website enquiry received at Life Care Point Laboratory.",
+      "",
+      `Name: ${name}`,
+      `Mobile: ${mobile}`,
+      `Source: ${source}`,
+      `Message: ${
+        message ||
+        "No message provided"
+      }`,
+      "",
+      "Please contact the customer.",
+    ].join("\n");
+
+    /* -----------------------------------------
+       SEND WHATSAPP
+    ----------------------------------------- */
+
     try {
       const whatsapp =
-        await sendWhatsAppTemplate(
-          process.env
-            .WHATSAPP_ENQUIRY_TEMPLATE_NAME,
-
-          [
-            name,
-            mobile,
-            source,
-            message ||
-              "No message provided",
-          ],
-
-          process.env
-            .WHATSAPP_TEMPLATE_LANGUAGE ||
-            "en_US"
+        await sendWhatsAppText(
+          whatsappMessage
         );
 
       const messageId =
@@ -261,13 +290,16 @@ export default async function handler(
 
       if (!messageId) {
         throw new Error(
-          "Meta returned no WhatsApp message ID."
+          "WhatsApp API returned no message ID."
         );
       }
 
+      /* ---------------------------------------
+         UPDATE SUCCESS
+      --------------------------------------- */
+
       const {
-        error:
-          whatsappUpdateError,
+        error: whatsappUpdateError,
       } = await getSupabaseAdmin()
         .from("enquiries")
         .update({
@@ -313,23 +345,32 @@ export default async function handler(
           whatsapp:
             "accepted",
         },
-
         commonRateHeaders(
           rateLimit
         )
       );
     } catch (error) {
+      /* ---------------------------------------
+         SAVE META ERROR
+      --------------------------------------- */
+
       console.error(
         "WhatsApp enquiry notification failed:",
         {
-          status:
+          providerStatus:
             error?.providerStatus,
-
-          message:
-            error?.message,
 
           providerErrorCode:
             error?.providerErrorCode,
+
+          providerErrorType:
+            error?.providerErrorType,
+
+          providerErrorSubcode:
+            error?.providerErrorSubcode,
+
+          message:
+            error?.message,
 
           providerResponse:
             error?.providerResponse,
@@ -347,8 +388,8 @@ export default async function handler(
             null,
 
           whatsapp_error_message:
-            error?.providerResponse
-              ?.error?.message ||
+            error?.providerResponse?.error
+              ?.message ||
             error?.message ||
             "Unknown WhatsApp error",
         })
@@ -371,7 +412,6 @@ export default async function handler(
           message:
             "Your request was saved, but the laboratory WhatsApp notification could not be sent. Please call the laboratory.",
         },
-
         commonRateHeaders(
           rateLimit
         )
@@ -386,27 +426,16 @@ export default async function handler(
     const status =
       error?.statusCode || 500;
 
-    const responseMessage =
-      status === 413
-        ? "Request payload is too large."
-        : process.env.NODE_ENV !==
-            "production" &&
-          error?.message
-        ? error.message
-        : "Unable to process your request right now.";
-
     return sendJson(
       res,
       status,
       {
         success: false,
 
-        code:
-          error?.code ||
-          "API_ERROR",
-
         message:
-          responseMessage,
+          status === 413
+            ? "Request payload is too large."
+            : "Unable to process your request right now.",
       }
     );
   }

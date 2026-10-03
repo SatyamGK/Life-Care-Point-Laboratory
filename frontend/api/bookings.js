@@ -15,11 +15,15 @@ import {
   parseJsonBody,
   requestUserAgent,
   sendJson,
-  sendWhatsAppTemplate,
+  sendWhatsAppText,
   getSupabaseAdmin,
   validIndianMobile,
   validName,
 } from "./_lib/server.js";
+
+/* =========================================================
+   FIND TEST / PACKAGE
+========================================================= */
 
 function findCatalogItem(
   type,
@@ -47,11 +51,17 @@ function findCatalogItem(
   );
 }
 
+/* =========================================================
+   API
+========================================================= */
+
 export default async function handler(
   req,
   res
 ) {
-  if (!methodOnly(req, res, "POST")) return;
+  if (!methodOnly(req, res, "POST")) {
+    return;
+  }
 
   let rateLimit;
 
@@ -61,6 +71,10 @@ export default async function handler(
     enforceBodyLimit(req);
 
     assertAllowedOrigin(req);
+
+    /* -----------------------------------------
+       IP RATE LIMIT
+    ----------------------------------------- */
 
     rateLimit =
       await enforceIpRateLimit(
@@ -90,16 +104,18 @@ export default async function handler(
         429,
         {
           success: false,
-
           message:
             "Too many booking attempts. Please try again later.",
         },
-
         commonRateHeaders(
           rateLimit
         )
       );
     }
+
+    /* -----------------------------------------
+       REQUEST DATA
+    ----------------------------------------- */
 
     const data =
       parseJsonBody(req);
@@ -120,6 +136,10 @@ export default async function handler(
 
     const itemName =
       cleanText(data.itemName, 150);
+
+    /* -----------------------------------------
+       VALIDATION
+    ----------------------------------------- */
 
     if (!validName(name)) {
       return sendJson(res, 400, {
@@ -151,6 +171,10 @@ export default async function handler(
           "The selected test or package is not available.",
       });
     }
+
+    /* -----------------------------------------
+       PHONE RATE LIMIT
+    ----------------------------------------- */
 
     const identityLimit =
       await enforceIdentityRateLimit(
@@ -186,6 +210,10 @@ export default async function handler(
       );
     }
 
+    /* -----------------------------------------
+       DUPLICATE PROTECTION
+    ----------------------------------------- */
+
     const duplicateLimit =
       await enforceDuplicateRateLimit(
         JSON.stringify({
@@ -194,9 +222,7 @@ export default async function handler(
           name: name.toLowerCase(),
           mobile,
         }),
-
         "booking",
-
         {
           windowSeconds: Number(
             process.env
@@ -223,11 +249,19 @@ export default async function handler(
       );
     }
 
+    /* -----------------------------------------
+       CLIENT INFO
+    ----------------------------------------- */
+
     const ipHash =
       hashIp(clientIp(req));
 
     const userAgent =
       requestUserAgent(req);
+
+    /* -----------------------------------------
+       SAVE BOOKING
+    ----------------------------------------- */
 
     const {
       data: booking,
@@ -241,10 +275,7 @@ export default async function handler(
         item_name: item.name,
         price: item.price,
         status: "new",
-
-        whatsapp_status:
-          "pending",
-
+        whatsapp_status: "pending",
         ip_hash: ipHash,
         user_agent: userAgent,
       })
@@ -270,23 +301,30 @@ export default async function handler(
       );
     }
 
+    /* -----------------------------------------
+       BUILD PLAIN TEXT WHATSAPP MESSAGE
+    ----------------------------------------- */
+
+    const whatsappMessage = [
+      "New booking received at Life Care Point Laboratory.",
+      "",
+      `Patient: ${name}`,
+      `Mobile: ${mobile}`,
+      `Type: ${type}`,
+      `Test/Package: ${item.name}`,
+      `Price: ₹${item.price}`,
+      "",
+      "Please contact the patient for confirmation.",
+    ].join("\n");
+
+    /* -----------------------------------------
+       SEND WHATSAPP
+    ----------------------------------------- */
+
     try {
       const whatsapp =
-        await sendWhatsAppTemplate(
-          process.env
-            .WHATSAPP_BOOKING_TEMPLATE_NAME,
-
-          [
-            name,
-            mobile,
-            type,
-            item.name,
-            `₹${item.price}`,
-          ],
-
-          process.env
-            .WHATSAPP_TEMPLATE_LANGUAGE ||
-            "en_US"
+        await sendWhatsAppText(
+          whatsappMessage
         );
 
       const messageId =
@@ -294,18 +332,20 @@ export default async function handler(
 
       if (!messageId) {
         throw new Error(
-          "Meta returned no WhatsApp message ID."
+          "WhatsApp API returned no message ID."
         );
       }
 
+      /* ---------------------------------------
+         UPDATE SUCCESS
+      --------------------------------------- */
+
       const {
-        error:
-          whatsappUpdateError,
+        error: whatsappUpdateError,
       } = await getSupabaseAdmin()
         .from("bookings")
         .update({
-          whatsapp_status:
-            "sent",
+          whatsapp_status: "sent",
 
           whatsapp_message_id:
             messageId,
@@ -346,23 +386,32 @@ export default async function handler(
           whatsapp:
             "accepted",
         },
-
         commonRateHeaders(
           rateLimit
         )
       );
     } catch (error) {
+      /* ---------------------------------------
+         SAVE META ERROR
+      --------------------------------------- */
+
       console.error(
         "WhatsApp booking notification failed:",
         {
-          status:
+          providerStatus:
             error?.providerStatus,
-
-          message:
-            error?.message,
 
           providerErrorCode:
             error?.providerErrorCode,
+
+          providerErrorType:
+            error?.providerErrorType,
+
+          providerErrorSubcode:
+            error?.providerErrorSubcode,
+
+          message:
+            error?.message,
 
           providerResponse:
             error?.providerResponse,
@@ -380,8 +429,8 @@ export default async function handler(
             null,
 
           whatsapp_error_message:
-            error?.providerResponse
-              ?.error?.message ||
+            error?.providerResponse?.error
+              ?.message ||
             error?.message ||
             "Unknown WhatsApp error",
         })
@@ -404,7 +453,6 @@ export default async function handler(
           message:
             "Your booking was saved, but the laboratory WhatsApp notification could not be sent. Please call the laboratory.",
         },
-
         commonRateHeaders(
           rateLimit
         )
@@ -416,14 +464,17 @@ export default async function handler(
       error?.message || error
     );
 
+    const status =
+      error?.statusCode || 500;
+
     return sendJson(
       res,
-      error?.statusCode || 500,
+      status,
       {
         success: false,
 
         message:
-          error?.statusCode === 413
+          status === 413
             ? "Request payload is too large."
             : "Unable to process your booking right now.",
       }

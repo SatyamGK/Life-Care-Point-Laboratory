@@ -6,10 +6,16 @@ const jsonHeaders = {
   "Cache-Control": "no-store",
 };
 
-let supabaseAdminClient;
+let supabaseAdminClient = null;
+
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 export function getSupabaseAdmin() {
-  if (supabaseAdminClient) return supabaseAdminClient;
+  if (supabaseAdminClient) {
+    return supabaseAdminClient;
+  }
 
   assertSupabaseConfig();
 
@@ -27,38 +33,10 @@ export function getSupabaseAdmin() {
   return supabaseAdminClient;
 }
 
-export function sendJson(res, status, body, extraHeaders = {}) {
-  Object.entries(jsonHeaders).forEach(([key, value]) => {
-    res.setHeader(key, value);
-  });
-
-  Object.entries(extraHeaders).forEach(([key, value]) => {
-    res.setHeader(key, value);
-  });
-
-  return res.status(status).json(body);
-}
-
-export function methodOnly(req, res, method) {
-  if (req.method === method) return true;
-
-  res.setHeader("Allow", method);
-
-  sendJson(res, 405, {
-    success: false,
-    message: "Method not allowed.",
-  });
-
-  return false;
-}
-
 export function assertSupabaseConfig() {
   const required = [
     ["SUPABASE_URL", process.env.SUPABASE_URL],
-    [
-      "SUPABASE_SERVICE_ROLE_KEY",
-      process.env.SUPABASE_SERVICE_ROLE_KEY,
-    ],
+    ["SUPABASE_SERVICE_ROLE_KEY", process.env.SUPABASE_SERVICE_ROLE_KEY],
     ["IP_HASH_SALT", process.env.IP_HASH_SALT],
   ];
 
@@ -79,21 +57,19 @@ export function assertSupabaseConfig() {
   }
 }
 
+/* =========================================================
+   WHATSAPP CONFIG
+========================================================= */
+
 export function assertWhatsAppConfig() {
   const required = [
     ["WHATSAPP_ACCESS_TOKEN", process.env.WHATSAPP_ACCESS_TOKEN],
-    [
-      "WHATSAPP_PHONE_NUMBER_ID",
-      process.env.WHATSAPP_PHONE_NUMBER_ID,
-    ],
+    ["WHATSAPP_PHONE_NUMBER_ID", process.env.WHATSAPP_PHONE_NUMBER_ID],
     [
       "WHATSAPP_NOTIFICATION_RECIPIENT",
       process.env.WHATSAPP_NOTIFICATION_RECIPIENT,
     ],
-    [
-      "META_GRAPH_API_VERSION",
-      process.env.META_GRAPH_API_VERSION,
-    ],
+    ["META_GRAPH_API_VERSION", process.env.META_GRAPH_API_VERSION],
   ];
 
   const missing = required
@@ -106,12 +82,47 @@ export function assertWhatsAppConfig() {
     );
 
     error.statusCode = 500;
-    error.code = "SERVER_CONFIGURATION_ERROR";
+    error.code = "WHATSAPP_CONFIGURATION_ERROR";
     error.missing = missing;
 
     throw error;
   }
 }
+
+/* =========================================================
+   RESPONSE HELPERS
+========================================================= */
+
+export function sendJson(res, status, body, extraHeaders = {}) {
+  Object.entries(jsonHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+
+  Object.entries(extraHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+
+  return res.status(status).json(body);
+}
+
+export function methodOnly(req, res, method) {
+  if (req.method === method) {
+    return true;
+  }
+
+  res.setHeader("Allow", method);
+
+  sendJson(res, 405, {
+    success: false,
+    message: "Method not allowed.",
+  });
+
+  return false;
+}
+
+/* =========================================================
+   REQUEST / VALIDATION HELPERS
+========================================================= */
 
 export function clientIp(req) {
   const candidates = [
@@ -136,10 +147,16 @@ export function clientIp(req) {
   throw error;
 }
 
+export function requestUserAgent(req) {
+  return cleanText(req.headers["user-agent"], 500);
+}
+
 export function hashIp(ip) {
   const salt = process.env.IP_HASH_SALT;
 
-  if (!salt) return "unknown";
+  if (!salt) {
+    return "unknown";
+  }
 
   return crypto
     .createHash("sha256")
@@ -150,13 +167,96 @@ export function hashIp(ip) {
 export function hashValue(value) {
   const salt = process.env.IP_HASH_SALT;
 
-  if (!salt) return "unknown";
+  if (!salt) {
+    return "unknown";
+  }
 
   return crypto
     .createHash("sha256")
     .update(`${salt}:${String(value)}`)
     .digest("hex");
 }
+
+export function cleanText(value, maxLength) {
+  return String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, maxLength);
+}
+
+export function validIndianMobile(value) {
+  return /^[6-9]\d{9}$/.test(value);
+}
+
+export function validName(value) {
+  return /^[\p{L}][\p{L}\s.'-]{1,79}$/u.test(value);
+}
+
+export function safeSource(value) {
+  return (
+    cleanText(value, 40).replace(/[^a-zA-Z0-9 _.-]/g, "") ||
+    "website"
+  );
+}
+
+export function enforceBodyLimit(req, maxBytes = 20000) {
+  const contentLength = Number(
+    req.headers["content-length"] || 0
+  );
+
+  if (contentLength > maxBytes) {
+    const error = new Error("Request body is too large.");
+    error.statusCode = 413;
+
+    throw error;
+  }
+}
+
+export function parseJsonBody(req) {
+  if (!req.body) {
+    return {};
+  }
+
+  if (typeof req.body === "object") {
+    return req.body;
+  }
+
+  try {
+    return JSON.parse(req.body);
+  } catch {
+    const error = new Error("Invalid JSON body.");
+    error.statusCode = 400;
+
+    throw error;
+  }
+}
+
+export function assertAllowedOrigin(req) {
+  const configured = cleanText(
+    process.env.APP_ORIGIN,
+    300
+  ).replace(/\/$/, "");
+
+  if (!configured || process.env.NODE_ENV !== "production") {
+    return;
+  }
+
+  const origin = cleanText(
+    req.headers.origin,
+    300
+  ).replace(/\/$/, "");
+
+  if (!origin || origin !== configured) {
+    const error = new Error("Origin not allowed.");
+    error.statusCode = 403;
+
+    throw error;
+  }
+}
+
+/* =========================================================
+   RATE LIMITING
+========================================================= */
 
 export async function consumeRateLimit(
   key,
@@ -178,9 +278,13 @@ export async function consumeRateLimit(
     }
   );
 
-  if (error) throw error;
+  if (error) {
+    throw error;
+  }
 
-  const result = Array.isArray(data) ? data[0] : data;
+  const result = Array.isArray(data)
+    ? data[0]
+    : data;
 
   return {
     allowed: Boolean(result?.allowed),
@@ -221,11 +325,12 @@ export async function enforceIpRateLimit(
   const globalPrefix =
     options.globalPrefix || "global-ip";
 
-  const globalResult = await consumeRateLimit(
-    `${globalPrefix}:${ipHash}`,
-    globalWindowSeconds,
-    globalMaxRequests
-  );
+  const globalResult =
+    await consumeRateLimit(
+      `${globalPrefix}:${ipHash}`,
+      globalWindowSeconds,
+      globalMaxRequests
+    );
 
   if (!globalResult.allowed) {
     return {
@@ -235,11 +340,12 @@ export async function enforceIpRateLimit(
     };
   }
 
-  const endpointResult = await consumeRateLimit(
-    `endpoint-ip:${endpoint}:${ipHash}`,
-    windowSeconds,
-    maxRequests
-  );
+  const endpointResult =
+    await consumeRateLimit(
+      `endpoint-ip:${endpoint}:${ipHash}`,
+      windowSeconds,
+      maxRequests
+    );
 
   return {
     ...endpointResult,
@@ -276,108 +382,26 @@ export async function enforceDuplicateRateLimit(
   );
 }
 
-export function enforceBodyLimit(
-  req,
-  maxBytes = 20000
-) {
-  const contentLength = Number(
-    req.headers["content-length"] || 0
-  );
-
-  if (contentLength > maxBytes) {
-    const error = new Error(
-      "Request body is too large."
-    );
-
-    error.statusCode = 413;
-
-    throw error;
-  }
+export function commonRateHeaders(result) {
+  return {
+    "X-RateLimit-Remaining": String(
+      result.remaining
+    ),
+    "Retry-After": String(
+      result.retryAfter
+    ),
+  };
 }
 
-export function parseJsonBody(req) {
-  if (!req.body) return {};
-
-  if (typeof req.body === "object") {
-    return req.body;
-  }
-
-  try {
-    return JSON.parse(req.body);
-  } catch {
-    const error = new Error("Invalid JSON body.");
-
-    error.statusCode = 400;
-
-    throw error;
-  }
-}
-
-export function cleanText(value, maxLength) {
-  return String(value ?? "")
-    .trim()
-    .replace(/\s+/g, " ")
-    .slice(0, maxLength);
-}
-
-export function validIndianMobile(value) {
-  return /^[6-9]\d{9}$/.test(value);
-}
-
-export function validName(value) {
-  return /^[\p{L}][\p{L}\s.'-]{1,79}$/u.test(
-    value
-  );
-}
-
-export function safeSource(value) {
-  return (
-    cleanText(value, 40).replace(
-      /[^a-zA-Z0-9 _.-]/g,
-      ""
-    ) || "website"
-  );
-}
-
-export function assertAllowedOrigin(req) {
-  const configured = cleanText(
-    process.env.APP_ORIGIN,
-    300
-  ).replace(/\/$/, "");
-
-  if (
-    !configured ||
-    process.env.NODE_ENV !== "production"
-  ) {
-    return;
-  }
-
-  const origin = cleanText(
-    req.headers.origin,
-    300
-  ).replace(/\/$/, "");
-
-  if (!origin || origin !== configured) {
-    const error = new Error("Origin not allowed.");
-
-    error.statusCode = 403;
-
-    throw error;
-  }
-}
+/* =========================================================
+   WHATSAPP CLOUD API
+   PLAIN TEXT ONLY
+========================================================= */
 
 function normalizeWhatsAppNumber(value) {
   return String(value || "").replace(/\D/g, "");
 }
 
-/**
- * Sends the request to Meta WhatsApp Cloud API.
- *
- * IMPORTANT:
- * - This function runs ONLY on the server.
- * - Access token is never exposed to React.
- * - Uses POST /PHONE_NUMBER_ID/messages.
- */
 async function metaGraphRequest(payload) {
   assertWhatsAppConfig();
 
@@ -408,7 +432,8 @@ async function metaGraphRequest(payload) {
         Authorization:
           `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
 
-        "Content-Type": "application/json",
+        "Content-Type":
+          "application/json",
       },
 
       body: JSON.stringify(payload),
@@ -416,9 +441,8 @@ async function metaGraphRequest(payload) {
       signal: controller.signal,
     });
 
-    const result = await response
-      .json()
-      .catch(() => ({}));
+    const result =
+      await response.json().catch(() => ({}));
 
     if (!response.ok) {
       const error = new Error(
@@ -426,13 +450,25 @@ async function metaGraphRequest(payload) {
           "WhatsApp provider rejected the message."
       );
 
-      error.providerStatus = response.status;
+      error.providerStatus =
+        response.status;
 
-      error.providerResponse = result;
+      error.providerResponse =
+        result;
 
       error.providerErrorCode =
         result?.error?.code
           ? String(result.error.code)
+          : null;
+
+      error.providerErrorType =
+        result?.error?.type || null;
+
+      error.providerErrorSubcode =
+        result?.error?.error_subcode
+          ? String(
+              result.error.error_subcode
+            )
           : null;
 
       throw error;
@@ -446,8 +482,11 @@ async function metaGraphRequest(payload) {
         "WhatsApp API returned no message ID."
       );
 
-      error.providerStatus = response.status;
-      error.providerResponse = result;
+      error.providerStatus =
+        response.status;
+
+      error.providerResponse =
+        result;
 
       throw error;
     }
@@ -477,107 +516,58 @@ async function metaGraphRequest(payload) {
   }
 }
 
-/**
- * Website initiated notifications should use an
- * approved WhatsApp template.
+/*
+ * IMPORTANT:
+ * This sends a normal WhatsApp text message.
+ * No template is used.
  */
-export async function sendWhatsAppTemplate(
-  templateName,
-  parameters = [],
-  language = "en_US"
-) {
-  if (!templateName) {
+export async function sendWhatsAppText(body) {
+  const recipient =
+    normalizeWhatsAppNumber(
+      process.env.WHATSAPP_NOTIFICATION_RECIPIENT
+    );
+
+  if (!recipient) {
     const error = new Error(
-      "WhatsApp template name is not configured."
+      "WhatsApp notification recipient is not configured."
     );
 
     error.statusCode = 500;
     error.code =
-      "WHATSAPP_TEMPLATE_NOT_CONFIGURED";
+      "WHATSAPP_RECIPIENT_NOT_CONFIGURED";
 
     throw error;
   }
 
-  const normalizedParameters =
-    parameters.map((value) => ({
-      type: "text",
-      text: String(value ?? ""),
-    }));
+  const message = String(body || "").trim();
 
+  if (!message) {
+    const error = new Error(
+      "WhatsApp message cannot be empty."
+    );
+
+    error.statusCode = 400;
+    error.code =
+      "WHATSAPP_MESSAGE_EMPTY";
+
+    throw error;
+  }
+
+  /*
+   * Plain text WhatsApp message.
+   */
   return metaGraphRequest({
     messaging_product: "whatsapp",
 
     recipient_type: "individual",
 
-    to: normalizeWhatsAppNumber(
-      process.env.WHATSAPP_NOTIFICATION_RECIPIENT
-    ),
-
-    type: "template",
-
-    template: {
-      name: String(templateName).trim(),
-
-      language: {
-        code: String(
-          language || "en_US"
-        ).trim(),
-      },
-
-      ...(normalizedParameters.length
-        ? {
-            components: [
-              {
-                type: "body",
-
-                parameters:
-                  normalizedParameters,
-              },
-            ],
-          }
-        : {}),
-    },
-  });
-}
-
-/**
- * Kept for compatibility with any old code.
- * New enquiry/booking notifications use templates.
- */
-export async function sendWhatsAppText(body) {
-  return metaGraphRequest({
-    messaging_product: "whatsapp",
-
-    recipient_type: "individual",
-
-    to: normalizeWhatsAppNumber(
-      process.env.WHATSAPP_NOTIFICATION_RECIPIENT
-    ),
+    to: recipient,
 
     type: "text",
 
     text: {
       preview_url: false,
-      body: String(body || ""),
+      body: message,
     },
   });
-}
-
-export function requestUserAgent(req) {
-  return cleanText(
-    req.headers["user-agent"],
-    500
-  );
-}
-
-export function commonRateHeaders(result) {
-  return {
-    "X-RateLimit-Remaining": String(
-      result.remaining
-    ),
-
-    "Retry-After": String(
-      result.retryAfter
-    ),
-  };
 }
