@@ -5009,9 +5009,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .whatsapp-button:hover {
-  background: #20bd5a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+  background: #084f46;
+  /* transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3); */
 }
 
 .whatsapp-button:active {
@@ -5038,11 +5038,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .test-tube-scroll-section {
   --tt-header: 54px;
   --tt-bottom-gap: 60px;
-  --tt-stage-height: calc(100vh - var(--tt-header) - var(--tt-bottom-gap));
+  --tt-stage-height: calc(85vh - var(--tt-header) - var(--tt-bottom-gap));
   --tt-scroll-length: 150vh;
 
   position: relative;
-  width: 100%;
+  width: 80%;
   height: calc(var(--tt-stage-height) + var(--tt-scroll-length));
   margin: 0;
   padding: 0;
@@ -5062,7 +5062,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   width: 100%;
   height: var(--tt-stage-height);
   margin: 0;
-  padding: 8px 0;
+  padding: 18px 0;
   display: flex;
   align-items: center;
   justify-content: center;
