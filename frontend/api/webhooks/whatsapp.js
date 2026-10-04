@@ -1,14 +1,15 @@
 import React from "react";
-import "./WhatsAppButton.css";
+import "../styles.css";
 
 const WhatsAppButton = () => {
-  const WHATSAPP_NUMBER = "919910108453";
-  const MESSAGE = "Hi";
+  const whatsappNumber = "919910108453";
+  const message = "Hi, I would like to know more about your tests and health packages.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    message
+  )}`;
+
   const handleWhatsAppClick = () => {
-    const encodedMessage = encodeURIComponent(MESSAGE);
-    const whatsappUrl =
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    window.location.href = whatsappUrl;
+    window.location.assign(whatsappUrl);
   };
 };
 
