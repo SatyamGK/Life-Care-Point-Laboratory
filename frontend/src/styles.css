@@ -3606,6 +3606,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #ffffff;
   color: #122f2a;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .home-section {
@@ -4086,7 +4087,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 700;
 }
 
-/* Why choose us */
 .why-choose-section {
   padding: 0px 18px;
 }
@@ -4529,7 +4529,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   height: min(82%, 490px);
   object-fit: contain;
   transform-origin: center;
-  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -4642,7 +4641,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   object-fit: contain;
   transform: translateZ(0);
   will-change: contents;
-  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -5037,240 +5035,79 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 }
 
-/* =========================================================
-   TEST TUBE SCROLL SEQUENCE
-   ========================================================= */
-
 .test-tube-scroll-section {
+  --tt-header: 54px;
+  --tt-bottom-gap: 60px;
+  --tt-stage-height: calc(100vh - var(--tt-header) - var(--tt-bottom-gap));
+  --tt-scroll-length: 150vh;
+
   position: relative;
-
   width: 100%;
-
-  /*
-   * IMPORTANT
-   *
-   * This is deliberately LONG.
-   *
-   * The JS calculates the actual animation distance from
-   * this section height.
-   *
-   * 350vh gives enough scroll distance for all 50 frames.
-   */
-  height: 350vh;
-
+  height: calc(var(--tt-stage-height) + var(--tt-scroll-length));
   margin: 0;
   padding: 0;
-
-  background: #ffffff;
-
   overflow: visible;
-
-  box-sizing: border-box;
 }
 
-
-/* =========================================================
-   STICKY TEST-TUBE VIEWPORT
-   ========================================================= */
+@supports (height: 100svh) {
+  .test-tube-scroll-section {
+    --tt-stage-height: calc(100svh - var(--tt-header) - var(--tt-bottom-gap));
+    --tt-scroll-length: 150svh;
+  }
+}
 
 .test-tube-scroll-stage {
   position: sticky;
-
-  top: 54px;
-
+  top: var(--tt-header);
   width: 100%;
-
-  /*
-   * Keep image visible for the complete viewport.
-   */
-  height: calc(100vh - 54px);
-
-  min-height: 500px;
-
+  height: var(--tt-stage-height);
   margin: 0;
-  padding: 0;
-
+  padding: 8px 0;
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  background: #ffffff;
-
   overflow: hidden;
-
-  /*
-   * Test tube is visual only.
-   */
   pointer-events: none;
-
-  z-index: 5;
-
+  z-index: 1;
   box-sizing: border-box;
 }
 
-
-/* =========================================================
-   TEST TUBE IMAGE
-   ========================================================= */
-
 .test-tube-scroll-image {
   display: block;
-
-  width: min(58vw, 430px);
-
-  max-width: 88vw;
-
-  height: auto;
-
-  max-height: calc(100vh - 90px);
-
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
   margin: 0;
   padding: 0;
-
   object-fit: contain;
-
   object-position: center;
-
   user-select: none;
-
-  -webkit-user-select: none;
-
   -webkit-user-drag: none;
-
   pointer-events: none;
-
-  /*
-   * VERY IMPORTANT
-   *
-   * No transition.
-   * No animation.
-   */
-  transition: none !important;
-
-  animation: none !important;
-
-  transform: none !important;
-
   image-rendering: auto;
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (min-width: 768px) and (max-width: 1199px) {
-
-  .test-tube-scroll-section {
-    height: 320vh;
-  }
-
-  .test-tube-scroll-stage {
-    top: 54px;
-
-    height: calc(100vh - 54px);
-
-    min-height: 500px;
-  }
-
-  .test-tube-scroll-image {
-    width: min(68vw, 430px);
-
-    max-width: 90vw;
-
-    max-height: calc(100vh - 90px);
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media (max-width: 767px) {
-
   .test-tube-scroll-section {
-    height: 300vh;
+    --tt-scroll-length: 110vh;
   }
 
-  .test-tube-scroll-stage {
-    top: 54px;
-
-    height: calc(100svh - 54px);
-
-    min-height: 450px;
-  }
-
-  .test-tube-scroll-image {
-    width: min(88vw, 430px);
-
-    max-width: 94vw;
-
-    max-height: calc(100svh - 80px);
-  }
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-  .test-tube-scroll-section {
-    height: 300vh;
-  }
-
-  .test-tube-scroll-stage {
-    min-height: 400px;
+  @supports (height: 100svh) {
+    .test-tube-scroll-section {
+      --tt-scroll-length: 110svh;
+    }
   }
 
   .test-tube-scroll-image {
-    width: 90vw;
-
-    max-width: 94vw;
+    max-width: 430px;
   }
 }
 
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-.test-tube-scroll-error {
-  width: 100%;
-
-  min-height: 300px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #ffffff;
+.test-tube-scroll-section.is-reduced-motion {
+  height: auto;
 }
 
-.test-tube-scroll-error p {
-  margin: 0;
-
-  padding: 20px;
-
-  font-size: 16px;
-
-  color: #555;
-
-  text-align: center;
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  .test-tube-scroll-image {
-    animation: none !important;
-    transition: none !important;
-  }
+.test-tube-scroll-section.is-reduced-motion .test-tube-scroll-stage {
+  position: relative;
+  top: auto;
 }
