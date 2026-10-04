@@ -1,224 +1,257 @@
-import { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
-const frameModules = import.meta.glob(
-  "../hero-3d/Test-tube_image_*.webp",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
+const HEADER_HEIGHT = 54;
 
-function getFrameNumber(path) {
-  const match = path.match(/Test-tube_image_(\d+)\.webp$/i);
-  return match ? Number(match[1]) : 0;
-}
+const clamp = (value, min, max) => {
+  return Math.min(Math.max(value, min), max);
+};
 
-const FRAME_URLS = Object.entries(frameModules)
-  .sort(([pathA], [pathB]) => getFrameNumber(pathA) - getFrameNumber(pathB))
-  .map(([, url]) => url)
-  .filter(Boolean);
+function getFrames() {
+  const modules = import.meta.glob(
+    "../hero-3d/Test-tube_image_*.webp",
+    {
+      eager: true,
+      query: "?url",
+      import: "default",
+    }
+  );
 
-function clamp(value, min, max) {
-  return Math.min(max, Math.max(min, value));
+  return Object.entries(modules)
+    .sort(([a], [b]) => {
+      const getNumber = (file) => {
+        const match = file.match(/Test-tube_image_(\d+)/i);
+        return match ? Number(match[1]) : 0;
+      };
+
+      return getNumber(a) - getNumber(b);
+    })
+    .map(([, url]) => url);
 }
 
 export default function Hero3DScrollAnimation() {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
-  const currentFrameRef = useRef(0);
-  const animationStartedRef = useRef(false);
-  const animationStartScrollRef = useRef(null);
-  const lastScrollYRef = useRef(0);
-  const rafRef = useRef(0);
-  const isVisibleRef = useRef(false);
-  const preloadedImagesRef = useRef([]);
-  const frames = useMemo( () => FRAME_URLS, [] );
-  const DESKTOP_SCROLL_DISTANCE = 0.75;
-  const MOBILE_SCROLL_DISTANCE = 0.5;
+
+  const currentFrame = useRef(0);
+  const animationFrame = useRef(null);
+
+  const frames = useMemo(() => getFrames(), []);
+
+  /*
+   * ----------------------------------------------------------
+   * PRELOAD ALL FRAMES
+   * ----------------------------------------------------------
+   */
+
+  useEffect(() => {
+    if (!frames.length) return;
+
+    const loadedImages = [];
+
+    frames.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      loadedImages.push(img);
+    });
+
+    return () => {
+      loadedImages.forEach((img) => {
+        img.src = "";
+      });
+    };
+  }, [frames]);
+
+  /*
+   * ----------------------------------------------------------
+   * SHOW FRAME
+   * ----------------------------------------------------------
+   */
+
+  const setFrame = (index) => {
+    if (!imageRef.current || !frames.length) return;
+
+    const safeIndex = clamp(
+      Math.round(index),
+      0,
+      frames.length - 1
+    );
+
+    if (safeIndex === currentFrame.current) return;
+
+    currentFrame.current = safeIndex;
+
+    imageRef.current.src = frames[safeIndex];
+  };
+
+  /*
+   * ----------------------------------------------------------
+   * SCROLL CALCULATION
+   * ----------------------------------------------------------
+   *
+   * IMPORTANT:
+   *
+   * We calculate the animation distance from the ACTUAL
+   * section position.
+   *
+   * The animation ends exactly at the bottom of the
+   * sticky section.
+   *
+   */
 
   useEffect(() => {
     const section = sectionRef.current;
-    const image = imageRef.current;
 
-    if ( !section || !image || !frames.length) {
-      return undefined;
-    }
+    if (!section || !frames.length) return;
 
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let ticking = false;
 
-    preloadedImagesRef.current = frames.map((src) => {
-        const img = new Image();
-        img.decoding = "async";
-        img.src = src;
-        return img;
-      });
+    const update = () => {
+      ticking = false;
 
-    lastScrollYRef.current = window.scrollY;
-    image.src = frames[0];
-    image.dataset.frame = "1";
-    currentFrameRef.current = 0;
+      const rect = section.getBoundingClientRect();
 
-    const resetAnimation = () => {
-        animationStartedRef.current = false;
-        animationStartScrollRef.current = null;
-        image.src = frames[0];
-        image.dataset.frame = "1";
-        currentFrameRef.current = 0;
-      };
+      /*
+       * Absolute position of section.
+       */
+      const sectionTop =
+        rect.top + window.scrollY;
 
-    const updateFrame = () => {
-        rafRef.current = 0;
+      /*
+       * Sticky image starts when the section reaches
+       * the bottom of the fixed header.
+       */
+      const start =
+        sectionTop - HEADER_HEIGHT;
 
-        // if (!isVisibleRef.current) {
-        //   return;
-        // }
+      /*
+       * ------------------------------------------------------
+       * THIS IS THE IMPORTANT FIX
+       *
+       * Calculate the EXACT scroll distance available
+       * before the sticky element is released.
+       * ------------------------------------------------------
+       */
 
-        if (reducedMotionQuery.matches) {
-          resetAnimation();
-          return;
-        }
+      const sectionHeight = section.offsetHeight;
 
-        const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
 
-        if (!animationStartedRef.current) {
-          if (currentScrollY !== lastScrollYRef.current) {
-            animationStartedRef.current = true;
-            animationStartScrollRef.current = lastScrollYRef.current;
-          }
-        }
+      const stickyHeight =
+        viewportHeight - HEADER_HEIGHT;
 
-        if (!animationStartedRef.current) {
-          lastScrollYRef.current = currentScrollY;
-          return;
-        }
-
-        const isMobile = window.matchMedia("(max-width: 767px)").matches;
-        const scrollDistance = window.innerHeight * (isMobile ? MOBILE_SCROLL_DISTANCE : DESKTOP_SCROLL_DISTANCE);
-        const startScroll = animationStartScrollRef.current;
-        const travelled = currentScrollY - startScroll;
-
-        let progress = travelled / scrollDistance;
-        progress = clamp(progress, 0, 1);
-
-        const frameIndex = Math.round(progress * (frames.length - 1));
-        const safeFrameIndex = clamp(frameIndex, 0, frames.length - 1);
-
-        if (safeFrameIndex !== currentFrameRef.current) {
-
-          const preloadedImage = preloadedImagesRef.current[safeFrameIndex];
-
-          if (preloadedImage && preloadedImage.complete && preloadedImage.naturalWidth > 0) {
-            image.src = preloadedImage.src;
-          } else {
-            image.src = frames[safeFrameIndex];
-          }
-
-          currentFrameRef.current = safeFrameIndex;
-          image.dataset.frame = String(safeFrameIndex + 1);
-
-        }
-
-        lastScrollYRef.current = currentScrollY;
-      };
-
-    const requestUpdate = () => {
-        if (rafRef.current) {
-          return;
-        }
-        rafRef.current = window.requestAnimationFrame(updateFrame);
-      };
-
-    const handleScroll = () => {
-        requestUpdate();
-      };
-
-    const handleResize = () => {
-        requestUpdate();
-      };
-
-    const handleReducedMotionChange = () => {
-        resetAnimation();
-        requestUpdate();
-      };
-
-    const observer = new IntersectionObserver((entries) => {
-          const entry = entries[0];
-          isVisibleRef.current = Boolean(entry?.isIntersecting);
-          if (isVisibleRef.current) {
-            lastScrollYRef.current = window.scrollY;
-          }
-        },
-        {
-          root: null,
-          rootMargin: "0px 0px 0px 0px",
-          threshold: 0.10,
-        }
+      /*
+       * Sticky element remains pinned for:
+       *
+       * section height - sticky element height
+       */
+      const animationDistance = Math.max(
+        sectionHeight - stickyHeight,
+        1
       );
 
-    observer.observe(section);
+      /*
+       * Current scroll position inside animation.
+       */
+      const travelled =
+        window.scrollY - start;
+
+      /*
+       * Convert to 0 -> 1.
+       */
+      const progress = clamp(
+        travelled / animationDistance,
+        0,
+        1
+      );
+
+      /*
+       * Convert to frame.
+       */
+      const frame =
+        progress * (frames.length - 1);
+
+      setFrame(frame);
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+
+      ticking = true;
+
+      animationFrame.current =
+        window.requestAnimationFrame(update);
+    };
+
+    const onResize = () => {
+      update();
+    };
+
+    /*
+     * Initial frame.
+     */
+    currentFrame.current = 0;
+
+    if (imageRef.current) {
+      imageRef.current.src = frames[0];
+    }
+
+    update();
 
     window.addEventListener(
       "scroll",
-      handleScroll,
-      {
-        passive: true,
-      }
+      onScroll,
+      { passive: true }
     );
 
     window.addEventListener(
       "resize",
-      handleResize,
-      {
-        passive: true,
-      }
+      onResize
     );
 
-    if (reducedMotionQuery.addEventListener) {
-      reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
-    }
-    requestUpdate();
     return () => {
       window.removeEventListener(
         "scroll",
-        handleScroll
+        onScroll
       );
 
       window.removeEventListener(
         "resize",
-        handleResize
+        onResize
       );
 
-      if (reducedMotionQuery.removeEventListener) {
-        reducedMotionQuery.removeEventListener(
-          "change",
-          handleReducedMotionChange
-        );
-      }
-
-      observer.disconnect();
-
-      if (rafRef.current) {
+      if (animationFrame.current) {
         window.cancelAnimationFrame(
-          rafRef.current
+          animationFrame.current
         );
       }
-
-      rafRef.current = 0;
-      preloadedImagesRef.current = [];
     };
   }, [frames]);
 
   if (!frames.length) {
-    return null;
+    return (
+      <section className="test-tube-scroll-error">
+        <p>
+          Test tube animation frames were not found.
+        </p>
+      </section>
+    );
   }
 
   return (
-    <section ref={sectionRef} className="test-tube-scroll-section" aria-label="Laboratory test tube animation" >
-      <div className="test-tube-scroll-stage" >
-        <img ref={imageRef} src={frames[0]} alt="Laboratory test tube" className="test-tube-scroll-image" draggable="false" />
+    <section
+      ref={sectionRef}
+      className="test-tube-scroll-section"
+      aria-label="Laboratory test tube animation"
+    >
+      <div className="test-tube-scroll-stage">
+        <img
+          ref={imageRef}
+          src={frames[0]}
+          alt="Laboratory test tube"
+          className="test-tube-scroll-image"
+          draggable="false"
+        />
       </div>
     </section>
   );
-
 }

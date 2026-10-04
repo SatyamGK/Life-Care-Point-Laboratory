@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import KeyFeatures from "./pages/KeyFeatures";
 import NotFound from "./pages/NotFound";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function App() {
   return (

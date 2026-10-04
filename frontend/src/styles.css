@@ -4989,77 +4989,288 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   pointer-events: none;
 }
 
-.test-tube-scroll-section {
-  position: relative;
-  width: 68%;
-  min-height: 85vh;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #084f46;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.test-tube-scroll-stage {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 75vh;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
+.whatsapp-button:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-button:active {
+  transform: translateY(0);
+}
+
+.whatsapp-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
+}
+
+.whatsapp-icon svg {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-button {
+    padding: 11px 16px;
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   TEST TUBE SCROLL SEQUENCE
+   ========================================================= */
+
+.test-tube-scroll-section {
+  position: relative;
+
+  width: 100%;
+
+  /*
+   * IMPORTANT
+   *
+   * This is deliberately LONG.
+   *
+   * The JS calculates the actual animation distance from
+   * this section height.
+   *
+   * 350vh gives enough scroll distance for all 50 frames.
+   */
+  height: 350vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: #ffffff;
+
+  overflow: visible;
+
   box-sizing: border-box;
 }
 
-.test-tube-scroll-image {
-  display: block;
-  width: min(
-    82vw,
-    600px
-  );
-  height: auto;
-  max-height: 94vh;
+
+/* =========================================================
+   STICKY TEST-TUBE VIEWPORT
+   ========================================================= */
+
+.test-tube-scroll-stage {
+  position: sticky;
+
+  top: 54px;
+
+  width: 100%;
+
+  /*
+   * Keep image visible for the complete viewport.
+   */
+  height: calc(100vh - 54px);
+
+  min-height: 500px;
+
   margin: 0;
   padding: 0;
-  object-fit: contain;
-  object-position: center;
-  user-select: none;
-  -webkit-user-drag: none;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  /*
+   * Test tube is visual only.
+   */
   pointer-events: none;
+
+  z-index: 5;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TEST TUBE IMAGE
+   ========================================================= */
+
+.test-tube-scroll-image {
+  display: block;
+
+  width: min(58vw, 430px);
+
+  max-width: 88vw;
+
+  height: auto;
+
+  max-height: calc(100vh - 90px);
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  -webkit-user-drag: none;
+
+  pointer-events: none;
+
+  /*
+   * VERY IMPORTANT
+   *
+   * No transition.
+   * No animation.
+   */
+  transition: none !important;
+
+  animation: none !important;
+
+  transform: none !important;
+
   image-rendering: auto;
 }
 
-@media (max-width: 767px) {
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
   .test-tube-scroll-section {
-    min-height: 57vh;
-    margin: 0;
-    padding: 0;
+    height: 320vh;
   }
+
   .test-tube-scroll-stage {
-    height: 55svh;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
+    top: 54px;
+
+    height: calc(100vh - 54px);
+
+    min-height: 500px;
   }
+
   .test-tube-scroll-image {
-    width: min(
-      92vw,
-      430px
-    );
-    max-height: 88svh;
-    margin: 0;
-    padding: 0;
+    width: min(68vw, 430px);
+
+    max-width: 90vw;
+
+    max-height: calc(100vh - 90px);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
 
   .test-tube-scroll-section {
-    min-height: 85vh;
+    height: 300vh;
   }
 
+  .test-tube-scroll-stage {
+    top: 54px;
+
+    height: calc(100svh - 54px);
+
+    min-height: 450px;
+  }
+
+  .test-tube-scroll-image {
+    width: min(88vw, 430px);
+
+    max-width: 94vw;
+
+    max-height: calc(100svh - 80px);
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .test-tube-scroll-section {
+    height: 300vh;
+  }
+
+  .test-tube-scroll-stage {
+    min-height: 400px;
+  }
+
+  .test-tube-scroll-image {
+    width: 90vw;
+
+    max-width: 94vw;
+  }
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.test-tube-scroll-error {
+  width: 100%;
+
+  min-height: 300px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+}
+
+.test-tube-scroll-error p {
+  margin: 0;
+
+  padding: 20px;
+
+  font-size: 16px;
+
+  color: #555;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .test-tube-scroll-image {
+    animation: none !important;
+    transition: none !important;
+  }
 }

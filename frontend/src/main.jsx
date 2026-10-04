@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import WhatsAppButton from "./components/WhatsAppButton";
 import App from "./App";
 import "./styles.css";
 import "./icons.css";
@@ -10,7 +11,9 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <BrowserRouter>
+    
       <App />
+      <WhatsAppButton />
     </BrowserRouter>
   </React.StrictMode>
 );
