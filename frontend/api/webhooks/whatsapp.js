@@ -1,43 +1,105 @@
+/*!
+ * WhatsApp Chat Button (inline, non-floating)
+ * Works on Android, iPhone, desktop app and WhatsApp Web.
+ *
+ * USAGE:
+ * 1. Change CONFIG below (phone number + message).
+ * 2. Add this where you want the button to appear on your page:
+ *      <div id="whatsapp-button"></div>
+ *      <script src="whatsapp-button.js"></script>
+ *    (If the div is missing, the button is inserted right where the <script> tag is.)
+ */
+(function () {
+  "use strict";
 
-import React from "react";
-import "./WhatsAppButton.css";
+  // ======== CHANGE THESE ========
+  var CONFIG = {
+    phone: "919910108453",          // country code + number, digits only (no +, spaces, or dashes). 91 = India
+    message: "Hi",                  // pre-filled message
+    label: "Chat on WhatsApp",      // button text
+    containerId: "whatsapp-button", // id of the element to place the button in
+    openInNewTab: true,             // true = new tab on desktop
+    // "wa.me"  -> universal link; opens the app on phone, and on desktop offers
+    //             WhatsApp Desktop app or WhatsApp Web (recommended)
+    // "web"    -> on desktop, jump straight to WhatsApp Web
+    desktopMode: "wa.me"
+  };
+  // ==============================
 
-const WhatsAppButton = ({
-  phoneNumber,
-  message = "Hi",
-  children = "Chat on WhatsApp",
-}) => {
-  // WhatsApp requires the complete international number
-  // without +, spaces, brackets or dashes.
-  const cleanNumber = String(phoneNumber).replace(/\D/g, "");
+  var phone = String(CONFIG.phone).replace(/\D/g, "");
+  var text = encodeURIComponent(CONFIG.message);
 
-  // Encode the complete message.
-  const encodedMessage = encodeURIComponent(message);
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|Windows Phone|Opera Mini|IEMobile/i.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS
+  }
 
-  // Official WhatsApp Click-to-Chat URL.
-  const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
+  function buildUrl() {
+    if (!isMobile() && CONFIG.desktopMode === "web") {
+      return "https://web.whatsapp.com/send?phone=" + phone + "&text=" + text;
+    }
+    return "https://wa.me/" + phone + "?text=" + text;
+  }
 
-  return (
-    <a
-      href={whatsappUrl}
-      className="whatsapp-button"
-      aria-label="Chat on WhatsApp"
-    >
-      <span className="whatsapp-button-icon" aria-hidden="true">
-        <svg
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="currentColor"
-            d="M16.04 3C8.84 3 3 8.84 3 16c0 2.3.61 4.45 1.68 6.31L3 29l6.88-1.66A12.96 12.96 0 0 0 16.04 29C23.2 29 29 23.16 29 16S23.2 3 16.04 3Zm0 23.63c-1.98 0-3.9-.57-5.55-1.65l-.4-.24-4.08.99 1.1-3.96-.26-.41A10.72 10.72 0 0 1 5.3 16c0-5.92 4.82-10.74 10.74-10.74S26.78 10.08 26.78 16s-4.82 10.63-10.74 10.63Zm5.88-8.01c-.32-.16-1.88-.93-2.17-1.04-.29-.1-.5-.16-.71.16-.21.32-.81 1.04-.99 1.25-.18.21-.36.24-.68.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.61-1.9-1.79-2.22-.18-.32-.02-.5.14-.66.15-.15.32-.36.48-.54.16-.18.21-.31.32-.52.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.25-.61-.51-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.07 1.3 3.28c.16.21 2.24 3.43 5.45 4.81.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.14-1.52.26-.75.26-1.39.18-1.52-.08-.13-.29-.21-.61-.37Z"
-          />
-        </svg>
-      </span>
+  // ---- Styles (injected once) ----
+  function injectStyles() {
+    if (document.getElementById("wa-btn-styles")) return;
+    var css =
+      ".wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;" +
+      "font:600 16px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;" +
+      "padding:12px 20px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;" +
+      "box-shadow:0 2px 6px rgba(0,0,0,.18);transition:background .2s,transform .1s;}" +
+      ".wa-btn:hover{background:#1ebe5a;color:#fff;}" +
+      ".wa-btn:active{transform:scale(.97);}" +
+      ".wa-btn:focus-visible{outline:3px solid #128C7E;outline-offset:2px;}" +
+      ".wa-btn svg{width:22px;height:22px;fill:currentColor;flex:none;}";
+    var style = document.createElement("style");
+    style.id = "wa-btn-styles";
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+  }
 
-      <span>{children}</span>
-    </a>
-  );
-};
+  var ICON =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.200l-.3-.2-3 .8.8-2.9-.2-.3A8.200 8.200 0 1 1 12 20.200z"/></svg>';
 
-export default WhatsAppButton;
+  function createButton() {
+    var a = document.createElement("a");
+    a.className = "wa-btn";
+    a.href = buildUrl();
+    a.setAttribute("aria-label", CONFIG.label);
+    if (CONFIG.openInNewTab) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+    a.innerHTML = ICON + "<span></span>";
+    a.lastChild.textContent = CONFIG.label;
+    return a;
+  }
+
+  function mount() {
+    injectStyles();
+    var btn = createButton();
+    var container = document.getElementById(CONFIG.containerId);
+    if (container) {
+      container.appendChild(btn);
+    } else if (document.currentScript && document.currentScript.parentNode) {
+      document.currentScript.parentNode.insertBefore(btn, document.currentScript);
+    } else {
+      document.body.appendChild(btn);
+    }
+  }
+
+  // Capture currentScript now (it's null after load)
+  var scriptEl = document.currentScript;
+  if (!document.getElementById(CONFIG.containerId) && scriptEl) {
+    var holder = document.createElement("div");
+    holder.id = CONFIG.containerId;
+    scriptEl.parentNode.insertBefore(holder, scriptEl);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mount);
+  } else {
+    mount();
+  }
+})();
