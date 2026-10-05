@@ -1726,7 +1726,7 @@ img, svg {
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #084f46;
+  background: #25d366;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -2210,7 +2210,7 @@ img, svg {
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #084f46;
+  background: #25d366;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -5112,19 +5112,23 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   top: auto;
 }
 
+
 .whatsapp-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 
-  padding: 13px 22px;
+  width: auto;
+  min-height: 48px;
+
+  padding: 12px 20px;
+
+  background: #25d366;
+  color: #ffffff;
 
   border: none;
   border-radius: 8px;
-
-  background-color: #084f46;
-  color: #ffffff;
 
   font-family: inherit;
   font-size: 16px;
@@ -5141,11 +5145,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .whatsapp-button:hover {
-  background-color: #20bd5a;
+  background: #20bd5a;
   color: #ffffff;
-
   transform: translateY(-1px);
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -5158,23 +5160,36 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   outline-offset: 3px;
 }
 
-.whatsapp-icon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
+.whatsapp-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.whatsapp-button-icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/*
+  IMPORTANT:
+  This is NOT a floating WhatsApp button.
+
+  There is intentionally:
+  - no position: fixed
+  - no position: absolute
+  - no bottom
+  - no right
+*/
 @media (max-width: 480px) {
   .whatsapp-button {
-    width: 100%;
     min-height: 48px;
-
     padding: 12px 18px;
-
     font-size: 15px;
   }
 
-  .whatsapp-icon {
+  .whatsapp-button-icon svg {
     width: 20px;
     height: 20px;
   }
