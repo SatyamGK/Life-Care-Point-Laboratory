@@ -3606,7 +3606,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #ffffff;
   color: #122f2a;
   overflow-x: hidden;
-  overflow-x: clip;
+  overflow-x: clip; /* clip keeps sticky working (hidden would break it) */
 }
 
 .home-section {
@@ -4087,6 +4087,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 700;
 }
 
+/* Why choose us */
 .why-choose-section {
   padding: 0px 18px;
 }
@@ -4529,6 +4530,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   height: min(82%, 490px);
   object-fit: contain;
   transform-origin: center;
+  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -4641,6 +4643,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   object-fit: contain;
   transform: translateZ(0);
   will-change: contents;
+  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -5009,9 +5012,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .whatsapp-button:hover {
-  background: #084f46;
-  /* transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3); */
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
 }
 
 .whatsapp-button:active {
@@ -5035,48 +5038,122 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 }
 
+
+/* =====================================================================
+   TEST TUBE SCROLL SEQUENCE  (pinned until the last frame is played)
+
+   <section.test-tube-scroll-section>    tall track: stage + scroll length
+     <div.test-tube-scroll-stage>        sticky, everything inside stays pinned
+       <div.test-tube-scroll-before>     "We Are Your Health Care Partner"
+       <div.test-tube-scroll-media>      <img> current frame (always fully visible)
+       <div.test-tube-scroll-after>      "TRUSTED AND RECOMMENDED BY DOCTORS"
+
+   Scroll length = frame count x scroll per frame, so every frame gets the
+   same amount of scrolling. Sections after this one only appear once the
+   track ends, i.e. after the last frame has been shown.
+   ===================================================================== */
+
 .test-tube-scroll-section {
-  --tt-header: 54px;
-  --tt-bottom-gap: 60px;
-  --tt-stage-height: calc(85vh - var(--tt-header) - var(--tt-bottom-gap));
-  --tt-scroll-length: 150vh;
+  --tt-header: 54px;                 /* fixed top header height */
+  --tt-bottom-gap: 62px;             /* fixed bottom button: 42px + 10px + air */
+  --tt-vh: 1vh;
+  --tt-scroll-per-frame: calc(var(--tt-vh) * 3);   /* scroll needed per frame */
+  --tt-stage-height: calc(var(--tt-vh) * 100 - var(--tt-header) - var(--tt-bottom-gap));
 
   position: relative;
-  width: 80%;
-  height: calc(var(--tt-stage-height) + var(--tt-scroll-length));
+  display: block;
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 100%;
+  height: calc(
+    var(--tt-stage-height) +
+    (var(--tt-frame-count, 50) * var(--tt-scroll-per-frame))
+  );
   margin: 0;
   padding: 0;
-  overflow: visible;
+  overflow: visible;                 /* never hidden: it would break sticky */
+  overflow-anchor: none;             /* no scroll jumps while frames swap */
+  background: #ffffff;
 }
 
 @supports (height: 100svh) {
   .test-tube-scroll-section {
-    --tt-stage-height: calc(100svh - var(--tt-header) - var(--tt-bottom-gap));
-    --tt-scroll-length: 150svh;
+    --tt-vh: 1svh;
   }
 }
 
+@media (max-width: 767px) {
+  .test-tube-scroll-section {
+    --tt-scroll-per-frame: calc(var(--tt-vh) * 2.2);
+  }
+}
+
+/* Pinned area: heading + tube + badge are stuck together */
 .test-tube-scroll-stage {
   position: sticky;
   top: var(--tt-header);
   width: 100%;
   height: var(--tt-stage-height);
   margin: 0;
-  padding: 18px 0;
+  padding: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
-  pointer-events: none;
+  background: #ffffff;               /* nothing shows through while pinned */
   z-index: 1;
   box-sizing: border-box;
 }
 
+.test-tube-scroll-before,
+.test-tube-scroll-after {
+  flex: 0 0 auto;                    /* never shrink: text can't overlap the image */
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.test-tube-scroll-before {
+  padding: 6px 10px 0;
+}
+
+.test-tube-scroll-before h1 {
+  margin: 8px 0;
+}
+
+.test-tube-scroll-before p {
+  margin-bottom: 0;
+}
+
+.test-tube-scroll-after {
+  display: flex;
+  justify-content: center;
+  padding: 6px 10px 8px;
+}
+
+.test-tube-scroll-after .doctor-badge {
+  margin-top: 0;
+}
+
+/* Image area takes all the remaining height; the full tube always fits */
+.test-tube-scroll-media {
+  position: relative;
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 120px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .test-tube-scroll-image {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-  max-width: 600px;
+  max-width: none;
   margin: 0;
   padding: 0;
   object-fit: contain;
@@ -5087,22 +5164,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   image-rendering: auto;
 }
 
-@media (max-width: 767px) {
-  .test-tube-scroll-section {
-    --tt-scroll-length: 110vh;
-  }
-
-  @supports (height: 100svh) {
-    .test-tube-scroll-section {
-      --tt-scroll-length: 110svh;
-    }
-  }
-
-  .test-tube-scroll-image {
-    max-width: 430px;
-  }
-}
-
+/* Reduced motion: no pinned track, only the first frame is shown */
 .test-tube-scroll-section.is-reduced-motion {
   height: auto;
 }
@@ -5110,4 +5172,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .test-tube-scroll-section.is-reduced-motion .test-tube-scroll-stage {
   position: relative;
   top: auto;
+  height: auto;
+}
+
+.test-tube-scroll-section.is-reduced-motion .test-tube-scroll-media {
+  flex: 0 0 auto;
+  height: 55svh;
 }

@@ -20,9 +20,30 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-const HOLD_RATIO = 0.1;
+/*
+  Small pause on the last frame (fraction of the pinned scroll distance)
+  before the pinned area is released and the next section scrolls in.
+*/
+const HOLD_RATIO = 0.05;
 
-export default function Hero3DScrollAnimation() {
+/*
+  Layout (everything inside the stage stays pinned together):
+
+  <section class="test-tube-scroll-section">         tall scroll track
+    <div class="test-tube-scroll-stage">             position: sticky
+      <div class="test-tube-scroll-before">  {before}  </div>   e.g. "We Are Your Health Care Partner"
+      <div class="test-tube-scroll-media">   <img />    </div>   test tube frames
+      <div class="test-tube-scroll-after">   {after}   </div>   e.g. "TRUSTED AND RECOMMENDED BY DOCTORS"
+    </div>
+  </section>
+
+  Usage:
+    <Hero3DScrollAnimation
+      before={<div className="hero-content"><h1>We Are Your Health Care Partner</h1><p>...</p></div>}
+      after={<div className="doctor-badge">TRUSTED AND RECOMMENDED BY DOCTORS</div>}
+    />
+*/
+export default function Hero3DScrollAnimation({ before = null, after = null }) {
   const sectionRef = useRef(null);
   const stageRef = useRef(null);
   const imageRef = useRef(null);
@@ -44,6 +65,7 @@ export default function Hero3DScrollAnimation() {
       "(prefers-reduced-motion: reduce)"
     );
 
+    // Preload every frame so swapping src never flickers.
     preloadedImagesRef.current = frames.map((src) => {
       const img = new Image();
       img.decoding = "async";
@@ -75,25 +97,32 @@ export default function Hero3DScrollAnimation() {
         return;
       }
 
+      // `top` of the sticky stage, in px (header height).
       const stickyTop = parseFloat(window.getComputedStyle(stage).top) || 0;
       const sectionRect = section.getBoundingClientRect();
-      const stageHeight = stage.offsetHeight;
-      const pinnedDistance = section.offsetHeight - stageHeight;
+      const pinnedDistance = section.offsetHeight - stage.offsetHeight;
 
       if (pinnedDistance <= 0) {
         return;
       }
 
-      const scrolled = stickyTop - sectionRect.top;
-      const rawProgress = clamp(scrolled / pinnedDistance, 0, 1);
-      const frameProgress = clamp(rawProgress / (1 - HOLD_RATIO), 0, 1);
-      const frameIndex = clamp(
-        Math.round(frameProgress * (frames.length - 1)),
+      // 0 when the stage starts sticking, 1 when it is about to be released.
+      const rawProgress = clamp(
+        (stickyTop - sectionRect.top) / pinnedDistance,
         0,
-        frames.length - 1
+        1
       );
 
-      showFrame(frameIndex);
+      // Last frame is reached slightly before release, then held.
+      const frameProgress = clamp(rawProgress / (1 - HOLD_RATIO), 0, 1);
+
+      showFrame(
+        clamp(
+          Math.round(frameProgress * (frames.length - 1)),
+          0,
+          frames.length - 1
+        )
+      );
     };
 
     const requestUpdate = () => {
@@ -123,6 +152,7 @@ export default function Hero3DScrollAnimation() {
       reducedMotionQuery.addListener(handleReducedMotionChange);
     }
 
+    // Sync once on mount (handles reload at a scrolled position).
     requestUpdate();
 
     return () => {
@@ -152,9 +182,31 @@ export default function Hero3DScrollAnimation() {
   }
 
   return (
-    <section ref={sectionRef} className="test-tube-scroll-section" aria-label="Laboratory test tube animation" >
+    <section
+      ref={sectionRef}
+      className="test-tube-scroll-section"
+      aria-label="Laboratory test tube animation"
+      // Scroll length scales with the number of frames (see CSS).
+      style={{ "--tt-frame-count": frames.length }}
+    >
       <div ref={stageRef} className="test-tube-scroll-stage">
-        <img ref={imageRef} src={frames[0]} alt="Laboratory test tube" className="test-tube-scroll-image" draggable="false" />
+        {before ? (
+          <div className="test-tube-scroll-before">{before}</div>
+        ) : null}
+
+        <div className="test-tube-scroll-media">
+          <img
+            ref={imageRef}
+            src={frames[0]}
+            alt="Laboratory test tube"
+            className="test-tube-scroll-image"
+            draggable="false"
+          />
+        </div>
+
+        {after ? (
+          <div className="test-tube-scroll-after">{after}</div>
+        ) : null}
       </div>
     </section>
   );
