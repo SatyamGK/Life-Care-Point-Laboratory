@@ -4,7 +4,7 @@ import { submitEnquiry, trackEvent } from "../services/api";
 import Icon from "../components/Icon";
 
 const WHATSAPP_NUMBER = "919910108453";
-const WHATSAPP_MESSAGE = "Hi";
+const WHATSAPP_MESSAGE = "Hello, I would like to know more about your health tests and packages.";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export default function BookTest() {

@@ -6,6 +6,10 @@ import { submitBooking, trackEvent } from "../services/api";
 import MedicalArt from "../components/MedicalArt";
 import { packages } from "../data/packages";
 
+const WHATSAPP_NUMBER = "919910108453";
+const WHATSAPP_MESSAGE = "Hello, I would like to know more about your health tests and packages.";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 export default function PackageBooking() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -142,7 +146,7 @@ export default function PackageBooking() {
           Call
         </a>
 
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
           <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>
