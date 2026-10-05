@@ -4,27 +4,22 @@ import "./WhatsAppButton.css";
 
 const WhatsAppButton = ({
   phoneNumber = "919876543210",
-  message = "Hi, aaaaaaaaaa",
+  message = "Hi",
   children = "Chat on WhatsApp",
 }) => {
-  const handleWhatsAppClick = () => {
-    const cleanPhoneNumber = phoneNumber.replace(/\D/g, "");
+  // Keep only numbers
+  const cleanPhoneNumber = String(phoneNumber).replace(/\D/g, "");
 
-    // Encode the message so spaces/special characters work correctly
-    const encodedMessage = encodeURIComponent(message);
+  // Encode the message
+  const encodedMessage = encodeURIComponent(message);
 
-    // WhatsApp universal link
-    const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
-
-    // Open WhatsApp / WhatsApp Web
-    window.location.href = whatsappUrl;
-  };
+  // WhatsApp universal URL
+  const whatsappUrl = `https://wa.me/${cleanPhoneNumber}?text=${encodedMessage}`;
 
   return (
-    <button
-      type="button"
+    <a
+      href={whatsappUrl}
       className="whatsapp-button"
-      onClick={handleWhatsAppClick}
       aria-label="Chat with us on WhatsApp"
     >
       <svg
@@ -40,7 +35,7 @@ const WhatsAppButton = ({
       </svg>
 
       <span>{children}</span>
-    </button>
+    </a>
   );
 };
 
