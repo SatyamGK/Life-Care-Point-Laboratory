@@ -14,7 +14,7 @@
 
   // ======== CHANGE THESE ========
   var CONFIG = {
-    phone: "919910108453",          // country code + number, digits only (no +, spaces, or dashes). 91 = India
+    phone: "91990108453",          // country code + number, digits only (no +, spaces, or dashes). 91 = India
     message: "Hi",                  // pre-filled message
     label: "Chat on WhatsApp",      // button text
     containerId: "whatsapp-button", // id of the element to place the button in
@@ -35,10 +35,16 @@
   }
 
   function buildUrl() {
+    // api.whatsapp.com/send is what wa.me redirects to, and it keeps the ?text= reliably
     if (!isMobile() && CONFIG.desktopMode === "web") {
       return "https://web.whatsapp.com/send?phone=" + phone + "&text=" + text;
     }
-    return "https://wa.me/" + phone + "?text=" + text;
+    return "https://api.whatsapp.com/send?phone=" + phone + "&text=" + text;
+  }
+
+  function buildDeepLink() {
+    // Opens the installed WhatsApp app directly with the message pre-filled
+    return "whatsapp://send?phone=" + phone + "&text=" + text;
   }
 
   // ---- Styles (injected once) ----
@@ -70,6 +76,20 @@
     if (CONFIG.openInNewTab) {
       a.target = "_blank";
       a.rel = "noopener noreferrer";
+    }
+    // On phones, try the app deep link first; fall back to the web link if the app doesn't open
+    if (isMobile()) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        var fallback = buildUrl();
+        var timer = setTimeout(function () {
+          if (!document.hidden) window.location.href = fallback;
+        }, 1500);
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) clearTimeout(timer);
+        });
+        window.location.href = buildDeepLink();
+      });
     }
     a.innerHTML = ICON + "<span></span>";
     a.lastChild.textContent = CONFIG.label;
