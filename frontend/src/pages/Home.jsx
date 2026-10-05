@@ -221,7 +221,7 @@ export default function Home() {
 
         <div className="hero-content">
 
-          <h1>
+          {/* <h1>
             We Are Your Health
             <br />
             Care Partner
@@ -229,14 +229,14 @@ export default function Home() {
 
           <p>
             Every Blood Test has a story to tell and with over 25+ years of experience, we know how to deliver it with high precision.
-          </p>
+          </p> */}
 
         </div>
         <Hero3DScrollAnimation />
 
-        <div className="doctor-badge">
+        {/* <div className="doctor-badge">
           TRUSTED AND RECOMMENDED BY DOCTORS
-        </div>
+        </div> */}
 
       </section>
 

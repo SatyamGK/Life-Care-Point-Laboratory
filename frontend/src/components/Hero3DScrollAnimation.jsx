@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useRef } from "react";
 
+/* -------------------------------------------------------------------------
+   Frames: ../hero-3d/Test-tube_image_1.webp ... Test-tube_image_50.webp
+   (sorted by the number in the file name)
+------------------------------------------------------------------------- */
 const frameModules = import.meta.glob("../hero-3d/Test-tube_image_*.webp", {
   eager: true,
   query: "?url",
@@ -21,29 +25,31 @@ function clamp(value, min, max) {
 }
 
 /*
-  Small pause on the last frame (fraction of the pinned scroll distance)
-  before the pinned area is released and the next section scrolls in.
+  Share of the pinned scroll distance during which the LAST frame (50th) stays
+  on screen while everything is still pinned. This guarantees the user always
+  sees the final frame before the next section scrolls in.
 */
-const HOLD_RATIO = 0.05;
+const HOLD_RATIO = 0.08;
 
 /*
-  Layout (everything inside the stage stays pinned together):
-
-  <section class="test-tube-scroll-section">         tall scroll track
-    <div class="test-tube-scroll-stage">             position: sticky
-      <div class="test-tube-scroll-before">  {before}  </div>   e.g. "We Are Your Health Care Partner"
-      <div class="test-tube-scroll-media">   <img />    </div>   test tube frames
-      <div class="test-tube-scroll-after">   {after}   </div>   e.g. "TRUSTED AND RECOMMENDED BY DOCTORS"
-    </div>
+  HOW IT WORKS
+  ------------
+  <section.tt-hero>                 tall scroll track (height set in CSS)
+    <div.tt-hero__stage>            position: sticky  -> everything inside is pinned
+      <h1> + <p>                    "We Are Your Health Care Partner"
+      <img>                         test tube image sequence
+      <div.tt-hero__badge>          "TRUSTED AND RECOMMENDED BY DOCTORS"
   </section>
+  <next section>                    appears only after the track ends
 
-  Usage:
-    <Hero3DScrollAnimation
-      before={<div className="hero-content"><h1>We Are Your Health Care Partner</h1><p>...</p></div>}
-      after={<div className="doctor-badge">TRUSTED AND RECOMMENDED BY DOCTORS</div>}
-    />
+  While the track scrolls past, the stage stays pinned and the frame is chosen
+  from the scroll progress. When the track ends the stage un-sticks naturally.
 */
-export default function Hero3DScrollAnimation({ before = null, after = null }) {
+export default function Hero3DScrollAnimation({
+  title = "We Are Your Health Care Partner",
+  description = "Every Blood Test has a story to tell and with over 25+ years of experience, we know how to deliver it with high precision.",
+  badgeText = "TRUSTED AND RECOMMENDED BY DOCTORS",
+}) {
   const sectionRef = useRef(null);
   const stageRef = useRef(null);
   const imageRef = useRef(null);
@@ -65,7 +71,7 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
       "(prefers-reduced-motion: reduce)"
     );
 
-    // Preload every frame so swapping src never flickers.
+    // Preload every frame so swapping `src` never flickers.
     preloadedImagesRef.current = frames.map((src) => {
       const img = new Image();
       img.decoding = "async";
@@ -83,10 +89,7 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
     };
 
     const applyReducedMotionClass = () => {
-      section.classList.toggle(
-        "is-reduced-motion",
-        reducedMotionQuery.matches
-      );
+      section.classList.toggle("is-reduced-motion", reducedMotionQuery.matches);
     };
 
     const updateFrame = () => {
@@ -97,32 +100,30 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
         return;
       }
 
-      // `top` of the sticky stage, in px (header height).
+      // `top` of the sticky stage (computed px value of --tt-header).
       const stickyTop = parseFloat(window.getComputedStyle(stage).top) || 0;
       const sectionRect = section.getBoundingClientRect();
-      const pinnedDistance = section.offsetHeight - stage.offsetHeight;
 
+      // Distance the stage stays pinned while the track scrolls by.
+      const pinnedDistance = section.offsetHeight - stage.offsetHeight;
       if (pinnedDistance <= 0) {
         return;
       }
 
-      // 0 when the stage starts sticking, 1 when it is about to be released.
-      const rawProgress = clamp(
-        (stickyTop - sectionRect.top) / pinnedDistance,
-        0,
-        1
-      );
+      // 0 when the stage first sticks, 1 when the track ends.
+      const scrolled = stickyTop - sectionRect.top;
+      const rawProgress = clamp(scrolled / pinnedDistance, 0, 1);
 
-      // Last frame is reached slightly before release, then held.
+      // Reach the final frame slightly before the track ends, then hold it.
       const frameProgress = clamp(rawProgress / (1 - HOLD_RATIO), 0, 1);
 
-      showFrame(
-        clamp(
-          Math.round(frameProgress * (frames.length - 1)),
-          0,
-          frames.length - 1
-        )
+      const frameIndex = clamp(
+        Math.round(frameProgress * (frames.length - 1)),
+        0,
+        frames.length - 1
       );
+
+      showFrame(frameIndex);
     };
 
     const requestUpdate = () => {
@@ -137,6 +138,7 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
       requestUpdate();
     };
 
+    // Initial state
     image.src = frames[0];
     image.dataset.frame = "1";
     currentFrameRef.current = 0;
@@ -152,7 +154,7 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
       reducedMotionQuery.addListener(handleReducedMotionChange);
     }
 
-    // Sync once on mount (handles reload at a scrolled position).
+    // Sync once (e.g. page reloaded while scrolled down).
     requestUpdate();
 
     return () => {
@@ -184,29 +186,26 @@ export default function Hero3DScrollAnimation({ before = null, after = null }) {
   return (
     <section
       ref={sectionRef}
-      className="test-tube-scroll-section"
+      className="tt-hero"
       aria-label="Laboratory test tube animation"
-      // Scroll length scales with the number of frames (see CSS).
-      style={{ "--tt-frame-count": frames.length }}
     >
-      <div ref={stageRef} className="test-tube-scroll-stage">
-        {before ? (
-          <div className="test-tube-scroll-before">{before}</div>
-        ) : null}
+      <div ref={stageRef} className="tt-hero__stage">
+        <div className="tt-hero__content">
+          <h1 className="tt-hero__title">{title}</h1>
+          {description ? <p className="tt-hero__text">{description}</p> : null}
+        </div>
 
-        <div className="test-tube-scroll-media">
+        <div className="tt-hero__media">
           <img
             ref={imageRef}
             src={frames[0]}
             alt="Laboratory test tube"
-            className="test-tube-scroll-image"
+            className="tt-hero__image"
             draggable="false"
           />
         </div>
 
-        {after ? (
-          <div className="test-tube-scroll-after">{after}</div>
-        ) : null}
+        <div className="tt-hero__badge">{badgeText}</div>
       </div>
     </section>
   );

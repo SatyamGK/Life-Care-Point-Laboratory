@@ -3606,7 +3606,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #ffffff;
   color: #122f2a;
   overflow-x: hidden;
-  overflow-x: clip; /* clip keeps sticky working (hidden would break it) */
+  overflow-x: clip;
 }
 
 .home-section {
@@ -4087,7 +4087,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 700;
 }
 
-/* Why choose us */
 .why-choose-section {
   padding: 0px 18px;
 }
@@ -4530,7 +4529,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   height: min(82%, 490px);
   object-fit: contain;
   transform-origin: center;
-  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -4643,7 +4641,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   object-fit: contain;
   transform: translateZ(0);
   will-change: contents;
-  /* filter: drop-shadow(0 14px 22px rgba(8, 79, 70, 0.1)); */
 }
 
 .hero-3d-glow {
@@ -5038,122 +5035,84 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   }
 }
 
-
-/* =====================================================================
-   TEST TUBE SCROLL SEQUENCE  (pinned until the last frame is played)
-
-   <section.test-tube-scroll-section>    tall track: stage + scroll length
-     <div.test-tube-scroll-stage>        sticky, everything inside stays pinned
-       <div.test-tube-scroll-before>     "We Are Your Health Care Partner"
-       <div.test-tube-scroll-media>      <img> current frame (always fully visible)
-       <div.test-tube-scroll-after>      "TRUSTED AND RECOMMENDED BY DOCTORS"
-
-   Scroll length = frame count x scroll per frame, so every frame gets the
-   same amount of scrolling. Sections after this one only appear once the
-   track ends, i.e. after the last frame has been shown.
-   ===================================================================== */
-
-.test-tube-scroll-section {
-  --tt-header: 54px;                 /* fixed top header height */
-  --tt-bottom-gap: 62px;             /* fixed bottom button: 42px + 10px + air */
-  --tt-vh: 1vh;
-  --tt-scroll-per-frame: calc(var(--tt-vh) * 3);   /* scroll needed per frame */
-  --tt-stage-height: calc(var(--tt-vh) * 100 - var(--tt-header) - var(--tt-bottom-gap));
+.tt-hero {
+  --tt-header: 54px;     
+  --tt-bottom-gap: 60px; 
+  --tt-stage-height: calc(100vh - var(--tt-header) - var(--tt-bottom-gap));
+  --tt-scroll-length: 130vh; 
 
   position: relative;
-  display: block;
-  flex: 0 0 auto;
-  align-self: stretch;
   width: 100%;
-  height: calc(
-    var(--tt-stage-height) +
-    (var(--tt-frame-count, 50) * var(--tt-scroll-per-frame))
-  );
+  height: calc(var(--tt-stage-height) + var(--tt-scroll-length));
   margin: 0;
   padding: 0;
-  overflow: visible;                 /* never hidden: it would break sticky */
-  overflow-anchor: none;             /* no scroll jumps while frames swap */
   background: #ffffff;
+  overflow: visible;
 }
 
 @supports (height: 100svh) {
-  .test-tube-scroll-section {
-    --tt-vh: 1svh;
+  .tt-hero {
+    --tt-stage-height: calc(100svh - var(--tt-header) - var(--tt-bottom-gap));
+    --tt-scroll-length: 130svh;
   }
 }
 
-@media (max-width: 767px) {
-  .test-tube-scroll-section {
-    --tt-scroll-per-frame: calc(var(--tt-vh) * 2.2);
-  }
-}
-
-/* Pinned area: heading + tube + badge are stuck together */
-.test-tube-scroll-stage {
+.tt-hero__stage {
   position: sticky;
   top: var(--tt-header);
+  z-index: 1;
   width: 100%;
   height: var(--tt-stage-height);
-  margin: 0;
-  padding: 0;
+  min-height: 420px;
+  padding: 0px 18px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  gap: 6px;
+  background: #ffffff;
   overflow: hidden;
-  background: #ffffff;               /* nothing shows through while pinned */
-  z-index: 1;
   box-sizing: border-box;
 }
 
-.test-tube-scroll-before,
-.test-tube-scroll-after {
-  flex: 0 0 auto;                    /* never shrink: text can't overlap the image */
+.tt-hero__content {
+  flex: 0 0 auto;
   width: 100%;
-  box-sizing: border-box;
   text-align: center;
 }
 
-.test-tube-scroll-before {
-  padding: 6px 10px 0;
-}
-
-.test-tube-scroll-before h1 {
+.tt-hero__title {
   margin: 8px 0;
+  color: #084f46;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
-.test-tube-scroll-before p {
-  margin-bottom: 0;
+.tt-hero__text {
+  max-width: 320px;
+  margin: 0 auto;
+  color: #6d7b78;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.test-tube-scroll-after {
-  display: flex;
-  justify-content: center;
-  padding: 6px 10px 8px;
-}
-
-.test-tube-scroll-after .doctor-badge {
-  margin-top: 0;
-}
-
-/* Image area takes all the remaining height; the full tube always fits */
-.test-tube-scroll-media {
-  position: relative;
-  flex: 1 1 0;
+.tt-hero__media {
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
-  min-height: 120px;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
-.test-tube-scroll-image {
-  position: absolute;
-  inset: 0;
+.tt-hero__image {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0;
   padding: 0;
   object-fit: contain;
@@ -5161,21 +5120,35 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
-  image-rendering: auto;
 }
 
-/* Reduced motion: no pinned track, only the first frame is shown */
-.test-tube-scroll-section.is-reduced-motion {
-  height: auto;
+.tt-hero__badge {
+  flex: 0 0 auto;
+  height: 26px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #e5f2ef;
+  color: #084f46;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
-.test-tube-scroll-section.is-reduced-motion .test-tube-scroll-stage {
+@media (max-width: 360px) {
+  .tt-hero__title { font-size: 24px; }
+  .tt-hero__badge { font-size: 8px; padding: 0 10px; }
+}
+
+@media (max-height: 520px) {
+  .tt-hero { --tt-bottom-gap: 0px; }
+}
+
+.tt-hero.is-reduced-motion { height: auto; }
+.tt-hero.is-reduced-motion .tt-hero__stage {
   position: relative;
   top: auto;
-  height: auto;
-}
-
-.test-tube-scroll-section.is-reduced-motion .test-tube-scroll-media {
-  flex: 0 0 auto;
-  height: 55svh;
 }
