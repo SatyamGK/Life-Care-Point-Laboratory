@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { submitEnquiry, trackEvent } from "../services/api";
 import Icon from "../components/Icon";
 
+const WHATSAPP_NUMBER = "919910108453";
+const WHATSAPP_MESSAGE = "Hi";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 export default function BookTest() {
   const navigate = useNavigate();
 
@@ -96,7 +100,7 @@ export default function BookTest() {
           Call
         </a>
 
-        <a href="https://wa.me/919910108453" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("whatsapp_click")} className="quick-contact-button whatsapp-button" >
           <Icon name="whatsapp" size={19} />
           WhatsApp
         </a>
