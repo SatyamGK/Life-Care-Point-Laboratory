@@ -1,120 +1,65 @@
 /*!
- * WhatsApp Chat Button (inline, non-floating)
- * Works on Android, iPhone, desktop app and WhatsApp Web.
+ * WhatsApp Chat Button (inline, not floating)
+ * Plain https link = most reliable on Android, iPhone, desktop app and WhatsApp Web.
  *
  * USAGE:
- * 1. Change CONFIG below (phone number + message).
- * 2. Add this where you want the button to appear on your page:
- *      <div id="whatsapp-button"></div>
- *      <script src="whatsapp-button.js"></script>
- *    (If the div is missing, the button is inserted right where the <script> tag is.)
+ *   <div id="whatsapp-button"></div>
+ *   <script src="whatsapp-button.js?v=4"></script>
  */
 (function () {
   "use strict";
 
   // ======== CHANGE THESE ========
-  var CONFIG = {
-    phone: "91990108453",          // country code + number, digits only (no +, spaces, or dashes). 91 = India
-    message: "Hi",                  // pre-filled message
-    label: "Chat on WhatsApp",      // button text
-    containerId: "whatsapp-button", // id of the element to place the button in
-    openInNewTab: true,             // true = new tab on desktop
-    // "wa.me"  -> universal link; opens the app on phone, and on desktop offers
-    //             WhatsApp Desktop app or WhatsApp Web (recommended)
-    // "web"    -> on desktop, jump straight to WhatsApp Web
-    desktopMode: "wa.me"
-  };
+  var PHONE   = "919910108453"; // country code + number, digits only (91 = India). NOT your own testing number
+  var MESSAGE = "Hi";           // pre-filled message
+  var LABEL   = "Chat on WhatsApp";
+  var CONTAINER_ID = "whatsapp-button";
+  var NEW_TAB = true;
   // ==============================
 
-  var phone = String(CONFIG.phone).replace(/\D/g, "");
-  var text = encodeURIComponent(CONFIG.message);
+  var phone = String(PHONE).replace(/\D/g, "");
+  var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(MESSAGE);
 
-  function isMobile() {
-    return /Android|iPhone|iPad|iPod|Windows Phone|Opera Mini|IEMobile/i.test(navigator.userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS
-  }
+  var scriptEl = document.currentScript;
 
-  function buildUrl() {
-    // api.whatsapp.com/send is what wa.me redirects to, and it keeps the ?text= reliably
-    if (!isMobile() && CONFIG.desktopMode === "web") {
-      return "https://web.whatsapp.com/send?phone=" + phone + "&text=" + text;
+  function mount() {
+    // styles
+    if (!document.getElementById("wa-btn-styles")) {
+      var st = document.createElement("style");
+      st.id = "wa-btn-styles";
+      st.textContent =
+        ".wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;" +
+        "font:600 16px/1 Arial,Helvetica,sans-serif;padding:12px 20px;border-radius:999px;" +
+        "text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:background .2s;}" +
+        ".wa-btn:hover{background:#1ebe5a;color:#fff;}" +
+        ".wa-btn svg{width:22px;height:22px;fill:currentColor;flex:none;}";
+      document.head.appendChild(st);
     }
-    return "https://api.whatsapp.com/send?phone=" + phone + "&text=" + text;
-  }
 
-  function buildDeepLink() {
-    // Opens the installed WhatsApp app directly with the message pre-filled
-    return "whatsapp://send?phone=" + phone + "&text=" + text;
-  }
-
-  // ---- Styles (injected once) ----
-  function injectStyles() {
-    if (document.getElementById("wa-btn-styles")) return;
-    var css =
-      ".wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;" +
-      "font:600 16px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;" +
-      "padding:12px 20px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;" +
-      "box-shadow:0 2px 6px rgba(0,0,0,.18);transition:background .2s,transform .1s;}" +
-      ".wa-btn:hover{background:#1ebe5a;color:#fff;}" +
-      ".wa-btn:active{transform:scale(.97);}" +
-      ".wa-btn:focus-visible{outline:3px solid #128C7E;outline-offset:2px;}" +
-      ".wa-btn svg{width:22px;height:22px;fill:currentColor;flex:none;}";
-    var style = document.createElement("style");
-    style.id = "wa-btn-styles";
-    style.appendChild(document.createTextNode(css));
-    document.head.appendChild(style);
-  }
-
-  var ICON =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.200l-.3-.2-3 .8.8-2.9-.2-.3A8.200 8.200 0 1 1 12 20.200z"/></svg>';
-
-  function createButton() {
+    // button
     var a = document.createElement("a");
     a.className = "wa-btn";
-    a.href = buildUrl();
-    a.setAttribute("aria-label", CONFIG.label);
-    if (CONFIG.openInNewTab) {
+    a.href = url;
+    a.setAttribute("aria-label", LABEL);
+    if (NEW_TAB) {
       a.target = "_blank";
       a.rel = "noopener noreferrer";
     }
-    // On phones, try the app deep link first; fall back to the web link if the app doesn't open
-    if (isMobile()) {
-      a.addEventListener("click", function (e) {
-        e.preventDefault();
-        var fallback = buildUrl();
-        var timer = setTimeout(function () {
-          if (!document.hidden) window.location.href = fallback;
-        }, 1500);
-        document.addEventListener("visibilitychange", function () {
-          if (document.hidden) clearTimeout(timer);
-        });
-        window.location.href = buildDeepLink();
-      });
-    }
-    a.innerHTML = ICON + "<span></span>";
-    a.lastChild.textContent = CONFIG.label;
-    return a;
-  }
+    a.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.2c-.2.7-1.300 1.300-1.800 1.300-.5.1-1.100.1-1.800-.1-.4-.1-1-.3-1.700-.6-3-1.300-4.900-4.300-5-4.500-.1-.2-1.200-1.600-1.200-3s.7-2.100 1-2.400c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500.2.600.8 2 .9 2.200.1.1.1.3 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.7 1.100 1.500 1.800 1 .9 1.800 1.200 2.100 1.300.3.100.4.100.6-.1l.8-1c.2-.2.400-.2.600-.1l2 1c.3.100.5.2.5.300.1.200.1.700-.1 1.400z"/></svg><span></span>';
+    a.lastChild.textContent = LABEL;
 
-  function mount() {
-    injectStyles();
-    var btn = createButton();
-    var container = document.getElementById(CONFIG.containerId);
-    if (container) {
-      container.appendChild(btn);
-    } else if (document.currentScript && document.currentScript.parentNode) {
-      document.currentScript.parentNode.insertBefore(btn, document.currentScript);
+    var box = document.getElementById(CONTAINER_ID);
+    if (box) {
+      box.appendChild(a);
+    } else if (scriptEl && scriptEl.parentNode) {
+      scriptEl.parentNode.insertBefore(a, scriptEl);
     } else {
-      document.body.appendChild(btn);
+      document.body.appendChild(a);
     }
-  }
 
-  // Capture currentScript now (it's null after load)
-  var scriptEl = document.currentScript;
-  if (!document.getElementById(CONFIG.containerId) && scriptEl) {
-    var holder = document.createElement("div");
-    holder.id = CONFIG.containerId;
-    scriptEl.parentNode.insertBefore(holder, scriptEl);
+    // Helps debugging: open browser console (F12) to see the exact link being used
+    if (window.console) console.log("WhatsApp button link:", url);
   }
 
   if (document.readyState === "loading") {
