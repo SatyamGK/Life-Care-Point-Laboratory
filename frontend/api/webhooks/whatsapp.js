@@ -10,7 +10,7 @@
   "use strict";
 
   // ======== CHANGE THESE ========
-  var PHONE   = "919910108453; // country code + number, digits only (91 = India). NOT your own testing number
+  var PHONE   = "919910108453"; // country code + number, digits only (91 = India). NOT your own testing number
   var MESSAGE = "Hi";           // pre-filled message
   var LABEL   = "Chat on WhatsApp";
   var CONTAINER_ID = "whatsapp-button";
