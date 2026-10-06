@@ -22,6 +22,26 @@ Vercel API Functions (/api/*)
 
 The WhatsApp access token and Supabase service-role key must never be placed in React/Vite variables or shipped to the browser.
 
+
+## Local development with Supabase + Vercel API
+
+This project uses Vercel serverless functions under `frontend/api`. Do **not** use `npm run dev` when testing the complete form/API flow; Vite alone does not execute those serverless functions.
+
+1. Create `frontend/.env.local` from `.env.example` and add the server-only Supabase and WhatsApp variables.
+2. Apply the Supabase migration in `frontend/supabase/migrations/20260928_production_security.sql`.
+3. From `frontend`, run:
+
+```bash
+npm install
+npm run dev:vercel
+```
+
+4. Open `http://localhost:3000`.
+
+The browser calls `/api/bookings` and `/api/enquiries`, and Vercel Dev executes the corresponding server-side functions. The browser never receives the Supabase service-role key or WhatsApp access token.
+
+If a server configuration variable is missing, the API returns a controlled configuration error and logs the exact missing variable only in the server terminal; secrets are never returned to the browser.
+
 ## Environment variables
 
 Copy `frontend/.env.example` to the environment used by Vercel. Do not commit the real `.env` file.
