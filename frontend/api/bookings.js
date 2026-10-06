@@ -15,7 +15,7 @@ import {
   parseJsonBody,
   requestUserAgent,
   sendJson,
-  sendWhatsAppText,
+  dispatchWhatsAppNotification,
   getSupabaseAdmin,
   validIndianMobile,
   validName,
@@ -302,162 +302,61 @@ export default async function handler(
     }
 
     /* -----------------------------------------
-       BUILD PLAIN TEXT WHATSAPP MESSAGE
+       SEND WHATSAPP NOTIFICATION
+       (template first, plain text only as fallback)
     ----------------------------------------- */
 
-    const whatsappMessage = [
+    const priceText = `₹${item.price}`;
+
+    const fallbackText = [
       "New booking received at Life Care Point Laboratory.",
       "",
       `Patient: ${name}`,
       `Mobile: ${mobile}`,
       `Type: ${type}`,
       `Test/Package: ${item.name}`,
-      `Price: ₹${item.price}`,
+      `Price: ${priceText}`,
       "",
       "Please contact the patient for confirmation.",
     ].join("\n");
 
-    /* -----------------------------------------
-       SEND WHATSAPP
-    ----------------------------------------- */
+    const notification = await dispatchWhatsAppNotification({
+      table: "bookings",
+      rowId: booking.id,
+      templateName: process.env.WHATSAPP_BOOKING_TEMPLATE_NAME,
 
-    try {
-      const whatsapp =
-        await sendWhatsAppText(
-          whatsappMessage
-        );
+      /* Must match the template variables {{1}}..{{5}} */
+      parameters: [name, mobile, type, item.name, priceText],
 
-      const messageId =
-        whatsapp?.messages?.[0]?.id;
+      fallbackText,
+    });
 
-      if (!messageId) {
-        throw new Error(
-          "WhatsApp API returned no message ID."
-        );
-      }
-
-      /* ---------------------------------------
-         UPDATE SUCCESS
-      --------------------------------------- */
-
-      const {
-        error: whatsappUpdateError,
-      } = await getSupabaseAdmin()
-        .from("bookings")
-        .update({
-          whatsapp_status: "sent",
-
-          whatsapp_message_id:
-            messageId,
-
-          whatsapp_error_code:
-            null,
-
-          whatsapp_error_message:
-            null,
-
-          whatsapp_sent_at:
-            new Date().toISOString(),
-        })
-        .eq(
-          "id",
-          booking.id
-        );
-
-      if (whatsappUpdateError) {
-        console.error(
-          "Booking WhatsApp status save failed:",
-          whatsappUpdateError.message
-        );
-      }
-
-      return sendJson(
-        res,
-        201,
-        {
-          success: true,
-
-          message:
-            "Booking submitted successfully.",
-
-          bookingId:
-            booking.id,
-
-          whatsapp:
-            "accepted",
-        },
-        commonRateHeaders(
-          rateLimit
-        )
-      );
-    } catch (error) {
-      /* ---------------------------------------
-         SAVE META ERROR
-      --------------------------------------- */
-
-      console.error(
-        "WhatsApp booking notification failed:",
-        {
-          providerStatus:
-            error?.providerStatus,
-
-          providerErrorCode:
-            error?.providerErrorCode,
-
-          providerErrorType:
-            error?.providerErrorType,
-
-          providerErrorSubcode:
-            error?.providerErrorSubcode,
-
-          message:
-            error?.message,
-
-          providerResponse:
-            error?.providerResponse,
-        }
-      );
-
-      await getSupabaseAdmin()
-        .from("bookings")
-        .update({
-          whatsapp_status:
-            "failed",
-
-          whatsapp_error_code:
-            error?.providerErrorCode ||
-            null,
-
-          whatsapp_error_message:
-            error?.providerResponse?.error
-              ?.message ||
-            error?.message ||
-            "Unknown WhatsApp error",
-        })
-        .eq(
-          "id",
-          booking.id
-        );
-
+    if (!notification.ok) {
       return sendJson(
         res,
         502,
         {
           success: false,
-
           stored: true,
-
-          code:
-            "WHATSAPP_NOTIFICATION_FAILED",
-
+          code: "WHATSAPP_NOTIFICATION_FAILED",
           message:
             "Your booking was saved, but the laboratory WhatsApp notification could not be sent. Please call the laboratory.",
         },
-        commonRateHeaders(
-          rateLimit
-        )
+        commonRateHeaders(rateLimit)
       );
     }
+
+    return sendJson(
+      res,
+      201,
+      {
+        success: true,
+        message: "Booking submitted successfully.",
+        bookingId: booking.id,
+        whatsapp: "accepted",
+      },
+      commonRateHeaders(rateLimit)
+    );
   } catch (error) {
     console.error(
       "Booking API error:",

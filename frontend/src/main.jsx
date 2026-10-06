@@ -13,7 +13,6 @@ ReactDOM.createRoot(
     <BrowserRouter>
     
       <App />
-      <WhatsAppButton />
     </BrowserRouter>
   </React.StrictMode>
 );

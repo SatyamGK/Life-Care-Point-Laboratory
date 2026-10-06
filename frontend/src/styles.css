@@ -1726,7 +1726,7 @@ img, svg {
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #25d366;
+  background: #084f46;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -2210,7 +2210,7 @@ img, svg {
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #25d366;
+  background: #084f46;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -4495,7 +4495,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .whatsapp-button:hover {
-  background: #f0f8f6;
+  background: #063f38;
 }
 
 .quick-contact-button:active {
@@ -5009,9 +5009,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .whatsapp-button:hover {
-  background: #20bd5a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+  background: #084f46;
 }
 
 .whatsapp-button:active {

@@ -1,70 +1,263 @@
-/*!
- * WhatsApp Chat Button (inline, not floating)
- * Plain https link = most reliable on Android, iPhone, desktop app and WhatsApp Web.
+import crypto from "node:crypto";
+
+import { getSupabaseAdmin } from "../_lib/server.js";
+
+/*
+ * Meta WhatsApp webhook
  *
- * USAGE:
- *   <div id="whatsapp-button"></div>
- *   <script src="whatsapp-button.js?v=4"></script>
+ *   GET  -> one-time verification when you click "Verify and save"
+ *   POST -> delivery receipts: sent / delivered / read / failed
+ *
+ * Callback URL to paste in Meta:
+ *   https://YOUR-DOMAIN/api/webhooks/whatsapp
+ *
+ * The raw (unparsed) body is needed to verify Meta's signature.
  */
-(function () {
-  "use strict";
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
-  // ======== CHANGE THESE ========
-  var PHONE   = "919910108453"; // country code + number, digits only (91 = India). NOT your own testing number
-  var MESSAGE = "Hi";           // pre-filled message
-  var LABEL   = "Chat on WhatsApp";
-  var CONTAINER_ID = "whatsapp-button";
-  var NEW_TAB = true;
-  // ==============================
+/* Status can only move forward: pending -> accepted -> sent -> delivered -> read */
+const ALLOWED_PREVIOUS = {
+  sent: ["pending", "accepted"],
+  delivered: ["pending", "accepted", "sent"],
+  read: ["pending", "accepted", "sent", "delivered"],
+  failed: ["pending", "accepted", "sent"],
+};
 
-  var phone = String(PHONE).replace(/\D/g, "");
-  var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(MESSAGE);
+const TIMESTAMP_COLUMN = {
+  sent: "whatsapp_sent_at",
+  delivered: "whatsapp_delivered_at",
+  read: "whatsapp_read_at",
+};
 
-  var scriptEl = document.currentScript;
+function queryValue(req, name) {
+  const value = req.query?.[name];
 
-  function mount() {
-    // styles
-    if (!document.getElementById("wa-btn-styles")) {
-      var st = document.createElement("style");
-      st.id = "wa-btn-styles";
-      st.textContent =
-        ".wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;" +
-        "font:600 16px/1 Arial,Helvetica,sans-serif;padding:12px 20px;border-radius:999px;" +
-        "text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:background .2s;}" +
-        ".wa-btn:hover{background:#1ebe5a;color:#fff;}" +
-        ".wa-btn svg{width:22px;height:22px;fill:currentColor;flex:none;}";
-      document.head.appendChild(st);
-    }
-
-    // button
-    var a = document.createElement("a");
-    a.className = "wa-btn";
-    a.href = url;
-    a.setAttribute("aria-label", LABEL);
-    if (NEW_TAB) {
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-    }
-    a.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 14.2c-.2.7-1.300 1.300-1.800 1.300-.5.1-1.100.1-1.800-.1-.4-.1-1-.3-1.700-.6-3-1.300-4.900-4.300-5-4.500-.1-.2-1.200-1.600-1.200-3s.7-2.100 1-2.400c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500.2.600.8 2 .9 2.200.1.1.1.3 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.7 1.100 1.500 1.800 1 .9 1.800 1.200 2.100 1.300.3.100.4.100.6-.1l.8-1c.2-.2.400-.2.600-.1l2 1c.3.100.5.2.5.300.1.200.1.700-.1 1.400z"/></svg><span></span>';
-    a.lastChild.textContent = LABEL;
-
-    var box = document.getElementById(CONTAINER_ID);
-    if (box) {
-      box.appendChild(a);
-    } else if (scriptEl && scriptEl.parentNode) {
-      scriptEl.parentNode.insertBefore(a, scriptEl);
-    } else {
-      document.body.appendChild(a);
-    }
-
-    // Helps debugging: open browser console (F12) to see the exact link being used
-    if (window.console) console.log("WhatsApp button link:", url);
+  if (Array.isArray(value)) {
+    return String(value[0] ?? "");
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mount);
-  } else {
-    mount();
+  return value == null ? "" : String(value);
+}
+
+async function readRawBody(req) {
+  if (typeof req.body === "string") {
+    return req.body;
   }
-})();
+
+  if (Buffer.isBuffer(req.body)) {
+    return req.body.toString("utf8");
+  }
+
+  /* Platform already parsed the body: best-effort re-serialisation. */
+  if (req.body && typeof req.body === "object") {
+    return JSON.stringify(req.body);
+  }
+
+  const chunks = [];
+
+  for await (const chunk of req) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+function validSignature(rawBody, header) {
+  const secret = process.env.WHATSAPP_APP_SECRET;
+
+  /* Without the App Secret we cannot verify. Warn but keep working. */
+  if (!secret) {
+    console.warn(
+      "WHATSAPP_APP_SECRET is not set: webhook signature NOT verified."
+    );
+
+    return true;
+  }
+
+  if (!header || !String(header).startsWith("sha256=")) {
+    return false;
+  }
+
+  const expected = crypto
+    .createHmac("sha256", secret)
+    .update(rawBody, "utf8")
+    .digest("hex");
+
+  const received = String(header).slice("sha256=".length);
+
+  const a = Buffer.from(expected, "utf8");
+  const b = Buffer.from(received, "utf8");
+
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
+async function applyStatus(statusRecord) {
+  const messageId = String(statusRecord?.id || "").trim();
+
+  const status = String(statusRecord?.status || "")
+    .trim()
+    .toLowerCase();
+
+  const previous = ALLOWED_PREVIOUS[status];
+
+  if (!messageId || !previous) {
+    return false;
+  }
+
+  const when = statusRecord?.timestamp
+    ? new Date(Number(statusRecord.timestamp) * 1000).toISOString()
+    : new Date().toISOString();
+
+  const errorRecord = Array.isArray(statusRecord?.errors)
+    ? statusRecord.errors[0]
+    : null;
+
+  const core = { whatsapp_status: status };
+
+  const full = { ...core };
+
+  if (TIMESTAMP_COLUMN[status]) {
+    full[TIMESTAMP_COLUMN[status]] = when;
+  }
+
+  if (status === "failed") {
+    full.whatsapp_error_code = errorRecord?.code
+      ? String(errorRecord.code)
+      : null;
+
+    full.whatsapp_error_message = String(
+      errorRecord?.error_data?.details ||
+        errorRecord?.message ||
+        errorRecord?.title ||
+        "Message could not be delivered"
+    ).slice(0, 500);
+  }
+
+  const supabase = getSupabaseAdmin();
+
+  for (const table of ["bookings", "enquiries"]) {
+    let { error } = await supabase
+      .from(table)
+      .update(full)
+      .eq("whatsapp_message_id", messageId)
+      .in("whatsapp_status", previous);
+
+    /* Migration not applied yet: still save the status itself. */
+    if (error) {
+      console.error(
+        `${table} webhook update failed, retrying core fields:`,
+        error.message
+      );
+
+      ({ error } = await supabase
+        .from(table)
+        .update(core)
+        .eq("whatsapp_message_id", messageId)
+        .in("whatsapp_status", previous));
+
+      if (error) {
+        console.error(
+          `${table} webhook core update failed:`,
+          error.message
+        );
+      }
+    }
+  }
+
+  console.log("WhatsApp status update:", {
+    messageId,
+    status,
+    recipientId: statusRecord?.recipient_id || null,
+    errorCode: errorRecord?.code || null,
+    errorTitle: errorRecord?.title || null,
+    errorDetails: errorRecord?.error_data?.details || null,
+  });
+
+  return true;
+}
+
+export default async function handler(req, res) {
+  res.setHeader("Cache-Control", "no-store, max-age=0");
+
+  /* ---------- META VERIFICATION ---------- */
+  if (req.method === "GET") {
+    const mode = queryValue(req, "hub.mode");
+    const token = queryValue(req, "hub.verify_token");
+    const challenge = queryValue(req, "hub.challenge");
+
+    const expected = process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN;
+
+    if (mode === "subscribe" && expected && token === expected) {
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+
+      return res.status(200).send(challenge);
+    }
+
+    return res.status(403).json({
+      success: false,
+      message: "Webhook verification failed.",
+    });
+  }
+
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
+
+    return res.status(405).json({
+      success: false,
+      message: "Method not allowed.",
+    });
+  }
+
+  /* ---------- DELIVERY RECEIPTS ---------- */
+  try {
+    const rawBody = await readRawBody(req);
+
+    if (!validSignature(rawBody, req.headers["x-hub-signature-256"])) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid signature.",
+      });
+    }
+
+    let payload = {};
+
+    try {
+      payload = JSON.parse(rawBody || "{}");
+    } catch {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid JSON body.",
+      });
+    }
+
+    if (payload.object !== "whatsapp_business_account") {
+      return res.status(200).json({ success: true, ignored: true });
+    }
+
+    let processed = 0;
+
+    for (const entry of payload.entry || []) {
+      for (const change of entry.changes || []) {
+        for (const status of change?.value?.statuses || []) {
+          if (await applyStatus(status)) {
+            processed += 1;
+          }
+        }
+      }
+    }
+
+    return res.status(200).json({ success: true, processed });
+  } catch (error) {
+    console.error("WhatsApp webhook error:", error?.message || error);
+
+    /* 500 makes Meta retry, which is what we want for DB hiccups. */
+    return res.status(500).json({
+      success: false,
+      message: "Webhook processing failed.",
+    });
+  }
+}

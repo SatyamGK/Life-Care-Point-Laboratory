@@ -14,7 +14,7 @@ import {
   requestUserAgent,
   safeSource,
   sendJson,
-  sendWhatsAppText,
+  dispatchWhatsAppNotification,
   getSupabaseAdmin,
   validIndianMobile,
   validName,
@@ -258,165 +258,60 @@ export default async function handler(
     }
 
     /* -----------------------------------------
-       BUILD PLAIN TEXT MESSAGE
+       SEND WHATSAPP NOTIFICATION
+       (template first, plain text only as fallback)
     ----------------------------------------- */
 
-    const whatsappMessage = [
+    const messageText = message || "No message provided";
+
+    const fallbackText = [
       "New website enquiry received at Life Care Point Laboratory.",
       "",
       `Name: ${name}`,
       `Mobile: ${mobile}`,
       `Source: ${source}`,
-      `Message: ${
-        message ||
-        "No message provided"
-      }`,
+      `Message: ${messageText}`,
       "",
       "Please contact the customer.",
     ].join("\n");
 
-    /* -----------------------------------------
-       SEND WHATSAPP
-    ----------------------------------------- */
+    const notification = await dispatchWhatsAppNotification({
+      table: "enquiries",
+      rowId: enquiry.id,
+      templateName: process.env.WHATSAPP_ENQUIRY_TEMPLATE_NAME,
 
-    try {
-      const whatsapp =
-        await sendWhatsAppText(
-          whatsappMessage
-        );
+      /* Must match the template variables {{1}}..{{4}} */
+      parameters: [name, mobile, source, messageText],
 
-      const messageId =
-        whatsapp?.messages?.[0]?.id;
+      fallbackText,
+    });
 
-      if (!messageId) {
-        throw new Error(
-          "WhatsApp API returned no message ID."
-        );
-      }
-
-      /* ---------------------------------------
-         UPDATE SUCCESS
-      --------------------------------------- */
-
-      const {
-        error: whatsappUpdateError,
-      } = await getSupabaseAdmin()
-        .from("enquiries")
-        .update({
-          whatsapp_status:
-            "sent",
-
-          whatsapp_message_id:
-            messageId,
-
-          whatsapp_error_code:
-            null,
-
-          whatsapp_error_message:
-            null,
-
-          whatsapp_sent_at:
-            new Date().toISOString(),
-        })
-        .eq(
-          "id",
-          enquiry.id
-        );
-
-      if (whatsappUpdateError) {
-        console.error(
-          "Enquiry WhatsApp status save failed:",
-          whatsappUpdateError.message
-        );
-      }
-
-      return sendJson(
-        res,
-        201,
-        {
-          success: true,
-
-          message:
-            "Your request has been submitted successfully.",
-
-          enquiryId:
-            enquiry.id,
-
-          whatsapp:
-            "accepted",
-        },
-        commonRateHeaders(
-          rateLimit
-        )
-      );
-    } catch (error) {
-      /* ---------------------------------------
-         SAVE META ERROR
-      --------------------------------------- */
-
-      console.error(
-        "WhatsApp enquiry notification failed:",
-        {
-          providerStatus:
-            error?.providerStatus,
-
-          providerErrorCode:
-            error?.providerErrorCode,
-
-          providerErrorType:
-            error?.providerErrorType,
-
-          providerErrorSubcode:
-            error?.providerErrorSubcode,
-
-          message:
-            error?.message,
-
-          providerResponse:
-            error?.providerResponse,
-        }
-      );
-
-      await getSupabaseAdmin()
-        .from("enquiries")
-        .update({
-          whatsapp_status:
-            "failed",
-
-          whatsapp_error_code:
-            error?.providerErrorCode ||
-            null,
-
-          whatsapp_error_message:
-            error?.providerResponse?.error
-              ?.message ||
-            error?.message ||
-            "Unknown WhatsApp error",
-        })
-        .eq(
-          "id",
-          enquiry.id
-        );
-
+    if (!notification.ok) {
       return sendJson(
         res,
         502,
         {
           success: false,
-
           stored: true,
-
-          code:
-            "WHATSAPP_NOTIFICATION_FAILED",
-
+          code: "WHATSAPP_NOTIFICATION_FAILED",
           message:
             "Your request was saved, but the laboratory WhatsApp notification could not be sent. Please call the laboratory.",
         },
-        commonRateHeaders(
-          rateLimit
-        )
+        commonRateHeaders(rateLimit)
       );
     }
+
+    return sendJson(
+      res,
+      201,
+      {
+        success: true,
+        message: "Your request has been submitted successfully.",
+        enquiryId: enquiry.id,
+        whatsapp: "accepted",
+      },
+      commonRateHeaders(rateLimit)
+    );
   } catch (error) {
     console.error(
       "Enquiry API error:",

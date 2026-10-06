@@ -395,11 +395,94 @@ export function commonRateHeaders(result) {
 
 /* =========================================================
    WHATSAPP CLOUD API
-   PLAIN TEXT ONLY
+   Template-first delivery (works outside the 24-hour window)
 ========================================================= */
 
-function normalizeWhatsAppNumber(value) {
-  return String(value || "").replace(/\D/g, "");
+/*
+ * WHY TEMPLATES?
+ * WhatsApp only delivers a free-form text message if the recipient has
+ * messaged the business number within the last 24 hours. Otherwise Meta
+ * still answers "200 OK + message id" (so the website shows success) and
+ * then drops the message later with error 131047. A business-initiated
+ * notification therefore MUST be an approved template message.
+ */
+
+const TEMPLATE_PARAM_MAX_LENGTH = 1000;
+
+/* Meta wants country code + number, digits only. */
+export function normalizeWhatsAppNumber(value) {
+  const digits = String(value || "").replace(/\D/g, "");
+
+  /* 10-digit Indian number saved without country code -> add 91 */
+  if (digits.length === 10) {
+    return `91${digits}`;
+  }
+
+  /* 0XXXXXXXXXX -> 91XXXXXXXXXX */
+  if (digits.length === 11 && digits.startsWith("0")) {
+    return `91${digits.slice(1)}`;
+  }
+
+  return digits;
+}
+
+/*
+ * Template variables may not contain new lines, tabs or runs of
+ * 4+ spaces (Meta error 132018) and may not be empty (132000).
+ */
+function templateParam(value) {
+  return (
+    String(value ?? "")
+      .replace(/[\r\n\t]+/g, " ")
+      .replace(/ {2,}/g, " ")
+      .trim()
+      .slice(0, TEMPLATE_PARAM_MAX_LENGTH) || "-"
+  );
+}
+
+/*
+ * The notification recipient must be a DIFFERENT phone from the
+ * WhatsApp Business (sender) number. A business number cannot
+ * message itself.
+ */
+function assertRecipientIsNotSender(recipient) {
+  const sender = normalizeWhatsAppNumber(
+    process.env.WHATSAPP_BUSINESS_NUMBER
+  );
+
+  if (sender && recipient && sender === recipient) {
+    const error = new Error(
+      "WHATSAPP_NOTIFICATION_RECIPIENT is the same as the WhatsApp " +
+        "Business sender number. Set it to a different personal/staff " +
+        "WhatsApp number."
+    );
+
+    error.statusCode = 500;
+    error.code = "WHATSAPP_RECIPIENT_IS_SENDER";
+
+    throw error;
+  }
+}
+
+function getRecipient() {
+  const recipient = normalizeWhatsAppNumber(
+    process.env.WHATSAPP_NOTIFICATION_RECIPIENT
+  );
+
+  if (!recipient) {
+    const error = new Error(
+      "WhatsApp notification recipient is not configured."
+    );
+
+    error.statusCode = 500;
+    error.code = "WHATSAPP_RECIPIENT_NOT_CONFIGURED";
+
+    throw error;
+  }
+
+  assertRecipientIsNotSender(recipient);
+
+  return recipient;
 }
 
 async function metaGraphRequest(payload) {
@@ -429,11 +512,11 @@ async function metaGraphRequest(payload) {
       method: "POST",
 
       headers: {
-        Authorization:
-          `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${String(
+          process.env.WHATSAPP_ACCESS_TOKEN
+        ).trim()}`,
 
-        "Content-Type":
-          "application/json",
+        "Content-Type": "application/json",
       },
 
       body: JSON.stringify(payload),
@@ -441,52 +524,46 @@ async function metaGraphRequest(payload) {
       signal: controller.signal,
     });
 
-    const result =
-      await response.json().catch(() => ({}));
+    const result = await response.json().catch(() => ({}));
 
     if (!response.ok) {
+      const details = result?.error?.error_data?.details;
+
       const error = new Error(
-        result?.error?.message ||
-          "WhatsApp provider rejected the message."
+        [
+          result?.error?.message ||
+            "WhatsApp provider rejected the message.",
+          details,
+        ]
+          .filter(Boolean)
+          .join(" - ")
       );
 
-      error.providerStatus =
-        response.status;
+      error.providerStatus = response.status;
+      error.providerResponse = result;
 
-      error.providerResponse =
-        result;
+      error.providerErrorCode = result?.error?.code
+        ? String(result.error.code)
+        : null;
 
-      error.providerErrorCode =
-        result?.error?.code
-          ? String(result.error.code)
-          : null;
+      error.providerErrorType = result?.error?.type || null;
 
-      error.providerErrorType =
-        result?.error?.type || null;
-
-      error.providerErrorSubcode =
-        result?.error?.error_subcode
-          ? String(
-              result.error.error_subcode
-            )
-          : null;
+      error.providerErrorSubcode = result?.error?.error_subcode
+        ? String(result.error.error_subcode)
+        : null;
 
       throw error;
     }
 
-    const messageId =
-      result?.messages?.[0]?.id;
+    const messageId = result?.messages?.[0]?.id;
 
     if (!messageId) {
       const error = new Error(
         "WhatsApp API returned no message ID."
       );
 
-      error.providerStatus =
-        response.status;
-
-      error.providerResponse =
-        result;
+      error.providerStatus = response.status;
+      error.providerResponse = result;
 
       throw error;
     }
@@ -517,27 +594,67 @@ async function metaGraphRequest(payload) {
 }
 
 /*
- * IMPORTANT:
- * This sends a normal WhatsApp text message.
- * No template is used.
+ * Approved TEMPLATE message.
+ * Delivered at any time (no 24-hour window needed).
  */
-export async function sendWhatsAppText(body) {
-  const recipient =
-    normalizeWhatsAppNumber(
-      process.env.WHATSAPP_NOTIFICATION_RECIPIENT
-    );
+export async function sendWhatsAppTemplate(
+  templateName,
+  parameters = [],
+  language = "en_US"
+) {
+  const name = String(templateName || "").trim();
 
-  if (!recipient) {
+  if (!name) {
     const error = new Error(
-      "WhatsApp notification recipient is not configured."
+      "WhatsApp template name is not configured."
     );
 
     error.statusCode = 500;
-    error.code =
-      "WHATSAPP_RECIPIENT_NOT_CONFIGURED";
+    error.code = "WHATSAPP_TEMPLATE_NOT_CONFIGURED";
 
     throw error;
   }
+
+  const recipient = getRecipient();
+
+  const bodyParameters = parameters.map((value) => ({
+    type: "text",
+    text: templateParam(value),
+  }));
+
+  return metaGraphRequest({
+    messaging_product: "whatsapp",
+    recipient_type: "individual",
+    to: recipient,
+    type: "template",
+    template: {
+      name,
+
+      language: {
+        code: String(language || "en_US").trim(),
+      },
+
+      ...(bodyParameters.length
+        ? {
+            components: [
+              {
+                type: "body",
+                parameters: bodyParameters,
+              },
+            ],
+          }
+        : {}),
+    },
+  });
+}
+
+/*
+ * Free-form TEXT message.
+ * Only delivered if the recipient messaged the business number
+ * during the last 24 hours. Used as a fallback only.
+ */
+export async function sendWhatsAppText(body) {
+  const recipient = getRecipient();
 
   const message = String(body || "").trim();
 
@@ -547,27 +664,193 @@ export async function sendWhatsAppText(body) {
     );
 
     error.statusCode = 400;
-    error.code =
-      "WHATSAPP_MESSAGE_EMPTY";
+    error.code = "WHATSAPP_MESSAGE_EMPTY";
 
     throw error;
   }
 
-  /*
-   * Plain text WhatsApp message.
-   */
   return metaGraphRequest({
     messaging_product: "whatsapp",
-
     recipient_type: "individual",
-
     to: recipient,
-
     type: "text",
-
     text: {
       preview_url: false,
       body: message,
     },
   });
+}
+
+/*
+ * Template first. If no template is configured, or the template
+ * request is rejected, fall back to a plain text message.
+ */
+export async function sendWhatsAppNotification({
+  templateName,
+  parameters = [],
+  language,
+  fallbackText,
+}) {
+  const templateLanguage =
+    language ||
+    process.env.WHATSAPP_TEMPLATE_LANGUAGE ||
+    "en_US";
+
+  if (templateName) {
+    try {
+      const result = await sendWhatsAppTemplate(
+        templateName,
+        parameters,
+        templateLanguage
+      );
+
+      return {
+        mode: "template",
+        messageId: result.messages[0].id,
+        result,
+      };
+    } catch (templateError) {
+      console.error("WhatsApp template send failed:", {
+        template: templateName,
+        language: templateLanguage,
+        code: templateError?.providerErrorCode || templateError?.code,
+        message: templateError?.message,
+      });
+
+      if (!fallbackText) {
+        throw templateError;
+      }
+
+      try {
+        const result = await sendWhatsAppText(fallbackText);
+
+        return {
+          mode: "text-fallback",
+          messageId: result.messages[0].id,
+          result,
+        };
+      } catch (textError) {
+        /* Report the template error: it is the actionable one. */
+        templateError.fallbackError = textError?.message;
+
+        throw templateError;
+      }
+    }
+  }
+
+  console.warn(
+    "No WhatsApp template configured: sending plain text. " +
+      "Plain text is only delivered inside the 24-hour customer " +
+      "service window. Configure an approved template."
+  );
+
+  const result = await sendWhatsAppText(fallbackText);
+
+  return {
+    mode: "text",
+    messageId: result.messages[0].id,
+    result,
+  };
+}
+
+/*
+ * Sends the notification and records the outcome on the
+ * bookings / enquiries row.
+ *
+ * "accepted" = Meta accepted the request. It is NOT delivery.
+ * The webhook (/api/webhooks/whatsapp) later moves it to
+ * sent -> delivered -> read, or to failed with Meta's reason.
+ */
+export async function dispatchWhatsAppNotification({
+  table,
+  rowId,
+  templateName,
+  parameters,
+  fallbackText,
+}) {
+  const supabase = getSupabaseAdmin();
+
+  try {
+    const { messageId, mode } = await sendWhatsAppNotification({
+      templateName,
+      parameters,
+      fallbackText,
+    });
+
+    const { error: updateError } = await supabase
+      .from(table)
+      .update({
+        whatsapp_status: "accepted",
+        whatsapp_message_id: messageId,
+      })
+      .eq("id", rowId);
+
+    if (updateError) {
+      console.error(
+        `${table} WhatsApp status save failed:`,
+        updateError.message
+      );
+    }
+
+    console.log(`${table} WhatsApp accepted by Meta:`, {
+      rowId,
+      messageId,
+      mode,
+    });
+
+    return { ok: true, messageId, mode };
+  } catch (error) {
+    const errorCode =
+      error?.providerErrorCode || error?.code || null;
+
+    const errorMessage = String(
+      error?.providerResponse?.error?.message ||
+        error?.message ||
+        "Unknown WhatsApp error"
+    ).slice(0, 500);
+
+    console.error(`${table} WhatsApp notification failed:`, {
+      rowId,
+      providerStatus: error?.providerStatus,
+      providerErrorCode: error?.providerErrorCode,
+      providerErrorType: error?.providerErrorType,
+      providerErrorSubcode: error?.providerErrorSubcode,
+      code: error?.code,
+      message: error?.message,
+      fallbackError: error?.fallbackError,
+      providerResponse: error?.providerResponse,
+    });
+
+    /* Core status first (columns always exist) ... */
+    const { error: statusError } = await supabase
+      .from(table)
+      .update({ whatsapp_status: "failed" })
+      .eq("id", rowId);
+
+    if (statusError) {
+      console.error(
+        `${table} WhatsApp failed-status save failed:`,
+        statusError.message
+      );
+    }
+
+    /* ... then the error details (needs the new migration). */
+    const { error: detailError } = await supabase
+      .from(table)
+      .update({
+        whatsapp_error_code: errorCode,
+        whatsapp_error_message: errorMessage,
+      })
+      .eq("id", rowId);
+
+    if (detailError) {
+      console.error(
+        `${table} WhatsApp error details not saved ` +
+          `(run the 20261006 migration):`,
+        detailError.message
+      );
+    }
+
+    return { ok: false, error };
+  }
 }
