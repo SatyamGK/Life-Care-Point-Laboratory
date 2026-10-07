@@ -40,7 +40,7 @@ export default function BookingSuccess() {
       <div className="booking-success-card">
 
         <div className="success-green-check">
-          âœ“
+           ✓
         </div>
 
         <h1>
