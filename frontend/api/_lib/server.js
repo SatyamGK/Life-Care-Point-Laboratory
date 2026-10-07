@@ -728,6 +728,13 @@ export async function sendWhatsAppNotification({
           mode: "text-fallback",
           messageId: result.messages[0].id,
           result,
+          templateFailure: {
+            code:
+              templateError?.providerErrorCode ||
+              templateError?.code ||
+              null,
+            message: String(templateError?.message || "").slice(0, 300),
+          },
         };
       } catch (textError) {
         /* Report the template error: it is the actionable one. */
@@ -801,11 +808,32 @@ export async function dispatchWhatsAppNotification({
   fallbackText,
 }) {
   try {
-    const { messageId, mode } = await sendWhatsAppNotification({
-      templateName,
-      parameters,
-      fallbackText,
-    });
+    const { messageId, mode, templateFailure } =
+      await sendWhatsAppNotification({
+        templateName,
+        parameters,
+        fallbackText,
+      });
+
+    /*
+     * Plain text is NOT delivered outside the 24-hour window, even though
+     * Meta accepts it. Record that risk on the row so it is visible.
+     */
+    const riskCode =
+      mode === "template"
+        ? null
+        : mode === "text-fallback"
+          ? `TEMPLATE_FAILED_${templateFailure?.code || "UNKNOWN"}`
+          : "NO_TEMPLATE_CONFIGURED";
+
+    const riskMessage =
+      mode === "template"
+        ? null
+        : mode === "text-fallback"
+          ? `Template rejected, plain text used (may not be delivered): ${
+              templateFailure?.message || ""
+            }`.slice(0, 500)
+          : "No template configured, plain text used (may not be delivered).";
 
     console.log(`${table} WhatsApp accepted by Meta:`, {
       rowId,
@@ -818,8 +846,8 @@ export async function dispatchWhatsAppNotification({
         whatsapp_status: "sent",
         whatsapp_message_id: messageId,
         whatsapp_sent_at: new Date().toISOString(),
-        whatsapp_error_code: null,
-        whatsapp_error_message: null,
+        whatsapp_error_code: riskCode,
+        whatsapp_error_message: riskMessage,
       },
       /* migration not applied yet */
       {
@@ -832,7 +860,7 @@ export async function dispatchWhatsAppNotification({
       },
     ]);
 
-    return { ok: true, messageId, mode };
+    return { ok: true, messageId, mode, riskCode };
   } catch (error) {
     const errorCode =
       error?.providerErrorCode || error?.code || null;
