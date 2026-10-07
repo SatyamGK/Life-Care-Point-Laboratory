@@ -21,7 +21,7 @@ export const config = {
 
 /* Status can only move forward: pending -> accepted -> sent -> delivered -> read */
 const ALLOWED_PREVIOUS = {
-  sent: ["pending", "accepted"],
+  sent: ["pending", "accepted", "sent"],
   delivered: ["pending", "accepted", "sent"],
   read: ["pending", "accepted", "sent", "delivered"],
   failed: ["pending", "accepted", "sent"],

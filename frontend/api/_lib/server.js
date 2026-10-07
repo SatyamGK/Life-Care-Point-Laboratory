@@ -505,7 +505,7 @@ async function metaGraphRequest(payload) {
 
   const timeout = setTimeout(() => {
     controller.abort();
-  }, 15000);
+  }, 8000);
 
   try {
     const response = await fetch(url, {
@@ -580,7 +580,7 @@ async function metaGraphRequest(payload) {
       timeoutError.providerResponse = {
         error: {
           message:
-            "Meta Graph API request timed out after 15 seconds.",
+            "Meta Graph API request timed out after 8 seconds.",
         },
       };
 
@@ -754,12 +754,44 @@ export async function sendWhatsAppNotification({
 }
 
 /*
+ * Tries each payload in order until one really updates the row.
+ * Every failure is logged with the exact database error, so a row stuck
+ * on "pending" always leaves a reason in the Vercel function logs.
+ */
+async function updateRowWithFallback(table, rowId, payloads) {
+  const supabase = getSupabaseAdmin();
+
+  for (const payload of payloads) {
+    const { data, error } = await supabase
+      .from(table)
+      .update(payload)
+      .eq("id", rowId)
+      .select("id");
+
+    if (!error && Array.isArray(data) && data.length > 0) {
+      return true;
+    }
+
+    console.error(`${table} row update failed`, {
+      rowId,
+      fields: Object.keys(payload),
+      dbCode: error?.code,
+      dbMessage: error?.message,
+      dbDetails: error?.details,
+      rowsUpdated: Array.isArray(data) ? data.length : 0,
+    });
+  }
+
+  return false;
+}
+
+/*
  * Sends the notification and records the outcome on the
  * bookings / enquiries row.
  *
- * "accepted" = Meta accepted the request. It is NOT delivery.
+ * "sent" = Meta accepted the request. It is NOT yet delivery.
  * The webhook (/api/webhooks/whatsapp) later moves it to
- * sent -> delivered -> read, or to failed with Meta's reason.
+ * delivered -> read, or to failed with Meta's reason.
  */
 export async function dispatchWhatsAppNotification({
   table,
@@ -768,8 +800,6 @@ export async function dispatchWhatsAppNotification({
   parameters,
   fallbackText,
 }) {
-  const supabase = getSupabaseAdmin();
-
   try {
     const { messageId, mode } = await sendWhatsAppNotification({
       templateName,
@@ -777,26 +807,30 @@ export async function dispatchWhatsAppNotification({
       fallbackText,
     });
 
-    const { error: updateError } = await supabase
-      .from(table)
-      .update({
-        whatsapp_status: "accepted",
-        whatsapp_message_id: messageId,
-      })
-      .eq("id", rowId);
-
-    if (updateError) {
-      console.error(
-        `${table} WhatsApp status save failed:`,
-        updateError.message
-      );
-    }
-
     console.log(`${table} WhatsApp accepted by Meta:`, {
       rowId,
       messageId,
       mode,
     });
+
+    await updateRowWithFallback(table, rowId, [
+      {
+        whatsapp_status: "sent",
+        whatsapp_message_id: messageId,
+        whatsapp_sent_at: new Date().toISOString(),
+        whatsapp_error_code: null,
+        whatsapp_error_message: null,
+      },
+      /* migration not applied yet */
+      {
+        whatsapp_status: "sent",
+        whatsapp_message_id: messageId,
+      },
+      /* e.g. a CHECK constraint rejected the status value */
+      {
+        whatsapp_message_id: messageId,
+      },
+    ]);
 
     return { ok: true, messageId, mode };
   } catch (error) {
@@ -821,35 +855,14 @@ export async function dispatchWhatsAppNotification({
       providerResponse: error?.providerResponse,
     });
 
-    /* Core status first (columns always exist) ... */
-    const { error: statusError } = await supabase
-      .from(table)
-      .update({ whatsapp_status: "failed" })
-      .eq("id", rowId);
-
-    if (statusError) {
-      console.error(
-        `${table} WhatsApp failed-status save failed:`,
-        statusError.message
-      );
-    }
-
-    /* ... then the error details (needs the new migration). */
-    const { error: detailError } = await supabase
-      .from(table)
-      .update({
+    await updateRowWithFallback(table, rowId, [
+      {
+        whatsapp_status: "failed",
         whatsapp_error_code: errorCode,
         whatsapp_error_message: errorMessage,
-      })
-      .eq("id", rowId);
-
-    if (detailError) {
-      console.error(
-        `${table} WhatsApp error details not saved ` +
-          `(run the 20261006 migration):`,
-        detailError.message
-      );
-    }
+      },
+      { whatsapp_status: "failed" },
+    ]);
 
     return { ok: false, error };
   }

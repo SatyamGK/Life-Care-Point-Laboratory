@@ -308,7 +308,7 @@ export default async function handler(
         success: true,
         message: "Your request has been submitted successfully.",
         enquiryId: enquiry.id,
-        whatsapp: "accepted",
+        whatsapp: "sent",
       },
       commonRateHeaders(rateLimit)
     );
